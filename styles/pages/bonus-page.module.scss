@@ -1,0 +1,45 @@
+@import '../variables.scss';
+
+.bonus__heading {
+  font-weight: bold;
+}
+
+.link__bold {
+  color: $text-dark;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.bonus__divider { 
+  background:#F8BAB4;
+}
+
+.heading__partner { 
+  font-size: 1.625rem;
+  font-weight: bold;
+}
+
+.org__list {
+  display: grid;
+}
+
+.item__title {
+  font-size: 1.125rem;
+  text-align: center;
+}
+
+
+@media (min-width: 992px) {
+  .org__list {
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 20px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .bonus {
+    background-image: url('/images/pages/articles/welcome.png');
+    background-repeat: no-repeat;
+    background-position: left bottom;
+  }
+}
