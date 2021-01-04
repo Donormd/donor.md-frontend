@@ -1,0 +1,17 @@
+# EditorConfig - это замечательно: http://EditorConfig.org
+
+# root file 
+root = true
+
+[*.md]
+trim_trailing_whitespace = false
+
+[*.js]
+trim_trailing_whitespace = true
+
+[*]
+indent_style = space
+indent_size = 2
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
