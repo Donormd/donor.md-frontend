@@ -1,0 +1,52 @@
+@import '../../../styles/variables.scss'; 
+
+.footer {
+  padding: 50px 0;
+  background: white;
+}
+
+.footer__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.brand {
+  color: $red;
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.brand__description {
+  color: $text-muted;
+}
+
+.column__title {
+  font-size: 1.5rem;
+}
+
+.column__list {
+  padding: 0;
+  list-style: none;
+}
+
+.list__item {
+  padding-bottom: 5px;
+}
+
+.item__link {
+  color: $text-dark;
+}
+
+@media (min-width: 576px) {
+  .footer__grid {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 20px;
+  }
+}
+
+@media (min-width: 992px) {
+  .footer__grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
