@@ -1,0 +1,24 @@
+@import '../variables.scss';
+
+.support__heading {
+  font-size: 1.75rem;
+  font-weight: bold;
+}
+
+.support__text {
+  font-size: 1,125rem;
+}
+
+.link__bold {
+  color: $text-dark;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+@media (min-width: 1200px) {
+  .support {
+    background-image: url('/images/pages/support-page/love-pic.png');
+    background-repeat: no-repeat;
+    background-position: left bottom;
+  }
+}
