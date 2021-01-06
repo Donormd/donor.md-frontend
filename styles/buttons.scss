@@ -1,3 +1,4 @@
+@import "variables.scss";
 
 // Button common style 
 
@@ -12,7 +13,7 @@
   display: block;
   width: max-content;
   padding: 10px 15px;
-  border-radius: var(--radius);
+  border-radius: $radius;
   line-height: 1.15;
 }
 
@@ -23,18 +24,18 @@
 // Button red 
 
 .btn-danger {
-  @include button(white, var(--red), var(--red))
+  @include button(white, $red, $red);
 }
 
 .btn-danger:hover {
-  @include button(white, var(--red-dark), var(--red-dark))
+  @include button(white, $red-dark, $red-dark);
 }
 
 .btn-outline-danger {
-  @include button(var(--red), white, var(--red));
+  @include button($red, white, $red);
 }
 
 .btn-outline-danger:hover {
-  @include button(white, var(--red), var(--red));
+  @include button(white, $red, $red);
 }
 
