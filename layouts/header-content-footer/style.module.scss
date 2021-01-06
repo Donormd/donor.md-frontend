@@ -1,4 +1,13 @@
+@import "variables.scss";
+
 .content {
-  padding: 75px 0 200px;
+  padding: 50px 0;
   margin-top: 75px;
+}
+
+@media(min-width: $device-md) {
+  .content {
+    padding: 75px 0;
+    margin-top: 75px;
+  }
 }
