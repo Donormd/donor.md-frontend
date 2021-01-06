@@ -11,11 +11,12 @@ export declare type ButtonsProps = {
 
 export declare type OnClickProps = (key: KeyType) => void;
 export declare type Props = {
+  className?: Array<string> | string;
   buttons: Array<ButtonsProps>;
   handleClick: OnClickProps;
 };
 
-const ButtonGroup: React.FC<Props> = ({ buttons, handleClick }): JSX.Element => {
+const ButtonGroup: React.FC<Props> = ({ className, buttons, handleClick }): JSX.Element => {
   const [buttonId, setButtonId] = useState<KeyType>(0);
 
   const onClick = (key: KeyType) => {
@@ -28,7 +29,7 @@ const ButtonGroup: React.FC<Props> = ({ buttons, handleClick }): JSX.Element => 
   useEffect(() => onClick(key), []);
 
   return (
-    <div className={style.button__group}>
+    <div className={cn(style.button__group, className)}>
       {buttons.map(({ key, text }: ButtonsProps) => (
         <Button
           key={key}
