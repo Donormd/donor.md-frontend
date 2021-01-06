@@ -1,0 +1,32 @@
+@import 'variables.scss';
+
+.story {
+  display: grid;
+  grid-template-areas: 'img head' 'img body';
+  grid-column-gap: 20px;
+  padding: 20px 30px;
+  margin-bottom: 20px;
+  background: $red-diluted;
+  border-radius: $radius;
+}
+.story__image {
+  grid-area: img;
+}
+.story__head {
+  grid-area: head;
+  margin-bottom: 20px;
+}
+
+.head__name {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.head__count {
+  margin: 0;
+  font-weight: bold;
+}
+
+.story__body {
+  grid-area: body;
+}
