@@ -11,7 +11,7 @@ export declare type Props = {
 
 const DonorStory: React.FC<Props> = ({ src, fullname, count, story }): JSX.Element => (
   <article className={style.story}>
-    <Image className={style.story__image} src={src} width={70} height={70} layout='fixed' />
+    <Image src={src} width={70} height={70} layout='fixed' />
     <div className={style.story__head}>
       <h4 className={style.head__name}>{fullname}</h4>
       <p className={style.head__count}>Количество донаций {count}</p>

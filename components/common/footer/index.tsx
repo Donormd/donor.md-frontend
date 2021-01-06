@@ -86,8 +86,8 @@ const Footer: React.FC = (): JSX.Element => (
         <h3 className={style.column__title}>О донорстве</h3>
         <ul className={style.column__list}>
           {aboutDonationsLinks.map((item) => (
-            <li className={style.list__item}>
-              <Link key={item.id} href={item.href}>
+            <li key={item.id} className={style.list__item}>
+              <Link href={item.href}>
                 <a className={style.item__link}>{item.text}</a>
               </Link>
             </li>
@@ -98,8 +98,8 @@ const Footer: React.FC = (): JSX.Element => (
         <h3 className={style.column__title}>О нас</h3>
         <ul className={style.column__list}>
           {cooperationLinks.map((item) => (
-            <li className={style.list__item}>
-              <Link key={item.id} href={item.href}>
+            <li key={item.id} className={style.list__item}>
+              <Link href={item.href}>
                 <a className={style.item__link}>{item.text}</a>
               </Link>
             </li>
@@ -110,8 +110,8 @@ const Footer: React.FC = (): JSX.Element => (
         <h3 className={style.column__title}>Сотрудничество</h3>
         <ul className={style.column__list}>
           {aboutLinks.map((item) => (
-            <li className={style.list__item}>
-              <Link key={item.id} href={item.href}>
+            <li key={item.id} className={style.list__item}>
+              <Link href={item.href}>
                 <a className={style.item__link}>{item.text}</a>
               </Link>
             </li>
