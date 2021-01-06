@@ -9,11 +9,12 @@
 }
 
 .button {
+  @include button($red, transparent, $red);
 
   &:first-child {
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-    border-right: 0;
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    border-right: 0 !important;
   }
 
   &:nth-of-type(2):not(:last-child) {
@@ -22,12 +23,14 @@
   }
 
   &:last-child {
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
   }
   
   &:hover, &:focus {
-    @include button(white, $red, $red);
+    background: $red;
+    color: white;
+    border-color: $red;
   }
 
 }
