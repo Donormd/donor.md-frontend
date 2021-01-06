@@ -1,0 +1,40 @@
+
+// Button common style 
+
+@mixin button($color, $background, $borderColor) {
+  color: $color;
+  background: $background;
+  border: 1px solid $borderColor;
+}
+
+.btn {
+  cursor: pointer;
+  display: block;
+  width: max-content;
+  padding: 10px 15px;
+  border-radius: var(--radius);
+  line-height: 1.15;
+}
+
+.btn:hover {
+  text-decoration: none;
+}
+
+// Button red 
+
+.btn-danger {
+  @include button(white, var(--red), var(--red))
+}
+
+.btn-danger:hover {
+  @include button(white, var(--red-dark), var(--red-dark))
+}
+
+.btn-outline-danger {
+  @include button(var(--red), white, var(--red));
+}
+
+.btn-outline-danger:hover {
+  @include button(white, var(--red), var(--red));
+}
+

@@ -1,4 +1,4 @@
-@import '../variables.scss';
+@import 'variables.scss';
 
 .bonus__heading {
   font-weight: bold;
@@ -29,14 +29,14 @@
 }
 
 
-@media (min-width: 992px) {
+@media (min-width: $device-lg) {
   .org__list {
     grid-template-columns: repeat(3, 1fr);
     column-gap: 20px;
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: $device-xl) {
   .bonus {
     background-image: url('/images/pages/articles/welcome.png');
     background-repeat: no-repeat;

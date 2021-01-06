@@ -19,7 +19,7 @@
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
-    "sass": "^1.30.0"
+    "sass": "^1.32.0"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.11",
