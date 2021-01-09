@@ -5,14 +5,14 @@ import Header from '../../components/common/header';
 import style from './style.module.scss';
 
 type Props = {
-  classNames?: string | null;
+  className?: string | null;
   children: React.ReactNode;
 };
 
-const HeaderContentFooter: React.FC<Props> = ({ classNames, children }: Props): JSX.Element => (
+const HeaderContentFooter: React.FC<Props> = ({ className, children }: Props): JSX.Element => (
   <>
     <Header />
-    <main className={cn(style.content, classNames)}>{children}</main>
+    <main className={cn(style.content, className)}>{children}</main>
     <Footer />
   </>
 );
