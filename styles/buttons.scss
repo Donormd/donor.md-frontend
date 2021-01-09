@@ -3,9 +3,9 @@
 // Button common style 
 
 @mixin button($color, $background, $borderColor) {
-  color: $color;
-  background: $background;
-  border: 1px solid $borderColor;
+  color: $color !important;
+  background: $background !important;
+  border: 1px solid $borderColor !important;
 }
 
 .btn {
