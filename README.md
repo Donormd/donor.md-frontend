@@ -1,4 +1,4 @@
-# DONOR.MD -МЕСТО, ГДЕ ЛЮДИ ПОМОГАЮТ ЛЮДЯМ
+# DONOR.MD - МЕСТО, ГДЕ ЛЮДИ ПОМОГАЮТ ЛЮДЯМ
 
 Web-сервис для тех, кто сдает и ищет донорскую кровь в Приднестровье
 
@@ -21,13 +21,13 @@ Web-сервис для тех, кто сдает и ищет донорскую
 
 ## Окружение и технологии
 
-Движок [Next.js](https://nextjs.org/)
-State manager [Redux](https://redux.js.org/)
+Движок [Next.js](https://nextjs.org/)  
+State manager [Redux](https://redux.js.org/)  
 Архитектурный стиль API [RESTful](https://habr.com/ru/post/483202/)
 
 ## Принципы верстки
 
-**Mobile-first.**
+**Mobile-first.**  
 Сначала мы делаем мобильную версию UI, а потом начинаем увеличивать с помощью `@media`.
 
 **Основные брейкпойнты**
