@@ -3,7 +3,7 @@ import HeaderContentFooter from '../layouts/header-content-footer';
 import style from '../styles/pages/support-page.module.scss';
 
 const SupportProject: React.FC = (): JSX.Element => (
-  <HeaderContentFooter classNames={style.support}>
+  <HeaderContentFooter background='/images/pages/articles/love-pic.png' className={style.support}>
     <section className='container'>
       <h1 className={style.support__heading}>Поддержать проект donor.md</h1>
       <p>
