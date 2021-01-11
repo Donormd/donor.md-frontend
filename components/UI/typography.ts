@@ -6,10 +6,14 @@ export declare type TitleProps = {
   align?: string;
 };
 
-const Title = styled.h1<TitleProps>`
+export const Title = styled.h1<TitleProps>`
   font-weight: ${({ bold }) => (bold ? 'bold' : 'normal')};
-  font-size: ${({ size }) => size || '3em'};
+  font-size: ${({ size }) => size || ''};
   text-align: ${({ align }) => align || 'left'};
 `;
 
-export default Title;
+export const Paragraph = styled.p<TitleProps>`
+  font-weight: ${({ bold }) => (bold ? 'bold' : 'normal')};
+  font-size: ${({ size }) => size || ''};
+  text-align: ${({ align }) => align || 'left'};
+`;
