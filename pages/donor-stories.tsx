@@ -1,9 +1,32 @@
+/* eslint no-console:0 */
 import React from 'react';
+import styled from 'styled-components';
 import HeaderContentFooter from '../layouts/header-content-footer';
 import ButtonGroup, { ButtonsProps, OnClickProps, KeyType } from '../components/button-group';
-import DonorStory, { Props } from '../components/common/donor-story';
-import Pagination from '../components/common/pagination';
-import style from '../styles/pages/stories-page.module.scss';
+import DonorStory, { Props } from '../components/donor-story';
+import Pagination from '../components/pagination';
+import { Title } from '../components/UI/typography';
+
+const StyledTitle = styled(Title)`
+  margin: 0;
+  margin-bottom: 20px;
+  @media (min-width: 992px) {
+    margin-bottom: 0;
+  }
+`;
+
+const StoriesHead = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 50px;
+  align-items: start;
+  @media (min-width: 992px) {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+`;
 
 const buttons: Array<ButtonsProps> = [
   { key: 1, text: 'Истории доноров' },
@@ -33,27 +56,24 @@ const stories: Array<StoriesProps> = [
   },
 ];
 
-/* eslint no-console: 0 */
 const handleClick: OnClickProps = (val) => console.log(val);
 
 const DonorStoriesPage: React.FC = (): JSX.Element => (
-  <HeaderContentFooter>
+  <HeaderContentFooter background='/images/pages/articles/welcome.png'>
     <section className='container'>
-      <div className={style.stories__head}>
-        <h1 className={style.head__title}>Истории доноров</h1>
-        <ButtonGroup
-          className={style['head__button-group']}
-          buttons={buttons}
-          handleClick={handleClick}
-        />
-      </div>
-      <div className={style.stories__list}>
+      <StoriesHead>
+        <StyledTitle size='2.5rem' bold>
+          Истории доноров
+        </StyledTitle>
+        <ButtonGroup buttons={buttons} handleClick={handleClick} />
+      </StoriesHead>
+      <div>
         {stories.map((props: StoriesProps) => (
           <DonorStory {...props} />
         ))}
       </div>
     </section>
-    <Pagination />
+    <Pagination onChange={(...args) => console.log(args)} />
   </HeaderContentFooter>
 );
 
