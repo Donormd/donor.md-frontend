@@ -1,20 +1,38 @@
-import { Pagination } from 'antd';
 import React from 'react';
-import cn from 'classnames';
-import style from './style.module.scss';
+import { Pagination as AntPagination } from 'antd';
+import styled from 'styled-components';
 
 export declare type onChangeType = (page: number) => void;
 
-const PaginationWrapper: React.FC<{ onChange: onChangeType; className?: string }> = ({
-  onChange,
-  className,
-}): JSX.Element => (
-  <Pagination
-    onChange={onChange}
-    className={cn(style.pagination, className)}
-    defaultCurrent={1}
-    total={50}
-  />
+const Pagination = styled(AntPagination)`
+  text-align: center;
+
+  li {
+    border: none;
+    background: transparent;
+
+    &:first-child button {
+      background: transparent;
+      color: ${({ theme }) => theme.textDark};
+      border-color: ${({ theme }) => theme.textDark};
+      border-radius: 50%;
+    }
+
+    &:last-child button {
+      background: transparent;
+      color: ${({ theme }) => theme.textDark};
+      border-color: ${({ theme }) => theme.textDark};
+      border-radius: 50%;
+    }
+
+    a {
+      color: ${({ theme }) => theme.textMuted};
+      font-size: 1.05rem;
+    }
+`;
+
+const PaginationWrapper: React.FC<{ onChange: onChangeType }> = ({ onChange }): JSX.Element => (
+  <Pagination onChange={onChange} defaultCurrent={1} total={50} />
 );
 
 export default PaginationWrapper;

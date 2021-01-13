@@ -1,11 +1,13 @@
 import React from 'react';
-import { Divider, Form, Input, InputNumber, Button } from 'antd';
+import { Button } from 'antd';
+import { Divider, Form, FormItem, Input, InputNumber } from '../components/UI';
 import HeaderContentFooter from '../layouts/header-content-footer';
+import { Container } from '../layouts/container';
 
 const CorporateDonationPage: React.FC = (): JSX.Element => {
   return (
     <HeaderContentFooter background='/images/pages/articles/welcome.png'>
-      <section className='container'>
+      <Container>
         <article>
           <h1>Корпоративное донорство</h1>
           <p>
@@ -31,37 +33,37 @@ const CorporateDonationPage: React.FC = (): JSX.Element => {
         </article>
         <Divider />
         <Form>
-          <Form.Item label='Название организации' name='name'>
+          <FormItem label='Название организации' name='name'>
             <Input placeholder='Название организации' />
-          </Form.Item>
-          <Form.Item label='Руководитель организации' name='name'>
+          </FormItem>
+          <FormItem label='Руководитель организации' name='name'>
             <Input placeholder='Руководитель организации' />
-          </Form.Item>
-          <Form.Item label='Контактное лицо организации' name='name'>
+          </FormItem>
+          <FormItem label='Контактное лицо организации' name='name'>
             <Input placeholder='Контактное лицо организации' />
-          </Form.Item>
-          <Form.Item label='Должность' name='name'>
+          </FormItem>
+          <FormItem label='Должность' name='name'>
             <Input placeholder='Должность' />
-          </Form.Item>
-          <Form.Item label='Ваш email-адрес' name='name'>
+          </FormItem>
+          <FormItem label='Ваш email-адрес' name='name'>
             <Input placeholder='Ваш email-адрес' />
-          </Form.Item>
-          <Form.Item label='Номер мобильного телефона' name='name'>
+          </FormItem>
+          <FormItem label='Номер мобильного телефона' name='name'>
             <Input placeholder='Номер мобильного телефона' />
-          </Form.Item>
-          <Form.Item label='Городской номер телефона' name='name'>
+          </FormItem>
+          <FormItem label='Городской номер телефона' name='name'>
             <Input placeholder='Городской номер телефона' />
-          </Form.Item>
-          <Form.Item label='Количество работников в возрасте 18-55 лет' name='name'>
+          </FormItem>
+          <FormItem label='Количество работников в возрасте 18-55 лет' name='name'>
             <InputNumber min={0} defaultValue={10} />
-          </Form.Item>
-          <Form.Item>
+          </FormItem>
+          <FormItem>
             <Button size='large' shape='round' className='btn-danger'>
               Отправить
             </Button>
-          </Form.Item>
+          </FormItem>
         </Form>
-      </section>
+      </Container>
     </HeaderContentFooter>
   );
 };
