@@ -31,7 +31,9 @@ const Logo: React.FC = (): JSX.Element => (
         alt='Web-платформа для тех, кто сдает и ищет донорскую кровь'
       />
     </WrapperImage>
-    <WrappedParagraph bold>donor.md</WrappedParagraph>
+    <WrappedParagraph as='h2' bold>
+      donor.md
+    </WrappedParagraph>
     <WrappedParagraph>Люди помогают людям</WrappedParagraph>
   </WrapperLogo>
 );

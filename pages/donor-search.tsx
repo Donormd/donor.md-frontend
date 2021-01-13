@@ -1,11 +1,23 @@
 /* eslint-disable no-console */
 import React from 'react';
 import Link from 'next/link';
-import { Divider, Form, Input, InputNumber, Checkbox, Button, DatePicker, Select } from 'antd';
+import { Button } from 'antd';
 import HeaderContentFooter from '../layouts/header-content-footer';
 import Uploader from '../components/uploader';
 import Alert from '../components/alert';
 import { Title } from '../components/UI/typography';
+import { Container } from '../layouts/container';
+import {
+  Form,
+  FormItem,
+  Input,
+  TextArea,
+  DatePicker,
+  Select,
+  InputNumber,
+  Checkbox,
+  Divider,
+} from '../components/UI';
 
 export declare type optionsBloodType = { key: string | number; value: string };
 const optionsBlood: Array<optionsBloodType> = [
@@ -49,7 +61,7 @@ const optionsBlood: Array<optionsBloodType> = [
 
 const DonorSearchPage: React.FC = (): JSX.Element => (
   <HeaderContentFooter background='/images/pages/articles/welcome.png'>
-    <section className='container'>
+    <Container>
       <article>
         <Title size='3rem' bold>
           Поиск доноров
@@ -63,21 +75,21 @@ const DonorSearchPage: React.FC = (): JSX.Element => (
       </article>
       <Divider />
       <Form>
-        <Form.Item
+        <FormItem
           label='ФИО реципиента'
           name='fullname'
           rules={[{ required: true, message: 'Пожалуйста укажите ФИО реципиента' }]}
         >
           <Input />
-        </Form.Item>
-        <Form.Item
+        </FormItem>
+        <FormItem
           label='Дата рождения'
           name='dateBirth'
           rules={[{ required: true, message: 'Пожалуйста укажите дату рождения' }]}
         >
           <DatePicker onChange={(...args: any) => console.log({ args })} />
-        </Form.Item>
-        <Form.Item
+        </FormItem>
+        <FormItem
           label='Выберите необходимую группу крови'
           name='bloodGroup'
           rules={[{ required: true, message: 'Пожалуйста выберите необходимую группу крови' }]}
@@ -89,8 +101,8 @@ const DonorSearchPage: React.FC = (): JSX.Element => (
               </Select.Option>
             ))}
           </Select>
-        </Form.Item>
-        <Form.Item
+        </FormItem>
+        <FormItem
           label='Медицинское учреждение'
           name='dateBirth'
           rules={[{ required: true, message: 'Пожалуйста укажите медицинское учреждение' }]}
@@ -102,82 +114,84 @@ const DonorSearchPage: React.FC = (): JSX.Element => (
               </Select.Option>
             ))}
           </Select>
-        </Form.Item>
-        <Form.Item
+        </FormItem>
+        <FormItem
           label='Заболевание кого?'
           name='disease'
           rules={[{ required: true, message: 'Пожалуйста укажите заболевание' }]}
         >
           <Input />
-        </Form.Item>
-        <Form.Item
+        </FormItem>
+        <FormItem
           label='Укажите центр переливания крови'
           name='bloodCenter'
           rules={[{ required: true, message: 'Пожалуйста укажите центр переливания крови' }]}
         >
           <Select>
             {optionsBlood.map(({ key, value }: optionsBloodType) => (
-              <Select.Option value={key}>{value}</Select.Option>
+              <Select.Option key={key} value={value}>
+                {value}
+              </Select.Option>
             ))}
           </Select>
-        </Form.Item>
-        <Form.Item
+        </FormItem>
+        <FormItem
           label='Необходимое количество доноров'
           name='numberOfDonors'
           rules={[{ required: true, message: 'Пожалуйста укажите количество доноров' }]}
         >
           <InputNumber min={1} max={20} />
-        </Form.Item>
-        <Form.Item
+        </FormItem>
+        <FormItem
           label='Срок сдачи до'
           name='deadline'
           rules={[{ required: true, message: 'Пожалуйста укажите срок сдачи' }]}
         >
           <DatePicker onChange={(...args: any) => console.log({ args })} />
-        </Form.Item>
-        <Form.Item
+        </FormItem>
+        <FormItem
           label='Дополнительная информация'
           name='additionalInformation'
           rules={[{ required: true, message: 'Пожалуйста укажите дополнительная информацию' }]}
         >
-          <Input.TextArea rows={4} />
-        </Form.Item>
-        <Form.Item label='Фото рецепиента' name='dateBirth'>
+          <TextArea rows={4} />
+        </FormItem>
+        <FormItem label='Фото рецепиента' name='dateBirth'>
           <Uploader type='input' maxCount={1} />
-        </Form.Item>
+        </FormItem>
         <Divider />
         <Title as='h2' bold>
           Контактное лицо
         </Title>
-        <Form.Item
+        <FormItem
           label='ФИО'
           name='fullnameOfContactPerson'
           rules={[{ required: true, message: 'Пожалуйста укажите ФИО' }]}
         >
           <Input />
-        </Form.Item>
-        <Form.Item
+        </FormItem>
+        <FormItem
           label='Ваш email-адрес'
           name='emailOfContactPerson'
           rules={[{ required: true, message: 'Пожалуйста укажите email' }]}
         >
           <Input />
-        </Form.Item>
-        <Form.Item
+        </FormItem>
+        <FormItem
           label='Номер мобильного телефона'
           name='phoneOfContactPerson'
           rules={[{ required: true, message: 'Пожалуйста укажите номер мобильного телефона' }]}
         >
           <Input />
-        </Form.Item>
-        <Form.Item
+        </FormItem>
+        <FormItem
           label='Кто вы для реципиента'
           name='aboutContactPerson'
           rules={[{ required: true, message: 'Пожалуйста раскажите кто вы для реципиента' }]}
         >
           <Input />
-        </Form.Item>
-        <Form.Item name='remember' valuePropName='checked'>
+        </FormItem>
+        <FormItem name='remember' valuePropName='checked'>
           <Checkbox>
             Согласен с{` `}
             <Link href='/'>
@@ -185,7 +199,7 @@ const DonorSearchPage: React.FC = (): JSX.Element => (
             </Link>
             {` `}обработки персональных данных
           </Checkbox>
-        </Form.Item>
+        </FormItem>
         <Button className='btn-danger' shape='round' size='large'>
           Отправить
         </Button>
@@ -196,7 +210,7 @@ const DonorSearchPage: React.FC = (): JSX.Element => (
         Система автоматически отправить уведомления донорам, подходящим по параметрам.
         `}
       />
-    </section>
+    </Container>
   </HeaderContentFooter>
 );
 

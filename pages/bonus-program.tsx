@@ -1,11 +1,11 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Divider } from 'antd';
 import styled from 'styled-components';
-import Typography from '../components/UI/typography';
+import { Title, Divider } from '../components/UI';
 import HeaderContentFooter from '../layouts/header-content-footer';
 import Alert from '../components/alert';
+import { Container } from '../layouts/container';
 
 const BonusesList = styled.ul`
   list-style-type: none;
@@ -32,8 +32,8 @@ const OrganizationsList = styled.div`
 
 const BonusProgramPage: React.FC = (): JSX.Element => (
   <HeaderContentFooter background='/images/pages/articles/welcome.png'>
-    <section className='container'>
-      <Typography bold>Бонусная программа для коммерческих агентов</Typography>
+    <Container>
+      <Title bold>Бонусная программа для коммерческих агентов</Title>
       <p>
         Наш сервис приглашает коммерческих агентов стать частью бонусной программы для доноров
         крови. Это нам позволит поощрять активных доноров, выделять значимость этого доброго
@@ -87,25 +87,25 @@ const BonusProgramPage: React.FC = (): JSX.Element => (
         действия, Какую скидку и на что предлагаете, Условия получения бонуса
       </p>
       <Divider />
-      <Typography bold as='h3' size='1.625rem'>
+      <Title bold as='h3' size='1.625rem'>
         Партнеры бонусной программы
-      </Typography>
+      </Title>
       <OrganizationsList>
         <article>
           <Image src='/images/pages/articles/logo__active.png' width={356} height={186} />
-          <Typography align='center' as='h3' size='1.125rem'>
+          <Title align='center' as='h3' size='1.125rem'>
             <b>ООО “Автолялечка”</b>
             <br />
             Сеть маркетов автоаксессуаровв Приднестровье.
-          </Typography>
+          </Title>
         </article>
         <article>
           <Image src='/images/pages/articles/op.png' width={356} height={186} />
-          <Typography align='center' as='h3' size='1.125rem'>
+          <Title align='center' as='h3' size='1.125rem'>
             <b>“Открытые приоритеты”</b>
             <br />
             Организация, посвящённая продвижению открытого программного обеспечения.
-          </Typography>
+          </Title>
         </article>
       </OrganizationsList>
       <Alert>
@@ -117,7 +117,7 @@ const BonusProgramPage: React.FC = (): JSX.Element => (
         </Link>{' '}
         и мы с вами свяжемся
       </Alert>
-    </section>
+    </Container>
   </HeaderContentFooter>
 );
 

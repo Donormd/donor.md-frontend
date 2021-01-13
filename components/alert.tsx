@@ -10,7 +10,7 @@ const StyledMessage = styled.div`
   margin: 20px 0;
   padding: 15px 25px;
   border: 1px solid black;
-  border-radius: 25px 25px 25px 0;
+  border-radius: ${({ theme }) => `${theme.radius} ${theme.radius} ${theme.radius} 0`};
   box-shadow: 0 25px 25px -25px rgba(0, 0, 0, 0.25);
   background: white;
 `;

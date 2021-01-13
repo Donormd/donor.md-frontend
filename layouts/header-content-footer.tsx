@@ -4,7 +4,6 @@ import Footer from '../components/common/footer';
 import Header from '../components/common/header';
 
 type Props = {
-  className?: string;
   children: React.ReactNode;
   background?: string;
 };
@@ -25,16 +24,10 @@ const Main = styled.main<{ background?: string }>`
   }
 `;
 
-const HeaderContentFooter: React.FC<Props> = ({
-  className = '',
-  children,
-  background,
-}): JSX.Element => (
+const HeaderContentFooter: React.FC<Props> = ({ children, background }): JSX.Element => (
   <>
     <Header />
-    <Main background={background} className={className}>
-      {children}
-    </Main>
+    <Main background={background}>{children}</Main>
     <Footer />
   </>
 );

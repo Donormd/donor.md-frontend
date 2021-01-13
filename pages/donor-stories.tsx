@@ -5,7 +5,8 @@ import HeaderContentFooter from '../layouts/header-content-footer';
 import ButtonGroup, { ButtonsProps, OnClickProps, KeyType } from '../components/button-group';
 import DonorStory, { Props } from '../components/donor-story';
 import Pagination from '../components/pagination';
-import { Title } from '../components/UI/typography';
+import { Title } from '../components/UI';
+import { Container } from '../layouts/container';
 
 const StyledTitle = styled(Title)`
   margin: 0;
@@ -60,7 +61,7 @@ const handleClick: OnClickProps = (val) => console.log(val);
 
 const DonorStoriesPage: React.FC = (): JSX.Element => (
   <HeaderContentFooter background='/images/pages/articles/welcome.png'>
-    <section className='container'>
+    <Container>
       <StoriesHead>
         <StyledTitle size='2.5rem' bold>
           Истории доноров
@@ -72,7 +73,7 @@ const DonorStoriesPage: React.FC = (): JSX.Element => (
           <DonorStory {...props} />
         ))}
       </div>
-    </section>
+    </Container>
     <Pagination onChange={(...args) => console.log(args)} />
   </HeaderContentFooter>
 );

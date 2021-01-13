@@ -1,11 +1,14 @@
 import Link from 'next/link';
+import { Container } from '../layouts/container';
+import { Title } from '../components/UI';
 import HeaderContentFooter from '../layouts/header-content-footer';
-import style from '../styles/pages/support-page.module.scss';
 
 const SupportProject: React.FC = (): JSX.Element => (
-  <HeaderContentFooter background='/images/pages/articles/love-pic.png' className={style.support}>
-    <section className='container'>
-      <h1 className={style.support__heading}>Поддержать проект donor.md</h1>
+  <HeaderContentFooter background='/images/pages/articles/love-pic.png'>
+    <Container>
+      <Title size='25rem' bold>
+        Поддержать проект donor.md
+      </Title>
       <p>
         Web-сервис donor.md создан как социальная инициатива по решению вопроса обеспечения
         Приднестровья донорской крови и развития донорского сообщества. Мы применяем самые последние
@@ -20,19 +23,19 @@ const SupportProject: React.FC = (): JSX.Element => (
         Мы приглашаем Pro bono волонтеров и специалистов сделать вклад в развитие сервиса.
         Волонтерство ваших сотрудников или услуги вашей компании могут&nbsp;
         <Link href='/become-volunteer'>
-          <a className={style.link__bold}>помочь усилить возможности</a>
+          <a>помочь усилить возможности</a>
         </Link>
       </p>
       <p>
         Мы приглашаем коммерческих агентов, начинающих и крупных, стать участниками нашей&nbsp;
         <Link href='/bonus-program'>
-          <a className={style.link__bold}>бонусной программы для доноров</a>
+          <a>бонусной программы для доноров</a>
         </Link>
       </p>
       <p>
         Мы приглашаем организации любых форм собственности стать участниками нашей программы&nbsp;
         <Link href='/corporate-donation'>
-          <a className={style.link__bold}>“Корпоративной донорство”</a>
+          <a>“Корпоративной донорство”</a>
         </Link>
         .
       </p>
@@ -44,7 +47,7 @@ const SupportProject: React.FC = (): JSX.Element => (
         материалов, технической поддержке проекта.
       </p>
       <p>Напишите нам и мы с радостью обсудим индивидуальный вариант сотрудничества.</p>
-    </section>
+    </Container>
   </HeaderContentFooter>
 );
 

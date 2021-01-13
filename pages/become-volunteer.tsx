@@ -1,6 +1,8 @@
 import React from 'react';
-import { Divider, Form, Input, Button, Select } from 'antd';
+import { Button } from 'antd';
+import { Title, Divider, Form, FormItem, Input, TextArea, Select } from '../components/UI';
 import HeaderContentFooter from '../layouts/header-content-footer';
+import { Container } from '../layouts/container';
 
 type typeData = {
   key: string | number;
@@ -30,9 +32,11 @@ const typesAssistance: Array<typeData> = [
 
 const BecomeVolunteerPage: React.FC = (): JSX.Element => (
   <HeaderContentFooter background='/images/pages/articles/welcome.png'>
-    <section className='container'>
+    <Container>
       <article>
-        <h1>Как стать волонтером?</h1>
+        <Title bold size='2.5rem'>
+          Как стать волонтером?
+        </Title>
         <p>
           Мы ищем волонтёров, которым нравится концепция “Люди помогают людям” и готовы своими
           усилиями и талантами развивать донорское сообщество в Приднестровье.
@@ -55,35 +59,35 @@ const BecomeVolunteerPage: React.FC = (): JSX.Element => (
       </article>
       <Divider />
       <Form>
-        <Form.Item
+        <FormItem
           label='Фамилия и имя'
           name='name'
           rules={[{ required: true, message: 'Пожалуйста укажите фамилию и имя' }]}
         >
           <Input />
-        </Form.Item>
-        <Form.Item
+        </FormItem>
+        <FormItem
           label='Ваш email-адрес'
           name='name'
           rules={[{ required: true, message: 'Пожалуйста укажите фамилию и имя' }]}
         >
           <Input />
-        </Form.Item>
-        <Form.Item
+        </FormItem>
+        <FormItem
           label='Номер мобильного телефона'
           name='name'
           rules={[{ required: true, message: 'Пожалуйста укажите фамилию и имя' }]}
         >
           <Input />
-        </Form.Item>
-        <Form.Item
+        </FormItem>
+        <FormItem
           label='Должность'
           name='name'
           rules={[{ required: true, message: 'Пожалуйста укажите фамилию и имя' }]}
         >
           <Input />
-        </Form.Item>
-        <Form.Item
+        </FormItem>
+        <FormItem
           label='Город проживания'
           name='name'
           rules={[{ required: true, message: 'Пожалуйста укажите фамилию и имя' }]}
@@ -95,8 +99,8 @@ const BecomeVolunteerPage: React.FC = (): JSX.Element => (
               </Select.Option>
             ))}
           </Select>
-        </Form.Item>
-        <Form.Item
+        </FormItem>
+        <FormItem
           label='Я могу помочь'
           name='name'
           rules={[{ required: true, message: 'Пожалуйста укажите фамилию и имя' }]}
@@ -108,20 +112,21 @@ const BecomeVolunteerPage: React.FC = (): JSX.Element => (
               </Select.Option>
             ))}
           </Select>
-        </Form.Item>
-        <Form.Item
+        </FormItem>
+        <FormItem
+          columns={1}
           name='name'
           rules={[{ required: true, message: 'Пожалуйста укажите фамилию и имя' }]}
         >
-          <Input.TextArea placeholder='Ваш комментарий' rows={5} />
-        </Form.Item>
-        <Form.Item>
+          <TextArea placeholder='Ваш комментарий' rows={5} />
+        </FormItem>
+        <FormItem>
           <Button size='large' shape='round' className='btn-danger'>
             Отправить
           </Button>
-        </Form.Item>
+        </FormItem>
       </Form>
-    </section>
+    </Container>
   </HeaderContentFooter>
 );
 
