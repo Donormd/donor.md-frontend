@@ -61,7 +61,7 @@ module.exports = {
     ],
     'no-unused-expressions': [2, { allowTernary: true, allowShortCircuit: true }],
     'no-plusplus': 'off',
-    'no-confusing-arrow': 'error',
+    'no-confusing-arrow': 'off',
     'no-duplicate-imports': 'error',
     'no-useless-computed-key': 'error',
     'no-useless-constructor': 'error',
@@ -135,6 +135,7 @@ module.exports = {
     'prettier/prettier': ['error'],
     'prefer-arrow-callback': 'off',
     // For import
+    'import/prefer-default-export': 0,
     'import/named': 2,
     'import/namespace': 2,
     'import/default': 2,
