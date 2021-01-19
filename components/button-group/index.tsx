@@ -27,13 +27,6 @@ const StyledButton = styled(Button)<{ active: boolean }>`
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
   }
-
-  &:hover,
-  &:focus {
-    background: ${({ theme }) => theme.red};
-    color: white;
-    border-color: ${({ theme }) => theme.red};
-  }
 `;
 
 const ButtonGroup: React.FC<Props> = ({ buttons, handleClick }): JSX.Element => {
@@ -56,6 +49,7 @@ const ButtonGroup: React.FC<Props> = ({ buttons, handleClick }): JSX.Element => 
           shape='round'
           size='large'
           color='red'
+          outlined
           active={buttonId === key}
           onClick={() => onClick(key)}
         >
