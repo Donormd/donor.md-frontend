@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { column1, column2, column3 } from './mock';
 import { Container } from '../../../layouts/container';
-import { Title } from '../../UI';
+import { StyledLink, Title } from '../../UI';
 import {
   StyledFooter,
   Grid,
@@ -32,7 +32,9 @@ const Footer: React.FC = (): JSX.Element => (
           <ColumnList>
             {column1.map((item) => (
               <ColumnListItem key={item.id}>
-                <Link href={item.href}>{item.text}</Link>
+                <Link href={item.href}>
+                  <StyledLink color='textDark'>{item.text}</StyledLink>
+                </Link>
               </ColumnListItem>
             ))}
           </ColumnList>
@@ -44,7 +46,9 @@ const Footer: React.FC = (): JSX.Element => (
           <ColumnList>
             {column2.map((item) => (
               <ColumnListItem key={item.id}>
-                <Link href={item.href}>{item.text}</Link>
+                <Link href={item.href}>
+                  <StyledLink color='textDark'>{item.text}</StyledLink>
+                </Link>
               </ColumnListItem>
             ))}
           </ColumnList>
@@ -56,7 +60,9 @@ const Footer: React.FC = (): JSX.Element => (
           <ColumnList>
             {column3.map((item) => (
               <ColumnListItem key={item.id}>
-                <Link href={item.href}>{item.text}</Link>
+                <Link href={item.href}>
+                  <StyledLink color='textDark'>{item.text}</StyledLink>
+                </Link>
               </ColumnListItem>
             ))}
           </ColumnList>

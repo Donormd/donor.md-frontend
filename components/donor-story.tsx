@@ -1,8 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
-import cn from 'classnames';
-import style from './style.module.scss';
 
 export declare type Props = {
   src: string;
