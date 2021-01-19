@@ -8,8 +8,8 @@ import SignUpForm from '../components/forms/auth/sign-up';
 import RecoveryForm from '../components/forms/auth/recovery';
 
 const Main = styled.main`
-  height: 100%;
-  padding-top: 20px;
+  min-height: 100%;
+  padding: 20px 0;
   @media (min-width: 992px) {
     background: url('/images/auth.png');
     background-position: bottom right;
