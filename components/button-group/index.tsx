@@ -8,7 +8,7 @@ const ButtonsWrapper = styled.div`
   justify-content: center;
 `;
 
-const StyledButton = styled(Button)<{ active: boolean }>`
+const StyledButton = styled(Button)<{ active: boolean; outlined: boolean }>`
   color: ${({ active, theme, color }) => (active ? 'white' : theme[color])};
   background: ${({ active, theme, color }) => (active ? theme[color] : 'white')};
 
