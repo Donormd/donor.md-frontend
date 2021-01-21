@@ -7,16 +7,10 @@ export declare type Props = {
   fullname: string;
   count: number;
   story: string;
+  className?: string;
 };
 
-export declare type WrapperProps = {
-  theme: {
-    redDiluted: string;
-    radius: string;
-  };
-};
-
-const Wrapper = styled.article<WrapperProps>`
+const Wrapper = styled.article`
   display: grid;
   grid-template-columns: min-content 1fr;
   grid-column-gap: 20px;
@@ -49,8 +43,8 @@ const StoryBody = styled.div`
   }
 `;
 
-const DonorStory: React.FC<Props> = ({ src, fullname, count, story }): JSX.Element => (
-  <Wrapper>
+const DonorStory: React.FC<Props> = ({ src, fullname, count, story, className }): JSX.Element => (
+  <Wrapper className={className}>
     <Image src={src} width={70} height={70} layout='fixed' />
     <StoryHead>
       <StoryHeadTitle>{fullname}</StoryHeadTitle>

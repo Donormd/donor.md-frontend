@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 export declare type Props = {
   message?: string;
+  className?: string;
   children?: React.ReactNode;
 };
 
@@ -15,9 +16,9 @@ const StyledMessage = styled.div`
   background: white;
 `;
 
-const Alert: React.FC<Props> = ({ message = '', children }): JSX.Element => {
-  if (children) return <StyledMessage>{children}</StyledMessage>;
-  return <StyledMessage>{message}</StyledMessage>;
+const Alert: React.FC<Props> = ({ message = '', children, className }): JSX.Element => {
+  if (children) return <StyledMessage className={className}>{children}</StyledMessage>;
+  return <StyledMessage className={className}>{message}</StyledMessage>;
 };
 
 export default React.memo(Alert);

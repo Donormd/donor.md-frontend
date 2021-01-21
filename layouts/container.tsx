@@ -22,6 +22,7 @@ const StyledContainer = styled.section`
     max-width: 1140px;
   }
 `;
+
 const StyledContainerFluid = styled.section`
   width: 100%;
   padding: 0 15px;
@@ -38,12 +39,26 @@ const StyledContainerFluid = styled.section`
 
 export declare type Props = {
   children: React.ReactNode;
+  as?: any;
+  className?: string;
 };
 
-export const Container: React.FC = ({ children }): JSX.Element => (
-  <StyledContainer>{children}</StyledContainer>
+export const Container: React.FC<Props> = ({
+  children,
+  as = 'section',
+  className,
+}): JSX.Element => (
+  <StyledContainer className={className} as={as}>
+    {children}
+  </StyledContainer>
 );
 
-export const ContainerFluid: React.FC = ({ children }): JSX.Element => (
-  <StyledContainerFluid>{children}</StyledContainerFluid>
+export const ContainerFluid: React.FC<Props> = ({
+  children,
+  as = 'section',
+  className,
+}): JSX.Element => (
+  <StyledContainerFluid className={className} as={as}>
+    {children}
+  </StyledContainerFluid>
 );
