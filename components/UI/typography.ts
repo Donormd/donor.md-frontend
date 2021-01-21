@@ -14,6 +14,14 @@ export const Title = styled.h1<TitleProps>`
   color: ${({ color, theme }) => color || theme.textDark};
 `;
 
+export const TitleWithArrow = styled(Title)`
+  &::after {
+    content: url('/images/arrow-right.svg');
+    width: 22px;
+    padding-left: 10px;
+    position: absolute;
+  }
+`;
 export const Paragraph = styled.p<TitleProps>`
   font-weight: ${({ bold }) => (bold ? 'bold' : 'normal')};
   font-size: ${({ size }) => size || ''};

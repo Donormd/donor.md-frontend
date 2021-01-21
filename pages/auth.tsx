@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Logo from '../components/logo';
 import { Container } from '../layouts/container';
-import { Title } from '../components/UI';
+import { TitleWithArrow } from '../components/UI';
 import SignInForm from '../components/forms/auth/sign-in';
 import SignUpForm from '../components/forms/auth/sign-up';
 import RecoveryForm from '../components/forms/auth/recovery';
@@ -32,14 +32,8 @@ const FormWrapper = styled.div`
   }
 `;
 
-const StyledTitle = styled(Title)`
+const StyledTitle = styled(TitleWithArrow)`
   padding-top: 20px;
-  &::after {
-    content: url('/images/arrow-right.svg');
-    width: 22px;
-    padding-left: 10px;
-    position: absolute;
-  }
 `;
 
 const AuthPage: React.FC = (): JSX.Element => {
