@@ -32,7 +32,7 @@ const Footer: React.FC = (): JSX.Element => (
           <ColumnList>
             {column1.map((item) => (
               <ColumnListItem key={item.id}>
-                <Link href={item.href}>
+                <Link href={item.href} passHref>
                   <StyledLink color='textDark'>{item.text}</StyledLink>
                 </Link>
               </ColumnListItem>
@@ -46,7 +46,7 @@ const Footer: React.FC = (): JSX.Element => (
           <ColumnList>
             {column2.map((item) => (
               <ColumnListItem key={item.id}>
-                <Link href={item.href}>
+                <Link href={item.href} passHref>
                   <StyledLink color='textDark'>{item.text}</StyledLink>
                 </Link>
               </ColumnListItem>
@@ -60,7 +60,7 @@ const Footer: React.FC = (): JSX.Element => (
           <ColumnList>
             {column3.map((item) => (
               <ColumnListItem key={item.id}>
-                <Link href={item.href}>
+                <Link href={item.href} passHref>
                   <StyledLink color='textDark'>{item.text}</StyledLink>
                 </Link>
               </ColumnListItem>
