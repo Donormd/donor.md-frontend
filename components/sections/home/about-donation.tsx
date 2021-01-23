@@ -64,14 +64,21 @@ const ArticleTitle = styled(Title)`
 `;
 
 const ImageWrapper = styled.div`
+  max-width: 320px;
+  margin: 0 auto;
   background: white;
   border: ${({ theme }) => `1px solid ${theme.redDiluted}`};
   border-radius: ${({ theme }) => theme.radius};
 `;
 
 const ArticleBody = styled.div`
-  padding-top: 20px;
+  padding: 20px 0;
   transition: all 0.8s ease;
+
+  & h3,
+  & p {
+    text-align: center;
+  }
 
   &:hover {
     cursor: pointer;
@@ -81,6 +88,10 @@ const ArticleBody = styled.div`
     background-size: contain;
     background-repeat: no-repeat;
     background-position: top center;
+  }
+
+  @media (min-width: 992px) {
+    padding: 20px 30px;
   }
 `;
 

@@ -1,10 +1,22 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import styled from 'styled-components';
 import { Title, Button, StyledLink } from '../../UI';
 import { Section } from './utils';
 
+const StyledTitle = styled(Title)`
+  display: flex;
+`;
+
+const ImageWrapper = styled.div`
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
+
 const Underline = styled(StyledLink)`
+  margin-right: 20px;
   color: ${({ theme }) => theme.red};
   text-decoration: underline;
 `;
@@ -34,15 +46,18 @@ const Article = styled.article`
 
 const CallToAction: React.FC = (): JSX.Element => (
   <Section id='call-to-action'>
-    <Title as='h2' bold>
+    <StyledTitle as='h2' bold>
       С нами уже{' '}
       <Link href='/top-donors'>
         <Underline>105 доноров</Underline>
       </Link>
-    </Title>
+      <ImageWrapper>
+        <Image src='/images/pages/home/top-donors.png' width={170} height={30} />
+      </ImageWrapper>
+    </StyledTitle>
     <ArticleGrid>
       <Article>
-        <Link href='/'>
+        <Link href='/dashboard'>
           <Button color='red' outlined shape='round' size='large'>
             Кабинет донора
           </Button>
@@ -52,7 +67,7 @@ const CallToAction: React.FC = (): JSX.Element => (
         </Title>
       </Article>
       <Article>
-        <Link href='/'>
+        <Link href='/donor-search'>
           <Button color='red' outlined shape='round' size='large'>
             Нужна помощь
           </Button>
