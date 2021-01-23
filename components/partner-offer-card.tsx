@@ -1,15 +1,35 @@
 import React from 'react';
-import Image from 'next/image';
+import ImageNext from 'next/image';
+import styled from 'styled-components';
 import { Button, Title, Paragraph } from './UI';
 
 export declare type Props = {
   src: string;
 };
 
+const Card = styled.article`
+  display: grid;
+  grid-template-columns: min-content 300px 1fr;
+  column-gap: 20px;
+  padding: 30px;
+  margin-bottom: 30px;
+  background: white;
+  border-radius: ${({ theme }) => theme.radius};
+  border: ${({ theme }) => `1px solid ${theme.red}`};
+`;
+
+const ColumnRight = styled.div`
+  text-align: right;
+`;
+
+const Image = styled(ImageNext)<{ layout: string }>`
+  border-radius: ${({ theme }) => theme.radius};
+`;
+
 const PartnerOfferCard: React.FC<Props> = (): JSX.Element => {
   return (
-    <article>
-      <Image src='/stub.svg' width={50} height={50} />
+    <Card>
+      <Image src='/stub.svg' width={100} height={100} layout='fixed' />
       <div>
         <div>
           <Title>Name</Title>
@@ -23,7 +43,7 @@ const PartnerOfferCard: React.FC<Props> = (): JSX.Element => {
           </Paragraph>
         </div>
       </div>
-      <div>
+      <ColumnRight>
         <div>
           <Paragraph>
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Explicabo, aliquid.
@@ -33,8 +53,8 @@ const PartnerOfferCard: React.FC<Props> = (): JSX.Element => {
         <Button shape='round' color='red' outlined>
           Подробнее
         </Button>
-      </div>
-    </article>
+      </ColumnRight>
+    </Card>
   );
 };
 
