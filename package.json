@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start:dev": "next start -p $PORT",
+    "start": "next start -p $PORT"
   },
   "dependencies": {
     "antd": "^4.9.4",
