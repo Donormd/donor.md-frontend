@@ -6,7 +6,7 @@ import DonorStory, { Props } from '../../donor-story';
 import { Title, Button as DefaultBtn } from '../../UI';
 import { Section } from './utils';
 
-type StoriesProps = Props & { key: KeyType };
+type StoriesProps = Props & { key: number };
 
 const stories: Array<StoriesProps> = [
   {
@@ -83,14 +83,14 @@ const Button = styled(DefaultBtn)`
 const Stories: React.FC = (): JSX.Element => {
   // init redux logic
 
-  const ref = useRef();
+  const ref = useRef<any>();
 
   const next = () => ref.current.next();
   const prev = () => ref.current.prev();
 
   return (
     <WrapperSection id='stories'>
-      <Title as='h2' className='h1' bold>
+      <Title as='h2' bold>
         Истории доноров
       </Title>
       <Carousel ref={ref} dots={false} effect='fade' autoplay>

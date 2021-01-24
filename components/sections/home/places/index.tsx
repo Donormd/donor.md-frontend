@@ -53,7 +53,7 @@ const places = [
     timeWork: {
       days: 'понедельник-пятница',
       time: 'с 8.00 до 11.00',
-      dinner: null,
+      dinner: '',
     },
     geometry: [46.822841, 29.486373],
   },
@@ -66,7 +66,7 @@ const places = [
     timeWork: {
       days: 'понедельник-пятница',
       time: 'с 8.00 до 12.00',
-      dinner: null,
+      dinner: '',
     },
     geometry: [47.771619, 28.999127],
   },
@@ -88,7 +88,10 @@ const SectionBody = styled.div`
 `;
 
 const Places: React.FC = (): JSX.Element => {
-  const [id, setId] = useState<KeyType>(0);
+  const [id, setId] = useState<any>(0);
+
+  const { placeName, location, timeWork, numbers, geometry } = places[id];
+
   return (
     <Section id='places'>
       <SectionHeader>
@@ -106,18 +109,18 @@ const Places: React.FC = (): JSX.Element => {
           >
             <Map
               state={{
-                center: places[id].geometry,
+                center: geometry,
                 zoom: 15,
                 avoidFractionalZoom: true,
               }}
               width='100%'
               height='100%'
             >
-              <Placemark geometry={places[id].geometry} />
+              <Placemark geometry={geometry} />
             </Map>
           </YMaps>
         </MapWrapper>
-        <Place {...places[id]} />
+        <Place placeName={placeName} location={location} timeWork={timeWork} numbers={numbers} />
       </SectionBody>
     </Section>
   );

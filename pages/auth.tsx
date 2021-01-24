@@ -37,7 +37,7 @@ const StyledTitle = styled(TitleWithArrow)`
 `;
 
 const AuthPage: React.FC = (): JSX.Element => {
-  const [state, setState] = useState<'signIn' | 'signUp' | 'recovery'>('signIn');
+  const [state, setState] = useState<string>('signIn');
 
   return (
     <Main>
