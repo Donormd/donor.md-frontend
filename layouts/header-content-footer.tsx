@@ -19,6 +19,7 @@ const Main = styled.main<{ background?: string }>`
       padding: 75px 0;
       margin-top: 75px;
       background: ${({ background }) => `url(${background})` || 'transparent'};
+      background-size: 27vh 21vw;
       background-repeat: no-repeat;
       background-position: left bottom;
     }

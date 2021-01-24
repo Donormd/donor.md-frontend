@@ -51,11 +51,11 @@ export default function Header(): JSX.Element {
       <Container as='div'>
         <HeaderGrid>
           <LogoHorizontal />
-          <nav className={style.menu}>
+          <nav>
             <button type='button' onClick={() => setToggleOpen((s) => !s)}>
-              <div className={style.button__dot} />
-              <div className={style.button__dot} />
-              <div className={style.button__dot} />
+              <div/>
+              <div/>
+              <div/>
             </button>
             {isOpen && (
               <MenuList>

@@ -2,6 +2,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { Button } from 'antd';
+import styled from 'styled-components';
 import HeaderContentFooter from '../layouts/header-content-footer';
 import Uploader from '../components/uploader';
 import Alert from '../components/alert';
@@ -59,19 +60,21 @@ const optionsBlood: Array<optionsBloodType> = [
   },
 ];
 
+const Paragraph = styled.p`
+  margin: 25px 0px;
+`;
+
 const DonorSearchPage: React.FC = (): JSX.Element => (
   <HeaderContentFooter background='/images/pages/articles/welcome.png'>
     <Container>
       <article>
-        <Title size='3rem' bold>
-          Поиск доноров
-        </Title>
-        <p>
+        <Title bold>Поиск доноров</Title>
+        <Paragraph>
           Наш сервис постарается, что бы вы не искали доноров среди родственников и в социальных
           сетях. Наш сервис автоматически поможет Вам найти доноров с требуемой группой крови
           попросит их прийти в Центры переливания крови. Система сама пригласит нужных доноров, Ваша
           задача заполнить форму ниже.
-        </p>
+        </Paragraph>
       </article>
       <Divider />
       <Form>
@@ -160,7 +163,7 @@ const DonorSearchPage: React.FC = (): JSX.Element => (
           <Uploader type='input' maxCount={1} />
         </FormItem>
         <Divider />
-        <Title as='h2' bold>
+        <Title as='h3' bold>
           Контактное лицо
         </Title>
         <FormItem

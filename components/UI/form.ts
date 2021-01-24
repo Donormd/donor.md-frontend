@@ -16,6 +16,25 @@ export declare type FormItemProps = {
 export const FormItem = styled(AntForm.Item)<FormItemProps>`
   display: grid;
 
+  &
+    .ant-form-item-label
+    > label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::before {
+    display: none;
+  }
+
+  &
+    .ant-form-item-label
+    > label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::after {
+    display: inline-block;
+    margin-right: 4px;
+    color: var(--red-diluted);
+    font-size: 14px;
+    font-family: SimSun, sans-serif;
+    line-height: 1;
+    content: '*';
+    top: -7px;
+  }
+
   .ant-form-item-label {
     text-align: left;
   }

@@ -46,7 +46,7 @@ const Article = styled.article`
 
 const CallToAction: React.FC = (): JSX.Element => (
   <Section id='call-to-action'>
-    <StyledTitle as='h2' bold>
+    <StyledTitle as='h2' className='h1' bold>
       С нами уже{' '}
       <Link href='/top-donors'>
         <Underline>105 доноров</Underline>

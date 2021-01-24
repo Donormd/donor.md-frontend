@@ -54,7 +54,7 @@ const Image = styled(NextImage)<{ layout: string }>`
 const Monitoring: React.FC = (): JSX.Element => {
   return (
     <Section id='monitoring'>
-      <Title as='h2' bold>
+      <Title as='h2' className='h1' bold>
         Мониторинг запасов
       </Title>
       <BloodList>

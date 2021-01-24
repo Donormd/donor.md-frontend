@@ -98,7 +98,7 @@ const ArticleBody = styled.div`
 const AboutDonation: React.FC = (): JSX.Element => {
   return (
     <Section id='about-donation'>
-      <Title as='h2' bold>
+      <Title as='h2' className='h1' bold>
         Подготовка к первой сдачи крови
       </Title>
       <ArticleGrid>

@@ -7,14 +7,101 @@ import { Title, StyledLink } from '../components/UI';
 import { Container } from '../layouts/container';
 import HeaderContentFooter from '../layouts/header-content-footer';
 
+const mock = [
+  {
+    key: 1,
+    fullname: 'Борисов Донат',
+    city: 'Тирасполь',
+    numberOfDonations: 9,
+    registrationDate: new Date().toISOString().split('T')[0],
+    status: 'Почетный донор',
+  },
+  {
+    key: 2,
+    fullname: 'Кузьмин Аввакум',
+    city: 'Тирасполь',
+    numberOfDonations: 23,
+    registrationDate: new Date().toISOString().split('T')[0],
+    status: 'Почетный донор',
+  },
+  {
+    key: 3,
+    fullname: 'Гущин Макар',
+    city: 'Тирасполь',
+    numberOfDonations: 10,
+    registrationDate: new Date().toISOString().split('T')[0],
+    status: '-',
+  },
+  {
+    key: 4,
+    fullname: 'Мартынов Панкрат',
+    city: 'Тирасполь',
+    numberOfDonations: 15,
+    registrationDate: new Date().toISOString().split('T')[0],
+    status: 'Почетный донор',
+  },
+  {
+    key: 5,
+    fullname: 'Тетерин Гурий',
+    city: 'Тирасполь',
+    numberOfDonations: 12,
+    registrationDate: new Date().toISOString().split('T')[0],
+    status: 'Почетный донор',
+  },
+  {
+    key: 6,
+    fullname: 'Борисов Донат',
+    city: 'Тирасполь',
+    numberOfDonations: 9,
+    registrationDate: new Date().toISOString().split('T')[0],
+    status: 'Почетный донор',
+  },
+  {
+    key: 7,
+    fullname: 'Кузьмин Аввакум',
+    city: 'Тирасполь',
+    numberOfDonations: 23,
+    registrationDate: new Date().toISOString().split('T')[0],
+    status: 'Почетный донор',
+  },
+  {
+    key: 8,
+    fullname: 'Гущин Макар',
+    city: 'Тирасполь',
+    numberOfDonations: 10,
+    registrationDate: new Date().toISOString().split('T')[0],
+    status: '-',
+  },
+  {
+    key: 9,
+    fullname: 'Мартынов Панкрат',
+    city: 'Тирасполь',
+    numberOfDonations: 15,
+    registrationDate: new Date().toISOString().split('T')[0],
+    status: 'Почетный донор',
+  },
+  {
+    key: 10,
+    fullname: 'Тетерин Гурий',
+    city: 'Тирасполь',
+    numberOfDonations: 12,
+    registrationDate: new Date().toISOString().split('T')[0],
+    status: 'Почетный донор',
+  },
+];
+
 const Table = styled(AntTable)`
+  & .ant-table {
+    overflow-x: scroll;
+  }
+
   & .ant-table,
   & .ant-table-thead > tr > th {
     background: transparent;
   }
 
   & .ant-table-thead > tr > th {
-    color: ${({ theme }) => theme.red};
+    color: var(--red);
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   }
 
@@ -25,12 +112,18 @@ const Table = styled(AntTable)`
   & .ant-table-tbody > tr.ant-table-row:hover > td {
     background: #fafafa8a;
   }
+
+  @media (min-width: 992px) {
+    & .ant-table {
+      overflow-x: hidden;
+    }
+  }
 `;
 
 const Count = styled.div`
   margin: 0;
-  color: ${({ theme }) => theme.red};
-  background: ${({ theme }) => theme.redDiluted};
+  color: var(--red);
+  background: var(--red-diluted);
   line-height: 50px;
   border-radius: 5px;
   font-weight: bold;
@@ -95,53 +188,10 @@ const columns = [
   },
 ];
 
-const mock = [
-  {
-    key: 1,
-    fullname: 'Борисов Донат',
-    city: 'Тирасполь',
-    numberOfDonations: 9,
-    registrationDate: new Date().toISOString().split('T')[0],
-    status: 'Почетный донор',
-  },
-  {
-    key: 2,
-    fullname: 'Кузьмин Аввакум',
-    city: 'Тирасполь',
-    numberOfDonations: 23,
-    registrationDate: new Date().toISOString().split('T')[0],
-    status: '-',
-  },
-  {
-    key: 3,
-    fullname: 'Гущин Макар',
-    city: 'Тирасполь',
-    numberOfDonations: 10,
-    registrationDate: new Date().toISOString().split('T')[0],
-    status: '-',
-  },
-  {
-    key: 4,
-    fullname: 'Мартынов Панкрат',
-    city: 'Тирасполь',
-    numberOfDonations: 15,
-    registrationDate: new Date().toISOString().split('T')[0],
-    status: '-',
-  },
-  {
-    key: 5,
-    fullname: 'Тетерин Гурий',
-    city: 'Тирасполь',
-    numberOfDonations: 12,
-    registrationDate: new Date().toISOString().split('T')[0],
-    status: '-',
-  },
-];
-
 const StoriesHead = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 50px;
+  margin-bottom: 25px;
   align-items: start;
   @media (min-width: 768px) {
     display: flex;
@@ -152,8 +202,7 @@ const StoriesHead = styled.div`
 `;
 
 const StyledTitle = styled(Title)`
-  margin: 0;
-  margin-bottom: 20px;
+  margin: 0 0 20px 0;
   @media (min-width: 992px) {
     margin-bottom: 0;
   }
@@ -170,9 +219,7 @@ const TopDonorsPage: React.FC = (): JSX.Element => (
   <HeaderContentFooter background='/images/pages/articles/welcome.png'>
     <Container>
       <StoriesHead>
-        <StyledTitle size='2.5rem' bold>
-          Лучшие донары нашего сервиса
-        </StyledTitle>
+        <StyledTitle bold>Лучшие донары нашего сервиса</StyledTitle>
         <ButtonGroup buttons={buttons} handleClick={handleClick} />
       </StoriesHead>
       <Table columns={columns} dataSource={mock} pagination={false} />

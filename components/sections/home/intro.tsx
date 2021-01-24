@@ -40,7 +40,7 @@ const Intro: React.FC = (): JSX.Element => (
       <NextImage src='/images/pages/home/love.svg' width={300} height={300} layout='responsive' />
     </ImageWrapper>
     <div>
-      <Title bold size='1.4rem'>
+      <Title bold>
         <BoldText>DONOR.MD</BoldText> - место, где люди помогают людям
       </Title>
       <Paragraph>Web-сервис для тех, кто сдает и ищет донорскую кровь в Приднестровье</Paragraph>

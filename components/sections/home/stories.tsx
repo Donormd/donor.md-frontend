@@ -90,7 +90,7 @@ const Stories: React.FC = (): JSX.Element => {
 
   return (
     <WrapperSection id='stories'>
-      <Title as='h2' bold>
+      <Title as='h2' className='h1' bold>
         Истории доноров
       </Title>
       <Carousel ref={ref} dots={false} effect='fade' autoplay>

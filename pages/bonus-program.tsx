@@ -2,10 +2,14 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import styled from 'styled-components';
-import { Title, Divider } from '../components/UI';
+import { Title, Divider, StyledLink } from '../components/UI';
 import HeaderContentFooter from '../layouts/header-content-footer';
 import Alert from '../components/alert';
 import { Container } from '../layouts/container';
+
+const StyledTitle = styled(Title)`
+  margin-bottom: 25px;
+`;
 
 const BonusesList = styled.ul`
   list-style-type: none;
@@ -33,7 +37,7 @@ const OrganizationsList = styled.div`
 const BonusProgramPage: React.FC = (): JSX.Element => (
   <HeaderContentFooter background='/images/pages/articles/welcome.png'>
     <Container>
-      <Title bold>Бонусная программа для коммерческих агентов</Title>
+      <StyledTitle bold>Бонусная программа для коммерческих агентов</StyledTitle>
       <p>
         Наш сервис приглашает коммерческих агентов стать частью бонусной программы для доноров
         крови. Это нам позволит поощрять активных доноров, выделять значимость этого доброго
@@ -111,9 +115,9 @@ const BonusProgramPage: React.FC = (): JSX.Element => (
       <Alert>
         Если Вы хотите стать участником бонусной программы{' '}
         <Link href='/'>
-          <a>
+          <StyledLink color='black' underline bold>
             <b>напишите нам</b>
-          </a>
+          </StyledLink>
         </Link>{' '}
         и мы с вами свяжемся
       </Alert>

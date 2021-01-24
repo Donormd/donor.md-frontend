@@ -17,7 +17,7 @@ import { ActionLayout } from './utils';
 declare type Props = { onChangeState: onChangeState };
 
 const FormItemCheckbox = styled.div`
-  color: ${({ theme }) => theme.textMuted};
+  color: var(--text-muted);
   font-size: 0.85rem;
   display: grid;
   grid-template-columns: min-content 1fr;

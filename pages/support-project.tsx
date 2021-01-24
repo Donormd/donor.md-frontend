@@ -1,14 +1,12 @@
 import Link from 'next/link';
 import { Container } from '../layouts/container';
-import { Title } from '../components/UI';
+import { Title, StyledLink } from '../components/UI';
 import HeaderContentFooter from '../layouts/header-content-footer';
 
 const SupportProject: React.FC = (): JSX.Element => (
   <HeaderContentFooter background='/images/pages/articles/love-pic.png'>
     <Container>
-      <Title size='25rem' bold>
-        Поддержать проект donor.md
-      </Title>
+      <Title bold>Поддержать проект donor.md</Title>
       <p>
         Web-сервис donor.md создан как социальная инициатива по решению вопроса обеспечения
         Приднестровья донорской крови и развития донорского сообщества. Мы применяем самые последние
@@ -23,19 +21,25 @@ const SupportProject: React.FC = (): JSX.Element => (
         Мы приглашаем Pro bono волонтеров и специалистов сделать вклад в развитие сервиса.
         Волонтерство ваших сотрудников или услуги вашей компании могут&nbsp;
         <Link href='/become-volunteer'>
-          <a>помочь усилить возможности</a>
+          <StyledLink color='black' underline bold>
+            помочь усилить возможности
+          </StyledLink>
         </Link>
       </p>
       <p>
         Мы приглашаем коммерческих агентов, начинающих и крупных, стать участниками нашей&nbsp;
         <Link href='/bonus-program'>
-          <a>бонусной программы для доноров</a>
+          <StyledLink color='black' underline bold>
+            бонусной программы для доноров
+          </StyledLink>
         </Link>
       </p>
       <p>
         Мы приглашаем организации любых форм собственности стать участниками нашей программы&nbsp;
         <Link href='/corporate-donation'>
-          <a>“Корпоративной донорство”</a>
+          <StyledLink color='black' underline bold>
+            “Корпоративной донорство”
+          </StyledLink>
         </Link>
         .
       </p>

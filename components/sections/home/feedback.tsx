@@ -25,7 +25,7 @@ const Feedback: React.FC = (): JSX.Element => {
     <Section id='feedback'>
       <Grid>
         <div>
-          <Title as='h2' bold>
+          <Title as='h2' className='h1' bold>
             Напишите нам
           </Title>
           <p>

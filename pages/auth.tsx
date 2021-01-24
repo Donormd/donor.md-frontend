@@ -23,9 +23,9 @@ const FormWrapper = styled.div`
   max-width: 480px;
   margin: 0 auto;
   padding: 15px 25px;
-  background: ${({ theme }) => theme.primary};
-  border: ${({ theme }) => `1px solid ${theme.redDiluted}`};
-  border-radius: ${({ theme }) => theme.radius};
+  background: var(--primary);
+  border: 1px solid var(--red-diluted);
+  border-radius: var(--radius);
 
   @media (min-width: 768px) {
     padding: 30px 50px;

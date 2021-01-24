@@ -63,7 +63,7 @@ const DonorStoriesPage: React.FC = (): JSX.Element => (
   <HeaderContentFooter background='/images/pages/articles/welcome.png'>
     <Container>
       <StoriesHead>
-        <StyledTitle size='2.5rem' bold>
+        <StyledTitle bold>
           Истории доноров
         </StyledTitle>
         <ButtonGroup buttons={buttons} handleClick={handleClick} />

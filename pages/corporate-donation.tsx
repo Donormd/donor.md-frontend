@@ -1,15 +1,19 @@
 import React from 'react';
-import { Button } from 'antd';
-import { Divider, Form, FormItem, Input, InputNumber } from '../components/UI';
+import styled from 'styled-components';
+import { Title, Divider, Form, FormItem, Input, InputNumber, Button } from '../components/UI';
 import HeaderContentFooter from '../layouts/header-content-footer';
 import { Container } from '../layouts/container';
+
+const StyledTitle = styled(Title)`
+  margin-bottom: 25px;
+`;
 
 const CorporateDonationPage: React.FC = (): JSX.Element => {
   return (
     <HeaderContentFooter background='/images/pages/articles/welcome.png'>
       <Container>
         <article>
-          <h1>Корпоративное донорство</h1>
+          <StyledTitle bold>Корпоративное донорство</StyledTitle>
           <p>
             Мы приглашаем государственные, муниципальные, коммерческие и некоммерческие организации
             стать участниками программы “Корпоративное донорство”.
@@ -58,7 +62,7 @@ const CorporateDonationPage: React.FC = (): JSX.Element => {
             <InputNumber min={0} defaultValue={10} />
           </FormItem>
           <FormItem>
-            <Button size='large' shape='round' className='btn-danger'>
+            <Button size='large' shape='round' color='red'>
               Отправить
             </Button>
           </FormItem>
