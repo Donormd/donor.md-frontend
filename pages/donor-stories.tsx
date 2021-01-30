@@ -60,12 +60,10 @@ const stories: Array<StoriesProps> = [
 const handleClick: OnClickProps = (val) => console.log(val);
 
 const DonorStoriesPage: React.FC = (): JSX.Element => (
-  <HeaderContentFooter background='/images/pages/articles/welcome.png'>
+  <HeaderContentFooter background='/images/pages/welcome.png'>
     <Container>
       <StoriesHead>
-        <StyledTitle bold>
-          Истории доноров
-        </StyledTitle>
+        <StyledTitle bold>Истории доноров</StyledTitle>
         <ButtonGroup buttons={buttons} handleClick={handleClick} />
       </StoriesHead>
       <div>

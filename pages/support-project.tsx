@@ -4,7 +4,7 @@ import { Title, StyledLink } from '../components/UI';
 import HeaderContentFooter from '../layouts/header-content-footer';
 
 const SupportProject: React.FC = (): JSX.Element => (
-  <HeaderContentFooter background='/images/pages/articles/love-pic.png'>
+  <HeaderContentFooter background='/images/pages/love-pic.png'>
     <Container>
       <Title bold>Поддержать проект donor.md</Title>
       <p>
