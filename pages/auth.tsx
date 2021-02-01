@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import Logo from '../components/logo';
+import { Logo } from '../components/logo';
 import { Container } from '../layouts/container';
 import { TitleWithArrow } from '../components/UI';
 import SignInForm from '../components/forms/auth/sign-in';
