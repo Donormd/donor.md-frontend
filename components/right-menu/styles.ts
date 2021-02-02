@@ -1,8 +1,13 @@
 import styled from 'styled-components';
 import { Paragraph } from '../UI';
+
 export const Aside = styled.aside`
+  display: none;
   padding: 25px;
   background: ${({ theme }) => theme.primary};
+  @media (min-width: 992px) {
+    display: block;
+  }
 `;
 
 export const Menu = styled.ul`

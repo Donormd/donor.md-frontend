@@ -7,7 +7,7 @@ export const Aside = styled.aside<{ image?: string }>`
   background: white;
   border-right: 1px solid ${({ theme }) => theme.redDiluted};
 
-  @media (min-width: 992px) {
+  @media (min-width: 1200px) {
     background-image: ${({ image }) => `url(${image})`};
     background-size: 100% 24vw;
     background-repeat: no-repeat;
@@ -46,7 +46,7 @@ export const MenuItem = styled.li<MenuItemProps>`
 
 export const Paragraph = styled.p`
   display: none;
-  @media (min-width: 992px) {
+  @media (min-width: 1200px) {
     display: inline;
     margin: 0;
   }
@@ -58,7 +58,7 @@ export const IconWrapper = styled.div`
     width: 30px;
     height: 30px;
   }
-  @media (min-width: 992px) {
+  @media (min-width: 1200px) {
     margin-right: 10px;
   }
 `;

@@ -23,7 +23,7 @@ export const WrappedParagraph = styled(Paragraph)`
 export const TextWrapper = styled.div`
   display: none;
 
-  @media (min-width: 992px) {
+  @media (min-width: 1200px) {
     display: block;
   }
 `;
@@ -36,7 +36,7 @@ export const ResponsiveLogoWrapper = styled(LogoWrapper)`
   grid-template-columns: 1fr;
   column-gap: 0;
   justify-items: center;
-  @media (min-width: 992px) {
+  @media (min-width: 1200px) {
     grid-template-columns: min-content 1fr;
     column-gap: 10px;
   }
