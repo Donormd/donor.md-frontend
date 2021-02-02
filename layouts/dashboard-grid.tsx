@@ -16,7 +16,7 @@ const Main = styled.main`
 `;
 
 const Container = styled.section`
-  padding: 25px;
+  padding: 50px 30px;
   width: 100%;
   max-width: 1140px;
 `;
