@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export declare type TitleProps = {
-  margin?: boolean;
+  margin?: boolean | string;
   bold?: boolean;
   size?: string;
   align?: string;
@@ -9,11 +9,11 @@ export declare type TitleProps = {
 };
 
 export const Title = styled.h1<TitleProps>`
-  margin-bottom: ${({ margin }) => (!margin ? 0 : '0.5rem')};
+  margin-bottom: ${({ margin }) => (!margin ? 0 : `${margin || '0.5rem'}`)};
   font-weight: ${({ bold }) => (bold ? 'bold' : 'normal')};
   font-size: ${({ size }) => size || ''};
-  text-align: ${({ align }) => align || 'left'};
-  color: ${({ color, theme }) => color || theme.textDark};
+  text-align: ${({ align }) => align || ''};
+  color: ${({ color, theme }) => (!color ? theme.textDark : `${theme[color] || color}`)};
 `;
 
 export const TitleWithArrow = styled(Title)`
@@ -28,6 +28,6 @@ export const Paragraph = styled.p<TitleProps>`
   margin-bottom: ${({ margin }) => (!margin ? 0 : '1rem')};
   font-weight: ${({ bold }) => (bold ? 'bold' : 'normal')};
   font-size: ${({ size }) => size || ''};
-  text-align: ${({ align }) => align || 'left'};
-  color: ${({ color, theme }) => color || theme.textDark};
+  text-align: ${({ align }) => align || ''};
+  color: ${({ color, theme }) => (!color ? theme.textDark : `${theme[color] || color}`)};
 `;
