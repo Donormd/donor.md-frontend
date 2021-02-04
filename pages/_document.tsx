@@ -30,7 +30,7 @@ class MyDocument extends Document {
       <Html>
         <Head>
           <link rel='icon' href='/favicon.ico' />
-          <meta name='theme-color' content='#000000' />
+          <meta name='theme-color' content='#ffffff' />
           <meta property='og:title' content='' />
           <meta property='og:description' content='' />
           <meta property='og:url' content='' />
