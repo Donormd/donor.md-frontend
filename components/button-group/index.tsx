@@ -5,27 +5,39 @@ import { KeyType, ButtonsProps, Props } from './types';
 
 const ButtonsWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
+
+  @media (min-width: 576px) {
+    flex-direction: row;
+  }
+
+  & button {
+    margin-bottom: 15px;
+  }
+
 `;
 
 const StyledButton = styled(Button)<{ active: boolean; outlined: boolean }>`
   color: ${({ active, theme, color }) => (active ? 'white' : theme[color])};
   background: ${({ active, theme, color }) => (active ? theme[color] : 'white')};
 
-  &:first-child {
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-    border-right: 0;
-  }
+  @media (min-width: 576px) {
+    &:first-child {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+      border-right: 0;
+    }
 
-  &:nth-of-type(2):not(:last-child) {
-    border-radius: 0;
-    border-right-width: 0;
-  }
+    &:nth-of-type(2):not(:last-child) {
+      border-radius: 0;
+      border-right-width: 0;
+    }
 
-  &:last-child {
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
+    &:last-child {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
   }
 `;
 
