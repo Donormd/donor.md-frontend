@@ -1,24 +1,9 @@
 import React from 'react';
 import Image from 'next/image';
-import styled from 'styled-components';
-import { Button, Form, FormItem, Input, TextArea, Title } from '../../UI';
-import { Section } from './utils';
-
-const Grid = styled.div`
-  display: grid;
-
-  @media (min-width: 992px) {
-    grid-template-columns: 55% 45%;
-    grid-column-gap: 20px;
-  }
-`;
-
-const ImageWrapper = styled.div`
-  display: none;
-  @media (min-width: 992px) {
-    display: block;
-  }
-`;
+import { Button, Form, FormItem, Input, TextArea, Title } from '../../../UI';
+import { Section } from '../utils';
+import { Grid, SectionParagraph, ImageWrapper, Social } from './styles';
+import SocialMediaLinks from '../../../social-media-links';
 
 const Feedback: React.FC = (): JSX.Element => {
   return (
@@ -28,10 +13,10 @@ const Feedback: React.FC = (): JSX.Element => {
           <Title as='h2' className='h1' bold>
             Напишите нам
           </Title>
-          <p>
+          <SectionParagraph>
             Если у вас есть вопросы по работе сервиса и предложения по его улучшению и/или видение
             нашего общего сотрудничества
-          </p>
+          </SectionParagraph>
           <Form>
             <FormItem>
               <Input size='large' placeholder='Ваш email или номер телефона' />
@@ -45,7 +30,15 @@ const Feedback: React.FC = (): JSX.Element => {
               </Button>
             </FormItem>
           </Form>
-          <div>{/* Мы в социальных сетях: ссылки на соцсети */}</div>
+          <Social>
+            <Image
+              src='/images/pages/home/we-are-in-social.png'
+              width={364}
+              height={33}
+              layout='fixed'
+            />
+            <SocialMediaLinks />
+          </Social>
         </div>
         <ImageWrapper>
           <Image src='/images/feedback.svg' width={300} height={300} layout='responsive' />
