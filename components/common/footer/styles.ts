@@ -23,6 +23,7 @@ export const Grid = styled.div`
 export const TitleBrand = styled(Title)`
   color: ${({ theme }) => theme.red};
   text-transform: uppercase;
+  text-decoration: underline;
 `;
 
 export const ParagraphSlogan = styled(Paragraph)`

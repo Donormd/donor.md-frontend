@@ -17,7 +17,7 @@ const Footer: React.FC = (): JSX.Element => (
     <Container>
       <Grid>
         <div>
-          <TitleBrand bold size='1.5rem'>
+          <TitleBrand bold size='1.5rem' margin='15px'>
             donor.md
           </TitleBrand>
           <ParagraphSlogan size='.9rem'>
@@ -26,7 +26,7 @@ const Footer: React.FC = (): JSX.Element => (
           </ParagraphSlogan>
         </div>
         <div>
-          <Title as='h3' size='1.5rem'>
+          <Title as='h3' margin='15px'>
             О донорстве
           </Title>
           <ColumnList>
@@ -40,7 +40,7 @@ const Footer: React.FC = (): JSX.Element => (
           </ColumnList>
         </div>
         <div>
-          <Title as='h3' size='1.5rem'>
+          <Title as='h3' margin='15px'>
             О нас
           </Title>
           <ColumnList>
@@ -54,7 +54,7 @@ const Footer: React.FC = (): JSX.Element => (
           </ColumnList>
         </div>
         <div>
-          <Title as='h3' size='1.5rem'>
+          <Title as='h3' margin='15px'>
             Сотрудничество
           </Title>
           <ColumnList>
