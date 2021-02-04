@@ -1,10 +1,10 @@
 import React, { useRef } from 'react';
-import Image from 'next/image';
 import { Carousel } from 'antd';
-import styled from 'styled-components';
-import DonorStory, { Props } from '../../donor-story';
-import { Title, Button as DefaultBtn } from '../../UI';
-import { Section } from './utils';
+import PrevSVG from '../../../../public/images/carousel/prev.svg';
+import NextSVG from '../../../../public/images/carousel/next.svg';
+import { Props } from '../../../donor-story';
+import { Title } from '../../../UI';
+import { WrapperSection, WrapperDonorStory, ButtonGroup, Button } from './styles';
 
 type StoriesProps = Props & { key: number };
 
@@ -29,57 +29,6 @@ const stories: Array<StoriesProps> = [
   },
 ];
 
-const WrapperDonorStory = styled(DonorStory)`
-  @media (max-width: 768px) {
-    background: white;
-    border: ${({ theme }) => `1px solid ${theme.redDiluted}`};
-  }
-`;
-
-const WrapperSection = styled(Section)`
-  position: relative;
-`;
-
-const ButtonGroup = styled.div`
-  position: absolute;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-column-gap: 10px;
-  top: 75px;
-  right: 30px;
-`;
-
-const Button = styled(DefaultBtn)`
-  display: inline-block;
-  width: 35px;
-  height: 35px;
-  padding: 0;
-  background: transparent;
-
-  border-color: ${({ theme }) => theme.redDiluted};
-
-  & div {
-    vertical-align: middle;
-  }
-
-  &:hover,
-  &:focus {
-    background: transparent;
-    border-color: ${({ theme }) => theme.red};
-  }
-
-  @media (min-width: 768px) {
-    border-color: ${({ theme }) => theme.textDark};
-    background: transparent;
-
-    &:hover,
-    &:focus {
-      border-color: ${({ theme }) => theme.textMuted};
-      background: transparent;
-    }
-  }
-`;
-
 const Stories: React.FC = (): JSX.Element => {
   // init redux logic
 
@@ -90,7 +39,7 @@ const Stories: React.FC = (): JSX.Element => {
 
   return (
     <WrapperSection id='stories'>
-      <Title as='h2' bold>
+      <Title as='h2' className='h1' margin='30px' bold>
         Истории доноров
       </Title>
       <Carousel ref={ref} dots={false} effect='fade' autoplay>
@@ -100,10 +49,10 @@ const Stories: React.FC = (): JSX.Element => {
       </Carousel>
       <ButtonGroup>
         <Button color='red' shape='round' outlined onClick={prev}>
-          <Image src='/images/carousel/prev.svg' width={20} height={20} />
+          <PrevSVG />
         </Button>
         <Button color='red' shape='round' outlined onClick={next}>
-          <Image src='/images/carousel/next.svg' width={20} height={20} />
+          <NextSVG />
         </Button>
       </ButtonGroup>
     </WrapperSection>
