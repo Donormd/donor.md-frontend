@@ -42,7 +42,7 @@ const ArticleBody = styled.div`
   @media (min-width: 992px) {
     &:hover {
       background: url('/images/pages/home/about-donations/hover.svg');
-      background-size: 100% 100%;
+      background-size: contain;
       background-repeat: no-repeat;
       background-position: top center;
     }
