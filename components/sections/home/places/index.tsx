@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { YMaps, Map, Placemark } from 'react-yandex-maps';
 import styled from 'styled-components';
-import ButtonGroup, { KeyType } from '../../../button-group';
+import ButtonGroup from '../../../button-group';
 import { Title } from '../../../UI';
 import { Section } from '../utils';
 import Place from './place';
@@ -73,7 +73,7 @@ const places = [
 ];
 
 const SectionHeader = styled.div`
-  @media (min-width: 992px) {
+  @media (min-width: 768px) {
     display: flex;
     justify-content: space-between;
   }
@@ -95,7 +95,7 @@ const Places: React.FC = (): JSX.Element => {
   return (
     <Section id='places'>
       <SectionHeader>
-        <Title as='h2' bold>
+        <Title as='h2' className='h1' margin='15px' bold>
           Где сдать кровь ?
         </Title>
         <ButtonGroup buttons={buttons} handleClick={setId} />
