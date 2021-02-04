@@ -96,6 +96,7 @@ export const InputNumber = styled(AntInputNumber)`
   }
 `;
 export const TextArea = styled(AntInput.TextArea)`
+  padding: 10px;
   border-color: ${(props) => props.theme.redDiluted};
   border-radius: ${(props) => props.theme.radius};
 
