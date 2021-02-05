@@ -8,11 +8,6 @@ export const LogoWrapper = styled.div`
   column-gap: 10px;
 `;
 
-export const WrapperImage = styled.div`
-  width: 45px;
-  height: 45px;
-`;
-
 export const WrappedParagraph = styled(Paragraph)`
   text-transform: uppercase;
   margin: 0;
@@ -20,7 +15,7 @@ export const WrappedParagraph = styled(Paragraph)`
   font-size: 0.8rem;
 `;
 
-export const TextWrapper = styled.div`
+export const ResponsiveTextWrapper = styled.div`
   display: none;
 
   @media (min-width: 1200px) {
