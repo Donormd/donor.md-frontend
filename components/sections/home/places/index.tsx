@@ -7,7 +7,7 @@ import { Section } from '../utils';
 import Place from './place';
 
 const MapWrapper = styled.div`
-  margin: 20px 0;
+  margin-bottom: 15px;
   width: 100%;
   height: 200px;
   border: ${({ theme }) => `1px solid ${theme.redDiluted}`};

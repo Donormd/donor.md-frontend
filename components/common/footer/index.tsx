@@ -20,7 +20,7 @@ const Footer: React.FC = (): JSX.Element => (
           <TitleBrand bold size='1.5rem' margin='15px'>
             donor.md
           </TitleBrand>
-          <ParagraphSlogan size='.9rem'>
+          <ParagraphSlogan size='.9rem' margin='15px'>
             Проект созданный с концепцией «Люди помогают людям» для формирования стабильной базы
             крови восполняемой регулярными донорами.
           </ParagraphSlogan>
