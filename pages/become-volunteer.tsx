@@ -42,10 +42,6 @@ const typesAssistance: Array<typeData> = [
   { key: 8, value: 'Другое' },
 ];
 
-const StyledTitle = styled(Title)`
-  margin-bottom: 25px;
-`;
-
 const FormItemCheckbox = styled.div`
   display: grid;
   grid-template-columns: min-content 1fr;
@@ -53,10 +49,10 @@ const FormItemCheckbox = styled.div`
 `;
 
 const BecomeVolunteerPage: React.FC = (): JSX.Element => (
-  <HeaderContentFooter background='/images/pages/articles/welcome.png'>
+  <HeaderContentFooter background='/images/pages/welcome.png'>
     <Container>
       <article>
-        <StyledTitle bold>Как стать волонтером?</StyledTitle>
+        <Title margin='15px' bold>Как стать волонтером?</Title>
         <p>
           Мы ищем волонтёров, которым нравится концепция “Люди помогают людям” и готовы своими
           усилиями и талантами развивать донорское сообщество в Приднестровье.

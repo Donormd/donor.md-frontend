@@ -1,12 +1,9 @@
 /* eslint-disable no-console */
 import React from 'react';
 import Link from 'next/link';
-import { Button } from 'antd';
-import styled from 'styled-components';
 import HeaderContentFooter from '../layouts/header-content-footer';
 import Uploader from '../components/uploader';
 import Alert from '../components/alert';
-import { Title } from '../components/UI/typography';
 import { Container } from '../layouts/container';
 import {
   Form,
@@ -18,6 +15,10 @@ import {
   InputNumber,
   Checkbox,
   Divider,
+  Title,
+  Button,
+  StyledLink,
+  Paragraph,
 } from '../components/UI';
 
 export declare type optionsBloodType = { key: string | number; value: string };
@@ -60,15 +61,13 @@ const optionsBlood: Array<optionsBloodType> = [
   },
 ];
 
-const Paragraph = styled.p`
-  margin: 25px 0px;
-`;
-
 const DonorSearchPage: React.FC = (): JSX.Element => (
-  <HeaderContentFooter background='/images/pages/articles/welcome.png'>
+  <HeaderContentFooter background='/images/pages/welcome.png'>
     <Container>
       <article>
-        <Title bold>Поиск доноров</Title>
+        <Title margin='15px' bold>
+          Поиск доноров
+        </Title>
         <Paragraph>
           Наш сервис постарается, что бы вы не искали доноров среди родственников и в социальных
           сетях. Наш сервис автоматически поможет Вам найти доноров с требуемой группой крови
@@ -198,16 +197,19 @@ const DonorSearchPage: React.FC = (): JSX.Element => (
           <Checkbox>
             Согласен с{` `}
             <Link href='/'>
-              <a>правилами</a>
+              <StyledLink underline bold>
+                правилами
+              </StyledLink>
             </Link>
             {` `}обработки персональных данных
           </Checkbox>
         </FormItem>
-        <Button className='btn-danger' shape='round' size='large'>
+        <Button shape='round' size='large' color='red'>
           Отправить
         </Button>
       </Form>
       <Alert
+        dismissible
         message={`
         После обработки Вашего запроса и согласования с Центром переливания крови. 
         Система автоматически отправить уведомления донорам, подходящим по параметрам.

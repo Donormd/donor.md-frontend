@@ -1,19 +1,16 @@
 import React from 'react';
-import styled from 'styled-components';
 import { Title, Divider, Form, FormItem, Input, InputNumber, Button } from '../components/UI';
 import HeaderContentFooter from '../layouts/header-content-footer';
 import { Container } from '../layouts/container';
 
-const StyledTitle = styled(Title)`
-  margin-bottom: 25px;
-`;
-
 const CorporateDonationPage: React.FC = (): JSX.Element => {
   return (
-    <HeaderContentFooter background='/images/pages/articles/welcome.png'>
+    <HeaderContentFooter background='/images/pages/welcome.png'>
       <Container>
         <article>
-          <StyledTitle bold>Корпоративное донорство</StyledTitle>
+          <Title margin='15px' bold>
+            Корпоративное донорство
+          </Title>
           <p>
             Мы приглашаем государственные, муниципальные, коммерческие и некоммерческие организации
             стать участниками программы “Корпоративное донорство”.

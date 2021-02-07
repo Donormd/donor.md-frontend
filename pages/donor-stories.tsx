@@ -8,14 +8,6 @@ import Pagination from '../components/pagination';
 import { Title } from '../components/UI';
 import { Container } from '../layouts/container';
 
-const StyledTitle = styled(Title)`
-  margin: 0;
-  margin-bottom: 20px;
-  @media (min-width: 992px) {
-    margin-bottom: 0;
-  }
-`;
-
 const StoriesHead = styled.div`
   display: flex;
   flex-direction: column;
@@ -63,7 +55,7 @@ const DonorStoriesPage: React.FC = (): JSX.Element => (
   <HeaderContentFooter background='/images/pages/welcome.png'>
     <Container>
       <StoriesHead>
-        <StyledTitle bold>Истории доноров</StyledTitle>
+        <Title margin='15px' bold>Истории доноров</Title>
         <ButtonGroup buttons={buttons} handleClick={handleClick} />
       </StoriesHead>
       <div>

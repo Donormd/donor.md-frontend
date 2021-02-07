@@ -201,13 +201,6 @@ const StoriesHead = styled.div`
   }
 `;
 
-const StyledTitle = styled(Title)`
-  margin: 0 0 20px 0;
-  @media (min-width: 992px) {
-    margin-bottom: 0;
-  }
-`;
-
 const buttons: Array<ButtonsProps> = [
   { key: 1, text: 'Мужчины' },
   { key: 2, text: 'Женщины' },
@@ -216,10 +209,12 @@ const buttons: Array<ButtonsProps> = [
 const handleClick: OnClickProps = (val) => console.log(val);
 
 const TopDonorsPage: React.FC = (): JSX.Element => (
-  <HeaderContentFooter background='/images/pages/articles/welcome.png'>
+  <HeaderContentFooter background='/images/pages/welcome.png'>
     <Container>
       <StoriesHead>
-        <StyledTitle bold>Лучшие донары нашего сервиса</StyledTitle>
+        <Title margin='15px' bold>
+          Лучшие донары нашего сервиса
+        </Title>
         <ButtonGroup buttons={buttons} handleClick={handleClick} />
       </StoriesHead>
       <Table columns={columns} dataSource={mock} pagination={false} />

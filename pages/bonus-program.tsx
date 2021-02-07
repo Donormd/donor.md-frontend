@@ -7,10 +7,6 @@ import HeaderContentFooter from '../layouts/header-content-footer';
 import Alert from '../components/alert';
 import { Container } from '../layouts/container';
 
-const StyledTitle = styled(Title)`
-  margin-bottom: 25px;
-`;
-
 const BonusesList = styled.ul`
   list-style-type: none;
   padding: 0;
@@ -35,9 +31,11 @@ const OrganizationsList = styled.div`
 `;
 
 const BonusProgramPage: React.FC = (): JSX.Element => (
-  <HeaderContentFooter background='/images/pages/articles/welcome.png'>
+  <HeaderContentFooter background='/images/pages/welcome.png'>
     <Container>
-      <StyledTitle bold>Бонусная программа для коммерческих агентов</StyledTitle>
+      <Title margin='15px' bold>
+        Бонусная программа для коммерческих агентов
+      </Title>
       <p>
         Наш сервис приглашает коммерческих агентов стать частью бонусной программы для доноров
         крови. Это нам позволит поощрять активных доноров, выделять значимость этого доброго
