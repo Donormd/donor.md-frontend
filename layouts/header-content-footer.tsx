@@ -14,12 +14,12 @@ const Main = styled.main<{ background?: string }>`
     padding: 50px 0;
     margin-top: 75px;
   }
-  @media (min-width: 992px) {
+  @media (min-width: 1500px) {
     & {
       padding: 75px 0;
       margin-top: 75px;
       background: ${({ background }) => `url(${background})` || 'transparent'};
-      background-size: 27vh 21vw;
+      background-size: calc(0.44 * 100vw - 460px) calc(0.578 * 100vh - 203px);
       background-repeat: no-repeat;
       background-position: left bottom;
     }
