@@ -7,7 +7,7 @@ declare type Props = { onChangeState: onChangeState };
 
 const RecoveryForm: React.FC<Props> = ({ onChangeState }): JSX.Element => (
   <Form>
-    <Title as='h2' size='2rem'>
+    <Title as='h2' margin='15px' >
       Восстановление доступа
     </Title>
     <FormItem columns={1}>

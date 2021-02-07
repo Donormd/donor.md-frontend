@@ -66,7 +66,7 @@ const optionsBlood: Array<optionsBloodType> = [
 
 const SignUpForm: React.FC<Props> = ({ onChangeState }): JSX.Element => (
   <Form>
-    <Title as='h2' size='2rem'>
+    <Title as='h2' margin='15px' >
       Регистрация
     </Title>
     <FormItem columns={1}>

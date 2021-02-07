@@ -34,7 +34,7 @@ const ButtonWithIcon = styled(Button)`
 
 const SignInForm: React.FC<Props> = ({ onChangeState }): JSX.Element => (
   <Form>
-    <Title as='h2' size='2rem'>
+    <Title as='h2' margin='15px' >
       Авторизация
     </Title>
     <FormItem columns={1}>
