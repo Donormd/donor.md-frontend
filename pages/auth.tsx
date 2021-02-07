@@ -23,9 +23,9 @@ const FormWrapper = styled.div`
   max-width: 480px;
   margin: 0 auto;
   padding: 15px 25px;
-  background: var(--primary);
-  border: 1px solid var(--red-diluted);
-  border-radius: var(--radius);
+  background: ${({ theme }) => theme.primary};
+  border: ${({ theme }) => `1px solid ${theme.redDiluted}`};
+  border-radius: ${({ theme }) => theme.radius};
 
   @media (min-width: 768px) {
     padding: 30px 50px;
@@ -43,7 +43,7 @@ const AuthPage: React.FC = (): JSX.Element => {
     <Main>
       <Container>
         <Logo />
-        <StyledTitle align='center' size='2.2rem'>
+        <StyledTitle className='h2' margin='15px' align='center'>
           Кабинет Донора
         </StyledTitle>
         <FormWrapper>
