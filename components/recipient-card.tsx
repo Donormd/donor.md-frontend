@@ -1,75 +1,145 @@
 import React from 'react';
 import ImageNext from 'next/image';
 import styled from 'styled-components';
-import Rate from './rate';
+import HeartIcon from '../public/images/icons/heart+.svg';
 import { Button, Title, Paragraph } from './UI';
+import Rate from './rate';
 
 export declare type Props = {
   src: string;
+  name: string;
+  age: number;
+  bloodGroup: string;
+  disease: string;
+  placeName: string;
+  city: string;
+  date: string;
 };
 
 const Card = styled.article`
   display: grid;
-  grid-template-columns: min-content 300px 1fr;
-  column-gap: 20px;
-  padding: 30px;
+  gap: 15px;
+  grid-template-columns: min-content 1fr 1fr 1fr 1fr;
+  padding: 25px;
   margin-bottom: 30px;
   background: white;
   border-radius: ${({ theme }) => theme.radius};
   border: ${({ theme }) => `1px solid ${theme.red}`};
-`;
 
-const ColumnRight = styled.div`
-  text-align: right;
+  @media (min-width: 992px) {
+    row-gap: 0;
+  }
 `;
 
 const Image = styled(ImageNext)<{ layout: string }>`
   border-radius: ${({ theme }) => theme.radius};
 `;
 
-const Age = styled.span`
-  margin-left: 15px;
-  color: ${({ theme }) => theme.textMuted};
+const RedHighlight = styled.span`
+  color: ${({ theme }) => theme.red};
   font-weight: normal;
 `;
 
-const Place = styled(Paragraph)`
-  margin: 0;
+const One = styled.div`
+  align-self: center;
+  grid-column: 2 / 5;
+  @media (min-width: 768px) {
+    align-self: flex-start;
+    grid-column: 2 / 4;
+  }
 `;
 
-const Address = styled(Paragraph)`
-  color: ${({ theme }) => theme.textMuted};
-  margin: 0;
+const Second = styled.div`
+  grid-column: 1 / 5;
+  @media (min-width: 768px) {
+    grid-column: 2 / 4;
+  }
 `;
 
-const Term = styled(Paragraph)`
-  color: ${({ theme }) => theme.red};
+const Three = styled.div`
+  grid-column: 1 / 5;
+  @media (min-width: 768px) {
+    text-align: right;
+    grid-row: 1 / 2;
+    grid-column: 4 / 6;
+  }
 `;
 
-const RecipientCard: React.FC<Props> = (): JSX.Element => {
+const Four = styled.div`
+  grid-column: 1 / 5;
+  & button {
+    width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    grid-row: 2 / 3;
+    grid-column: 4 / 6;
+    margin-left: auto;
+    margin-top: auto;
+  }
+`;
+
+const SecondTitle = styled(Title)`
+  width: 195px;
+`;
+
+const FourButton = styled(Button)`
+  display: flex;
+  & svg {
+    margin-left: 10px;
+  }
+  &:hover path {
+    fill: white;
+  }
+`;
+
+const RecipientCard: React.FC<Props> = ({
+  src,
+  name,
+  age,
+  bloodGroup,
+  disease,
+  placeName,
+  city,
+  date,
+}): JSX.Element => {
+  const dateObj = new Date(date);
+  const validity = `${dateObj.getDay()}/${dateObj.getMonth()}/${dateObj.getFullYear()}`;
   return (
     <Card>
-      <Image src='/stub.svg' width={100} height={100} layout='fixed' />
-      <div>
-        <div>
-          <Title as='h2' bold>
-            Снегирева Алина <Age>26 лет</Age>
-          </Title>
-          <Title as='h2'>В(|||) - Rh+</Title>
-          <Title as='h3' color='black'>
-            Заболевание печени
-          </Title>
-          <Place>Республиканская клиническая больница</Place>
-          <Address>Тирасполь, ул. Мира, 33 А</Address>
-        </div>
-      </div>
-      <ColumnRight>
-        <Rate total={12} count={10} />
-        <Term align='right'>Срок до: 16/12/20</Term>
-        <Button shape='round' color='red' size='large' outlined>
-          Подробнее
-        </Button>
-      </ColumnRight>
+      <Image src={src} width={100} height={100} layout='fixed' />
+      <One>
+        <Title as='h3' margin='10px' bold>
+          {name}{' '}
+          <Paragraph as='span' color='textMuted'>
+            {age} лет
+          </Paragraph>
+        </Title>
+        <Title as='h4' margin='10px'>
+          {bloodGroup}
+        </Title>
+        <Title as='h4' margin='10px' color='black'>
+          {disease}
+        </Title>
+      </One>
+      <Second>
+        <SecondTitle as='h5' color='black'>
+          {placeName}
+        </SecondTitle>
+        <Paragraph color='textMuted'>{city}</Paragraph>
+      </Second>
+      <Three>
+        <Rate total={12} count={8} />
+        <Title as='h4'>
+          <RedHighlight>Срок до: {validity}</RedHighlight>
+        </Title>
+      </Three>
+      <Four>
+        <FourButton shape='round' color='red' size='large' outlined>
+          Помочь
+          <HeartIcon width={25} height={25} />
+        </FourButton>
+      </Four>
     </Card>
   );
 };
