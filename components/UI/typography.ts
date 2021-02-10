@@ -29,5 +29,6 @@ export const Paragraph = styled.p<TitleProps>`
   font-weight: ${({ bold }) => (bold ? 'bold' : 'normal')};
   font-size: ${({ size }) => size || ''};
   text-align: ${({ align }) => align || ''};
-  color: ${({ color, theme }) => (!color ? theme.textDark : `${theme[color] || color}`)};
+  color: ${({ color, theme }) => (color ? `${theme[color] || color}` : theme.textDark)};
+  /* color: ${({ color, theme }) => (!color ? theme.textDark : `${theme[color] || color}`)}; */
 `;

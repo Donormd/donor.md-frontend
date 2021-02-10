@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 export declare type Props = {
+  dismissible?: boolean;
   message?: string;
   className?: string;
   children?: React.ReactNode;

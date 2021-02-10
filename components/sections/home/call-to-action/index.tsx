@@ -8,9 +8,8 @@ import { SectionTitle, Underline, ImageWrapper, ArticleGrid, Article } from './s
 const CallToAction: React.FC = (): JSX.Element => (
   <Section id='call-to-action'>
     <SectionTitle as='h2' className='h1' bold>
-      С нами уже{' '}
+      С нами уже&nbsp;
       <Link href='/top-donors'>
-        {` `}
         <Underline>105 доноров</Underline>
       </Link>
       <ImageWrapper>

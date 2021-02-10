@@ -59,7 +59,7 @@ const MenuLink: React.FC<MenuLinkProps> = ({ Icon, href, text }) => (
 const RightMenu: React.FC = (): JSX.Element => {
   return (
     <Aside>
-      <DonorInfo />
+      <DonorInfo name='Maxim' lastname='Lambov' honorary />
       <DonorCard />
       <DonorProgress />
       <Menu>
