@@ -10,6 +10,7 @@ const CallToAction: React.FC = (): JSX.Element => (
     <SectionTitle as='h2' className='h1' bold>
       С нами уже{' '}
       <Link href='/top-donors'>
+        {` `}
         <Underline>105 доноров</Underline>
       </Link>
       <ImageWrapper>
