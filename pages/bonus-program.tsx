@@ -21,6 +21,7 @@ const ListItem = styled.li`
 
 const OrganizationsList = styled.div`
   display: grid;
+  padding-bottom: 50px;
 
   @media (min-width: 992px) {
     & {
@@ -28,6 +29,16 @@ const OrganizationsList = styled.div`
       column-gap: 20px;
     }
   }
+`;
+
+const ImageWrapper = styled.div`
+  margin-bottom: 25px;
+  border-radius: ${({ theme }) => theme.radius};
+  border: ${({ theme }) => `1px solid ${theme.redDiluted}`};
+`;
+
+const TitleOrganizations = styled(Title)`
+  margin: 40px 0 25px;
 `;
 
 const BonusProgramPage: React.FC = (): JSX.Element => (
@@ -89,12 +100,14 @@ const BonusProgramPage: React.FC = (): JSX.Element => (
         действия, Какую скидку и на что предлагаете, Условия получения бонуса
       </p>
       <Divider />
-      <Title bold as='h3' size='1.625rem'>
-        Партнеры бонусной программы
-      </Title>
+      <TitleOrganizations bold as='h3'>
+        Бонусы от наших партнеров
+      </TitleOrganizations>
       <OrganizationsList>
         <article>
-          <Image src='/images/pages/articles/logo__active.png' width={356} height={186} />
+          <ImageWrapper>
+            <Image src='/images/pages/articles/logo__active.png' width={356} height={186} />
+          </ImageWrapper>
           <Title align='center' as='h3' size='1.125rem'>
             <b>ООО “Автолялечка”</b>
             <br />
@@ -102,7 +115,9 @@ const BonusProgramPage: React.FC = (): JSX.Element => (
           </Title>
         </article>
         <article>
-          <Image src='/images/pages/articles/op.png' width={356} height={186} />
+          <ImageWrapper>
+            <Image src='/images/pages/articles/op.png' width={356} height={186} />
+          </ImageWrapper>
           <Title align='center' as='h3' size='1.125rem'>
             <b>“Открытые приоритеты”</b>
             <br />
