@@ -1,9 +1,14 @@
 import React from 'react';
 import Image from 'next/image';
+import styled from 'styled-components';
 import { Button, Form, FormItem, Input, TextArea, Title } from '../../../UI';
 import { Section } from '../utils';
 import { Grid, SectionParagraph, ImageWrapper, Social } from './styles';
 import SocialMediaLinks from '../../../social-media-links';
+
+const HalfWidth = styled.div`
+  width: 50%;
+`;
 
 const Feedback: React.FC = (): JSX.Element => {
   return (
@@ -18,17 +23,17 @@ const Feedback: React.FC = (): JSX.Element => {
             нашего общего сотрудничества
           </SectionParagraph>
           <Form>
-            <FormItem>
-              <Input size='large' placeholder='Ваш email или номер телефона' />
+            <FormItem columns={1}>
+              <HalfWidth>
+                <Input size='large' placeholder='Ваш email или номер телефона' />
+              </HalfWidth>
             </FormItem>
             <FormItem columns={1}>
               <TextArea placeholder='Текст сообщения' rows={7} />
             </FormItem>
-            <FormItem>
-              <Button shape='round' size='large' color='red' outlined>
-                Отправить
-              </Button>
-            </FormItem>
+            <Button shape='round' size='large' color='red' outlined>
+              Отправить
+            </Button>
           </Form>
           <Social>
             <Image
