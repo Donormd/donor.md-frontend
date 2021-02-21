@@ -3,9 +3,14 @@ import styled from 'styled-components';
 export declare type MenuItemProps = { active: boolean };
 
 export const Aside = styled.aside<{ image?: string }>`
+  display: none;
   padding: 25px;
   background: white;
   border-right: 1px solid ${({ theme }) => theme.redDiluted};
+
+  @media (min-width: 576px) {
+    display: block;
+  }
 
   @media (min-width: 1200px) {
     background-image: ${({ image }) => `url(${image})`};

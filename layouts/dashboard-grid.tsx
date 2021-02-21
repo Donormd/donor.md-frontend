@@ -11,8 +11,11 @@ type Props = {
 
 const Main = styled.main`
   display: grid;
-  grid-template-columns: max-content 1fr max-content;
+  grid-template-columns: 1fr;
   height: 100%;
+  @media (min-width: 576px) {
+    grid-template-columns: max-content 1fr max-content;
+  }
 `;
 
 const Container = styled.section`
