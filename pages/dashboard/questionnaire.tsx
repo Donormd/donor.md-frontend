@@ -34,8 +34,8 @@ const PanelHeader: React.FC<{ title: string }> = ({ title }): JSX.Element => (
   </DividerWrapper>
 );
 
-const MyQuestinare: React.FC = (): JSX.Element => {
-  const { data } = useAppSelector((state) => state.questinare);
+const MyQuestionnaire: React.FC = (): JSX.Element => {
+  const { data } = useAppSelector((state) => state.questionnaire);
   return (
     <DashboardGrid>
       <TitleWithArrow>Анкета донора</TitleWithArrow>
@@ -55,7 +55,7 @@ const MyQuestinare: React.FC = (): JSX.Element => {
       <FormWrapper>
         {/* eslint-disable-next-line no-console */}
         <Accordion defaultActiveKey={['1']} onChange={(args) => console.log(args)} ghost>
-          {data.map((panel) => (
+          {data.map((panel: any) => (
             <Panel header={<PanelHeader title={panel.title} />} key={panel.key}>
               {panel.list.map(({ title, ...rest }: IQuestion, i: number) => (
                 <Question title={`${i + 1} ${title}`} {...rest} />
@@ -63,7 +63,6 @@ const MyQuestinare: React.FC = (): JSX.Element => {
             </Panel>
           ))}
         </Accordion>
-
         <Button shape='round' color='red' size='large' outline>
           Сохранить
         </Button>
@@ -72,4 +71,4 @@ const MyQuestinare: React.FC = (): JSX.Element => {
   );
 };
 
-export default MyQuestinare;
+export default MyQuestionnaire;

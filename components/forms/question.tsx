@@ -14,10 +14,20 @@ export interface IQuestion {
 
 const Wrapper = styled.div`
   margin-bottom: 30px;
+  display: grid;
+  @media (min-width: 768px) {
+    column-gap: 30px;
+    grid-template-columns: 1fr 150px;
+  }
+  @media (min-width: 1200px) {
+    column-gap: 30px;
+    grid-template-columns: 1fr 250px;
+  }
 `;
 
 const WrapperSwitch = styled.div`
   display: flex;
+  justify-content: flex-end;
   & > * {
     margin-right: 15px;
   }
@@ -42,18 +52,20 @@ const Question: React.FC<IQuestion> = ({ title, paragraph, control }): JSX.Eleme
           {paragraph}
         </Paragraph>
       </div>
-      {control.type === 'switch' && <StyledSwitch />}
-      {control.type === 'input' && <Input placeholder={control.placeholder} />}
-      {control.type === 'select' && (
-        <Select>
-          {control.options &&
-            control.options.map((opt) => (
-              <Select.Option key={opt} value={opt}>
-                {opt}
-              </Select.Option>
-            ))}
-        </Select>
-      )}
+      <div>
+        {control.type === 'switch' && <StyledSwitch />}
+        {control.type === 'input' && <Input placeholder={control.placeholder} />}
+        {control.type === 'select' && (
+          <Select>
+            {control.options &&
+              control.options.map((opt) => (
+                <Select.Option key={opt} value={opt}>
+                  {opt}
+                </Select.Option>
+              ))}
+          </Select>
+        )}
+      </div>
     </Wrapper>
   );
 };
