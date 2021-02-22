@@ -49,16 +49,6 @@ module.exports = {
     'prefer-spread': 'error',
     'prefer-template': 'error',
     'prefer-const': 'error',
-    'prefer-destructuring': [
-      'error',
-      {
-        array: true,
-        object: true,
-      },
-      {
-        enforceForRenamedProperties: false,
-      },
-    ],
     'no-unused-expressions': [2, { allowTernary: true, allowShortCircuit: true }],
     'no-plusplus': 'off',
     'no-confusing-arrow': 'off',
