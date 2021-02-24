@@ -3,8 +3,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { List, ListItem } from './styles';
 
-const SocialMediaLinks: React.FC = () => (
-  <List>
+const SocialMediaLinks: React.FC<{ className?: string }> = ({ className }) => (
+  <List className={className}>
     <ListItem>
       <Link href='https://vk.com/'>
         <Image src='/images/social-icons/vk.svg' width={30} height={30} layout='fixed' />

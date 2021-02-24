@@ -6,13 +6,14 @@ export declare type FormItemProps = {
   children?: React.ReactNode;
   help?: string;
   label?: string;
+  marginBottom?: string;
   required?: boolean;
 };
 
-const Wrapper = styled.div<{ columns: number }>`
+const Wrapper = styled.div<{ columns: number; marginBottom?: string }>`
   display: grid;
   grid-template-columns: 1fr;
-  margin-bottom: 25px;
+  margin-bottom: ${({ marginBottom }) => marginBottom || '25px'};
   @media (min-width: 992px) {
     grid-template-columns: ${({ columns }) => `repeat(${columns}, 1fr)`};
   }
@@ -44,9 +45,10 @@ export const FormItem: React.FC<FormItemProps> = ({
   children,
   columns = 2,
   required,
+  marginBottom,
 }) => {
   return (
-    <Wrapper columns={columns}>
+    <Wrapper columns={columns} marginBottom={marginBottom}>
       <Column>
         <Label as='h5' required={required}>
           {label}
