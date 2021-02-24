@@ -2,12 +2,6 @@ import React from 'react';
 import { Title } from '../../../UI';
 import { BloodTitle, Image } from './styles';
 
-export declare type Props = {
-  key: string | number;
-  quantity: number;
-  group: string;
-};
-
 const quantityText = (quantity: number): string => {
   switch (quantity) {
     case 1:
@@ -30,7 +24,7 @@ const quantityImage = (quantity: number): string => {
   }
 };
 
-const BloodItem: React.FC<Props> = ({ group, quantity }) => {
+const BloodItem: React.FC = ({ group, quantity }: any) => {
   return (
     <div>
       <BloodTitle as='h6' align='center' bold>
