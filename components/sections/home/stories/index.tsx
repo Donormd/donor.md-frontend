@@ -2,35 +2,12 @@ import React, { useRef } from 'react';
 import { Carousel } from 'antd';
 import PrevSVG from '../../../../public/images/carousel/prev.svg';
 import NextSVG from '../../../../public/images/carousel/next.svg';
-import { Props } from '../../../donor-story';
 import { Title } from '../../../UI';
 import { WrapperSection, WrapperDonorStory, ButtonGroup, Button } from './styles';
-
-type StoriesProps = Props & { key: number };
-
-const stories: Array<StoriesProps> = [
-  {
-    key: 1,
-    src: '/images/avatars/women.png',
-    fullname: 'Анастасия',
-    count: 22,
-    story: `“В детстве я мечтала помогать людям, в медицинский поступить не получилось
-    и я решила реализовать свою мечту как донор! 
-    Сдаю кровь каждый 3 месяца и чувствую себя супергероем.”`,
-  },
-  {
-    key: 2,
-    src: '/images/avatars/women.png',
-    fullname: 'Александра',
-    count: 22,
-    story: `“В детстве я мечтала помогать людям, в медицинский поступить не получилось
-    и я решила реализовать свою мечту как донор! 
-    Сдаю кровь каждый 3 месяца и чувствую себя супергероем.”`,
-  },
-];
+import { useAppSelector } from '../../../../redux/store';
 
 const Stories: React.FC = (): JSX.Element => {
-  // init redux logic
+  const { data } = useAppSelector((state) => state.stories);
 
   const ref = useRef<any>();
 
@@ -43,15 +20,15 @@ const Stories: React.FC = (): JSX.Element => {
         Истории доноров
       </Title>
       <Carousel ref={ref} dots={false} effect='fade' autoplay>
-        {stories.map((props: StoriesProps) => (
+        {data.map((props: any) => (
           <WrapperDonorStory {...props} />
         ))}
       </Carousel>
       <ButtonGroup>
-        <Button color='red' shape='round' outlined onClick={prev}>
+        <Button color='red' shape='round' outline onClick={prev}>
           <PrevSVG />
         </Button>
-        <Button color='red' shape='round' outlined onClick={next}>
+        <Button color='red' shape='round' outline onClick={next}>
           <NextSVG />
         </Button>
       </ButtonGroup>
