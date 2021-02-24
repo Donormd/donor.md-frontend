@@ -2,93 +2,11 @@
 import React from 'react';
 import { Table as AntTable } from 'antd';
 import styled from 'styled-components';
-import ButtonGroup, { ButtonsProps, OnClickProps } from '../components/button-group';
+import ButtonGroup, { ButtonsProps, OnClickProps } from '../components/UI/button-group';
 import { Title, StyledLink } from '../components/UI';
 import { Container } from '../layouts/container';
 import HeaderContentFooter from '../layouts/header-content-footer';
-
-const mock = [
-  {
-    key: 1,
-    fullname: 'Борисов Донат',
-    city: 'Тирасполь',
-    numberOfDonations: 9,
-    registrationDate: new Date().toISOString().split('T')[0],
-    status: 'Почетный донор',
-  },
-  {
-    key: 2,
-    fullname: 'Кузьмин Аввакум',
-    city: 'Тирасполь',
-    numberOfDonations: 23,
-    registrationDate: new Date().toISOString().split('T')[0],
-    status: 'Почетный донор',
-  },
-  {
-    key: 3,
-    fullname: 'Гущин Макар',
-    city: 'Тирасполь',
-    numberOfDonations: 10,
-    registrationDate: new Date().toISOString().split('T')[0],
-    status: '-',
-  },
-  {
-    key: 4,
-    fullname: 'Мартынов Панкрат',
-    city: 'Тирасполь',
-    numberOfDonations: 15,
-    registrationDate: new Date().toISOString().split('T')[0],
-    status: 'Почетный донор',
-  },
-  {
-    key: 5,
-    fullname: 'Тетерин Гурий',
-    city: 'Тирасполь',
-    numberOfDonations: 12,
-    registrationDate: new Date().toISOString().split('T')[0],
-    status: 'Почетный донор',
-  },
-  {
-    key: 6,
-    fullname: 'Борисов Донат',
-    city: 'Тирасполь',
-    numberOfDonations: 9,
-    registrationDate: new Date().toISOString().split('T')[0],
-    status: 'Почетный донор',
-  },
-  {
-    key: 7,
-    fullname: 'Кузьмин Аввакум',
-    city: 'Тирасполь',
-    numberOfDonations: 23,
-    registrationDate: new Date().toISOString().split('T')[0],
-    status: 'Почетный донор',
-  },
-  {
-    key: 8,
-    fullname: 'Гущин Макар',
-    city: 'Тирасполь',
-    numberOfDonations: 10,
-    registrationDate: new Date().toISOString().split('T')[0],
-    status: '-',
-  },
-  {
-    key: 9,
-    fullname: 'Мартынов Панкрат',
-    city: 'Тирасполь',
-    numberOfDonations: 15,
-    registrationDate: new Date().toISOString().split('T')[0],
-    status: 'Почетный донор',
-  },
-  {
-    key: 10,
-    fullname: 'Тетерин Гурий',
-    city: 'Тирасполь',
-    numberOfDonations: 12,
-    registrationDate: new Date().toISOString().split('T')[0],
-    status: 'Почетный донор',
-  },
-];
+import { useAppSelector } from '../redux/store';
 
 const Table = styled(AntTable)`
   & .ant-table {
@@ -208,18 +126,21 @@ const buttons: Array<ButtonsProps> = [
 
 const handleClick: OnClickProps = (val) => console.log(val);
 
-const TopDonorsPage: React.FC = (): JSX.Element => (
-  <HeaderContentFooter background='/images/pages/welcome.png'>
-    <Container>
-      <StoriesHead>
-        <Title margin='15px' bold>
-          Лучшие донары нашего сервиса
-        </Title>
-        <ButtonGroup buttons={buttons} handleClick={handleClick} />
-      </StoriesHead>
-      <Table columns={columns} dataSource={mock} pagination={false} />
-    </Container>
-  </HeaderContentFooter>
-);
+const TopDonorsPage: React.FC = (): JSX.Element => {
+  const { data } = useAppSelector((state) => state.stories);
+  return (
+    <HeaderContentFooter background='/images/pages/welcome.png'>
+      <Container>
+        <StoriesHead>
+          <Title margin='15px' bold>
+            Лучшие донары нашего сервиса
+          </Title>
+          <ButtonGroup buttons={buttons} handleClick={handleClick} />
+        </StoriesHead>
+        <Table columns={columns} dataSource={data} pagination={false} />
+      </Container>
+    </HeaderContentFooter>
+  );
+};
 
 export default TopDonorsPage;
