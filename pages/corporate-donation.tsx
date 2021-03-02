@@ -34,25 +34,25 @@ const CorporateDonationPage: React.FC = (): JSX.Element => {
         </article>
         <Divider />
         <Form>
-          <FormItem label='Название организации' name='name'>
+          <FormItem label='Название организации'>
             <Input placeholder='Название организации' />
           </FormItem>
-          <FormItem label='Руководитель организации' name='name'>
+          <FormItem label='Руководитель организации'>
             <Input placeholder='Руководитель организации' />
           </FormItem>
-          <FormItem label='Контактное лицо организации' name='name'>
+          <FormItem label='Контактное лицо организации'>
             <Input placeholder='Контактное лицо организации' />
           </FormItem>
-          <FormItem label='Должность' name='name'>
+          <FormItem label='Должность'>
             <Input placeholder='Должность' />
           </FormItem>
-          <FormItem label='Ваш email-адрес' name='name'>
+          <FormItem label='Ваш email-адрес'>
             <Input placeholder='Ваш email-адрес' />
           </FormItem>
-          <FormItem label='Номер мобильного телефона' name='name'>
+          <FormItem label='Номер мобильного телефона'>
             <Input placeholder='Номер мобильного телефона' />
           </FormItem>
-          <FormItem label='Городской номер телефона' name='name'>
+          <FormItem label='Городской номер телефона'>
             <Input placeholder='Городской номер телефона' />
           </FormItem>
           <FormItem label='Количество работников в возрасте 18-55 лет'>

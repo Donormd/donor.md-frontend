@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import { theme } from '../components/UI/theme';
 
 const GlobalStyles = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
@@ -11,7 +12,7 @@ const GlobalStyles = createGlobalStyle`
 
 ::selection {
   color: white;
-  background: ${({ theme }) => theme.red};
+  background: ${theme.red};
 }
 
 html,
@@ -24,13 +25,13 @@ body,
 body {
   font-family: 'Roboto', sans-serif;
   font-size: 100%;
-  color: ${({ theme }) => theme.textDark};
-  background: ${({ theme }) => theme.backgroundSm};
+  color: ${theme.textDark};
+  background: ${theme.backgroundSm};
 }
 
 @media (min-width: 992px) {
   body {
-    background: ${({ theme }) => theme.background};
+    background: ${theme.background};
   }
 }
 

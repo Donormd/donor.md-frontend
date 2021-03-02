@@ -9,19 +9,20 @@ import {
   Title,
   TitleWithArrow,
   TextArea,
-  Slider,
 } from '../../components/UI';
 import DashboardGrid from '../../layouts/dashboard-grid';
 import { useAppSelector } from '../../redux/store';
 
-const marks = {
-  0: '0',
-  20: '1',
-  40: '2',
-  60: '3',
-  80: '4',
-  100: '5',
-};
+/*
+ * const marks = {
+ *   0: '0',
+ *   20: '1',
+ *   40: '2',
+ *   60: '3',
+ *   80: '4',
+ *   100: '5',
+ * };
+ */
 
 const StyledForm = styled(Form)`
   margin-top: 30px;
@@ -46,13 +47,13 @@ const ReviewsAdd: React.FC = (): JSX.Element => {
           </Select>
         </FormItem>
         <FormItem label='Отношение персонала' marginBottom='10px'>
-          <Slider marks={marks} step={10} defaultValue={40} />
+          {/* <Slider marks={marks} step={10} defaultValue={40} /> */}
         </FormItem>
         <FormItem label='Комфортность при донации' marginBottom='10px'>
-          <Slider marks={marks} step={10} defaultValue={40} />
+          {/* <Slider marks={marks} step={10} defaultValue={40} /> */}
         </FormItem>
         <FormItem label='Время ожидания услуги' marginBottom='10px'>
-          <Slider marks={marks} step={10} defaultValue={40} />
+          {/* <Slider marks={marks} step={10} defaultValue={40} /> */}
         </FormItem>
         <Button variant='outline-danger' size='lg'>
           Оценить

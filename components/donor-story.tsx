@@ -35,7 +35,21 @@ const StoryBody = styled.div`
   }
 `;
 
-const DonorStory: React.FC = ({ src, fullname, count, story, className }): JSX.Element => (
+export interface IDonorStory {
+  src: string;
+  fullname: string;
+  count: number;
+  story: string;
+  className: string;
+}
+
+const DonorStory: React.FC<IDonorStory> = ({
+  src,
+  fullname,
+  count,
+  story,
+  className,
+}): JSX.Element => (
   <Wrapper className={className}>
     <Image src={src} width={70} height={70} layout='fixed' />
     <StoryHead>

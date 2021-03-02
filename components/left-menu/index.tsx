@@ -10,17 +10,17 @@ import { IMenuLinkProps, actions } from '../../redux/redusers/left-menu';
 import { useAppSelector } from '../../redux/store';
 
 type WithButton = {
-  handleClick: () => void;
+  handleClick?: () => void;
 };
 
+// onClick={handleClick}
 const MenuLink: React.FC<IMenuLinkProps & MenuItemProps & WithButton> = ({
   active,
   imageSrc,
   href,
   text,
-  handleClick,
 }) => (
-  <Link href={href} onClick={handleClick} passHref>
+  <Link href={href} passHref>
     <Tooltip title={text} placement='left'>
       <MenuItem active={active}>
         <>

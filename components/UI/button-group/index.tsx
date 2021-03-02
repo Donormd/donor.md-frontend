@@ -17,10 +17,12 @@ const ButtonsWrapper = styled.div`
   }
 `;
 
-const StyledButton = styled(Button)<{ active: boolean; outline: boolean }>`
-  color: ${({ active, theme, color }) => (active ? 'white' : theme[color])};
-  background: ${({ active, theme, color }) => (active ? theme[color] : 'white')};
+/*
+ * color: ${({ active, theme, color }) => (active ? 'white' : theme[color])};
+ * background: ${({ active, theme, color }) => (active ? theme[color] : 'white')};
+ */
 
+const StyledButton = styled(Button)<{ active: boolean }>`
   @media (min-width: 576px) {
     &:first-child {
       border-top-right-radius: 0;
