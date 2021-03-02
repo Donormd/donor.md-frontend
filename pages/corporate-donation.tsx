@@ -55,11 +55,11 @@ const CorporateDonationPage: React.FC = (): JSX.Element => {
           <FormItem label='Городской номер телефона' name='name'>
             <Input placeholder='Городской номер телефона' />
           </FormItem>
-          <FormItem label='Количество работников в возрасте 18-55 лет' name='name'>
+          <FormItem label='Количество работников в возрасте 18-55 лет'>
             <InputNumber min={0} defaultValue={10} />
           </FormItem>
           <FormItem>
-            <Button size='large' shape='round' color='red'>
+            <Button variant='outline-danger' size='lg'>
               Отправить
             </Button>
           </FormItem>

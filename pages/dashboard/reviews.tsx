@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import {
   Button,
   Divider,
@@ -12,7 +13,6 @@ import {
 } from '../../components/UI';
 import DashboardGrid from '../../layouts/dashboard-grid';
 import { useAppSelector } from '../../redux/store';
-import styled from 'styled-components';
 
 const marks = {
   0: '0',
@@ -54,7 +54,7 @@ const ReviewsAdd: React.FC = (): JSX.Element => {
         <FormItem label='Время ожидания услуги' marginBottom='10px'>
           <Slider marks={marks} step={10} defaultValue={40} />
         </FormItem>
-        <Button shape='round' color='red' size='large' outline>
+        <Button variant='outline-danger' size='lg'>
           Оценить
         </Button>
       </StyledForm>
@@ -67,7 +67,7 @@ const ReviewsAdd: React.FC = (): JSX.Element => {
         <FormItem label='' columns={1}>
           <TextArea rows={7} />
         </FormItem>
-        <Button shape='round' color='red' size='large' outline>
+        <Button variant='outline-danger' size='lg'>
           Отправить
         </Button>
       </Form>

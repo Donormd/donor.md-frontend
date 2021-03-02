@@ -63,7 +63,7 @@ const MyQuestionnaire: React.FC = (): JSX.Element => {
             </Panel>
           ))}
         </Accordion>
-        <Button shape='round' color='red' size='large' outline>
+        <Button variant='outline-danger' size='lg'>
           Сохранить
         </Button>
       </FormWrapper>

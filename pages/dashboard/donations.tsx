@@ -68,7 +68,7 @@ const Donations: React.FC = (): JSX.Element => {
           <Input />
         </FormItem>
         <ButtonsRow>
-          <Button shape='round' color='red' size='large' outline>
+          <Button variant='outline-danger' size='lg'>
             Сохранить донацию
           </Button>
           <SocialButtons />

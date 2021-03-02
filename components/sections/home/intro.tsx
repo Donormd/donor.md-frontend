@@ -50,7 +50,7 @@ const ButtonGroup = styled.div`
   }
 
   @media (min-width: 992px) {
-    grid-template-columns: min-content;
+    grid-template-columns: max-content;
   }
 `;
 
@@ -68,12 +68,12 @@ const Intro: React.FC = (): JSX.Element => (
       </ColumnParagraph>
       <ButtonGroup>
         <Link href='/become-donor'>
-          <Button size='large' shape='round' color='red' outlined>
+          <Button variant='outline-danger' size='lg'>
             Стать донором
           </Button>
         </Link>
         <Link href='/need-blood'>
-          <Button size='large' shape='round' color='primary' outlined>
+          <Button variant='outline-primary' size='lg'>
             Нужна кровь
           </Button>
         </Link>

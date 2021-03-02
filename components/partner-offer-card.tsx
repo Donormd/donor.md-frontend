@@ -113,7 +113,7 @@ const PartnerOfferCard: React.FC<Props> = ({
         </ThreeParagraph>
       </Three>
       <Four>
-        <Button shape='round' color='red' size='large' outlined>
+        <Button variant='outline-danger' size='lg'>
           Подробнее
         </Button>
       </Four>

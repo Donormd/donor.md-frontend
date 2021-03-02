@@ -135,7 +135,7 @@ const RecipientCard: React.FC<Props> = ({
         </Title>
       </Three>
       <Four>
-        <FourButton shape='round' color='red' size='large' outlined>
+        <FourButton variant='outline-danger' size='lg'>
           Помочь
           <HeartIcon width={25} height={25} />
         </FourButton>

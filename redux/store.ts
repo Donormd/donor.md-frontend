@@ -1,14 +1,18 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { useSelector, TypedUseSelectorHook } from 'react-redux';
-import { common } from './common';
-import { reducer as storiesReducer } from './stories';
-import { questinare } from './forms/dashboard/questinare';
+import { reducer as commonReducer } from './common';
+import { reducer as storiesReducer } from './redusers/stories';
+import { questionnaire } from './forms/dashboard/questionnaire';
+import { reducer as monitoringReducer } from './redusers/monitoring';
+import { reducer as leftMenuReducer } from './redusers/left-menu';
 
 export const store = configureStore({
   reducer: {
-    common,
+    common: commonReducer,
     stories: storiesReducer,
-    questinare,
+    leftMenu: leftMenuReducer,
+    questionnaire,
+    monitoring: monitoringReducer,
   },
 });
 

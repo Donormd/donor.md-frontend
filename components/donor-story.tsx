@@ -2,14 +2,6 @@ import React from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
 
-export declare type Props = {
-  src: string;
-  fullname: string;
-  count: number;
-  story: string;
-  className?: string;
-};
-
 const Wrapper = styled.article`
   display: grid;
   grid-template-columns: min-content 1fr;
@@ -43,7 +35,7 @@ const StoryBody = styled.div`
   }
 `;
 
-const DonorStory: React.FC<Props> = ({ src, fullname, count, story, className }): JSX.Element => (
+const DonorStory: React.FC = ({ src, fullname, count, story, className }): JSX.Element => (
   <Wrapper className={className}>
     <Image src={src} width={70} height={70} layout='fixed' />
     <StoryHead>

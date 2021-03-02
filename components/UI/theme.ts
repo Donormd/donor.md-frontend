@@ -1,8 +1,31 @@
-import { DefaultTheme } from 'styled-components';
-
-const theme: DefaultTheme = {
+export const theme = {
+  colors: {
+    white: '#ffffff',
+    black: '#000000',
+    primary: '#ffecdd',
+    danger: '#ff4d4b',
+  },
+  sizes: {
+    button: {
+      sm: {
+        padding: '0.25rem 0.5rem',
+        fontSize: '0.875rem',
+      },
+      md: {
+        padding: '0.5rem 1rem',
+        fontSize: '1rem',
+      },
+      lg: {
+        padding: '0.5rem 1.25rem',
+        fontSize: '1.25rem',
+      },
+    },
+  },
+  button: {
+    radius: '20px',
+  },
   black: '#000000',
-  red: '#ff434b',
+  red: '#ff4d4b',
   redDark: '#CC353D',
   redDiluted: '#f8bab4',
   background: '#fffafa',
@@ -14,21 +37,3 @@ const theme: DefaultTheme = {
   textMuted: '#808080',
   radius: '25px',
 };
-
-export default theme;
-declare module 'styled-components' {
-  export interface DefaultTheme {
-    black: string;
-    red: string;
-    redDark: string;
-    redDiluted: string;
-    background: string;
-    backgroundSm: string;
-    primary: string;
-    primaryDark: string;
-    textDark: string;
-    textGray: string;
-    textMuted: string;
-    radius: string;
-  }
-}

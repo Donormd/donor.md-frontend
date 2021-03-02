@@ -36,6 +36,6 @@ export const Article = styled.article`
   background: white;
 
   @media (min-width: 576px) {
-    grid-template-columns: min-content 1fr;
+    grid-template-columns: max-content 1fr;
   }
 `;

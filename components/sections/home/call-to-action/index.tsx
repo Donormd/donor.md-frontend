@@ -19,7 +19,7 @@ const CallToAction: React.FC = (): JSX.Element => (
     <ArticleGrid>
       <Article>
         <Link href='/dashboard'>
-          <Button color='red' outlined shape='round' size='large'>
+          <Button variant='outline-danger' size='lg'>
             Кабинет донора
           </Button>
         </Link>
@@ -29,7 +29,7 @@ const CallToAction: React.FC = (): JSX.Element => (
       </Article>
       <Article>
         <Link href='/donor-search'>
-          <Button color='red' outlined shape='round' size='large'>
+          <Button variant='outline-danger' size='lg'>
             Нужна помощь
           </Button>
         </Link>

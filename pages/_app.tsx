@@ -4,7 +4,7 @@ import { ThemeProvider } from 'styled-components';
 import 'normalize.css';
 import 'antd/dist/antd.css';
 import { Provider } from 'react-redux';
-import theme from '../components/UI/theme';
+import { theme } from '../components/UI/theme';
 import TypographyStyles from '../styles/typography';
 import GlobalStyles from '../styles/globals';
 import { store } from '../redux/store';

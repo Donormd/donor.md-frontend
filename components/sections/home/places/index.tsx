@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { YMaps, Map, Placemark } from 'react-yandex-maps';
 import styled from 'styled-components';
-import ButtonGroup from '../../../button-group';
+import ButtonGroup from '../../../UI/button-group';
 import { Title } from '../../../UI';
 import { Section } from '../utils';
 import Place from './place';

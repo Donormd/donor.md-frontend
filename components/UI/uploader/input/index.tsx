@@ -1,3 +1,4 @@
+/* eslint no-console:0 */
 import React from 'react';
 import { Upload, message, Button } from 'antd';
 import Image from 'next/image';

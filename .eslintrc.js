@@ -151,7 +151,6 @@ module.exports = {
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': ['error'],
     'no-use-before-define': 'off',
-    '@typescript-eslint/no-use-before-define': ['error'],
     // For Next.js
     'react/react-in-jsx-scope': 'off',
     'react/jsx-uses-react': 'off',

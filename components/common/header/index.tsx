@@ -32,8 +32,10 @@ const Menu: React.FC<MenuListProps> = (props): JSX.Element => (
       </Link>
     </MenuItem>
     <MenuItem>
-      <Button shape='round' color='red' size='large'>
-        <Link href='/dashboard'>Кабинет донора</Link>
+      <Button variant='danger'>
+        <Link href='/dashboard'>
+          <span color='white'>Кабинет донора</span>
+        </Link>
       </Button>
     </MenuItem>
   </MenuList>

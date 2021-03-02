@@ -97,7 +97,7 @@ const MyDetails: React.FC = (): JSX.Element => {
         <FormItem columns={1}>
           <TextArea rows={7} />
         </FormItem>
-        <Button shape='round' color='red' size='large' outline>
+        <Button variant='outline-danger' size='lg'>
           Сохранить
         </Button>
       </Form>

@@ -99,7 +99,7 @@ const Monitoring: React.FC = () => {
               <InputNumber />
             </Row>
           </InputsTable>
-          <Button color='red' shape='round' size='large'>
+          <Button variant='outline-danger' size='lg'>
             Сохранить данные
           </Button>
         </Form>

@@ -16,7 +16,7 @@ const StyledLayout = styled.div`
 
 export const ActionLayout: React.FC<Props> = ({ btnText, linkText, linkOnClick }): JSX.Element => (
   <StyledLayout>
-    <Button htmlType='submit' shape='round' size='large' color='red'>
+    <Button variant='danger' size='lg'>
       {btnText}
     </Button>
     <StyledLink onClick={linkOnClick} color='textDark' underline>

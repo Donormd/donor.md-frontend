@@ -6,8 +6,10 @@ import Add from '../../public/images/pages/dashboard/right-aside/add-donation.sv
 import Question from '../../public/images/pages/dashboard/right-aside/question.svg';
 import Support from '../../public/images/pages/dashboard/right-aside/support-project.svg';
 import DonorInfo from '../donor-info';
-import DonorProgress from '../donor-progress';
-import DonorCard from '../donor-card';
+/*
+ * import DonorProgress from '../donor-progress';
+ * import DonorCard from '../donor-card';
+ */
 
 export declare type MenuLinkProps = {
   key: string | number;
@@ -60,8 +62,8 @@ const RightMenu: React.FC = (): JSX.Element => {
   return (
     <Aside>
       <DonorInfo name='Maxim' lastname='Lambov' honorary />
-      <DonorCard />
-      <DonorProgress />
+      {/* <DonorCard />
+      <DonorProgress /> */}
       <Menu>
         {data.map((link) => (
           <MenuLink {...link} />

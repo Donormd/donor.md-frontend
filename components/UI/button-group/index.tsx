@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { Button } from '..';
+import { Button } from '../button';
 import { KeyType, ButtonsProps, Props } from './types';
 
 const ButtonsWrapper = styled.div`
@@ -57,10 +57,8 @@ const ButtonGroup: React.FC<Props> = ({ buttons, handleClick }): JSX.Element => 
       {buttons.map(({ key, text }: ButtonsProps) => (
         <StyledButton
           key={key}
-          shape='round'
-          size='large'
-          color='red'
-          outline
+          size='md'
+          variant='outline-danger'
           active={buttonId === key}
           onClick={() => onClick(key)}
         >

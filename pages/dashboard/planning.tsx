@@ -64,7 +64,7 @@ const DonationsPlanning: React.FC = (): JSX.Element => {
           </Select>
         </FormItem>
         <ButtonsRow>
-          <Button shape='round' color='red' size='large' outline>
+          <Button variant='outline-danger' size='lg'>
             Запланировать
           </Button>
           <SocialButtons />

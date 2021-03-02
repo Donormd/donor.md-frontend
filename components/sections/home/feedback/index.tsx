@@ -31,7 +31,7 @@ const Feedback: React.FC = (): JSX.Element => {
             <FormItem columns={1}>
               <TextArea placeholder='Текст сообщения' rows={7} />
             </FormItem>
-            <Button shape='round' size='large' color='red' outlined>
+            <Button variant='outline-danger' size='lg'>
               Отправить
             </Button>
           </Form>

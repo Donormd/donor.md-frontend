@@ -72,7 +72,7 @@ const Settings: React.FC = (): JSX.Element => {
           <Checkbox>Я не могу быть донором</Checkbox>
           <Checkbox>Временные ограничения на сдачу крови</Checkbox>
         </CheckboxGroup>
-        <Button shape='round' color='red' size='large' outline>
+        <Button variant='outline-danger' size='lg'>
           Сохранить
         </Button>
         <Alert>

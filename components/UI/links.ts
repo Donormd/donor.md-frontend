@@ -18,6 +18,6 @@ export const StyledLink = styled.a<LinkProps>`
   &:hover {
     color: ${({ color, theme }) =>
       color && theme[`${color}Dark`] ? theme[`${color}Dark`] : 'black'};
-    text-decoration: underline;
+    text-decoration: ${(props) => (props.underline ? 'underline' : '')};
   }
 `;
