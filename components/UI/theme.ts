@@ -10,19 +10,19 @@ export const theme = {
       sm: {
         padding: '0.25rem 0.5rem',
         fontSize: '0.875rem',
+        radius: '12px',
       },
       md: {
         padding: '0.5rem 1rem',
         fontSize: '1rem',
+        radius: '16px',
       },
       lg: {
         padding: '0.5rem 1.25rem',
         fontSize: '1.2rem',
+        radius: '20px',
       },
     },
-  },
-  button: {
-    radius: '20px',
   },
   media: {
     sm: '576px',

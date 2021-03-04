@@ -4,7 +4,7 @@ import { Tooltip } from 'antd';
 import { ReactSVG } from 'react-svg';
 import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/dist/client/router';
-import { MenuItem, IconWrapper, Paragraph, Aside, Menu, MenuItemProps } from './styles';
+import { MenuItem, IconWrapper, Paragraph, Aside, Menu, LinkButton } from './styles';
 import { ResponsiveLogo } from '../logo';
 import { IMenuLinkProps, actions } from '../../redux/redusers/left-menu';
 import { useAppSelector } from '../../redux/store';
@@ -14,7 +14,7 @@ type WithButton = {
 };
 
 // onClick={handleClick}
-const MenuLink: React.FC<IMenuLinkProps & MenuItemProps & WithButton> = ({
+const MenuLink: React.FC<IMenuLinkProps & { active: boolean } & WithButton> = ({
   active,
   imageSrc,
   href,
@@ -22,13 +22,13 @@ const MenuLink: React.FC<IMenuLinkProps & MenuItemProps & WithButton> = ({
 }) => (
   <Link href={href} passHref>
     <Tooltip title={text} placement='left'>
-      <MenuItem active={active}>
-        <>
+      <MenuItem>
+        <LinkButton size='lg' active={active} variant='outline-primary'>
           <IconWrapper>
             <ReactSVG src={imageSrc} />
           </IconWrapper>
           <Paragraph>{text}</Paragraph>
-        </>
+        </LinkButton>
       </MenuItem>
     </Tooltip>
   </Link>

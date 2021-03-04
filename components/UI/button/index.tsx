@@ -102,7 +102,7 @@ export const StyledButton = styled.button<ButtonWrapperProps>`
   border: 1px solid ${({ variant }) => buttonThemes[variant].default.borderColor};
   padding: ${({ size, theme }) => theme.sizes.button[size].padding};
   font-size: ${({ size, theme }) => theme.sizes.button[size].fontSize};
-  border-radius: ${({ theme }) => theme.button.radius};
+  border-radius: ${({ theme, size }) => theme.sizes.button[size].radius};
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
     border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 

@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-
-export declare type MenuItemProps = { active: boolean };
+import { Button } from '../UI';
 
 export const Aside = styled.aside<{ image?: string }>`
   display: none;
@@ -25,27 +24,24 @@ export const Menu = styled.ul`
   list-style-type: none;
   padding: 0;
 `;
-export const MenuItem = styled.li<MenuItemProps>`
-  cursor: pointer;
+export const MenuItem = styled.li`
+  padding: 10px 0;
+`;
+
+export const LinkButton = styled(Button)<{ active: boolean }>`
   display: flex;
   align-items: center;
-  padding: 10px 20px;
-  margin-bottom: 5px;
+  width: 100%;
+  color: ${({ theme }) => theme.colors.black};
+  border: 1px solid ${({ theme }) => theme.colors.white};
   color: ${({ active }) => (active ? 'white' : 'black')};
   & svg path {
     fill: ${({ active }) => (active ? 'white' : 'black')};
   }
-  border-radius: ${({ theme }) => theme.radius};
   background: ${({ theme, active }) => (active ? theme.red : 'white')};
 
-  &:hover {
-    color: white;
-
-    background: ${({ theme, active }) => (active ? theme.redDark : theme.redDiluted)};
-  }
-
   &:hover svg path {
-    fill: white;
+    fill: ${({ theme }) => theme.colors.danger};
   }
 `;
 
