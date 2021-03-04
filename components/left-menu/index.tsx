@@ -42,8 +42,8 @@ const LeftMenu: React.FC<{ image?: string }> = ({ image }): JSX.Element => {
   const { setMenu } = actions;
 
   useEffect(() => {
-    const [{ key }] = data.filter((item) => item.href === pathname);
-    dispatch(setMenu(key));
+    const activeMenu = data.filter((item) => item.href === pathname)[0];
+    activeMenu?.key && dispatch(setMenu(activeMenu.key));
   }, []);
 
   return (
