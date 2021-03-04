@@ -11,7 +11,8 @@ export const Aside = styled.aside<{ image?: string }>`
     display: block;
   }
 
-  @media (min-width: 1200px) {
+  @media (min-width: ${({ theme }) => theme.media.xl}) {
+    padding: 25px 30px;
     background-image: ${({ image }) => `url(${image})`};
     background-size: 100% 24vw;
     background-repeat: no-repeat;
@@ -40,7 +41,8 @@ export const LinkButton = styled(Button)<{ active: boolean }>`
   }
   background: ${({ theme, active }) => (active ? theme.red : 'white')};
 
-  &:hover svg path {
+  &:hover svg path,
+  &:focus svg path {
     fill: ${({ theme }) => theme.colors.danger};
   }
 `;

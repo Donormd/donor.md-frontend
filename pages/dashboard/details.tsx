@@ -27,7 +27,7 @@ const WrapperSwitch = styled.div`
 `;
 
 const MyDetails: React.FC = (): JSX.Element => {
-  const { bloodGroups } = useAppSelector((state) => state.common);
+  const { bloodGroups, cities, organizations } = useAppSelector((state) => state.common);
   return (
     <DashboardGrid>
       <TitleWithArrow>Мои данные</TitleWithArrow>
@@ -36,25 +36,29 @@ const MyDetails: React.FC = (): JSX.Element => {
         <FormItem label='ФИО' required>
           <Input />
         </FormItem>
-        <FormItem label='Дата рождения'>
+        <FormItem label='Дата рождения' required>
           <DatePicker />
         </FormItem>
-        <FormItem label='Группа крови'>
+        <FormItem label='Группа крови' required>
           <Select placeholder='Ваша группа крови'>
             {bloodGroups.map((item) => (
               <Select.Option value={item.value}>{item.text}</Select.Option>
             ))}
           </Select>
         </FormItem>
-        <FormItem label='Пол'>
+        <FormItem label='Пол' required>
           <WrapperSwitch>
-            <span>Да</span>
+            <span>Мужской</span>
             <Switch />
-            <span>Нет</span>
+            <span>Женский</span>
           </WrapperSwitch>
         </FormItem>
-        <FormItem label='Город проживания'>
-          <Input />
+        <FormItem label='Город проживания' required>
+          <Select placeholder='Город проживания'>
+            {cities.map((item) => (
+              <Select.Option value={item.value}>{item.text}</Select.Option>
+            ))}
+          </Select>
         </FormItem>
         <Divider />
         <Title as='h4' margin='30px' bold>
@@ -68,26 +72,30 @@ const MyDetails: React.FC = (): JSX.Element => {
           </Checkbox>
         </FormItem>
         <FormItem label='Выберите вашу организацию'>
-          <Input />
+          <Select placeholder='Выберите вашу организацию'>
+            {organizations.map((item) => (
+              <Select.Option value={item.value}>{item.text}</Select.Option>
+            ))}
+          </Select>
         </FormItem>
         <Divider />
         <Title as='h4' margin='30px' bold>
           Ваши контакты
         </Title>
-        <FormItem label='Ваш email-адрес'>
+        <FormItem label='Ваш email-адрес' required>
           <Input />
         </FormItem>
-        <FormItem label='Номер мобильного телефона'>
+        <FormItem label='Номер мобильного телефона' required>
           <Input />
         </FormItem>
-        <FormItem label='Номер домашнего телефона'>
+        <FormItem label='Номер домашнего телефона' required>
           <Input />
         </FormItem>
         <div>
           <Title as='h5' margin='15px'>
             Моя история
           </Title>
-          <Paragraph color='textMuted'>
+          <Paragraph color='textMuted' margin='15px'>
             Напишите историю о том, как и почему вы решились стать донором (что для вас это значит).
             Это поможет многим людям, которые еще не определились, решиться на то, чтобы тоже стать
             донором. Если вы первый раз сдаете кровь напишите, почему вырешились сдать кровь, потом

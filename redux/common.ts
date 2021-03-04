@@ -27,6 +27,16 @@ const cities: IOptions[] = [
   { key: 7, value: 'Каменка', text: 'Каменка' },
 ];
 
+const organizations: IOptions[] = [
+  { key: 1, value: 'Тест', text: 'Тест' },
+  { key: 2, value: 'Тест', text: 'Тест' },
+  { key: 3, value: 'Тест', text: 'Тест' },
+  { key: 4, value: 'Тест', text: 'Тест' },
+  { key: 5, value: 'Тест', text: 'Тест' },
+  { key: 6, value: 'Тест', text: 'Тест' },
+  { key: 7, value: 'Тест', text: 'Тест' },
+];
+
 const bloodCenter: IOptions[] = [
   {
     key: 1,
@@ -45,7 +55,7 @@ const bloodCenter: IOptions[] = [
   },
 ];
 
-const initialState = { cities, bloodGroups, bloodCenter };
+const initialState = { cities, bloodGroups, bloodCenter, organizations };
 
 const common = createSlice({
   name: 'common',
