@@ -68,12 +68,12 @@ const Intro: React.FC = (): JSX.Element => (
       </ColumnParagraph>
       <ButtonGroup>
         <Link href='/become-donor'>
-          <Button variant='outline-danger' size='lg'>
+          <Button variant='outline-primary' size='lg'>
             Стать донором
           </Button>
         </Link>
         <Link href='/need-blood'>
-          <Button variant='outline-primary' size='lg'>
+          <Button variant='outline-danger' size='lg'>
             Нужна кровь
           </Button>
         </Link>

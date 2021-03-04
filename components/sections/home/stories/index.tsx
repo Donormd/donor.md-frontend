@@ -26,10 +26,10 @@ const Stories: React.FC = (): JSX.Element => {
         ))}
       </Carousel>
       <ButtonGroup>
-        <Button variant='outline-danger' size='lg' onClick={prev}>
+        <Button onClick={prev}>
           <PrevSVG />
         </Button>
-        <Button variant='outline-danger' size='lg' onClick={next}>
+        <Button onClick={next}>
           <NextSVG />
         </Button>
       </ButtonGroup>

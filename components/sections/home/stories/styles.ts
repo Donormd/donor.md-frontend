@@ -15,11 +15,14 @@ export const WrapperSection = styled(Section)`
 
 export const ButtonGroup = styled.div`
   position: absolute;
-  display: grid;
+  display: none;
   grid-template-columns: 1fr 1fr;
   grid-column-gap: 10px;
   top: 100px;
   right: 30px;
+  @media (min-width: ${({ theme }) => theme.media.sm}) {
+    display: grid;
+  } ;
 `;
 export const Button = styled(DefaultBtn)`
   display: inline-block;
@@ -51,7 +54,7 @@ export const Button = styled(DefaultBtn)`
     border-color: ${({ theme }) => theme.red};
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: ${({ theme }) => theme.media.md}) {
     border-color: ${({ theme }) => theme.textDark};
     background: transparent;
 

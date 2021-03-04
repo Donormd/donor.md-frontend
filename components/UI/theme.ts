@@ -17,12 +17,18 @@ export const theme = {
       },
       lg: {
         padding: '0.5rem 1.25rem',
-        fontSize: '1.25rem',
+        fontSize: '1.2rem',
       },
     },
   },
   button: {
     radius: '20px',
+  },
+  media: {
+    sm: '576px',
+    md: '768px',
+    lg: '992px',
+    xl: '1200px',
   },
   black: '#000000',
   red: '#ff4d4b',

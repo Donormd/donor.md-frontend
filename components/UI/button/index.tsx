@@ -8,7 +8,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   active?: boolean;
   className?: string;
   disabled?: boolean;
-  variant: ButtonVariant;
+  variant?: ButtonVariant;
   size?: 'sm' | 'md' | 'lg';
   type?: 'button' | 'submit' | 'reset';
   rest?: any;
@@ -61,7 +61,7 @@ const buttonThemes = {
   'outline-primary': {
     default: {
       color: theme.colors.danger,
-      background: theme.colors.primary,
+      background: theme.colors.white,
       borderColor: theme.colors.danger,
     },
     hover: {

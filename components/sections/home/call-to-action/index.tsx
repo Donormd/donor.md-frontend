@@ -8,7 +8,7 @@ import { SectionTitle, Underline, ImageWrapper, ArticleGrid, Article } from './s
 const CallToAction: React.FC = (): JSX.Element => (
   <Section id='call-to-action'>
     <SectionTitle as='h2' className='h1' bold>
-      С нами уже&nbsp;
+      С нами уже{' '}
       <Link href='/top-donors'>
         <Underline>105 доноров</Underline>
       </Link>
@@ -19,7 +19,7 @@ const CallToAction: React.FC = (): JSX.Element => (
     <ArticleGrid>
       <Article>
         <Link href='/dashboard'>
-          <Button variant='outline-danger' size='lg'>
+          <Button variant='outline-primary' size='lg'>
             Кабинет донора
           </Button>
         </Link>
@@ -29,7 +29,7 @@ const CallToAction: React.FC = (): JSX.Element => (
       </Article>
       <Article>
         <Link href='/donor-search'>
-          <Button variant='outline-danger' size='lg'>
+          <Button variant='outline-primary' size='lg'>
             Нужна помощь
           </Button>
         </Link>
