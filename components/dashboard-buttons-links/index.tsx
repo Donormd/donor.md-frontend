@@ -7,7 +7,7 @@ import { routs, IRoutsItem, RoutsKey } from './mock';
 
 const ButtonGroup = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, min-content);
+  grid-template-columns: repeat(3, max-content);
   grid-column-gap: 20px;
   margin: 50px 0;
 `;
@@ -22,7 +22,7 @@ const DashboardButtonsLinks: React.FC = (): JSX.Element => {
     <ButtonGroup>
       {routs[rout].map((item: IRoutsItem) => (
         <Link key={item.key} href={item.href} passHref>
-          <Button variant='outline-danger' onClick={() => handleOnClick(item.href)}>
+          <Button variant='outline-primary' onClick={() => handleOnClick(item.href)}>
             {item.text}
           </Button>
         </Link>
