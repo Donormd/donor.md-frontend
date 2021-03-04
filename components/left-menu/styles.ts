@@ -40,7 +40,8 @@ export const LinkButton = styled(Button)<{ active: boolean }>`
   }
   background: ${({ theme, active }) => (active ? theme.red : 'white')};
 
-  &:hover svg path {
+  &:hover svg path,
+  &:focus svg path {
     fill: ${({ theme }) => theme.colors.danger};
   }
 `;
