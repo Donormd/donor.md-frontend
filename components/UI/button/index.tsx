@@ -5,7 +5,6 @@ import { theme } from '../theme';
 type ButtonVariant = 'primary' | 'danger' | 'outline-primary' | 'outline-danger';
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  active?: boolean;
   className?: string;
   disabled?: boolean;
   variant?: ButtonVariant;
@@ -15,7 +14,6 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 export interface ButtonWrapperProps {
-  active: boolean;
   className?: string;
   disabled: boolean;
   variant: ButtonVariant;
@@ -123,7 +121,6 @@ export const StyledButton = styled.button<ButtonWrapperProps>`
 
 export const Button: React.FC<ButtonProps> = ({
   children,
-  active = false,
   className,
   disabled = false,
   variant = 'primary',
@@ -138,7 +135,6 @@ export const Button: React.FC<ButtonProps> = ({
       type={type}
       size={size}
       variant={variant}
-      active={active}
       disabled={disabled}
     >
       {children}

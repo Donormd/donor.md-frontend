@@ -7,6 +7,7 @@ const ButtonsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  max-height: 60px;
 
   @media (min-width: 576px) {
     flex-direction: row;
@@ -17,13 +18,11 @@ const ButtonsWrapper = styled.div`
   }
 `;
 
-/*
- * color: ${({ active, theme, color }) => (active ? 'white' : theme[color])};
- * background: ${({ active, theme, color }) => (active ? theme[color] : 'white')};
- */
-
 const StyledButton = styled(Button)<{ active: boolean }>`
-  @media (min-width: 576px) {
+  color: ${({ active }) => active && 'white'};
+  background: ${({ active, theme }) => active && theme.colors.danger};
+
+  @media (min-width: ${({ theme }) => theme.media.sm}) {
     &:first-child {
       border-top-right-radius: 0;
       border-bottom-right-radius: 0;
@@ -59,8 +58,8 @@ const ButtonGroup: React.FC<Props> = ({ buttons, handleClick }): JSX.Element => 
       {buttons.map(({ key, text }: ButtonsProps) => (
         <StyledButton
           key={key}
-          size='md'
-          variant='outline-danger'
+          size='lg'
+          variant='outline-primary'
           active={buttonId === key}
           onClick={() => onClick(key)}
         >
