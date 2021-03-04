@@ -12,7 +12,7 @@ const HalfWidth = styled.div`
 
 const Feedback: React.FC = (): JSX.Element => {
   return (
-    <Section id='feedback'>
+    <Section id='feedback' marginBottom='40px'>
       <Grid>
         <div>
           <Title as='h2' className='h1' bold>
