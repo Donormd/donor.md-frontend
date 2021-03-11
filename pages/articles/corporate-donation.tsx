@@ -1,7 +1,7 @@
 import React from 'react';
-import { Title, Divider, Form, FormItem, Input, InputNumber, Button } from '../components/UI';
-import HeaderContentFooter from '../layouts/header-content-footer';
-import { Container } from '../layouts/container';
+import { Title, Divider, Form, FormItem, Input, InputNumber, Button } from '../../components/UI';
+import HeaderContentFooter from '../../layouts/header-content-footer';
+import { Container } from '../../layouts/container';
 
 const CorporateDonationPage: React.FC = (): JSX.Element => {
   return (
