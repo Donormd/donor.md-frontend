@@ -4,7 +4,7 @@ import { Title, StyledLink } from '../../components/UI';
 import HeaderContentFooter from '../../layouts/header-content-footer';
 
 const SupportProject: React.FC = (): JSX.Element => (
-  <HeaderContentFooter background='/images/pages/love-pic.png'>
+  <HeaderContentFooter background='/articles/images/pages/love-pic.png'>
     <Container>
       <Title margin='15px' bold>
         Поддержать проект donor.md
@@ -22,7 +22,7 @@ const SupportProject: React.FC = (): JSX.Element => (
       <p>
         Мы приглашаем Pro bono волонтеров и специалистов сделать вклад в развитие сервиса.
         Волонтерство ваших сотрудников или услуги вашей компании могут&nbsp;
-        <Link href='/become-volunteer'>
+        <Link href='/articles/become-volunteer' passHref>
           <StyledLink color='black' underline bold>
             помочь усилить возможности
           </StyledLink>
@@ -30,7 +30,7 @@ const SupportProject: React.FC = (): JSX.Element => (
       </p>
       <p>
         Мы приглашаем коммерческих агентов, начинающих и крупных, стать участниками нашей&nbsp;
-        <Link href='/bonus-program'>
+        <Link href='/articles/bonus-program' passHref>
           <StyledLink color='black' underline bold>
             бонусной программы для доноров
           </StyledLink>
@@ -38,7 +38,7 @@ const SupportProject: React.FC = (): JSX.Element => (
       </p>
       <p>
         Мы приглашаем организации любых форм собственности стать участниками нашей программы&nbsp;
-        <Link href='/corporate-donation'>
+        <Link href='/articles/corporate-donation' passHref>
           <StyledLink color='black' underline bold>
             “Корпоративной донорство”
           </StyledLink>
