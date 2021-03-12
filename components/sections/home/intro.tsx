@@ -45,7 +45,7 @@ const ButtonGroup = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   gap: 15px;
-  @media (min-width: 360px) {
+  @media (min-width: 410px) {
     grid-template-columns: 1fr 1fr;
   }
 
