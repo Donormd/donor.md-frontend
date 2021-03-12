@@ -6,22 +6,22 @@ export declare type MockType = Array<{
 export const column1: MockType = [
   {
     id: 1,
-    href: '/#about-donation',
+    href: '/articles/#about-donation',
     text: 'Как готовиться',
   },
   {
     id: 2,
-    href: '/#places',
+    href: '/articles/#places',
     text: 'Где сдать ?',
   },
   {
     id: 3,
-    href: '/#monitoring',
+    href: '/articles/#monitoring',
     text: 'Мониторинг',
   },
   {
     id: 4,
-    href: '/',
+    href: '/articles/useful',
     text: 'Полезное',
   },
 ];
@@ -29,35 +29,12 @@ export const column1: MockType = [
 export const column2: MockType = [
   {
     id: 1,
-    href: '/corporate-donation',
-    text: 'Корпоративное донорство',
-  },
-  {
-    id: 2,
-    href: '/bonus-program',
-    text: 'Бонусная программа',
-  },
-  {
-    id: 3,
-    href: '/become-volunteer',
-    text: 'Волонтерам',
-  },
-  {
-    id: 4,
-    href: '/support-project',
-    text: 'Поддержать',
-  },
-];
-
-export const column3: MockType = [
-  {
-    id: 1,
-    href: '/about',
+    href: '/articles/about',
     text: 'О нас',
   },
   {
     id: 2,
-    href: '/top-donors',
+    href: '/articles/top-donors',
     text: 'Топ-доноров сервиса',
   },
   {
@@ -67,7 +44,30 @@ export const column3: MockType = [
   },
   {
     id: 4,
-    href: '/privacy-policy',
+    href: '/articles/privacy-policy',
     text: 'Политика конфиденциальности',
+  },
+];
+
+export const column3: MockType = [
+  {
+    id: 1,
+    href: '/articles/corporate-donation',
+    text: 'Корпоративное донорство',
+  },
+  {
+    id: 2,
+    href: '/articles/bonus-program',
+    text: 'Бонусная программа',
+  },
+  {
+    id: 3,
+    href: '/articles/become-volunteer',
+    text: 'Волонтерам',
+  },
+  {
+    id: 4,
+    href: '/articles/support-project',
+    text: 'Поддержать',
   },
 ];
