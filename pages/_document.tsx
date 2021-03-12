@@ -30,15 +30,16 @@ class MyDocument extends Document {
       <Html>
         <Head>
           <link rel='icon' href='/favicon.ico' />
-          <meta name='theme-color' content='#ffffff' />
+          <meta name='theme-color' content='#ff4d4b' />
           <meta property='og:title' content='' />
           <meta property='og:description' content='' />
           <meta property='og:url' content='' />
           <meta property='og:image' content='' />
           <meta name='description' content='' />
-          <link rel='canonical' href='' />
+          <link rel='canonical' href='https://donor.md' />
           <meta name='keywords' content='' />
           <meta name='description' content='' />
+          <title>DONOR.MD - место, где люди помогают людям</title>
         </Head>
         <body>
           <Main />
