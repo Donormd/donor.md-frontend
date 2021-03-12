@@ -12,6 +12,7 @@ const List = styled.div`
     padding-left: 0;
   }
   li:before {
+    font-weight: bold;
     counter-increment: li;
     content: counters(li, '.') '. ';
   }
