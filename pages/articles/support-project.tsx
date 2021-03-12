@@ -1,12 +1,14 @@
 import Link from 'next/link';
-import { Container } from '../layouts/container';
-import { Title, StyledLink } from '../components/UI';
-import HeaderContentFooter from '../layouts/header-content-footer';
+import { Container } from '../../layouts/container';
+import { Title, StyledLink } from '../../components/UI';
+import HeaderContentFooter from '../../layouts/header-content-footer';
 
 const SupportProject: React.FC = (): JSX.Element => (
   <HeaderContentFooter background='/images/pages/love-pic.png'>
     <Container>
-      <Title margin='15px' bold>Поддержать проект donor.md</Title>
+      <Title margin='15px' bold>
+        Поддержать проект donor.md
+      </Title>
       <p>
         Web-сервис donor.md создан как социальная инициатива по решению вопроса обеспечения
         Приднестровья донорской крови и развития донорского сообщества. Мы применяем самые последние

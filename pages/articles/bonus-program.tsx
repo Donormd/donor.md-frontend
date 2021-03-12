@@ -2,10 +2,10 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import styled from 'styled-components';
-import { Title, Divider, StyledLink } from '../components/UI';
-import HeaderContentFooter from '../layouts/header-content-footer';
-import Alert from '../components/alert';
-import { Container } from '../layouts/container';
+import { Title, Divider, StyledLink } from '../../components/UI';
+import HeaderContentFooter from '../../layouts/header-content-footer';
+import Alert from '../../components/alert';
+import { Container } from '../../layouts/container';
 
 const BonusesList = styled.ul`
   list-style-type: none;

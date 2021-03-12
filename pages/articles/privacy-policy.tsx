@@ -1,9 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
-import HeaderContentFooter from '../layouts/header-content-footer';
-import { Container } from '../layouts/container';
-import { Title, Paragraph, StyledLink } from '../components/UI';
+import HeaderContentFooter from '../../layouts/header-content-footer';
+import { Container } from '../../layouts/container';
+import { Title, Paragraph, StyledLink } from '../../components/UI';
 
 const List = styled.div`
   ol {
@@ -12,6 +12,7 @@ const List = styled.div`
     padding-left: 0;
   }
   li:before {
+    font-weight: bold;
     counter-increment: li;
     content: counters(li, '.') '. ';
   }
@@ -23,7 +24,7 @@ const ListItem = styled.li`
 
 const PrivacyPolicy: React.FC = (): JSX.Element => {
   return (
-    <HeaderContentFooter>
+    <HeaderContentFooter background='/images/pages/welcome.png'>
       <Container>
         <Title margin='30px' bold>
           Политика конфиденциальности DONOR.MD

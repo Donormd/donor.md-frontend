@@ -4,7 +4,7 @@ import Image from 'next/image';
 import styled from 'styled-components';
 import { Section } from '../utils';
 import { Title, Paragraph } from '../../../UI';
-import mock from './mock';
+import { IMockItem } from '../../../../redux/redusers/about-donations';
 
 const ArticleList = styled.div`
   padding-top: 30px;
@@ -32,7 +32,7 @@ const ArticleBody = styled.div`
   &:hover {
     cursor: pointer;
     width: 100%;
-    height: 100%;
+    height: auto;
     background: url('/images/pages/home/about-donations/hover-md.svg');
     background-size: 100% 100%;
     background-repeat: no-repeat;
@@ -54,14 +54,19 @@ const ArticleBody = styled.div`
   }
 `;
 
-const AboutDonation: React.FC = (): JSX.Element => {
+export interface IProps {
+  title: string;
+  data: IMockItem[];
+}
+
+const AboutDonation: React.FC<IProps> = ({ title, data }): JSX.Element => {
   return (
     <Section id='about-donation'>
       <Title as='h2' className='h1' bold>
-        Подготовка к первой сдачи крови
+        {title}
       </Title>
       <ArticleList>
-        {mock.map(({ image, text }) => (
+        {data.map(({ image, text, link }) => (
           <article>
             <ImageWrapper>
               <Image
@@ -71,7 +76,7 @@ const AboutDonation: React.FC = (): JSX.Element => {
                 layout='responsive'
               />
             </ImageWrapper>
-            <Link href='/'>
+            <Link href={link}>
               <ArticleBody>
                 <Title as='h3' margin='15px' color='red' bold>
                   {text.head}

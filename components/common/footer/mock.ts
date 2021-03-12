@@ -30,7 +30,7 @@ export const column2: MockType = [
   {
     id: 1,
     href: '/corporate-donation',
-    text: 'Копаративное донорство',
+    text: 'Корпоративное донорство',
   },
   {
     id: 2,

@@ -12,10 +12,10 @@ import {
   Checkbox,
   StyledLink,
   Button,
-} from '../components/UI';
-import HeaderContentFooter from '../layouts/header-content-footer';
-import { Container } from '../layouts/container';
-import { useAppSelector } from '../redux/store';
+} from '../../components/UI';
+import HeaderContentFooter from '../../layouts/header-content-footer';
+import { Container } from '../../layouts/container';
+import { useAppSelector } from '../../redux/store';
 
 type typeData = {
   key: string | number;

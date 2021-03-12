@@ -1,8 +1,10 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
+import styled from 'styled-components';
 import { column1, column2, column3 } from './mock';
 import { Container } from '../../../layouts/container';
-import { StyledLink, Title } from '../../UI';
+import { StyledLink, Title, Paragraph } from '../../UI';
 import {
   StyledFooter,
   Grid,
@@ -11,6 +13,13 @@ import {
   ColumnList,
   ColumnListItem,
 } from './styles';
+
+const Thanks = styled.div`
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  column-gap: 15px;
+  align-items: center;
+`;
 
 const Footer: React.FC = (): JSX.Element => (
   <StyledFooter>
@@ -21,8 +30,8 @@ const Footer: React.FC = (): JSX.Element => (
             donor.md
           </TitleBrand>
           <ParagraphSlogan size='.9rem' margin='15px'>
-            Проект созданный с концепцией «Люди помогают людям» для формирования стабильной базы
-            крови восполняемой регулярными донорами.
+            Проект, созданный с концепцией «Люди помогают людям» для формирования стабильной базы
+            крови, восполняемой регулярными донорами.
           </ParagraphSlogan>
         </div>
         <div>
@@ -68,6 +77,14 @@ const Footer: React.FC = (): JSX.Element => (
           </ColumnList>
         </div>
       </Grid>
+      <Thanks>
+        <Image src='/images/eu-flag.png' width={47} height={38} layout='fixed' />
+        <Paragraph color='textMuted'>
+          Данный web-сервис запущен при финансовой поддержке Европейского Союза. Содержание сервиса
+          является предметом ответственности команды donor.md и не отражает точку зрения
+          Европейского Союза.
+        </Paragraph>
+      </Thanks>
     </Container>
   </StyledFooter>
 );
