@@ -103,7 +103,7 @@ const BecomeVolunteerPage: React.FC = (): JSX.Element => {
           <FormItem columns={1}>
             <TextArea placeholder='Ваш комментарий' rows={5} />
           </FormItem>
-          <FormItem>
+          <FormItem columns={1}>
             <FormItemCheckbox>
               <Checkbox checked />
               <p>
@@ -117,7 +117,7 @@ const BecomeVolunteerPage: React.FC = (): JSX.Element => {
               </p>
             </FormItemCheckbox>
           </FormItem>
-          <FormItem>
+          <FormItem columns={1}>
             <Button variant='outline-danger' size='lg'>
               Отправить
             </Button>
