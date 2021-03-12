@@ -29,7 +29,6 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <link rel='icon' href='/favicon.ico' />
           <meta name='theme-color' content='#ff4d4b' />
           <meta property='og:title' content='' />
           <meta property='og:description' content='' />
@@ -39,6 +38,10 @@ class MyDocument extends Document {
           <link rel='canonical' href='https://donor.md' />
           <meta name='keywords' content='' />
           <meta name='description' content='' />
+          <link rel='icon' href='/app-icon/icon.ico' />
+          <link rel='icon' href='/app-icon/icon.svg' type='image/svg+xml' />
+          <link rel='apple-touch-icon' href='/app-icon/apple-touch-icon.png' />
+          <link rel='manifest' href='../manifest.webmanifest' />
           <title>DONOR.MD - место, где люди помогают людям</title>
         </Head>
         <body>
