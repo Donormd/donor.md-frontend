@@ -1,58 +1,59 @@
+import React, { InputHTMLAttributes } from 'react';
 import styled from 'styled-components';
-import { Input as AntInput, InputNumber as AntInputNumber } from 'antd';
 
-export const Input = styled(AntInput)`
-  border-color: ${(props) => props.theme.redDiluted};
-  border-radius: ${(props) => props.theme.radius};
+export interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
+  className?: string;
+  disabled?: boolean;
+  scale: 'sm' | 'md' | 'lg';
+  inputRef?: any;
+}
+
+export interface IInputWrapperProps {
+  className?: string;
+  scale: 'sm' | 'md' | 'lg';
+  ref?: any;
+}
+
+export const StyledInput = styled.input<IInputWrapperProps>`
+  appearance: none;
+  display: block;
+  width: 100%;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid ${({ theme }) => `${theme.colors.danger}50`};
+  padding: ${({ scale, theme }) => theme.sizes.controls[scale].padding};
+  font-size: ${({ scale, theme }) => theme.sizes.controls[scale].fontSize};
+  border-radius: ${({ scale, theme }) => theme.sizes.controls[scale].radius};
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+  &:disabled {
+    cursor: not-allowed;
+    background: ${({ theme }) => `${theme.primary}30`};
+  }
+
+  &::placeholder {
+    color: ${({ theme }) => theme.textMuted};
+  }
 
   &:hover {
-    border-color: ${(props) => props.theme.red};
+    border-color: ${({ theme }) => theme.colors.danger};
   }
 
   &:focus {
-    border-color: ${(props) => props.theme.red};
+    outline: 0;
+    border-color: ${({ theme }) => theme.colors.danger};
     box-shadow: 0 0 10px 5px rgb(248 186 180 / 20%);
   }
 `;
 
-export const InputPassword = styled(AntInput.Password)`
-  border-color: ${(props) => props.theme.redDiluted};
-  border-radius: ${(props) => props.theme.radius};
-
-  &:hover {
-    border-color: ${(props) => props.theme.red};
-  }
-
-  &:focus,
-  &.ant-input-affix-wrapper:focus,
-  &.ant-input-affix-wrapper-focused {
-    border-color: ${(props) => props.theme.red};
-    box-shadow: 0 0 10px 5px rgb(248 186 180 / 20%) !important;
-  }
-`;
-
-export const InputNumber = styled(AntInputNumber)`
-  width: 100%;
-  border-color: ${(props) => props.theme.redDiluted};
-  border-radius: ${(props) => props.theme.radius};
-
-  .ant-input-number-handler-wrap {
-    border-radius: ${(props) => `0 ${props.theme.radius} ${props.theme.radius} 0`};
-  }
-
-  &:hover {
-    border-color: ${(props) => props.theme.red};
-  }
-
-  &:focus,
-  &.ant-input-number:focus,
-  &.ant-input-number-focused {
-    border-color: ${(props) => props.theme.red};
-    box-shadow: 0 0 10px 5px rgb(248 186 180 / 20%) !important;
-  }
-
-  .ant-input-number-handler:hover,
-  .ant-input-number-handler-down-inner {
-    color: ${(props) => props.theme.red};
-  }
-`;
+export const Input: React.FC<IInputProps> = ({
+  inputRef,
+  scale = 'md',
+  type = 'text',
+  ...rest
+}) => {
+  return <StyledInput {...rest} ref={inputRef} type={type} scale={scale} />;
+};
