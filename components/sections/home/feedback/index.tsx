@@ -1,16 +1,31 @@
 import React from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
-import { Button, Form, FormItem, Input, TextArea, Title } from '../../../UI';
+import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { Button, FormItem, Input, TextArea, Title } from '../../../UI';
 import { Section } from '../utils';
 import { Grid, SectionParagraph, ImageWrapper, Social } from './styles';
 import SocialMediaLinks from '../../../social-media-links';
+import Alert from '../../../alert';
+import { useAppSelector } from '../../../../redux/store';
+import { sendFeedback, IFeedback } from '../../../../redux/redusers/feedback';
 
 const HalfWidth = styled.div`
   width: 50%;
 `;
 
 const Feedback: React.FC = (): JSX.Element => {
+  const { handleSubmit, register, reset } = useForm();
+
+  const { status, error } = useAppSelector((state) => state.feedback);
+  const dispatch = useDispatch();
+
+  const onSubmit = (data: IFeedback) => {
+    dispatch(sendFeedback(data));
+    reset();
+  };
+
   return (
     <Section id='feedback' marginBottom='40px'>
       <Grid>
@@ -19,22 +34,29 @@ const Feedback: React.FC = (): JSX.Element => {
             Напишите нам
           </Title>
           <SectionParagraph>
-            Если у вас есть вопросы по работе сервиса и предложения по его улучшению и/или видение
+            Если у Вас есть вопросы по работе сервиса и предложения по его улучшению и/или видение
             нашего общего сотрудничества
           </SectionParagraph>
-          <Form>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            {status === 'success' && <Alert dismissible message='Спасибо что написали нам' />}
+            {status === 'error' && <Alert dismissible message={error} />}
             <FormItem columns={1}>
               <HalfWidth>
-                <Input size='large' placeholder='Ваш email или номер телефона' />
+                <Input
+                  name='contact'
+                  inputRef={register}
+                  scale='lg'
+                  placeholder='Ваш email или номер телефона'
+                />
               </HalfWidth>
             </FormItem>
             <FormItem columns={1}>
-              <TextArea placeholder='Текст сообщения' rows={7} />
+              <TextArea name='message' ref={register} placeholder='Текст сообщения' rows={7} />
             </FormItem>
-            <Button variant='outline-danger' size='lg'>
+            <Button type='submit' variant='outline-danger' size='lg'>
               Отправить
             </Button>
-          </Form>
+          </form>
           <Social>
             <Image
               src='/images/pages/home/we-are-in-social.png'
