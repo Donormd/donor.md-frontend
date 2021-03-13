@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { Input as AntInput } from 'antd';
 
-export const TextArea = styled(AntInput.TextArea)`
+export const TextArea = styled.textarea`
+  width: 100%;
   padding: 10px;
   border-color: ${(props) => props.theme.redDiluted};
   border-radius: ${(props) => props.theme.radius};
@@ -11,6 +11,7 @@ export const TextArea = styled(AntInput.TextArea)`
   }
 
   &:focus {
+    outline: 0;
     border-color: ${(props) => props.theme.red};
     box-shadow: 0 0 10px 5px rgb(248 186 180 / 20%);
   }
