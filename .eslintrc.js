@@ -24,7 +24,6 @@ module.exports = {
   },
   plugins: ['react', '@typescript-eslint', 'import', 'prettier', 'react-hooks', 'jsx-a11y'],
   rules: {
-    'function-paren-newline': ['error', 'never'],
     'arrow-parens': ['error', 'always'],
     'arrow-spacing': [
       'error',
@@ -61,14 +60,6 @@ module.exports = {
         ignoreDestructuring: false,
         ignoreImport: false,
         ignoreExport: false,
-      },
-    ],
-    'object-shorthand': [
-      'error',
-      'always',
-      {
-        avoidQuotes: true,
-        avoidExplicitReturnArrows: true,
       },
     ],
     'multiline-comment-style': ['error', 'starred-block'], // Мультистрочный коментарий в /*  */
