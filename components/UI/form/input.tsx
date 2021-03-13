@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
   className?: string;
   disabled?: boolean;
-  scale: 'sm' | 'md' | 'lg';
+  scale?: 'sm' | 'md' | 'lg';
   inputRef?: any;
 }
 
