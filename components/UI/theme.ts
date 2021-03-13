@@ -6,7 +6,7 @@ export const theme = {
     danger: '#ff4d4b',
   },
   sizes: {
-    button: {
+    controls: {
       sm: {
         padding: '0.25rem 0.5rem',
         fontSize: '0.875rem',
