@@ -7,6 +7,7 @@ import { reducer as monitoringReducer } from './redusers/monitoring';
 import { reducer as leftMenuReducer } from './redusers/left-menu';
 import { reducer as aboutDonationsReducer } from './redusers/about-donations';
 import { reducer as feedbackReducer } from './redusers/feedback';
+import { reducer as corporateDonationReducer } from './redusers/corporate-donation';
 
 export const store = configureStore({
   reducer: {
@@ -17,6 +18,7 @@ export const store = configureStore({
     monitoring: monitoringReducer,
     aboutDonations: aboutDonationsReducer,
     feedback: feedbackReducer,
+    corporateDonation: corporateDonationReducer,
   },
 });
 
