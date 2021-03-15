@@ -8,7 +8,7 @@ export interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
   disabled?: boolean;
   variant?: ButtonVariant;
-  size: 'sm' | 'md' | 'lg';
+  size?: 'sm' | 'md' | 'lg';
   type?: 'button' | 'submit' | 'reset';
 }
 
