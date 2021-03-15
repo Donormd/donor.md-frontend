@@ -1,18 +1,17 @@
 /* eslint-disable no-console */
 import React from 'react';
 import Link from 'next/link';
+import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 import HeaderContentFooter from '../layouts/header-content-footer';
 // import Uploader from '../components/uploader';
 import Alert from '../components/alert';
 import { Container } from '../layouts/container';
 import {
-  Form,
   FormItem,
   Input,
   TextArea,
-  DatePicker,
   Select,
-  InputNumber,
   Checkbox,
   Divider,
   Title,
@@ -21,9 +20,22 @@ import {
   Paragraph,
 } from '../components/UI';
 import { useAppSelector } from '../redux/store';
+import { sendData, IRecipient } from '../redux/redusers/recipients';
 
 const DonorSearchPage: React.FC = (): JSX.Element => {
   const { bloodGroups } = useAppSelector((state) => state.common);
+  const dispatch = useDispatch();
+  const { register, reset, handleSubmit, getValues } = useForm();
+
+  const onSubmit = () => {
+    console.log('-->');
+    /*
+     * const data = getValues();
+     * const recipientObj = {};
+     * dispatch(sendData(recipientObj));
+     * reset();
+     */
+  };
 
   return (
     <HeaderContentFooter background='/images/pages/welcome.png'>
@@ -40,15 +52,15 @@ const DonorSearchPage: React.FC = (): JSX.Element => {
           </Paragraph>
         </article>
         <Divider />
-        <Form>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <FormItem label='ФИО реципиента' required>
-            <Input />
+            <Input name='fullname' inputRef={register} />
           </FormItem>
           <FormItem label='Дата рождения' required>
-            <DatePicker onChange={(...args: any) => console.log({ args })} />
+            <Input type='date' name='dateBirth' inputRef={register} />
           </FormItem>
           <FormItem label='Выберите необходимую группу крови' required>
-            <Select>
+            <Select size='large'>
               {bloodGroups.map(({ key, value, text }) => (
                 <Select.Option key={key} value={value}>
                   {text}
@@ -57,7 +69,7 @@ const DonorSearchPage: React.FC = (): JSX.Element => {
             </Select>
           </FormItem>
           <FormItem label='Медицинское учреждение' help='В котором находится реципиент' required>
-            <Select>
+            <Select size='large'>
               {bloodGroups.map(({ key, value, text }) => (
                 <Select.Option key={key} value={value}>
                   {text}
@@ -66,10 +78,10 @@ const DonorSearchPage: React.FC = (): JSX.Element => {
             </Select>
           </FormItem>
           <FormItem label='Заболевание кого?' required>
-            <Input />
+            <Input name='' inputRef={register} />
           </FormItem>
           <FormItem label='Укажите центр переливания крови' required>
-            <Select>
+            <Select size='large'>
               {bloodGroups.map(({ key, value, text }) => (
                 <Select.Option key={key} value={value}>
                   {text}
@@ -78,10 +90,10 @@ const DonorSearchPage: React.FC = (): JSX.Element => {
             </Select>
           </FormItem>
           <FormItem label='Необходимое количество доноров' required>
-            <InputNumber min={1} max={20} />
+            <Input name='' inputRef={register} type='number' min={1} max={20} />
           </FormItem>
           <FormItem label='Срок сдачи до' required>
-            <DatePicker onChange={(...args: any) => console.log({ args })} />
+            <Input type='date' name='dateBirth' inputRef={register} />
           </FormItem>
           <FormItem label='Дополнительная информация' required>
             <TextArea rows={4} />
@@ -101,16 +113,16 @@ const DonorSearchPage: React.FC = (): JSX.Element => {
             Контактное лицо
           </Title>
           <FormItem label='ФИО' required>
-            <Input />
+            <Input name='' inputRef={register} />
           </FormItem>
           <FormItem label='Ваш email-адрес' required>
-            <Input />
+            <Input name='' inputRef={register} />
           </FormItem>
           <FormItem label='Номер мобильного телефона' required>
-            <Input />
+            <Input name='' inputRef={register} />
           </FormItem>
           <FormItem label='Кто вы для реципиента' required>
-            <Input />
+            <Input name='' inputRef={register} />
           </FormItem>
           <FormItem columns={1}>
             <Checkbox>
@@ -123,10 +135,10 @@ const DonorSearchPage: React.FC = (): JSX.Element => {
               {` `}обработки персональных данных
             </Checkbox>
           </FormItem>
-          <Button variant='outline-danger' size='lg'>
+          <Button type='submit' variant='outline-danger' size='lg'>
             Отправить
           </Button>
-        </Form>
+        </form>
         <Alert
           dismissible
           message={`
