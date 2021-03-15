@@ -3,7 +3,7 @@ import React from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
 import { Button } from 'antd';
-import { Divider, Form, FormItem, Input, InputPassword, Title, Paragraph } from '../../UI';
+import { Divider, Form, FormItem, Input, Title, Paragraph } from '../../UI';
 import { onChangeState } from './types';
 import { ActionLayout, WrappedLink } from './utils';
 
@@ -41,7 +41,7 @@ const SignInForm: React.FC<Props> = ({ onChangeState }): JSX.Element => (
       <Input placeholder='Введите email' />
     </FormItem>
     <FormItem columns={1}>
-      <InputPassword placeholder='Введите пароль' />
+      <Input type='password' placeholder='Введите пароль' />
     </FormItem>
     <div>
       <ActionLayout

@@ -1,16 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
-import {
-  Form,
-  FormItem,
-  Input,
-  InputPassword,
-  Title,
-  Checkbox,
-  StyledLink,
-  Select,
-} from '../../UI';
+import { Form, FormItem, Input, Title, Checkbox, StyledLink, Select } from '../../UI';
 import { onChangeState } from './types';
 import { ActionLayout } from './utils';
 
@@ -66,7 +57,7 @@ const optionsBlood: Array<optionsBloodType> = [
 
 const SignUpForm: React.FC<Props> = ({ onChangeState }): JSX.Element => (
   <Form>
-    <Title as='h2' margin='15px' >
+    <Title as='h2' margin='15px'>
       Регистрация
     </Title>
     <FormItem columns={1}>
@@ -98,7 +89,7 @@ const SignUpForm: React.FC<Props> = ({ onChangeState }): JSX.Element => (
       <Input placeholder='Укажите email' />
     </FormItem>
     <FormItem columns={1}>
-      <InputPassword placeholder='Укажите пароль' />
+      <Input type='password' placeholder='Укажите пароль' />
     </FormItem>
     <FormItem columns={1}>
       <FormItemCheckbox>

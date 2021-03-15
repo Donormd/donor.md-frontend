@@ -4,8 +4,10 @@ import { DatePicker as AntDatePicker } from 'antd';
 export const DatePicker = styled(AntDatePicker)`
   width: 100%;
   border-color: ${(props) => props.theme.redDiluted};
-  border-radius: ${(props) => props.theme.radius};
   display: block;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 16px;
 
   &:hover {
     border-color: ${(props) => props.theme.red};
