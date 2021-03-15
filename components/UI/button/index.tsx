@@ -4,16 +4,15 @@ import { theme } from '../theme';
 
 type ButtonVariant = 'primary' | 'danger' | 'outline-primary' | 'outline-danger';
 
-export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
   disabled?: boolean;
   variant?: ButtonVariant;
-  size?: 'sm' | 'md' | 'lg';
+  size: 'sm' | 'md' | 'lg';
   type?: 'button' | 'submit' | 'reset';
-  rest?: any;
 }
 
-export interface ButtonWrapperProps {
+export interface IButtonWrapperProps {
   className?: string;
   disabled: boolean;
   variant: ButtonVariant;
@@ -92,7 +91,7 @@ const buttonThemes = {
   },
 };
 
-export const StyledButton = styled.button<ButtonWrapperProps>`
+export const StyledButton = styled.button<IButtonWrapperProps>`
   cursor: pointer;
   line-height: 1.5;
   text-align: center;
@@ -100,9 +99,9 @@ export const StyledButton = styled.button<ButtonWrapperProps>`
   color: ${({ variant }) => buttonThemes[variant].default.color};
   background: ${({ variant }) => buttonThemes[variant].default.background};
   border: 1px solid ${({ variant }) => buttonThemes[variant].default.borderColor};
-  padding: ${({ size, theme }) => theme.sizes.button[size].padding};
-  font-size: ${({ size, theme }) => theme.sizes.button[size].fontSize};
-  border-radius: ${({ theme, size }) => theme.sizes.button[size].radius};
+  padding: ${({ size, theme }) => theme.sizes.controls[size].padding};
+  font-size: ${({ size, theme }) => theme.sizes.controls[size].fontSize};
+  border-radius: ${({ size, theme }) => theme.sizes.controls[size].radius};
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
     border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 
@@ -113,13 +112,15 @@ export const StyledButton = styled.button<ButtonWrapperProps>`
   }
 
   &:focus {
+    outline: 0;
     color: ${({ variant }) => buttonThemes[variant].focus.color};
     background: ${({ variant }) => buttonThemes[variant].focus.background};
     border: 1px solid ${({ variant }) => buttonThemes[variant].focus.borderColor};
+    box-shadow: 0 0 10px 5px rgb(248 186 180 / 20%);
   }
 `;
 
-export const Button: React.FC<ButtonProps> = ({
+export const Button: React.FC<IButtonProps> = ({
   children,
   className,
   disabled = false,

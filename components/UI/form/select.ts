@@ -5,7 +5,9 @@ export const Select = styled(AntSelect)`
   width: 100%;
   &.ant-select:not(.ant-select-customize-input) .ant-select-selector {
     border-color: ${(props) => props.theme.redDiluted};
-    border-radius: ${(props) => props.theme.radius};
+    padding: 1.2rem 1rem;
+    font-size: 1rem;
+    border-radius: 16px;
     display: block;
   }
 
