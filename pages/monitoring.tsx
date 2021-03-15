@@ -2,16 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import HeaderContentFooter from '../layouts/header-content-footer';
 import { Container } from '../layouts/container';
-import {
-  Form,
-  FormItem,
-  Input,
-  InputNumber,
-  Paragraph,
-  Title,
-  Divider,
-  Button,
-} from '../components/UI';
+import { Form, FormItem, Input, Paragraph, Title, Divider, Button } from '../components/UI';
 
 const InputsTable = styled.div`
   margin: 50px 0;
@@ -84,19 +75,19 @@ const Monitoring: React.FC = () => {
               <Paragraph bold align='left'>
                 Положительная (+)
               </Paragraph>
-              <InputNumber />
-              <InputNumber />
-              <InputNumber />
-              <InputNumber />
+              <Input type='number' />
+              <Input type='number' />
+              <Input type='number' />
+              <Input type='number' />
             </Row>
             <Row>
               <Paragraph bold align='left'>
                 Отрицательная (-)
               </Paragraph>
-              <InputNumber />
-              <InputNumber />
-              <InputNumber />
-              <InputNumber />
+              <Input type='number' />
+              <Input type='number' />
+              <Input type='number' />
+              <Input type='number' />
             </Row>
           </InputsTable>
           <Button variant='outline-danger' size='lg'>
