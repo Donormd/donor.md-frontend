@@ -19,6 +19,7 @@ const Thanks = styled.div`
   grid-template-columns: max-content 1fr;
   column-gap: 15px;
   align-items: center;
+  font-size: 0.7rem;
 `;
 
 const Footer: React.FC = (): JSX.Element => (
@@ -35,7 +36,7 @@ const Footer: React.FC = (): JSX.Element => (
           </ParagraphSlogan>
         </div>
         <div>
-          <Title as='h4' margin='15px'>
+          <Title as='h3' margin='15px'>
             О донорстве
           </Title>
           <ColumnList>
@@ -49,7 +50,7 @@ const Footer: React.FC = (): JSX.Element => (
           </ColumnList>
         </div>
         <div>
-          <Title as='h4' margin='15px'>
+          <Title as='h3' margin='15px'>
             О нас
           </Title>
           <ColumnList>
@@ -63,7 +64,7 @@ const Footer: React.FC = (): JSX.Element => (
           </ColumnList>
         </div>
         <div>
-          <Title as='h4' margin='15px'>
+          <Title as='h3' margin='15px'>
             Сотрудничество
           </Title>
           <ColumnList>
