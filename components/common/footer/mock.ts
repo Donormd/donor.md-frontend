@@ -6,17 +6,17 @@ export declare type MockType = Array<{
 export const column1: MockType = [
   {
     id: 1,
-    href: '/articles/#about-donation',
+    href: '/#about-donation',
     text: 'Как готовиться',
   },
   {
     id: 2,
-    href: '/articles/#places',
+    href: '/#places',
     text: 'Где сдать ?',
   },
   {
     id: 3,
-    href: '/articles/#monitoring',
+    href: '/#monitoring',
     text: 'Мониторинг',
   },
   {
