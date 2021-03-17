@@ -6,9 +6,10 @@ import { BloodList } from './styles';
 import BloodItem from './blood-item';
 import { useAppSelector } from '../../../../redux/store';
 import { IBlood, getData } from '../../../../redux/redusers/monitoring';
+import Alert from '../../../alert';
 
 const Monitoring: React.FC = (): JSX.Element => {
-  const { data, status } = useAppSelector((state) => state.monitoring);
+  const { data, status, error } = useAppSelector((state) => state.monitoring);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -22,6 +23,8 @@ const Monitoring: React.FC = (): JSX.Element => {
   };
 
   if (status === 'loading') return <h1>loading</h1>;
+
+  if (status === 'error') return <Alert dismissible>{error}</Alert>;
 
   const dateUpdate = new Date(data[0].dateUpdate).toLocaleString('ru', options);
 
