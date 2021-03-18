@@ -56,7 +56,7 @@ const Question: React.FC<IQuestion> = ({ title, paragraph, control }): JSX.Eleme
         {control.type === 'switch' && <StyledSwitch />}
         {control.type === 'input' && <Input placeholder={control.placeholder} />}
         {control.type === 'select' && (
-          <Select>
+          <Select size='large'>
             {control.options &&
               control.options.map((opt) => (
                 <Select.Option key={opt} value={opt}>

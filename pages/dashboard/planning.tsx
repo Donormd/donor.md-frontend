@@ -25,7 +25,7 @@ const DonationsPlanning: React.FC = (): JSX.Element => {
       <DashboardButtonsLinks />
       <Form>
         <FormItem label='Место сдачи'>
-          <Select placeholder='Выберите место сдачи'>
+          <Select size='large' placeholder='Выберите место сдачи'>
             {bloodCenter.map((item) => (
               <Select.Option value={item.value}>{item.text}</Select.Option>
             ))}
@@ -51,7 +51,7 @@ const DonationsPlanning: React.FC = (): JSX.Element => {
         прийти в выбранный день.
         `}
         >
-          <Select>
+          <Select size='large'>
             <Select.Option value='8:00'>8:00</Select.Option>
             <Select.Option value='8:30'>8:30</Select.Option>
             <Select.Option value='9:00'>9:00</Select.Option>

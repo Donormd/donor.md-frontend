@@ -40,7 +40,7 @@ const ReviewsAdd: React.FC = (): JSX.Element => {
       </Divider>
       <StyledForm>
         <FormItem label='Выбрать Центр крови'>
-          <Select placeholder='Выбор центра'>
+          <Select size='large' placeholder='Выбор центра'>
             {bloodCenter.map((item) => (
               <Select.Option value={item.value}>{item.text}</Select.Option>
             ))}

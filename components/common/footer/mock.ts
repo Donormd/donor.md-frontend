@@ -34,7 +34,7 @@ export const column2: MockType = [
   },
   {
     id: 2,
-    href: '/articles/top-donors',
+    href: '/top-donors',
     text: 'Топ-доноров сервиса',
   },
   {
