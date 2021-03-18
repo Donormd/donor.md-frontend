@@ -83,7 +83,7 @@ const BecomeVolunteerPage: React.FC = (): JSX.Element => {
             <Input />
           </FormItem>
           <FormItem label='Город проживания'>
-            <Select>
+            <Select size='large'>
               {cities.map(({ key, value }) => (
                 <Select.Option key={key} value={value}>
                   {value}
@@ -92,7 +92,7 @@ const BecomeVolunteerPage: React.FC = (): JSX.Element => {
             </Select>
           </FormItem>
           <FormItem label='Я могу помочь'>
-            <Select>
+            <Select size='large'>
               {typesAssistance.map(({ key, value }: typeData) => (
                 <Select.Option key={key} value={value}>
                   {value}

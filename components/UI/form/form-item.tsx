@@ -27,8 +27,7 @@ const Label = styled(Title)<{ required?: boolean }>`
     display: ${({ required }) => (required ? 'inline-block' : 'none')};
     margin-left: 4px;
     color: ${({ theme }) => theme.redDiluted};
-    font-size: 14px;
-    font-family: SimSun, sans-serif;
+    font-size: 0.875em;
     line-height: 1;
     content: '*';
     top: -7px;

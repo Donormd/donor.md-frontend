@@ -18,6 +18,7 @@ const ButtonsWrapper = styled.div`
 `;
 
 const StyledButton = styled(Button)<{ active: boolean }>`
+  width: 100%;
   color: ${({ active }) => active && 'white'};
   background: ${({ active, theme }) => active && theme.colors.danger};
 

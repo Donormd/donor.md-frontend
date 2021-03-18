@@ -64,7 +64,7 @@ const SignUpForm: React.FC<Props> = ({ onChangeState }): JSX.Element => (
       <Input placeholder='Укажите ФИО' />
     </FormItem>
     <FormItem columns={1}>
-      <Select placeholder='Укажите пол'>
+      <Select size='large' placeholder='Укажите пол'>
         <Select.Option key={1} value='man'>
           Мужской
         </Select.Option>
@@ -74,7 +74,7 @@ const SignUpForm: React.FC<Props> = ({ onChangeState }): JSX.Element => (
       </Select>
     </FormItem>
     <FormItem columns={1}>
-      <Select placeholder='Укажите группу крови'>
+      <Select size='large' placeholder='Укажите группу крови'>
         {optionsBlood.map(({ key, value }: optionsBloodType) => (
           <Select.Option key={key} value={key}>
             {value}

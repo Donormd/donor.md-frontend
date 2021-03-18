@@ -43,14 +43,14 @@ const Donations: React.FC = (): JSX.Element => {
           <DatePicker />
         </FormItem>
         <FormItem label='Место сдачи' required>
-          <Select placeholder='Выберите место сдачи'>
+          <Select size='large' placeholder='Выберите место сдачи'>
             {bloodCenter.map((item) => (
               <Select.Option value={item.value}>{item.text}</Select.Option>
             ))}
           </Select>
         </FormItem>
         <FormItem label='Ваш реципиент' required>
-          <Select placeholder='Выберите реципиента'>
+          <Select size='large' placeholder='Выберите реципиента'>
             {bloodCenter.map((item) => (
               <Select.Option value={item.value}>{item.text}</Select.Option>
             ))}

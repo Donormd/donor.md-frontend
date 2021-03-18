@@ -40,7 +40,7 @@ const MyDetails: React.FC = (): JSX.Element => {
           <DatePicker />
         </FormItem>
         <FormItem label='Группа крови' required>
-          <Select placeholder='Ваша группа крови'>
+          <Select size='large' placeholder='Ваша группа крови'>
             {bloodGroups.map((item) => (
               <Select.Option value={item.value}>{item.text}</Select.Option>
             ))}
@@ -54,7 +54,7 @@ const MyDetails: React.FC = (): JSX.Element => {
           </WrapperSwitch>
         </FormItem>
         <FormItem label='Город проживания' required>
-          <Select placeholder='Город проживания'>
+          <Select size='large' placeholder='Город проживания'>
             {cities.map((item) => (
               <Select.Option value={item.value}>{item.text}</Select.Option>
             ))}
