@@ -7,7 +7,6 @@ const ButtonsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  max-height: 60px;
 
   @media (min-width: 576px) {
     flex-direction: row;
