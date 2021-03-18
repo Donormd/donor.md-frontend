@@ -15,7 +15,12 @@ const MapWrapper = styled.div`
   overflow: hidden;
 `;
 
-const buttons = [
+export interface IButtons {
+  key: number | string;
+  text: string;
+}
+
+const buttons: IButtons[] = [
   {
     key: 0,
     text: 'Тирасполь',
@@ -30,7 +35,21 @@ const buttons = [
   },
 ];
 
-const places = [
+export interface IPlace {
+  id: number;
+  city: string;
+  location: string;
+  placeName: string;
+  numbers: string[];
+  timeWork: {
+    days: string;
+    time: string;
+    dinner: string;
+  };
+  geometry: number[];
+}
+
+const places: IPlace[] = [
   {
     id: 1,
     city: 'Тирасполь',
@@ -88,9 +107,9 @@ const SectionBody = styled.div`
 `;
 
 const Places: React.FC = (): JSX.Element => {
-  const [id, setId] = useState<any>(0);
+  const [id, setId] = useState<number | string>(0);
 
-  const { placeName, location, timeWork, numbers, geometry } = places[id];
+  const { placeName, location, timeWork, numbers, geometry } = places[+id];
 
   return (
     <Section id='places'>

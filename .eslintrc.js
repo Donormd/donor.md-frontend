@@ -78,6 +78,7 @@ module.exports = {
     'no-nested-ternary': 'error', // Откл вложенные тернарные операторы
     'newline-per-chained-call': ['error'],
     'wrap-regex': 'error',
+    'no-underscore-dangle': 0,
     // For React
     'react/state-in-constructor': ['error', 'never'],
     'react/require-default-props': 'off',

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Title } from '../../../UI';
 import { BloodTitle, Image } from './styles';
+import { IBlood } from '../../../../redux/redusers/monitoring';
 
 const quantityText = (quantity: number): string => {
   switch (quantity) {
@@ -24,7 +25,7 @@ const quantityImage = (quantity: number): string => {
   }
 };
 
-const BloodItem: React.FC = ({ group, quantity }: any) => {
+const BloodItem: React.FC<IBlood> = ({ group, quantity }) => {
   return (
     <div>
       <BloodTitle as='h6' align='center' bold>

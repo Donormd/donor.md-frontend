@@ -10,9 +10,13 @@ import SocialMediaLinks from '../../../social-media-links';
 import Alert from '../../../alert';
 import { useAppSelector } from '../../../../redux/store';
 import { sendFeedback, IFeedback } from '../../../../redux/redusers/feedback';
+import { Loading } from '../../../UI/loading';
 
 const HalfWidth = styled.div`
-  width: 50%;
+  width: 100%;
+  @media (min-width: ${({ theme }) => theme.media.md}) {
+    width: 50%;
+  }
 `;
 
 const Feedback: React.FC = (): JSX.Element => {
@@ -40,6 +44,7 @@ const Feedback: React.FC = (): JSX.Element => {
           <form onSubmit={handleSubmit(onSubmit)}>
             {status === 'success' && <Alert dismissible message='Спасибо что написали нам' />}
             {status === 'error' && <Alert dismissible message={error} />}
+            {status === 'loading' && <Loading />}
             <FormItem columns={1}>
               <HalfWidth>
                 <Input
