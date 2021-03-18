@@ -7,6 +7,7 @@ import BloodItem from './blood-item';
 import { useAppSelector } from '../../../../redux/store';
 import { IBlood, getData } from '../../../../redux/redusers/monitoring';
 import Alert from '../../../alert';
+import { Loading } from '../../../UI/loading';
 
 const Monitoring: React.FC = (): JSX.Element => {
   const { data, status, error } = useAppSelector((state) => state.monitoring);
@@ -22,7 +23,7 @@ const Monitoring: React.FC = (): JSX.Element => {
     day: 'numeric',
   };
 
-  if (status === 'loading') return <h1>loading</h1>;
+  if (status === 'loading') return <Loading />;
 
   if (status === 'error') return <Alert dismissible>{error}</Alert>;
 
