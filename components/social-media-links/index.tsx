@@ -1,29 +1,28 @@
 import React from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
 import { List, ListItem } from './styles';
 
 const SocialMediaLinks: React.FC<{ className?: string }> = ({ className }) => (
   <List className={className}>
     <ListItem>
-      <Link href='https://vk.com/'>
+      <a href='https://vk.com/yadonorpmr'>
         <Image src='/images/social-icons/vk.svg' width={30} height={30} layout='fixed' />
-      </Link>
+      </a>
     </ListItem>
     <ListItem>
-      <Link href='https://fb.com/'>
+      <a href='https://www.facebook.com/Donor.onlinepmr'>
         <Image src='/images/social-icons/fb.svg' width={30} height={30} layout='fixed' />
-      </Link>
+      </a>
     </ListItem>
     <ListItem>
-      <Link href='https://instagram.com/'>
+      <a href='https://www.instagram.com/donor.onlinepmr'>
         <Image src='/images/social-icons/instagram.svg' width={30} height={30} layout='fixed' />
-      </Link>
+      </a>
     </ListItem>
     <ListItem>
-      <Link href='https://ok.ru/'>
+      <a href='https://ok.ru/group/57784472371229'>
         <Image src='/images/social-icons/ok.svg' width={30} height={30} layout='fixed' />
-      </Link>
+      </a>
     </ListItem>
   </List>
 );

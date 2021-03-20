@@ -67,12 +67,12 @@ const Intro: React.FC = (): JSX.Element => (
         Web-сервис для тех, кто сдает и ищет донорскую кровь в Приднестровье
       </ColumnParagraph>
       <ButtonGroup>
-        <Link href='/become-donor'>
+        <Link href='/articles/minimum-requirements-for-donor'>
           <Button variant='outline-primary' size='lg'>
             Стать донором
           </Button>
         </Link>
-        <Link href='/need-blood'>
+        <Link href='/donor-search'>
           <Button variant='outline-danger' size='lg'>
             Нужна кровь
           </Button>

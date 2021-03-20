@@ -18,7 +18,7 @@ export interface ICorporateDonation {
   amountWorkers: number;
 }
 
-export const sendData = createAsyncThunk<string, ICorporateDonation>(
+export const sendData = createAsyncThunk<null, ICorporateDonation>(
   'corporate-donation/post',
   async (payload) => {
     const response = await axios.post(`${apiV1}/corporate-donation`, {
@@ -39,9 +39,9 @@ const corporateDonation = createSlice({
     builder.addCase(sendData.pending, (state) => {
       state.status = 'loading';
     });
-    builder.addCase(sendData.rejected, (state, payload) => {
+    builder.addCase(sendData.rejected, (state, action) => {
       state.status = 'error';
-      state.error = String(payload.error.message);
+      state.error = String(action.error.message);
     });
   },
 });
