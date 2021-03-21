@@ -44,7 +44,7 @@ const Message = styled.div<{ hide: boolean }>`
 `;
 
 const Alert: React.FC<Props> = ({ message, children, className, dismissible }): JSX.Element => {
-  const [hide, setHide] = useState<boolean>(!dismissible || false);
+  const [hide, setHide] = useState<boolean>(false);
 
   return (
     <Message hide={hide}>

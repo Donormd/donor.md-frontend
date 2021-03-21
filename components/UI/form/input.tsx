@@ -1,11 +1,11 @@
-import React, { InputHTMLAttributes } from 'react';
+import React, { InputHTMLAttributes, LegacyRef, useState } from 'react';
 import styled from 'styled-components';
 
 export interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
   className?: string;
   disabled?: boolean;
   scale?: 'sm' | 'md' | 'lg';
-  inputRef?: any;
+  innerRef?: LegacyRef<any>;
 }
 
 export interface IInputWrapperProps {
@@ -49,11 +49,51 @@ export const StyledInput = styled.input<IInputWrapperProps>`
   }
 `;
 
+const InputLabel = styled.label`
+  cursor: pointer;
+`;
+
+const StyledFileInput = styled(StyledInput)`
+  display: none;
+`;
+
+const HiddenInput = styled.span<{ scale: 'sm' | 'md' | 'lg' }>`
+  display: flex;
+  justify-content: space-between;
+  background: white;
+  border: 1px solid ${({ theme }) => `${theme.colors.danger}50`};
+  padding: ${({ scale, theme }) => theme.sizes.controls[scale].padding};
+  font-size: ${({ scale, theme }) => theme.sizes.controls[scale].fontSize};
+  border-radius: ${({ scale, theme }) => theme.sizes.controls[scale].radius};
+`;
+
+const FileInput: React.FC<IInputProps> = ({ innerRef, scale = 'md', ...rest }): JSX.Element => {
+  const [isSelect, useSelect] = useState(false);
+  return (
+    <InputLabel>
+      <StyledFileInput
+        onChange={(data) => {
+          // eslint-disable-next-line react-hooks/rules-of-hooks
+          useSelect(!!data.target.value.length);
+        }}
+        {...rest}
+        ref={innerRef}
+        scale={scale}
+        type='file'
+      />
+      <HiddenInput scale={scale}>
+        <span>{isSelect ? 'Выбран 1 файл' : 'Выбрать файл'}</span> &#128391;
+      </HiddenInput>
+    </InputLabel>
+  );
+};
+
 export const Input: React.FC<IInputProps> = ({
-  inputRef,
+  innerRef,
   scale = 'md',
   type = 'text',
   ...rest
 }) => {
-  return <StyledInput {...rest} ref={inputRef} type={type} scale={scale} />;
+  if (type === 'file') return <FileInput {...rest} innerRef={innerRef} type={type} scale={scale} />;
+  return <StyledInput {...rest} ref={innerRef} type={type} scale={scale} />;
 };

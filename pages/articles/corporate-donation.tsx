@@ -1,7 +1,8 @@
 import React from 'react';
+import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import { Title, Divider, FormItem, Input, Button } from '../../components/UI';
+import { Title, Divider, FormItem, Input, Button, Checkbox, StyledLink } from '../../components/UI';
 import HeaderContentFooter from '../../layouts/header-content-footer';
 import { Container } from '../../layouts/container';
 import Alert from '../../components/alert';
@@ -46,42 +47,51 @@ const CorporateDonationPage: React.FC = (): JSX.Element => {
         <Divider />
         <form onSubmit={handleSubmit(onSubmit)}>
           <FormItem label='Название организации'>
-            <Input name='organization' inputRef={register} placeholder='Название организации' />
+            <Input name='organization' innerRef={register} placeholder='Название организации' />
           </FormItem>
           <FormItem label='Руководитель организации'>
-            <Input name='leader' inputRef={register} placeholder='Руководитель организации' />
+            <Input name='leader' innerRef={register} placeholder='Руководитель организации' />
           </FormItem>
           <FormItem label='Контактное лицо организации'>
-            <Input name='contact' inputRef={register} placeholder='Контактное лицо организации' />
+            <Input name='contact' innerRef={register} placeholder='Контактное лицо организации' />
           </FormItem>
           <FormItem label='Должность'>
-            <Input name='position' inputRef={register} placeholder='Должность' />
+            <Input name='position' innerRef={register} placeholder='Должность' />
           </FormItem>
           <FormItem label='Ваш email-адрес'>
-            <Input name='email' inputRef={register} placeholder='Ваш email-адрес' />
+            <Input name='email' innerRef={register} placeholder='Ваш email-адрес' />
           </FormItem>
           <FormItem label='Номер мобильного телефона'>
             <Input
               name='telephoneNumber'
-              inputRef={register}
+              innerRef={register}
               placeholder='Номер мобильного телефона'
             />
           </FormItem>
           <FormItem label='Городской номер телефона'>
             <Input
               name='cityPhoneNumber'
-              inputRef={register}
+              innerRef={register}
               placeholder='Городской номер телефона'
             />
           </FormItem>
           <FormItem label='Количество работников в возрасте 18-55 лет'>
             <Input
               name='amountWorkers'
-              inputRef={register}
+              innerRef={register}
               type='number'
               min={0}
               defaultValue={10}
             />
+          </FormItem>
+          <FormItem>
+            <Checkbox checked>
+              Согласен с{' '}
+              <Link href='/articles/user-agreement'>
+                <StyledLink underline>правилами</StyledLink>
+              </Link>{' '}
+              обработки обработки обработки персональных данных
+            </Checkbox>
           </FormItem>
           <FormItem>
             <Button type='submit' variant='outline-danger' size='lg'>
