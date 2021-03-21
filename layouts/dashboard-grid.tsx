@@ -3,6 +3,9 @@ import styled from 'styled-components';
 import LeftMenu from '../components/left-menu';
 import RightMenu from '../components/right-menu';
 import { useRequiredAuth } from '../hooks/useRequiredAuth';
+import { useAuth } from '../hooks/useAuth';
+import { Loading } from '../components/UI/loading';
+import CenterAllAxes from './center-all-axes';
 
 type Props = {
   children: React.ReactNode;
@@ -26,7 +29,13 @@ const Container = styled.section`
 
 const DashboardGrid: React.FC<Props> = ({ children, className, leftImage }): JSX.Element => {
   useRequiredAuth(null, '/auth');
-
+  const auth = useAuth();
+  if (!auth?.user)
+    return (
+      <CenterAllAxes>
+        <Loading />
+      </CenterAllAxes>
+    );
   return (
     <Main>
       <LeftMenu image={leftImage} />
