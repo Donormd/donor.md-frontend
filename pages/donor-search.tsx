@@ -28,7 +28,7 @@ const DonorSearchPage: React.FC = (): JSX.Element => {
   const { register, reset, handleSubmit, getValues } = useForm();
 
   const onSubmit = () => {
-    console.log('-->');
+    console.log('-->', getValues());
     /*
      * const data = getValues();
      * const recipientObj = {};
