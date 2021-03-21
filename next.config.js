@@ -1,7 +1,7 @@
-const withPWA = require('next-pwa');
-const runtimeCaching = require('next-pwa/cache');
+import withPWA from 'next-pwa';
+import runtimeCaching from 'next-pwa/cache';
 
-module.exports = {
+module.exports = withPWA({
   poweredByHeader: false,
   reactStrictMode: true,
   images: {
@@ -11,4 +11,4 @@ module.exports = {
     dest: 'public',
     runtimeCaching,
   },
-};
+});
