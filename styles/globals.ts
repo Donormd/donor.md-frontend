@@ -8,7 +8,6 @@ const GlobalStyles = createGlobalStyle`
 *:after,
 *:before {
   box-sizing: border-box;
-  transition: all 0.3s ease-in;
 }
 
 ::selection {
