@@ -41,7 +41,6 @@ class MyDocument extends Document {
           <link rel='icon' href='/app-icon/icon.ico' />
           <link rel='icon' href='/app-icon/icon.svg' type='image/svg+xml' />
           <link rel='apple-touch-icon' href='/app-icon/apple-touch-icon.png' />
-          <link rel='manifest' href='../manifest.webmanifest' />
           <title>DONOR.MD - место, где люди помогают людям</title>
         </Head>
         <body>
