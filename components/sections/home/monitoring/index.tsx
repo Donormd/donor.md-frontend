@@ -17,7 +17,7 @@ const Monitoring: React.FC = (): JSX.Element => {
     dispatch(getData());
   }, []);
 
-  const options = {
+  const options: any = {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
