@@ -27,7 +27,9 @@ const Monitoring: React.FC = (): JSX.Element => {
 
   if (status === 'error') return <Alert dismissible>{error}</Alert>;
 
-  const dateUpdate = new Date(data[0].dateUpdate).toLocaleString('ru', options);
+  const dateUpdate = data
+    ? new Date(data[0].dateUpdate).toLocaleString('ru', options)
+    : new Date().toLocaleString('ru', options);
 
   return (
     <Section id='monitoring'>
@@ -35,9 +37,7 @@ const Monitoring: React.FC = (): JSX.Element => {
         Мониторинг запасов
       </Title>
       <BloodList>
-        {data.map((item: IBlood) => (
-          <BloodItem key={item._id} {...item} />
-        ))}
+        {data && data.map((item: IBlood) => <BloodItem key={item._id} {...item} />)}
       </BloodList>
       <Paragraph align='right'>По состоянию на: {dateUpdate}</Paragraph>
     </Section>
