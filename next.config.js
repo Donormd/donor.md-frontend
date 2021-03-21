@@ -1,5 +1,6 @@
-import withPWA from 'next-pwa';
-import runtimeCaching from 'next-pwa/cache';
+/* eslint @typescript-eslint/no-var-requires:0 */
+const withPWA = require('next-pwa');
+const runtimeCaching = require('next-pwa/cache');
 
 module.exports = withPWA({
   poweredByHeader: false,
