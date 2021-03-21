@@ -45,9 +45,9 @@ const recipients = createSlice({
     builder.addCase(sendData.pending, (state) => {
       state.status = 'loading';
     });
-    builder.addCase(sendData.rejected, (state, payload) => {
+    builder.addCase(sendData.rejected, (state, action) => {
       state.status = 'error';
-      state.error = String(payload.error.message);
+      state.error = String(action.error.message);
     });
   },
 });

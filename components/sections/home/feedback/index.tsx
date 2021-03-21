@@ -49,7 +49,7 @@ const Feedback: React.FC = (): JSX.Element => {
               <HalfWidth>
                 <Input
                   name='contact'
-                  inputRef={register}
+                  innerRef={register}
                   scale='lg'
                   placeholder='Ваш email или номер телефона'
                 />

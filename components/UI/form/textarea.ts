@@ -6,6 +6,10 @@ export const TextArea = styled.textarea`
   border-color: ${(props) => props.theme.redDiluted};
   border-radius: ${(props) => props.theme.radius};
 
+  &::placeholder {
+    font-size: 0.95em;
+  }
+
   &:hover {
     border-color: ${(props) => props.theme.red};
   }

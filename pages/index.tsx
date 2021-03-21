@@ -20,7 +20,7 @@ const HomePage: React.FC = (): JSX.Element => {
         <Intro />
         <Monitoring />
         <Places />
-        <AboutDonation title='Подготовка к первой сдачи крови' data={data} />
+        <AboutDonation title='Подготовка к первой сдаче крови' data={data} />
         <CallToAction />
         <Stories />
         <Feedback />

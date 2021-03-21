@@ -17,17 +17,17 @@ import { PopoverStyle } from './popover.style';
 const Menu: React.FC<MenuListProps> = (props): JSX.Element => (
   <MenuList {...props}>
     <MenuItem>
-      <Link href='/articles' passHref>
+      <Link href='/articles/about-service' passHref>
         <StyledLink>О сервисе</StyledLink>
       </Link>
     </MenuItem>
     <MenuItem>
-      <Link href='/articles' passHref>
+      <Link href='/articles/about-donation' passHref>
         <StyledLink>О донорстве</StyledLink>
       </Link>
     </MenuItem>
     <MenuItem>
-      <Link href='/articles' passHref>
+      <Link href='/articles/support-project' passHref>
         <StyledLink>Поддержать</StyledLink>
       </Link>
     </MenuItem>

@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { IQuestion } from '../components/forms/question';
 
 export interface IOptions {
   key: string | number;
@@ -7,14 +8,15 @@ export interface IOptions {
 }
 
 const bloodGroups: IOptions[] = [
+  { key: 0, value: 1, text: 'Любая' },
   { key: 1, value: 1, text: '0 (I) - Rh+' },
   { key: 2, value: 2, text: '0 (I) - Rh-' },
   { key: 3, value: 3, text: 'A (II) - Rh+' },
   { key: 4, value: 3, text: 'A (II) - Rh-' },
   { key: 5, value: 2, text: 'B (III) - Rh+' },
   { key: 6, value: 1, text: 'B (III) - Rh-' },
-  { key: 7, value: 2, text: 'B (IV) - Rh+' },
-  { key: 8, value: 3, text: 'B (IV) - Rh-' },
+  { key: 7, value: 2, text: 'AB (IV) - Rh+' },
+  { key: 8, value: 3, text: 'AB (IV) - Rh-' },
 ];
 
 const cities: IOptions[] = [
@@ -41,21 +43,67 @@ const bloodCenter: IOptions[] = [
   {
     key: 1,
     value: 'Тирасполь',
-    text: 'РКБ г.Тирасполь',
+    text: 'РКБ, отделение «Онкология»',
   },
   {
     key: 2,
-    value: 'Бендеры',
-    text: 'ГУ Бендерский центр амбулаторной-поликлинической помощи',
+    value: 'aaaaaaaaaaa',
+    text: 'РКБ, отделение «Хирургия»',
   },
   {
-    key: 2,
-    value: 'Рыбница',
-    text: 'ГУ Рыбницкая центральная больница',
+    key: 3,
+    value: 'aaaaaaaaaaa',
+    text: 'РКБ, отделение «Гастрология»',
+  },
+  {
+    key: 4,
+    value: 'aaaaaaaaaaa',
+    text: 'РКБ, отделение «Травматология»',
+  },
+  {
+    key: 5,
+    value: 'Тирасполь',
+    text: 'ЦМиР, г. Тирасполь',
+  },
+  {
+    key: 6,
+    value: 'aaaaaaaaaaa',
+    text: 'Бендерская больница',
+  },
+  {
+    key: 7,
+    value: 'aaaaaaaaaaa',
+    text: 'ЦРБ г. Слободзея',
+  },
+  {
+    key: 8,
+    value: 'aaaaaaaaaaa',
+    text: 'ЦРБ г. Григориополь',
+  },
+  {
+    key: 9,
+    value: 'aaaaaaaaaaa',
+    text: 'ЦРБ г. Рыбница',
+  },
+  {
+    key: 10,
+    value: 'aaaaaaaaaaa',
+    text: 'ЦРБ г. Каменка',
+  },
+  {
+    key: 11,
+    value: 'Другое',
+    text: 'Другое',
   },
 ];
 
-const initialState = { cities, bloodGroups, bloodCenter, organizations };
+const transfusionCenter: IOptions[] = [
+  { key: 1, value: 'aaa', text: 'Центр переливания крови г. Тирасполь' },
+  { key: 2, value: 'aaa', text: 'Центр переливания крови г. Бендеры' },
+  { key: 3, value: 'aaa', text: 'Центр переливания крови г. Рыбница' },
+];
+
+const initialState = { cities, bloodGroups, bloodCenter, organizations, transfusionCenter };
 
 const common = createSlice({
   name: 'common',

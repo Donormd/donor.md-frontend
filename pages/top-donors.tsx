@@ -133,7 +133,7 @@ const TopDonorsPage: React.FC = (): JSX.Element => {
       <Container>
         <StoriesHead>
           <Title margin='15px' bold>
-            Лучшие донары нашего сервиса
+            Лучшие доноры нашего сервиса
           </Title>
           <ButtonGroup buttons={buttons} handleClick={handleClick} />
         </StoriesHead>
