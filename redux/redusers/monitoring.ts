@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { apiV1 } from '../constants/url';
+import { IState } from '../../interfaces/initial-state';
 
 export interface IBlood {
   _id: string;
@@ -9,15 +10,9 @@ export interface IBlood {
   dateUpdate: Date;
 }
 
-interface IInitialState {
-  status: string;
-  data: IBlood[];
-  error: string;
-}
-
-const initialState: IInitialState = {
-  status: 'loading',
-  data: [],
+const initialState: IState<IBlood[] | null> = {
+  status: 'init',
+  data: null,
   error: '',
 };
 
