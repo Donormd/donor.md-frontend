@@ -27,7 +27,7 @@ const WrapperSwitch = styled.div`
 `;
 
 const MyDetails: React.FC = (): JSX.Element => {
-  const { bloodGroups, cities, organizations } = useAppSelector((state) => state.common);
+  const { bloodGroups, cities, organizations } = useAppSelector((state) => state.common.data);
   return (
     <DashboardGrid>
       <TitleWithArrow>Мои данные</TitleWithArrow>
@@ -41,9 +41,10 @@ const MyDetails: React.FC = (): JSX.Element => {
         </FormItem>
         <FormItem label='Группа крови' required>
           <Select size='large' placeholder='Ваша группа крови'>
-            {bloodGroups.map((item) => (
-              <Select.Option value={item.value}>{item.text}</Select.Option>
-            ))}
+            {bloodGroups &&
+              bloodGroups.map(({ value, text }) => (
+                <Select.Option value={value}>{text}</Select.Option>
+              ))}
           </Select>
         </FormItem>
         <FormItem label='Пол' required>
@@ -55,9 +56,8 @@ const MyDetails: React.FC = (): JSX.Element => {
         </FormItem>
         <FormItem label='Город проживания' required>
           <Select size='large' placeholder='Город проживания'>
-            {cities.map((item) => (
-              <Select.Option value={item.value}>{item.text}</Select.Option>
-            ))}
+            {cities &&
+              cities.map(({ value, text }) => <Select.Option value={value}>{text}</Select.Option>)}
           </Select>
         </FormItem>
         <Divider />
@@ -73,9 +73,10 @@ const MyDetails: React.FC = (): JSX.Element => {
         </FormItem>
         <FormItem label='Выберите вашу организацию'>
           <Select placeholder='Выберите вашу организацию'>
-            {organizations.map((item) => (
-              <Select.Option value={item.value}>{item.text}</Select.Option>
-            ))}
+            {organizations &&
+              organizations.map(({ value, text }) => (
+                <Select.Option value={value}>{text}</Select.Option>
+              ))}
           </Select>
         </FormItem>
         <Divider />

@@ -29,7 +29,7 @@ const StyledForm = styled(Form)`
 `;
 
 const ReviewsAdd: React.FC = (): JSX.Element => {
-  const { bloodCenter } = useAppSelector((state) => state.common);
+  const { bloodCenter } = useAppSelector((state) => state.common.data);
   return (
     <DashboardGrid>
       <TitleWithArrow margin='50px'>Добавить отзыв</TitleWithArrow>
@@ -41,9 +41,10 @@ const ReviewsAdd: React.FC = (): JSX.Element => {
       <StyledForm>
         <FormItem label='Выбрать Центр крови'>
           <Select size='large' placeholder='Выбор центра'>
-            {bloodCenter.map((item) => (
-              <Select.Option value={item.value}>{item.text}</Select.Option>
-            ))}
+            {bloodCenter &&
+              bloodCenter.map((item) => (
+                <Select.Option value={item.value}>{item.text}</Select.Option>
+              ))}
           </Select>
         </FormItem>
         <FormItem label='Отношение персонала' marginBottom='10px'>

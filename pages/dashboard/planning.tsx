@@ -18,7 +18,7 @@ const ButtonsRow = styled.div`
 `;
 
 const DonationsPlanning: React.FC = (): JSX.Element => {
-  const { bloodCenter } = useAppSelector((state) => state.common);
+  const { bloodCenter } = useAppSelector((state) => state.common.data);
   return (
     <DashboardGrid>
       <TitleWithArrow>Мои донации</TitleWithArrow>
@@ -26,9 +26,10 @@ const DonationsPlanning: React.FC = (): JSX.Element => {
       <Form>
         <FormItem label='Место сдачи'>
           <Select size='large' placeholder='Выберите место сдачи'>
-            {bloodCenter.map((item) => (
-              <Select.Option value={item.value}>{item.text}</Select.Option>
-            ))}
+            {bloodCenter &&
+              bloodCenter.map((item) => (
+                <Select.Option value={item.value}>{item.text}</Select.Option>
+              ))}
           </Select>
         </FormItem>
         <FormItem
