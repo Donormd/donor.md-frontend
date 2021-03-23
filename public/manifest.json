@@ -1,8 +1,8 @@
 {
-  "name": "Next.JS Progressive Web App",
-  "short_name": "Next PWA",
+  "name": "DONOR.MD - место, где люди помогают людям",
+  "short_name": "DONOR.MD",
   "theme_color": "#ffffff",
-  "background_color": "#004740",
+  "background_color": "#ff4d4b",
   "display": "fullscreen",
   "orientation": "portrait",
   "scope": "/",
