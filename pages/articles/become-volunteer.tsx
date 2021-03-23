@@ -17,22 +17,6 @@ import HeaderContentFooter from '../../layouts/header-content-footer';
 import { Container } from '../../layouts/container';
 import { useAppSelector } from '../../redux/store';
 
-type typeData = {
-  key: string | number;
-  value: string;
-};
-
-const typesAssistance: Array<typeData> = [
-  { key: 1, value: 'Написание статей' },
-  { key: 2, value: 'SMM-помощь' },
-  { key: 3, value: 'IT-помощь' },
-  { key: 4, value: 'Создание роликов' },
-  { key: 5, value: 'Фото помощь' },
-  { key: 6, value: 'Дизайнерские услуги' },
-  { key: 7, value: 'Координатор по городу' },
-  { key: 8, value: 'Другое' },
-];
-
 const FormItemCheckbox = styled.div`
   display: grid;
   grid-template-columns: min-content 1fr;
@@ -40,7 +24,7 @@ const FormItemCheckbox = styled.div`
 `;
 
 const BecomeVolunteerPage: React.FC = (): JSX.Element => {
-  const { cities } = useAppSelector((state) => state.common);
+  const { cities, typesAssistance } = useAppSelector((state) => state.common.data);
   return (
     <HeaderContentFooter background='/images/pages/welcome.png'>
       <Container>
@@ -81,20 +65,22 @@ const BecomeVolunteerPage: React.FC = (): JSX.Element => {
           </FormItem>
           <FormItem label='Город проживания'>
             <Select size='large'>
-              {cities.map(({ key, value }) => (
-                <Select.Option key={key} value={value}>
-                  {value}
-                </Select.Option>
-              ))}
+              {cities &&
+                cities.map(({ text, value }) => (
+                  <Select.Option key={value} value={value}>
+                    {text}
+                  </Select.Option>
+                ))}
             </Select>
           </FormItem>
           <FormItem label='Я могу помочь'>
             <Select size='large'>
-              {typesAssistance.map(({ key, value }: typeData) => (
-                <Select.Option key={key} value={value}>
-                  {value}
-                </Select.Option>
-              ))}
+              {typesAssistance &&
+                typesAssistance.map(({ text, value }) => (
+                  <Select.Option key={value} value={value}>
+                    {text}
+                  </Select.Option>
+                ))}
             </Select>
           </FormItem>
           <FormItem columns={1}>
