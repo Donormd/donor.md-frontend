@@ -22,7 +22,9 @@ import { useAppSelector } from '../redux/store';
 import { sendData, IRecipient } from '../redux/redusers/recipients';
 
 const DonorSearchPage: React.FC = (): JSX.Element => {
-  const { bloodGroups, bloodCenter, transfusionCenter } = useAppSelector((state) => state.common);
+  const { bloodGroups, bloodCenter, transfusionCenter } = useAppSelector(
+    (state) => state.common.data,
+  );
   const dispatch = useDispatch();
   const { register, reset, handleSubmit, getValues } = useForm();
 
@@ -60,20 +62,22 @@ const DonorSearchPage: React.FC = (): JSX.Element => {
           </FormItem>
           <FormItem label='Выберите необходимую группу крови' required>
             <Select size='large'>
-              {bloodGroups.map(({ key, value, text }) => (
-                <Select.Option key={key} value={value}>
-                  {text}
-                </Select.Option>
-              ))}
+              {bloodGroups &&
+                bloodGroups.map(({ value, text }) => (
+                  <Select.Option key={value} value={value}>
+                    {text}
+                  </Select.Option>
+                ))}
             </Select>
           </FormItem>
           <FormItem label='Медицинское учреждение' help='В котором находится реципиент' required>
             <Select size='large'>
-              {bloodCenter.map(({ key, value, text }) => (
-                <Select.Option key={key} value={value}>
-                  {text}
-                </Select.Option>
-              ))}
+              {bloodCenter &&
+                bloodCenter.map(({ value, text }) => (
+                  <Select.Option key={value} value={value}>
+                    {text}
+                  </Select.Option>
+                ))}
             </Select>
           </FormItem>
           <FormItem label='Заболевание кого?' required>
@@ -81,11 +85,12 @@ const DonorSearchPage: React.FC = (): JSX.Element => {
           </FormItem>
           <FormItem label='Укажите центр переливания крови' required>
             <Select size='large'>
-              {transfusionCenter.map(({ key, value, text }) => (
-                <Select.Option key={key} value={value}>
-                  {text}
-                </Select.Option>
-              ))}
+              {transfusionCenter &&
+                transfusionCenter.map(({ value, text }) => (
+                  <Select.Option key={value} value={value}>
+                    {text}
+                  </Select.Option>
+                ))}
             </Select>
           </FormItem>
           <FormItem label='Необходимое количество доноров' required>

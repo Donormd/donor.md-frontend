@@ -29,7 +29,7 @@ export const sendData = createAsyncThunk<null, ICorporateDonation>(
 );
 
 const corporateDonation = createSlice({
-  name: 'feedback',
+  name: 'corporate-donation',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
