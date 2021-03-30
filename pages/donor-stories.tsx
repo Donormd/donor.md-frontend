@@ -3,7 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import HeaderContentFooter from '../layouts/header-content-footer';
 import ButtonGroup, { ButtonsProps, OnClickProps } from '../components/UI/button-group';
-import DonorStory from '../components/donor-story';
+import DonorStory, { IDonorStory } from '../components/donor-story';
 import Pagination from '../components/pagination';
 import { Title } from '../components/UI';
 import { Container } from '../layouts/container';
@@ -41,7 +41,7 @@ const DonorStoriesPage: React.FC = (): JSX.Element => {
           <ButtonGroup buttons={buttons} handleClick={handleClick} />
         </StoriesHead>
         <div>
-          {data.map((props: any) => (
+          {data.map((props: IDonorStory) => (
             <DonorStory {...props} />
           ))}
         </div>
