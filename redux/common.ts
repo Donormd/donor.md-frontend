@@ -4,7 +4,7 @@ import { IState } from '../interfaces/initial-state';
 import { apiV1 } from './constants/url';
 
 export interface IOptions {
-  value: string | number;
+  _id: string;
   text: string | number;
 }
 

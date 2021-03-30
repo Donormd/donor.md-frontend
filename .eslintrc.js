@@ -116,6 +116,12 @@ module.exports = {
     // For prettier
     'prettier/prettier': ['error'],
     'prefer-arrow-callback': 'off',
+    'react/jsx-wrap-multilines': [
+      'error',
+      {
+        prop: 'ignore',
+      },
+    ],
     // For import
     'import/prefer-default-export': 0,
     'import/named': 2,
