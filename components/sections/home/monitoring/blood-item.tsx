@@ -1,17 +1,15 @@
 import React from 'react';
 import { Title } from '../../../UI';
 import { BloodTitle, Image } from './styles';
-import { IBlood } from '../../../../redux/redusers/monitoring';
 
 const quantityText = (quantity: number): string => {
-  switch (quantity) {
-    case 1:
-      return 'Мало';
-    case 2:
-      return 'Достаточно';
-    default:
-      return 'Много';
+  if (quantity < 35) {
+    return 'Мало';
   }
+  if (quantity > 50 && quantity < 85) {
+    return 'Достаточно';
+  }
+  return 'Много';
 };
 
 const quantityImage = (quantity: number): string => {
@@ -25,7 +23,7 @@ const quantityImage = (quantity: number): string => {
   }
 };
 
-const BloodItem: React.FC<IBlood> = ({ group, quantity }) => {
+const BloodItem: React.FC<{ group: string; quantity: number }> = ({ group, quantity }) => {
   return (
     <div>
       <BloodTitle as='h6' align='center' bold>

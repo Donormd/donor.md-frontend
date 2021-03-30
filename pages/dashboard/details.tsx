@@ -27,7 +27,7 @@ const WrapperSwitch = styled.div`
 `;
 
 const MyDetails: React.FC = (): JSX.Element => {
-  const { bloodGroups, cities, organizations } = useAppSelector((state) => state.common.data);
+  const { bloodGroups, cities, organizations } = useAppSelector((state) => state.common);
   return (
     <DashboardGrid>
       <TitleWithArrow>Мои данные</TitleWithArrow>
@@ -41,9 +41,9 @@ const MyDetails: React.FC = (): JSX.Element => {
         </FormItem>
         <FormItem label='Группа крови' required>
           <Select size='large' placeholder='Ваша группа крови'>
-            {bloodGroups &&
-              bloodGroups.map(({ value, text }) => (
-                <Select.Option value={value}>{text}</Select.Option>
+            {bloodGroups.data &&
+              bloodGroups.data.map(({ _id, text }) => (
+                <Select.Option value={_id}>{text}</Select.Option>
               ))}
           </Select>
         </FormItem>
@@ -56,8 +56,8 @@ const MyDetails: React.FC = (): JSX.Element => {
         </FormItem>
         <FormItem label='Город проживания' required>
           <Select size='large' placeholder='Город проживания'>
-            {cities &&
-              cities.map(({ value, text }) => <Select.Option value={value}>{text}</Select.Option>)}
+            {cities.data &&
+              cities.data.map(({ _id, text }) => <Select.Option value={_id}>{text}</Select.Option>)}
           </Select>
         </FormItem>
         <Divider />
@@ -73,9 +73,9 @@ const MyDetails: React.FC = (): JSX.Element => {
         </FormItem>
         <FormItem label='Выберите вашу организацию'>
           <Select placeholder='Выберите вашу организацию'>
-            {organizations &&
-              organizations.map(({ value, text }) => (
-                <Select.Option value={value}>{text}</Select.Option>
+            {organizations.data &&
+              organizations.data.map(({ _id, text }) => (
+                <Select.Option value={_id}>{text}</Select.Option>
               ))}
           </Select>
         </FormItem>

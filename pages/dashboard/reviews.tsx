@@ -24,12 +24,8 @@ import { useAppSelector } from '../../redux/store';
  * };
  */
 
-const StyledForm = styled(Form)`
-  margin-top: 30px;
-`;
-
 const ReviewsAdd: React.FC = (): JSX.Element => {
-  const { bloodCenter } = useAppSelector((state) => state.common.data);
+  const { bloodCenter } = useAppSelector((state) => state.common);
   return (
     <DashboardGrid>
       <TitleWithArrow margin='50px'>Добавить отзыв</TitleWithArrow>
@@ -41,9 +37,9 @@ const ReviewsAdd: React.FC = (): JSX.Element => {
       <StyledForm>
         <FormItem label='Выбрать Центр крови'>
           <Select size='large' placeholder='Выбор центра'>
-            {bloodCenter &&
-              bloodCenter.map((item) => (
-                <Select.Option value={item.value}>{item.text}</Select.Option>
+            {bloodCenter.data &&
+              bloodCenter.data.map((item) => (
+                <Select.Option value={item._id}>{item.text}</Select.Option>
               ))}
           </Select>
         </FormItem>
@@ -78,3 +74,7 @@ const ReviewsAdd: React.FC = (): JSX.Element => {
 };
 
 export default ReviewsAdd;
+
+const StyledForm = styled(Form)`
+  margin-top: 30px;
+`;

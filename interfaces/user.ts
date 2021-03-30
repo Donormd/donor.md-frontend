@@ -1,11 +1,12 @@
 export interface IUser {
+  groupId: string;
+  statusId: string;
+  bloodGroupId: string;
+  cityId: string;
+  sexId: string;
   fullname: string;
   email: string;
-  avatar: string;
   corporateId: string;
-  cityId: string;
-  bloodGroupId: string;
-  sexId: string;
   phone: string;
   phoneNumber: string;
   creationDate: string;

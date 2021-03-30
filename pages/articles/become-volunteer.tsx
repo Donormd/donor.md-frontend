@@ -24,7 +24,7 @@ const FormItemCheckbox = styled.div`
 `;
 
 const BecomeVolunteerPage: React.FC = (): JSX.Element => {
-  const { cities, typesAssistance } = useAppSelector((state) => state.common.data);
+  const { cities, typesAssistance } = useAppSelector((state) => state.common);
   return (
     <HeaderContentFooter background='/images/pages/welcome.png'>
       <Container>
@@ -65,9 +65,9 @@ const BecomeVolunteerPage: React.FC = (): JSX.Element => {
           </FormItem>
           <FormItem label='Город проживания'>
             <Select size='large'>
-              {cities &&
-                cities.map(({ text, value }) => (
-                  <Select.Option key={value} value={value}>
+              {cities.data &&
+                cities.data.map(({ text, _id }) => (
+                  <Select.Option key={_id} value={_id}>
                     {text}
                   </Select.Option>
                 ))}
@@ -75,9 +75,9 @@ const BecomeVolunteerPage: React.FC = (): JSX.Element => {
           </FormItem>
           <FormItem label='Я могу помочь'>
             <Select size='large'>
-              {typesAssistance &&
-                typesAssistance.map(({ text, value }) => (
-                  <Select.Option key={value} value={value}>
+              {typesAssistance.data &&
+                typesAssistance.data.map(({ text, _id }) => (
+                  <Select.Option key={_id} value={_id}>
                     {text}
                   </Select.Option>
                 ))}

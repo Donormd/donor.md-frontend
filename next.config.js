@@ -2,7 +2,13 @@
 const withPWA = require('next-pwa');
 const runtimeCaching = require('next-pwa/cache');
 
-module.exports = withPWA({
+const wrapperPWA = (config) => {
+  const isProd = process.env.NODE_ENV === 'production';
+  if (isProd) return withPWA(config);
+  return config;
+};
+
+module.exports = wrapperPWA({
   poweredByHeader: false,
   reactStrictMode: true,
   images: {

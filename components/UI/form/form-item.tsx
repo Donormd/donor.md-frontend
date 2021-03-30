@@ -8,18 +8,46 @@ export declare type FormItemProps = {
   label?: string;
   marginBottom?: string;
   required?: boolean;
+  error?: string;
+};
+
+export const FormItem: React.FC<FormItemProps> = ({
+  label,
+  help,
+  children,
+  columns = 1,
+  required,
+  marginBottom,
+  error,
+}) => {
+  return (
+    <Wrapper columns={columns} marginBottom={marginBottom}>
+      <Column>
+        <Label as='h5' required={required}>
+          {label}
+        </Label>
+        <Help>{help}</Help>
+      </Column>
+      <Column>{children}</Column>
+      {error && <ErrorColumn columns={columns}>{error}</ErrorColumn>}
+    </Wrapper>
+  );
 };
 
 const Wrapper = styled.div<{ columns: number; marginBottom?: string }>`
   display: grid;
   grid-template-columns: 1fr;
   margin-bottom: ${({ marginBottom }) => marginBottom || '25px'};
-  @media (min-width: 992px) {
+  @media (min-width: ${({ theme }) => theme.media.lg}) {
     grid-template-columns: ${({ columns }) => `repeat(${columns}, 1fr)`};
   }
 `;
 
 const Column = styled.div``;
+
+const ErrorColumn = styled.div<{ columns: number }>`
+  grid-column: ${({ columns }) => (columns === 2 ? '2 / 3' : '1 / 3')};
+`;
 
 const Label = styled(Title)<{ required?: boolean }>`
   margin-top: 5px;
@@ -37,24 +65,3 @@ const Label = styled(Title)<{ required?: boolean }>`
 const Help = styled.span`
   color: ${({ theme }) => theme.textMuted};
 `;
-
-export const FormItem: React.FC<FormItemProps> = ({
-  label,
-  help,
-  children,
-  columns = 2,
-  required,
-  marginBottom,
-}) => {
-  return (
-    <Wrapper columns={columns} marginBottom={marginBottom}>
-      <Column>
-        <Label as='h5' required={required}>
-          {label}
-        </Label>
-        <Help>{help}</Help>
-      </Column>
-      <Column>{children}</Column>
-    </Wrapper>
-  );
-};

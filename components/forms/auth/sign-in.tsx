@@ -1,105 +1,71 @@
 /* eslint no-console:0 */
 import React from 'react';
-import Image from 'next/image';
-import styled from 'styled-components';
-import { Button } from 'antd';
-import { Divider, Form, FormItem, Input, Title, Paragraph } from '../../UI';
+import { useDispatch } from 'react-redux';
+import { useForm } from 'react-hook-form';
+import { FormItem, Input, Title } from '../../UI';
 import { onChangeState } from './types';
 import { ActionLayout, WrappedLink } from './utils';
+import { signIn } from '../../../redux/redusers/user';
+import { useAppSelector } from '../../../redux/store';
+import Alert from '../../alert';
+import { Loading } from '../../UI/loading';
 
 declare type Props = { onChangeState: onChangeState };
 
-const AdditionalLogin = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`;
+export const SignInForm: React.FC<Props> = ({ onChangeState }): JSX.Element => {
+  const { data, status, error } = useAppSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const { handleSubmit, register } = useForm();
 
-const SocialList = styled.ul`
-  display: flex;
-  list-style: none;
-  padding: 0;
-`;
+  const onSubmit = (data: { email: string; password: string }) => {
+    dispatch(signIn(data));
+  };
 
-const ButtonWithIcon = styled(Button)`
-  &,
-  &:hover,
-  &:focus {
-    padding: 0;
-    margin-left: 15px;
-    background: transparent;
-    border: none;
-  }
-`;
+  if (status === 'loading') return <Loading />;
 
-const SignInForm: React.FC<Props> = ({ onChangeState }): JSX.Element => (
-  <Form>
-    <Title as='h2' margin='15px'>
-      Авторизация
-    </Title>
-    <FormItem columns={1}>
-      <Input placeholder='Введите email' />
-    </FormItem>
-    <FormItem columns={1}>
-      <Input type='password' placeholder='Введите пароль' />
-    </FormItem>
-    <div>
-      <ActionLayout
-        btnText='Войти'
-        linkText='Регистрация'
-        linkOnClick={() => onChangeState('signUp')}
-      />
-      <WrappedLink onClick={() => onChangeState('recovery')} color='red' underline>
-        Забыли пароль?
-      </WrappedLink>
-    </div>
-    <Divider />
-    <AdditionalLogin>
-      <Paragraph size='1rem'>Или войти через:</Paragraph>
-      <SocialList>
-        <li>
-          <ButtonWithIcon onClick={() => console.log('---> VK')}>
-            <Image
-              src='/images/social-icons/vk.svg'
-              width={25}
-              height={25}
-              alt='вы можете войти через вконтакте'
-            />
-          </ButtonWithIcon>
-        </li>
-        <li>
-          <ButtonWithIcon onClick={() => console.log('---> FB')}>
-            <Image
-              src='/images/social-icons/fb.svg'
-              width={25}
-              height={25}
-              alt='вы можете войти через фэйсбук'
-            />
-          </ButtonWithIcon>
-        </li>
-        <li>
-          <ButtonWithIcon onClick={() => console.log('---> GL')}>
-            <Image
-              src='/images/social-icons/google.svg'
-              width={25}
-              height={25}
-              alt='вы можете войти через гугл'
-            />
-          </ButtonWithIcon>
-        </li>
-        <li>
-          <ButtonWithIcon onClick={() => console.log('---> OK')}>
-            <Image
-              src='/images/social-icons/ok.svg'
-              width={25}
-              height={25}
-              alt='вы можете войти через одноклассники'
-            />
-          </ButtonWithIcon>
-        </li>
-      </SocialList>
-    </AdditionalLogin>
-  </Form>
-);
-
-export default SignInForm;
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <Title as='h2' margin='15px'>
+        Авторизация
+      </Title>
+      <FormItem columns={1}>
+        <Input
+          placeholder='Введите email'
+          name='email'
+          innerRef={register({
+            required: 'Обязательное поле',
+            pattern: {
+              value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+              message: 'Введите email',
+            },
+          })}
+        />
+      </FormItem>
+      <FormItem columns={1}>
+        <Input
+          placeholder='Введите пароль'
+          name='password'
+          type='password'
+          innerRef={register({
+            required: 'Обязательное поле',
+            minLength: {
+              value: 8,
+              message: 'Пароль должен быть больше 8 символов',
+            },
+          })}
+        />
+      </FormItem>
+      <div>
+        <ActionLayout
+          btnText='Войти'
+          linkText='Регистрация'
+          linkOnClick={() => onChangeState('signUp')}
+        />
+        <WrappedLink onClick={() => onChangeState('recovery')} color='red' underline>
+          Забыли пароль?
+        </WrappedLink>
+      </div>
+      {error && <Alert>{error}</Alert>}
+    </form>
+  );
+};

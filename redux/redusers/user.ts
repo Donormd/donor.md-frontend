@@ -4,28 +4,27 @@ import { apiV1 } from '../constants/url';
 import { IState } from '../../interfaces/initial-state';
 import { IUser } from '../../interfaces/user';
 
-const initialState: IState<IUser[] | null> = {
+const initialState: IState<IUser | null> = {
   status: 'init',
   data: null,
-  error: '',
+  error: null,
 };
 
-export const getUser = createAsyncThunk<void, IUser>('user/get', async (payload) => {
-  await axios.post(`${apiV1}/user`, {
-    data: payload,
-  });
-});
+export const signIn = createAsyncThunk<IUser, { email: string; password: string }>(
+  'user/get',
+  async (payload) => {
+    const response = await axios.post(`${apiV1}/auth/sign-in`, {
+      data: payload,
+    });
+    return response.data;
+  },
+);
 
-export const createUser = createAsyncThunk<void, IUser>('user/post', async (payload) => {
-  await axios.post(`${apiV1}/user`, {
+export const signUp = createAsyncThunk<IUser, IUser>('user/post', async (payload) => {
+  const response = await axios.post(`${apiV1}/auth/sign-up`, {
     data: payload,
   });
-});
-
-export const deleteUser = createAsyncThunk<void, IUser>('user/delete', async (payload) => {
-  await axios.post(`${apiV1}/user`, {
-    data: payload,
-  });
+  return response.data;
 });
 
 export const updateUser = createAsyncThunk<void, IUser>('user/put', async (payload) => {
@@ -39,15 +38,27 @@ const user = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(createUser.fulfilled, (state) => {
+    builder.addCase(signIn.fulfilled, (state, action) => {
       state.status = 'success';
+      state.data = action.payload;
     });
-    builder.addCase(createUser.pending, (state) => {
+    builder.addCase(signIn.pending, (state) => {
       state.status = 'loading';
     });
-    builder.addCase(createUser.rejected, (state, action) => {
+    builder.addCase(signIn.rejected, (state, action) => {
       state.status = 'error';
-      state.error = String(action.error.message);
+      state.error = action.error.message || 'Ops something went wrong';
+    });
+    builder.addCase(signUp.fulfilled, (state, action) => {
+      state.status = 'success';
+      state.data = action.payload;
+    });
+    builder.addCase(signUp.pending, (state) => {
+      state.status = 'loading';
+    });
+    builder.addCase(signUp.rejected, (state, action) => {
+      state.status = 'error';
+      state.error = action.error.message || 'Ops something went wrong';
     });
   },
 });

@@ -90,6 +90,7 @@ module.exports = {
     'react/jsx-props-no-spreading': 'off',
     'react/no-unused-prop-types': 'off',
     'react/destructuring-assignment': 'off',
+    'prefer-destructuring': 'off',
     // PropTypes
     'react/prop-types': 'off',
     // A11y
@@ -116,6 +117,12 @@ module.exports = {
     // For prettier
     'prettier/prettier': ['error'],
     'prefer-arrow-callback': 'off',
+    'react/jsx-wrap-multilines': [
+      'error',
+      {
+        prop: 'ignore',
+      },
+    ],
     // For import
     'import/prefer-default-export': 0,
     'import/named': 2,

@@ -6,19 +6,8 @@ import DashboardGrid from '../../layouts/dashboard-grid';
 import { useAppSelector } from '../../redux/store';
 import SocialMediaLinks from '../../components/social-media-links';
 
-const SocialButtons = styled(SocialMediaLinks)`
-  margin-bottom: 0;
-`;
-
-const ButtonsRow = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 30px 0;
-`;
-
 const DonationsPlanning: React.FC = (): JSX.Element => {
-  const { bloodCenter } = useAppSelector((state) => state.common.data);
+  const { bloodCenter } = useAppSelector((state) => state.common);
   return (
     <DashboardGrid>
       <TitleWithArrow>Мои донации</TitleWithArrow>
@@ -26,9 +15,9 @@ const DonationsPlanning: React.FC = (): JSX.Element => {
       <Form>
         <FormItem label='Место сдачи'>
           <Select size='large' placeholder='Выберите место сдачи'>
-            {bloodCenter &&
-              bloodCenter.map((item) => (
-                <Select.Option value={item.value}>{item.text}</Select.Option>
+            {bloodCenter.data &&
+              bloodCenter.data.map((item) => (
+                <Select.Option value={item._id}>{item.text}</Select.Option>
               ))}
           </Select>
         </FormItem>
@@ -76,3 +65,14 @@ const DonationsPlanning: React.FC = (): JSX.Element => {
 };
 
 export default DonationsPlanning;
+
+const SocialButtons = styled(SocialMediaLinks)`
+  margin-bottom: 0;
+`;
+
+const ButtonsRow = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 30px 0;
+`;
