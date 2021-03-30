@@ -5,31 +5,25 @@ import { Section } from '../utils';
 import { BloodList } from './styles';
 import BloodItem from './blood-item';
 import { useAppSelector } from '../../../../redux/store';
-import { IBlood, getData } from '../../../../redux/redusers/monitoring';
+import { getData } from '../../../../redux/redusers/monitoring';
 import Alert from '../../../alert';
 import { Loading } from '../../../UI/loading';
 
 const Monitoring: React.FC = (): JSX.Element => {
-  const { data, status, error } = useAppSelector((state) => state.monitoring);
+  const {
+    values: { status, data, error },
+  } = useAppSelector((state) => state.monitoring);
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getData());
   }, []);
 
-  const options: any = {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  };
-
   if (status === 'loading') return <Loading />;
 
   if (status === 'error') return <Alert dismissible>{error}</Alert>;
 
-  const dateUpdate = data
-    ? new Date(data[0].dateUpdate).toLocaleString('ru', options)
-    : new Date().toLocaleString('ru', options);
+  const dateUpdate = data ? String(data.dateUpdate).split('T')[0] : 'N/A';
 
   return (
     <Section id='monitoring'>
@@ -37,7 +31,10 @@ const Monitoring: React.FC = (): JSX.Element => {
         Мониторинг запасов
       </Title>
       <BloodList>
-        {data && data.map((item: IBlood) => <BloodItem key={item._id} {...item} />)}
+        {data?.values &&
+          Object.entries(data.values).map((item: [string, number]) => {
+            return <BloodItem key={item[1]} group={item[0]} quantity={item[1]} />;
+          })}
       </BloodList>
       <Paragraph align='right'>По состоянию на: {dateUpdate}</Paragraph>
     </Section>

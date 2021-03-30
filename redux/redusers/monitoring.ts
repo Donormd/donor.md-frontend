@@ -3,15 +3,15 @@ import axios from 'axios';
 import { apiV1 } from '../constants/url';
 import { IState } from '../../interfaces/initial-state';
 
-export interface IBlood {
+export interface IMonitoring {
   _id: string;
-  quantity: number;
-  group: string;
-  dateUpdate: Date;
+  fullname: string;
+  dateUpdate?: Date;
+  values: Record<string, number>;
 }
 
 interface IInitialState {
-  values: IState<IBlood[] | null>;
+  values: IState<IMonitoring | null>;
   action: IState<null>;
 }
 
@@ -28,15 +28,13 @@ const initialState: IInitialState = {
   },
 };
 
-export const getData = createAsyncThunk<IBlood[]>('monitoring/get', async () => {
+export const getData = createAsyncThunk<IMonitoring[]>('monitoring/get', async () => {
   const response = await axios.get(`${apiV1}/monitoring`);
   return response.data;
 });
 
-export const sendData = createAsyncThunk<void, IBlood[]>('monitoring/post', async (payload) => {
-  await axios.post(`${apiV1}/monitoring`, {
-    data: [payload],
-  });
+export const sendData = createAsyncThunk<void, IMonitoring>('monitoring/post', async (payload) => {
+  await axios.put(`${apiV1}/monitoring`, payload);
 });
 
 const monitoring = createSlice({
@@ -46,7 +44,7 @@ const monitoring = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getData.fulfilled, (state, action) => {
       state.values.status = 'success';
-      state.values.data = action.payload;
+      state.values.data = action.payload[0];
     });
     builder.addCase(getData.pending, (state) => {
       state.values.status = 'loading';

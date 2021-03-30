@@ -90,6 +90,7 @@ module.exports = {
     'react/jsx-props-no-spreading': 'off',
     'react/no-unused-prop-types': 'off',
     'react/destructuring-assignment': 'off',
+    'prefer-destructuring': 'off',
     // PropTypes
     'react/prop-types': 'off',
     // A11y
