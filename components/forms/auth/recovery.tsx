@@ -5,9 +5,9 @@ import { ActionLayout } from './utils';
 
 declare type Props = { onChangeState: onChangeState };
 
-const RecoveryForm: React.FC<Props> = ({ onChangeState }): JSX.Element => (
+export const RecoveryForm: React.FC<Props> = ({ onChangeState }): JSX.Element => (
   <Form>
-    <Title as='h2' margin='15px' >
+    <Title as='h2' margin='15px'>
       Восстановление доступа
     </Title>
     <FormItem columns={1}>
@@ -22,5 +22,3 @@ const RecoveryForm: React.FC<Props> = ({ onChangeState }): JSX.Element => (
     </div>
   </Form>
 );
-
-export default RecoveryForm;

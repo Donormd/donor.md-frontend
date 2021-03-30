@@ -8,15 +8,9 @@ export declare type Props = {
   linkOnClick: () => void;
 };
 
-const StyledLayout = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
 export const ActionLayout: React.FC<Props> = ({ btnText, linkText, linkOnClick }): JSX.Element => (
   <StyledLayout>
-    <Button variant='danger' size='lg'>
+    <Button type='submit' variant='danger' size='lg'>
       {btnText}
     </Button>
     <StyledLink onClick={linkOnClick} color='textDark' underline>
@@ -24,6 +18,12 @@ export const ActionLayout: React.FC<Props> = ({ btnText, linkText, linkOnClick }
     </StyledLink>
   </StyledLayout>
 );
+
+const StyledLayout = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
 
 export const WrappedLink = styled(StyledLink)`
   display: block;

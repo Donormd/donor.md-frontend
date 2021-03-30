@@ -27,7 +27,7 @@ const SocialButtons = styled(SocialMediaLinks)`
 `;
 
 const Donations: React.FC = (): JSX.Element => {
-  const { bloodCenter } = useAppSelector((state) => state.common.data);
+  const { bloodCenter } = useAppSelector((state) => state.common);
   return (
     <DashboardGrid>
       <TitleWithArrow>Мои донации</TitleWithArrow>
@@ -44,17 +44,17 @@ const Donations: React.FC = (): JSX.Element => {
         </FormItem>
         <FormItem label='Место сдачи' required>
           <Select size='large' placeholder='Выберите место сдачи'>
-            {bloodCenter &&
-              bloodCenter.map((item) => (
-                <Select.Option value={item.value}>{item.text}</Select.Option>
+            {bloodCenter.data &&
+              bloodCenter.data.map((item) => (
+                <Select.Option value={item._id}>{item.text}</Select.Option>
               ))}
           </Select>
         </FormItem>
         <FormItem label='Ваш реципиент' required>
           <Select size='large' placeholder='Выберите реципиента'>
-            {bloodCenter &&
-              bloodCenter.map((item) => (
-                <Select.Option value={item.value}>{item.text}</Select.Option>
+            {bloodCenter.data &&
+              bloodCenter.data.map((item) => (
+                <Select.Option value={item._id}>{item.text}</Select.Option>
               ))}
           </Select>
         </FormItem>

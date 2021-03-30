@@ -22,11 +22,9 @@ import { useAppSelector } from '../redux/store';
 import { sendData, IRecipient } from '../redux/redusers/recipients';
 
 const DonorSearchPage: React.FC = (): JSX.Element => {
-  const { bloodGroups, bloodCenter, transfusionCenter } = useAppSelector(
-    (state) => state.common.data,
-  );
-  const dispatch = useDispatch();
-  const { register, reset, handleSubmit, getValues } = useForm();
+  // const dispatch = useDispatch();
+  const { bloodGroups, bloodCenter, transfusionCenter } = useAppSelector((state) => state.common);
+  const { register, handleSubmit, getValues } = useForm();
 
   const onSubmit = () => {
     console.log('-->', getValues());
@@ -62,9 +60,9 @@ const DonorSearchPage: React.FC = (): JSX.Element => {
           </FormItem>
           <FormItem label='Выберите необходимую группу крови' required>
             <Select size='large'>
-              {bloodGroups &&
-                bloodGroups.map(({ value, text }) => (
-                  <Select.Option key={value} value={value}>
+              {bloodGroups.data &&
+                bloodGroups.data.map(({ _id, text }) => (
+                  <Select.Option key={_id} value={_id}>
                     {text}
                   </Select.Option>
                 ))}
@@ -72,9 +70,9 @@ const DonorSearchPage: React.FC = (): JSX.Element => {
           </FormItem>
           <FormItem label='Медицинское учреждение' help='В котором находится реципиент' required>
             <Select size='large'>
-              {bloodCenter &&
-                bloodCenter.map(({ value, text }) => (
-                  <Select.Option key={value} value={value}>
+              {bloodCenter.data &&
+                bloodCenter.data.map(({ _id, text }) => (
+                  <Select.Option key={_id} value={_id}>
                     {text}
                   </Select.Option>
                 ))}
@@ -85,9 +83,9 @@ const DonorSearchPage: React.FC = (): JSX.Element => {
           </FormItem>
           <FormItem label='Укажите центр переливания крови' required>
             <Select size='large'>
-              {transfusionCenter &&
-                transfusionCenter.map(({ value, text }) => (
-                  <Select.Option key={value} value={value}>
+              {transfusionCenter.data &&
+                transfusionCenter.data.map(({ _id, text }) => (
+                  <Select.Option key={_id} value={_id}>
                     {text}
                   </Select.Option>
                 ))}
