@@ -12,12 +12,14 @@ import { signUp } from '../../../redux/redusers/user';
 import { IUser } from '../../../interfaces/user';
 import { Loading } from '../../UI/loading';
 import { isLoading } from '../../helpers';
+import Alert from '../../alert';
 
 declare type Props = { onChangeState: onChangeState };
 
 export const SignUpForm: React.FC<Props> = ({ onChangeState }): JSX.Element => {
   const { register, control, handleSubmit } = useForm();
   const { sex, bloodGroups, userGroup } = useAppSelector((state) => state.common);
+  const { status, error } = useAppSelector((state) => state.user);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -122,6 +124,8 @@ export const SignUpForm: React.FC<Props> = ({ onChangeState }): JSX.Element => {
           linkOnClick={() => onChangeState('signIn')}
         />
       </div>
+      {status === 'error' && <Alert>{error}</Alert>}
+      {status === 'success' && <Alert>Вы успешно зарегестрировались</Alert>}
     </form>
   );
 };
