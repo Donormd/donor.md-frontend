@@ -11,26 +11,27 @@ const initialState: IState<IUser | null> = {
 };
 
 export const signIn = createAsyncThunk<IUser, { email: string; password: string }>(
-  'user/get',
+  'user/sign-in',
   async (payload) => {
-    const response = await axios.post(`${apiV1}/auth/sign-in`, {
-      data: payload,
-    });
+    const response = await axios.post(`${apiV1}/auth/sign-in`, payload);
     return response.data;
   },
 );
 
-export const signUp = createAsyncThunk<IUser, IUser>('user/post', async (payload) => {
-  const response = await axios.post(`${apiV1}/auth/sign-up`, {
-    data: payload,
-  });
+export const signUp = createAsyncThunk<IUser, IUser>('user/sign-up', async (payload) => {
+  const response = await axios.post(`${apiV1}/auth/sign-up`, payload);
   return response.data;
 });
 
-export const updateUser = createAsyncThunk<void, IUser>('user/put', async (payload) => {
-  await axios.post(`${apiV1}/user`, {
-    data: payload,
-  });
+export const recovery = createAsyncThunk<void, { email: string }>(
+  'user/recovery',
+  async (payload) => {
+    await axios.post(`${apiV1}/auth/recovery`, payload);
+  },
+);
+
+export const updateUser = createAsyncThunk<void, IUser>('user/update', async (payload) => {
+  await axios.post(`${apiV1}/user`, payload);
 });
 
 const user = createSlice({

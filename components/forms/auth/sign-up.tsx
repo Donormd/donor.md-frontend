@@ -82,7 +82,7 @@ export const SignUpForm: React.FC<Props> = ({ onChangeState }): JSX.Element => {
         <Input placeholder='Укажите номер телефона' name='phone' innerRef={register} />
       </FormItem>
       <FormItem>
-        <Input placeholder='Укажите email' name='email' innerRef={register} />
+        <Input placeholder='Укажите email' type='email' name='email' innerRef={register} />
       </FormItem>
       <FormItem>
         <Input type='password' placeholder='Укажите пароль' name='password' innerRef={register} />
