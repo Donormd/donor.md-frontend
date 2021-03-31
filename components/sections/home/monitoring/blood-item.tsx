@@ -13,14 +13,14 @@ const quantityText = (quantity: number): string => {
 };
 
 const quantityImage = (quantity: number): string => {
-  switch (quantity) {
-    case 1:
-      return '/images/pages/home/hearts/few.svg';
-    case 2:
-      return '/images/pages/home/hearts/enough.svg';
-    default:
-      return '/images/pages/home/hearts/lot.svg';
+  if (quantity < 35) {
+    return '/images/pages/home/hearts/few.svg';
   }
+  if (quantity > 50 && quantity < 85) {
+    return '/images/pages/home/hearts/enough.svg';
+  }
+  return '/images/pages/home/hearts/lot.svg';
+
 };
 
 const BloodItem: React.FC<{ group: string; quantity: number }> = ({ group, quantity }) => {
