@@ -18,22 +18,20 @@ declare type Props = { onChangeState: onChangeState };
 
 export const SignUpForm: React.FC<Props> = ({ onChangeState }): JSX.Element => {
   const { register, control, handleSubmit } = useForm();
-  const { sex, bloodGroups, userGroup } = useAppSelector((state) => state.common);
+  const { sex, bloodGroups } = useAppSelector((state) => state.common);
   const { status, error } = useAppSelector((state) => state.user);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getOptions('sex'));
     dispatch(getOptions('bloodGroups'));
-    dispatch(getOptions('userGroup'));
   }, []);
 
   const onSubmit = (data: IUser) => {
-    if (!userGroup.data) return;
-    dispatch(signUp({ ...data, statusId: userGroup.data[0]._id }));
+    dispatch(signUp(data));
   };
 
-  if (isLoading(sex) || isLoading(bloodGroups) || isLoading(userGroup)) return <Loading />;
+  if (isLoading(sex) || isLoading(bloodGroups)) return <Loading />;
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
@@ -60,7 +58,7 @@ export const SignUpForm: React.FC<Props> = ({ onChangeState }): JSX.Element => {
                 ))}
             </Select>
           }
-          name='sex'
+          name='sexId'
           control={control}
         />
       </FormItem>
@@ -76,7 +74,7 @@ export const SignUpForm: React.FC<Props> = ({ onChangeState }): JSX.Element => {
                 ))}
             </Select>
           }
-          name='blood'
+          name='bloodGroupId'
           control={control}
         />
       </FormItem>
@@ -125,13 +123,13 @@ export const SignUpForm: React.FC<Props> = ({ onChangeState }): JSX.Element => {
         />
       </div>
       {status === 'error' && <Alert>{error}</Alert>}
-      {status === 'success' && <Alert>Вы успешно зарегестрировались</Alert>}
+      {status === 'success' && <Alert>Вы успешно зарегистрировались</Alert>}
     </form>
   );
 };
 
 const FormItemCheckbox = styled.div`
-  color: var(--text-muted);
+  color: ${({ theme }) => theme.colors.textMuted}
   font-size: 0.85rem;
   display: grid;
   grid-template-columns: min-content 1fr;
