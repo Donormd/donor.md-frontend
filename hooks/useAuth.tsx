@@ -1,18 +1,22 @@
 /* eslint-disable no-console */
 import React, { useContext, useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 import { AuthContext, IAuthContext } from '../context/auth';
 import { IUser } from '../interfaces/user';
 
 export const useAuth = (): IAuthContext | null => useContext(AuthContext);
 
 const useProvideAuth = (): IAuthContext => {
+  const router = useRouter();
   const [user, setUser] = useState<null | IUser>(null);
 
-  const signIn = (email: string, password: string) => {
-    console.log('sign in', { email, password });
+  const signIn = (user: IUser) => {
+    setUser(user);
+    router.push('/dashboard');
   };
   const signUp = (user: IUser) => {
-    console.log('sign up', user);
+    setUser(user);
+    router.push('/dashboard');
   };
   const signOut = () => {
     // send data to server, if need

@@ -1,3 +1,4 @@
+/* eslint-disable multiline-comment-style */
 import React from 'react';
 import Link from 'next/link';
 import { Aside, Menu, MenuItem, LinkGrid, IconWrapper, ItemParagraph } from './styles';
@@ -6,10 +7,10 @@ import Add from '../../public/images/pages/dashboard/right-aside/add-donation.sv
 import Question from '../../public/images/pages/dashboard/right-aside/question.svg';
 import Support from '../../public/images/pages/dashboard/right-aside/support-project.svg';
 import DonorInfo from '../donor-info';
-/*
- * import DonorProgress from '../donor-progress';
- * import DonorCard from '../donor-card';
- */
+import { useAuth } from '../../hooks/useAuth';
+import { Loading } from '../UI/loading';
+// import DonorProgress from '../donor-progress';
+// import DonorCard from '../donor-card';
 
 export declare type MenuLinkProps = {
   key: string | number;
@@ -59,9 +60,15 @@ const MenuLink: React.FC<MenuLinkProps> = ({ Icon, href, text }) => (
 );
 
 const RightMenu: React.FC = (): JSX.Element => {
+  const auth = useAuth();
+
+  if (!auth?.user) return <Loading />;
+
+  const [name, lastname] = auth?.user?.fullname.split(' ');
+
   return (
     <Aside>
-      <DonorInfo name='Maxim' lastname='Lambov' honorary />
+      <DonorInfo name={name} lastname={lastname} honorary={auth.user.honorary} />
       {/* <DonorCard />
       <DonorProgress /> */}
       <Menu>

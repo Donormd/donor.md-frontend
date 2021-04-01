@@ -62,7 +62,6 @@ module.exports = {
         ignoreExport: false,
       },
     ],
-    'multiline-comment-style': ['error', 'starred-block'], // Мультистрочный коментарий в /*  */
     camelcase: 'error',
     'block-spacing': 'error', // { space }
     'new-parens': 'error',

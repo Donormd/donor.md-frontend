@@ -10,4 +10,5 @@ export interface IUser {
   phone: string;
   phoneNumber: string;
   creationDate: string;
+  honorary: boolean;
 }

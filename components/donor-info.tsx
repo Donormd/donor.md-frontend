@@ -1,29 +1,15 @@
-import React from 'react';
+import React, { FC } from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
 import { Title, Paragraph } from './UI';
 
-export declare type Props = {
+export interface IProps {
   honorary: boolean;
   name: string;
   lastname: string;
-};
+}
 
-const Layer = styled.div`
-  display: flex;
-  margin-bottom: 15px;
-`;
-
-const ImageWrapper = styled.div`
-  margin-right: 15px;
-  width: 75px;
-  height: 75px;
-  border-radius: ${({ theme }) => theme.radius};
-  border: ${({ theme }) => `1px solid ${theme.red}`};
-  overflow: hidden;
-`;
-
-const DonorInfo: React.FC<Props> = ({ honorary, name, lastname }): JSX.Element => {
+const DonorInfo: FC<IProps> = ({ honorary, name, lastname }) => {
   return (
     <Layer>
       <ImageWrapper>
@@ -43,3 +29,17 @@ const DonorInfo: React.FC<Props> = ({ honorary, name, lastname }): JSX.Element =
 };
 
 export default DonorInfo;
+
+const Layer = styled.div`
+  display: flex;
+  margin-bottom: 15px;
+`;
+
+const ImageWrapper = styled.div`
+  margin-right: 15px;
+  width: 75px;
+  height: 75px;
+  border-radius: ${({ theme }) => theme.radius};
+  border: ${({ theme }) => `1px solid ${theme.red}`};
+  overflow: hidden;
+`;
