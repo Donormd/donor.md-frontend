@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { FC } from 'react';
 import styled from 'styled-components';
+import { useForm } from 'react-hook-form';
 import DashboardButtonsLinks from '../../components/dashboard-buttons-links';
 import {
   TitleWithArrow,
@@ -19,27 +20,22 @@ import {
 import DashboardGrid from '../../layouts/dashboard-grid';
 import { useAppSelector } from '../../redux/store';
 
-const WrapperSwitch = styled.div`
-  display: flex;
-  & > * {
-    margin-right: 15px;
-  }
-`;
-
-const MyDetails: React.FC = (): JSX.Element => {
+const MyDetails: FC = () => {
   const { bloodGroups, cities, organizations } = useAppSelector((state) => state.common);
+  const { register } = useForm();
+
   return (
     <DashboardGrid>
       <TitleWithArrow>Мои данные</TitleWithArrow>
       <DashboardButtonsLinks />
       <Form>
-        <FormItem label='ФИО' required>
-          <Input />
+        <FormItem columns={2} label='ФИО' required>
+          <Input name='fullname' innerRef={register} />
         </FormItem>
-        <FormItem label='Дата рождения' required>
+        <FormItem columns={2} label='Дата рождения' required>
           <DatePicker />
         </FormItem>
-        <FormItem label='Группа крови' required>
+        <FormItem columns={2} label='Группа крови' required>
           <Select size='large' placeholder='Ваша группа крови'>
             {bloodGroups.data &&
               bloodGroups.data.map(({ _id, text }) => (
@@ -54,7 +50,7 @@ const MyDetails: React.FC = (): JSX.Element => {
             <span>Женский</span>
           </WrapperSwitch>
         </FormItem>
-        <FormItem label='Город проживания' required>
+        <FormItem columns={2} label='Город проживания' required>
           <Select size='large' placeholder='Город проживания'>
             {cities.data &&
               cities.data.map(({ _id, text }) => <Select.Option value={_id}>{text}</Select.Option>)}
@@ -64,15 +60,15 @@ const MyDetails: React.FC = (): JSX.Element => {
         <Title as='h4' margin='30px' bold>
           Корпоративное донорство
         </Title>
-        <FormItem columns={1}>
+        <FormItem columns={2}>
           <Checkbox>
             <Paragraph as='span' size='1.2em'>
               Я участник программы корпоративное донорство
             </Paragraph>
           </Checkbox>
         </FormItem>
-        <FormItem label='Выберите вашу организацию'>
-          <Select placeholder='Выберите вашу организацию'>
+        <FormItem columns={2} label='Выберите вашу организацию'>
+          <Select size='large' placeholder='Выберите вашу организацию'>
             {organizations.data &&
               organizations.data.map(({ _id, text }) => (
                 <Select.Option value={_id}>{text}</Select.Option>
@@ -83,13 +79,13 @@ const MyDetails: React.FC = (): JSX.Element => {
         <Title as='h4' margin='30px' bold>
           Ваши контакты
         </Title>
-        <FormItem label='Ваш email-адрес' required>
+        <FormItem columns={2} label='Ваш email-адрес' required>
           <Input />
         </FormItem>
-        <FormItem label='Номер мобильного телефона' required>
+        <FormItem columns={2} label='Номер мобильного телефона' required>
           <Input />
         </FormItem>
-        <FormItem label='Номер домашнего телефона' required>
+        <FormItem columns={2} label='Номер домашнего телефона' required>
           <Input />
         </FormItem>
         <div>
@@ -103,7 +99,7 @@ const MyDetails: React.FC = (): JSX.Element => {
             напишите еще!)
           </Paragraph>
         </div>
-        <FormItem columns={1}>
+        <FormItem>
           <TextArea rows={7} />
         </FormItem>
         <Button variant='outline-danger' size='lg'>
@@ -115,3 +111,10 @@ const MyDetails: React.FC = (): JSX.Element => {
 };
 
 export default MyDetails;
+
+const WrapperSwitch = styled.div`
+  display: flex;
+  & > * {
+    margin-right: 15px;
+  }
+`;
