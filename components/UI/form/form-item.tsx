@@ -50,7 +50,7 @@ const ErrorColumn = styled.div<{ columns: number }>`
 `;
 
 const Label = styled(Title)<{ required?: boolean }>`
-  margin-top: 5px;
+  margin: 5px 0 15px 5px;
   &::after {
     display: ${({ required }) => (required ? 'inline-block' : 'none')};
     margin-left: 4px;
