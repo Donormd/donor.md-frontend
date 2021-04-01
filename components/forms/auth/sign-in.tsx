@@ -1,5 +1,5 @@
 /* eslint no-console:0 */
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { FormItem, Input, Title } from '../../UI';
@@ -9,6 +9,8 @@ import { signIn } from '../../../redux/redusers/user';
 import { useAppSelector } from '../../../redux/store';
 import Alert from '../../alert';
 import { Loading } from '../../UI/loading';
+import { useAuth } from '../../../hooks/useAuth';
+import { useRequiredAuth } from '../../../hooks/useRequiredAuth';
 
 declare type Props = { onChangeState: onChangeState };
 
@@ -16,10 +18,19 @@ export const SignInForm: React.FC<Props> = ({ onChangeState }): JSX.Element => {
   const { data, status, error } = useAppSelector((state) => state.user);
   const dispatch = useDispatch();
   const { handleSubmit, register } = useForm();
+  const auth = useAuth();
+
+  useRequiredAuth('/dashboard', '/auth');
 
   const onSubmit = (data: { email: string; password: string }) => {
     dispatch(signIn(data));
   };
+
+  useEffect(() => {
+    if (data !== null) {
+      auth?.signIn(data);
+    }
+  }, [data]);
 
   if (status === 'loading') return <Loading />;
 
