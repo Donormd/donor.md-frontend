@@ -1,19 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { FC } from 'react';
 import styled from 'styled-components';
-import { useDispatch } from 'react-redux';
 import LeftMenu from '../components/left-menu';
 import RightMenu from '../components/right-menu';
 import { useRequiredAuth } from '../hooks/useRequiredAuth';
 import { useAuth } from '../hooks/useAuth';
 import { Loading } from '../components/UI/loading';
 import CenterAllAxes from './center-all-axes';
-import { getOptions } from '../redux/common';
 
-type Props = {
-  children: React.ReactNode;
+interface IProps {
   leftImage?: string;
   className?: string;
-};
+}
 
 const Main = styled.main`
   display: grid;
@@ -29,23 +26,10 @@ const Container = styled.section`
   width: 100%;
 `;
 
-const DashboardGrid: React.FC<Props> = ({ children, className, leftImage }): JSX.Element => {
+const DashboardGrid: FC<IProps> = ({ children, className, leftImage }) => {
   const auth = useAuth();
-  const dispatch = useDispatch();
 
   useRequiredAuth(null, '/auth');
-
-  useEffect(() => {
-    dispatch(getOptions('cities'));
-    dispatch(getOptions('bloodGroups'));
-    dispatch(getOptions('bloodCenter'));
-    dispatch(getOptions('organizations'));
-    dispatch(getOptions('transfusionCenter'));
-    dispatch(getOptions('typesAssistance'));
-    dispatch(getOptions('userGroup'));
-    dispatch(getOptions('userStatus'));
-    dispatch(getOptions('sex'));
-  }, []);
 
   if (!auth?.user)
     return (
