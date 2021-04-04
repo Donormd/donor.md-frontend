@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
 import LeftMenu from '../components/left-menu';
 import RightMenu from '../components/right-menu';
 import { useRequiredAuth } from '../hooks/useRequiredAuth';
 import { useAuth } from '../hooks/useAuth';
 import { Loading } from '../components/UI/loading';
 import CenterAllAxes from './center-all-axes';
+import { getOptions } from '../redux/common';
 
 type Props = {
   children: React.ReactNode;
@@ -28,14 +30,30 @@ const Container = styled.section`
 `;
 
 const DashboardGrid: React.FC<Props> = ({ children, className, leftImage }): JSX.Element => {
-  useRequiredAuth(null, '/auth');
   const auth = useAuth();
+  const dispatch = useDispatch();
+
+  useRequiredAuth(null, '/auth');
+
+  useEffect(() => {
+    dispatch(getOptions('cities'));
+    dispatch(getOptions('bloodGroups'));
+    dispatch(getOptions('bloodCenter'));
+    dispatch(getOptions('organizations'));
+    dispatch(getOptions('transfusionCenter'));
+    dispatch(getOptions('typesAssistance'));
+    dispatch(getOptions('userGroup'));
+    dispatch(getOptions('userStatus'));
+    dispatch(getOptions('sex'));
+  }, []);
+
   if (!auth?.user)
     return (
       <CenterAllAxes>
         <Loading />
       </CenterAllAxes>
     );
+
   return (
     <Main>
       <LeftMenu image={leftImage} />
