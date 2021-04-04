@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Paragraph, Title } from '../UI/typography';
+import { Paragraph, Title } from '../UI';
 
 export const LogoWrapper = styled.div`
   cursor: pointer;
@@ -31,7 +31,7 @@ export const ResponsiveLogoWrapper = styled(LogoWrapper)`
   grid-template-columns: 1fr;
   column-gap: 0;
   justify-items: center;
-  @media (min-width: 1200px) {
+  @media (min-width: ${({ theme }) => theme.media.xl}) {
     grid-template-columns: min-content 1fr;
     column-gap: 10px;
   }
