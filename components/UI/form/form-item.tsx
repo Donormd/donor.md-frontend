@@ -3,6 +3,7 @@ import { Title } from '../typography';
 
 export declare type FormItemProps = {
   columns?: number;
+  columnsSm?: number;
   children?: React.ReactNode;
   help?: string;
   label?: string;
@@ -16,12 +17,13 @@ export const FormItem: React.FC<FormItemProps> = ({
   help,
   children,
   columns = 1,
+  columnsSm = 1,
   required,
   marginBottom,
   error,
 }) => {
   return (
-    <Wrapper columns={columns} marginBottom={marginBottom}>
+    <Wrapper columns={columns} columnsSm={columnsSm} marginBottom={marginBottom}>
       <Column>
         <Label as='h5' required={required}>
           {label}
@@ -34,9 +36,9 @@ export const FormItem: React.FC<FormItemProps> = ({
   );
 };
 
-const Wrapper = styled.div<{ columns: number; marginBottom?: string }>`
+const Wrapper = styled.div<{ columns: number; columnsSm: number; marginBottom?: string }>`
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: ${({ columnsSm }) => `repeat(${columnsSm}, 1fr)`};
   margin-bottom: ${({ marginBottom }) => marginBottom || '25px'};
   @media (min-width: ${({ theme }) => theme.media.lg}) {
     grid-template-columns: ${({ columns }) => `repeat(${columns}, 1fr)`};
