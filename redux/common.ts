@@ -43,7 +43,7 @@ const commonMap: Record<Options, string> = {
   bloodGroups: `${apiV1}/blood-group`,
   bloodCenter: `${apiV1}/blood-center`,
   organizations: `${apiV1}/organization`,
-  transfusionCenter: `${apiV1}/transfusion-сenter`,
+  transfusionCenter: `${apiV1}/transfusion-center`,
   typesAssistance: `${apiV1}/types-assistance`,
   userGroup: `${apiV1}/user-group`,
   userStatus: `${apiV1}/user-status`,
