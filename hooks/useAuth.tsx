@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { AuthContext, IAuthContext } from '../context/auth';
 import { IUser } from '../interfaces/user';
+import { storage } from '../services/storage';
 
 export const useAuth = (): IAuthContext | null => useContext(AuthContext);
 
@@ -31,10 +32,8 @@ const useProvideAuth = (): IAuthContext => {
     });
 
   useEffect(() => {
-    /*
-     * loading user data
-     * setUser(userObj);
-     */
+    const user = storage.get('user')?.data as IUser | null;
+    setUser(user);
   }, []);
 
   return {

@@ -3,6 +3,7 @@ import axios from 'axios';
 import { apiV1 } from '../constants/url';
 import { IState } from '../../interfaces/initial-state';
 import { IUser } from '../../interfaces/user';
+import { storage } from '../../services/storage';
 
 const initialState: IState<IUser | null> = {
   status: 'init',
@@ -42,6 +43,7 @@ const user = createSlice({
     builder.addCase(signIn.fulfilled, (state, action) => {
       state.status = 'success';
       state.data = action.payload;
+      storage.set('user', action.payload);
     });
     builder.addCase(signIn.pending, (state) => {
       state.status = 'loading';

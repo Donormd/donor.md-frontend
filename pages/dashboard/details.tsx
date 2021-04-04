@@ -43,7 +43,7 @@ const MyDetails: FC = () => {
               ))}
           </Select>
         </FormItem>
-        <FormItem label='Пол' required>
+        <FormItem columnsSm={2} columns={2} label='Пол' required>
           <WrapperSwitch>
             <span>Мужской</span>
             <Switch />

@@ -1,4 +1,3 @@
-/* eslint no-console:0 */
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
@@ -76,7 +75,7 @@ export const SignInForm: React.FC<Props> = ({ onChangeState }): JSX.Element => {
           Забыли пароль?
         </WrappedLink>
       </div>
-      {error && <Alert>{error}</Alert>}
+      {error && <Alert dismissible>{error}</Alert>}
     </form>
   );
 };
