@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { storage } from '../services/storage';
 import { IState } from '../interfaces/initial-state';
 import { apiV1 } from './constants/url';
 
@@ -52,6 +53,7 @@ const commonMap: Record<Options, string> = {
 export const getOptions = createAsyncThunk<IOptions[], Options>(
   'common/options/get',
   async (dataType) => {
+    if (storage.isActualData(dataType)) return storage.get(dataType)?.data;
     const response = await axios.get(commonMap[dataType]);
     return response.data;
   },
@@ -67,6 +69,7 @@ const common = createSlice({
       state[arg].status = 'success';
       state[arg].data = action.payload;
       state[arg].error = null;
+      storage.set(arg, action.payload);
     });
     builder.addCase(getOptions.pending, (state, action) => {
       const { arg } = action.meta;
