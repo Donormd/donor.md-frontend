@@ -8,7 +8,8 @@ export interface IUser {
   email: string;
   corporateId: string;
   phone: string;
-  phoneNumber: string;
+  phoneMobile: string;
+  dateBirth: string;
   creationDate: string;
   honorary: boolean;
 }

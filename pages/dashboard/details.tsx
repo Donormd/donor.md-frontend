@@ -1,6 +1,6 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
+import { useForm, Controller } from 'react-hook-form';
 import styled from 'styled-components';
-import { useForm } from 'react-hook-form';
 import DashboardButtonsLinks from '../../components/dashboard-buttons-links';
 import {
   TitleWithArrow,
@@ -14,15 +14,28 @@ import {
   Checkbox,
   Title,
   Paragraph,
-  Switch,
   Select,
 } from '../../components/UI';
 import DashboardGrid from '../../layouts/dashboard-grid';
 import { useAppSelector } from '../../redux/store';
 
 const MyDetails: FC = () => {
-  const { bloodGroups, cities, organizations } = useAppSelector((state) => state.common);
-  const { register } = useForm();
+  const {
+    common: { bloodGroups, cities, organizations, sex },
+    user: { data: userData },
+  } = useAppSelector((state) => state);
+  const { register, setValue, control } = useForm();
+
+  useEffect(() => {
+    if (!userData) return;
+    setValue('fullname', userData.fullname);
+    setValue('email', userData.email);
+    setValue('phone', userData.phone);
+    setValue('phoneMobile', userData.phoneMobile);
+    setValue('corporateId', userData.corporateId);
+    setValue('sexId', userData.sexId);
+    setValue('dateBirth', userData.dateBirth);
+  }, []);
 
   return (
     <DashboardGrid>
@@ -33,22 +46,36 @@ const MyDetails: FC = () => {
           <Input name='fullname' innerRef={register} />
         </FormItem>
         <FormItem columns={2} label='Дата рождения' required>
-          <DatePicker />
+          <Controller name='dateBirth' control={control} as={<DatePicker />} />
         </FormItem>
         <FormItem columns={2} label='Группа крови' required>
-          <Select size='large' placeholder='Ваша группа крови'>
-            {bloodGroups.data &&
-              bloodGroups.data.map(({ _id, text }) => (
-                <Select.Option value={_id}>{text}</Select.Option>
-              ))}
-          </Select>
+          <Controller
+            name='bloodGroupId'
+            control={control}
+            as={
+              <Select size='large' placeholder='Ваша группа крови'>
+                {bloodGroups.data &&
+                  bloodGroups.data.map(({ _id, text }) => (
+                    <Select.Option value={_id}>{text}</Select.Option>
+                  ))}
+              </Select>
+            }
+          />
         </FormItem>
-        <FormItem label='Пол' required>
-          <WrapperSwitch>
-            <span>Мужской</span>
-            <Switch />
-            <span>Женский</span>
-          </WrapperSwitch>
+        <FormItem columns={2} label='Пол' required>
+          <Controller
+            name='sexId'
+            control={control}
+            checked={false}
+            as={
+              <Select size='large' placeholder='Город проживания'>
+                {sex.data &&
+                  sex.data.map(({ _id, text }) => (
+                    <Select.Option value={_id}>{text}</Select.Option>
+                  ))}
+              </Select>
+            }
+          />
         </FormItem>
         <FormItem columns={2} label='Город проживания' required>
           <Select size='large' placeholder='Город проживания'>
@@ -68,25 +95,31 @@ const MyDetails: FC = () => {
           </Checkbox>
         </FormItem>
         <FormItem columns={2} label='Выберите вашу организацию'>
-          <Select size='large' placeholder='Выберите вашу организацию'>
-            {organizations.data &&
-              organizations.data.map(({ _id, text }) => (
-                <Select.Option value={_id}>{text}</Select.Option>
-              ))}
-          </Select>
+          <Controller
+            name='corporateId'
+            control={control}
+            as={
+              <Select size='large' placeholder='Выберите вашу организацию'>
+                {organizations.data &&
+                  organizations.data.map(({ _id, text }) => (
+                    <Select.Option value={_id}>{text}</Select.Option>
+                  ))}
+              </Select>
+            }
+          />
         </FormItem>
         <Divider />
         <Title as='h4' margin='30px' bold>
           Ваши контакты
         </Title>
         <FormItem columns={2} label='Ваш email-адрес' required>
-          <Input />
+          <Input name='email' innerRef={register} />
         </FormItem>
         <FormItem columns={2} label='Номер мобильного телефона' required>
-          <Input />
+          <Input name='phoneMobile' innerRef={register} />
         </FormItem>
         <FormItem columns={2} label='Номер домашнего телефона' required>
-          <Input />
+          <Input name='phone' innerRef={register} />
         </FormItem>
         <div>
           <Title as='h5' margin='15px'>
@@ -100,7 +133,7 @@ const MyDetails: FC = () => {
           </Paragraph>
         </div>
         <FormItem>
-          <TextArea rows={7} />
+          <TextArea rows={7} name='story' ref={register} />
         </FormItem>
         <Button variant='outline-danger' size='lg'>
           Сохранить
@@ -111,10 +144,3 @@ const MyDetails: FC = () => {
 };
 
 export default MyDetails;
-
-const WrapperSwitch = styled.div`
-  display: flex;
-  & > * {
-    margin-right: 15px;
-  }
-`;

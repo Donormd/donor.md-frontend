@@ -8,10 +8,8 @@ import { onChangeState } from './types';
 import { ActionLayout } from './utils';
 import { useAppSelector } from '../../../redux/store';
 import { getOptions } from '../../../redux/common';
-import { signUp } from '../../../redux/redusers/user';
+import { signUpAction } from '../../../redux/redusers/user';
 import { IUser } from '../../../interfaces/user';
-import { Loading } from '../../UI/loading';
-import { isLoading } from '../../helpers';
 import Alert from '../../alert';
 
 declare type Props = { onChangeState: onChangeState };
@@ -28,10 +26,8 @@ export const SignUpForm: React.FC<Props> = ({ onChangeState }): JSX.Element => {
   }, []);
 
   const onSubmit = (data: IUser) => {
-    dispatch(signUp(data));
+    dispatch(signUpAction(data));
   };
-
-  if (isLoading(sex) || isLoading(bloodGroups)) return <Loading />;
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
@@ -64,6 +60,8 @@ export const SignUpForm: React.FC<Props> = ({ onChangeState }): JSX.Element => {
       </FormItem>
       <FormItem>
         <Controller
+          name='bloodGroupId'
+          control={control}
           as={
             <Select size='large' placeholder='Укажите группу крови'>
               {blood &&
@@ -74,12 +72,10 @@ export const SignUpForm: React.FC<Props> = ({ onChangeState }): JSX.Element => {
                 ))}
             </Select>
           }
-          name='bloodGroupId'
-          control={control}
         />
       </FormItem>
       <FormItem>
-        <Input placeholder='Укажите номер телефона' name='phone' innerRef={register} />
+        <Input placeholder='Укажите номер телефона' name='phoneMobile' innerRef={register} />
       </FormItem>
       <FormItem>
         <Input placeholder='Укажите email' type='email' name='email' innerRef={register} />
@@ -91,13 +87,13 @@ export const SignUpForm: React.FC<Props> = ({ onChangeState }): JSX.Element => {
         <FormItemCheckbox>
           <Checkbox checked />
           <p>
-            Я принимаю условия Пользовательского соглашения и даю своё согласие&nbsp;
+            Я принимаю условия Пользовательского соглашения и даю своё согласие{' '}
             <Link href='/'>
               <StyledLink color='textMuted' underline>
                 Donor.md
               </StyledLink>
-            </Link>
-            &nbsp; на обработку моей персональной информации на условиях, определенных&nbsp;
+            </Link>{' '}
+            на обработку моей персональной информации на условиях, определенных{' '}
             <Link href='/privacy-policy'>
               <StyledLink color='textMuted' underline>
                 Политикой конфиденциальности.

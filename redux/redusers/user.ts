@@ -1,8 +1,9 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, createAction, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { apiV1 } from '../constants/url';
 import { IState } from '../../interfaces/initial-state';
 import { IUser } from '../../interfaces/user';
+import { storage } from '../../services/storage';
 
 const initialState: IState<IUser | null> = {
   status: 'init',
@@ -10,7 +11,9 @@ const initialState: IState<IUser | null> = {
   error: null,
 };
 
-export const signIn = createAsyncThunk<IUser, { email: string; password: string }>(
+export const setUserDate = createAction<IUser | null>('user/set');
+
+export const signInAction = createAsyncThunk<IUser, { email: string; password: string }>(
   'user/sign-in',
   async (payload) => {
     const response = await axios.post(`${apiV1}/auth/sign-in`, payload);
@@ -18,46 +21,53 @@ export const signIn = createAsyncThunk<IUser, { email: string; password: string 
   },
 );
 
-export const signUp = createAsyncThunk<IUser, IUser>('user/sign-up', async (payload) => {
+export const signUpAction = createAsyncThunk<IUser, IUser>('user/sign-up', async (payload) => {
   const response = await axios.post(`${apiV1}/auth/sign-up`, payload);
   return response.data;
 });
 
-export const recovery = createAsyncThunk<void, { email: string }>(
+export const recoveryAction = createAsyncThunk<void, { email: string }>(
   'user/recovery',
   async (payload) => {
     await axios.post(`${apiV1}/auth/recovery`, payload);
   },
 );
 
-export const updateUser = createAsyncThunk<void, IUser>('user/update', async (payload) => {
+export const updateUserAction = createAsyncThunk<void, IUser>('user/update', async (payload) => {
   await axios.post(`${apiV1}/user`, payload);
 });
 
 const user = createSlice({
   name: 'user',
   initialState,
-  reducers: {},
+  reducers: {
+    setUserDate(state, action: PayloadAction<IUser>) {
+      // eslint-disable-next-line no-console
+      console.log('action ---> ', { action });
+      state.data = action.payload;
+    },
+  },
   extraReducers: (builder) => {
-    builder.addCase(signIn.fulfilled, (state, action) => {
+    builder.addCase(signInAction.fulfilled, (state, action: PayloadAction<IUser>) => {
       state.status = 'success';
       state.data = action.payload;
+      storage.set('user', action.payload);
     });
-    builder.addCase(signIn.pending, (state) => {
+    builder.addCase(signInAction.pending, (state) => {
       state.status = 'loading';
     });
-    builder.addCase(signIn.rejected, (state, action) => {
+    builder.addCase(signInAction.rejected, (state, action) => {
       state.status = 'error';
       state.error = action.error.message || 'Ops something went wrong';
     });
-    builder.addCase(signUp.fulfilled, (state, action) => {
+    builder.addCase(signUpAction.fulfilled, (state, action: PayloadAction<IUser>) => {
       state.status = 'success';
       state.data = action.payload;
     });
-    builder.addCase(signUp.pending, (state) => {
+    builder.addCase(signUpAction.pending, (state) => {
       state.status = 'loading';
     });
-    builder.addCase(signUp.rejected, (state, action) => {
+    builder.addCase(signUpAction.rejected, (state, action) => {
       state.status = 'error';
       state.error = action.error.message || 'Ops something went wrong';
     });

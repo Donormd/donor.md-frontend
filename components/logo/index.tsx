@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import Image from 'next/image';
 import { Tooltip } from 'antd';
 import Link from 'next/link';
@@ -10,7 +10,7 @@ import {
   ResponsiveLogoWrapper,
 } from './styles';
 
-export const Logo: React.FC = (): JSX.Element => (
+export const Logo: FC = () => (
   <Link href='/'>
     <LogoWrapper>
       <Image
@@ -30,7 +30,7 @@ export const Logo: React.FC = (): JSX.Element => (
   </Link>
 );
 
-export const ResponsiveLogo: React.FC = (): JSX.Element => (
+export const ResponsiveLogo: FC = () => (
   <Link href='/'>
     <Tooltip placement='left' title='На главную'>
       <ResponsiveLogoWrapper>

@@ -3,7 +3,7 @@ import { IUser } from '../interfaces/user';
 
 export interface IAuthContext {
   user: IUser | null;
-  signIn: (user: IUser) => void;
+  signIn: (data: { email: string; password: string }) => void;
   signUp: (user: IUser) => void;
   signOut: () => void;
   sendPasswordResetEmail: (email: string) => void;
