@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice, createAction, PayloadAction } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { apiV1 } from '../constants/url';
 import { IState } from '../../interfaces/initial-state';
@@ -10,8 +10,6 @@ const initialState: IState<IUser | null> = {
   data: null,
   error: null,
 };
-
-export const setUserDate = createAction<IUser | null>('user/set');
 
 export const signInAction = createAsyncThunk<IUser, { email: string; password: string }>(
   'user/sign-in',
@@ -42,8 +40,6 @@ const user = createSlice({
   initialState,
   reducers: {
     setUserDate(state, action: PayloadAction<IUser>) {
-      // eslint-disable-next-line no-console
-      console.log('action ---> ', { action });
       state.data = action.payload;
     },
   },
@@ -74,4 +70,5 @@ const user = createSlice({
   },
 });
 
-export const { reducer, actions, caseReducers } = user;
+export const { setUserDate } = user.actions;
+export const { reducer, caseReducers } = user;
