@@ -11,5 +11,5 @@ export const useRequiredAuth = (resolve: string | null, reject: string) => {
     } else {
       router && router.push(resolve || router.pathname);
     }
-  }, []);
+  }, [auth?.user]);
 };
