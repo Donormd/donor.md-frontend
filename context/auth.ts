@@ -6,8 +6,6 @@ export interface IAuthContext {
   signIn: (data: { email: string; password: string }) => void;
   signUp: (user: IUser) => void;
   signOut: () => void;
-  sendPasswordResetEmail: (email: string) => void;
-  confirmPasswordReset: (code: string, password: string) => void;
 }
 
 export const AuthContext = createContext<IAuthContext | null>(null);
