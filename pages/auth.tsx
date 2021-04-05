@@ -10,8 +10,6 @@ import { RecoveryForm } from '../components/forms/auth/recovery';
 const AuthPage: React.FC = (): JSX.Element => {
   const [state, setState] = useState<string>('signIn');
 
-  // if user exist router push to /dashboard
-
   return (
     <Main>
       <Container>

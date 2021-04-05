@@ -1,6 +1,6 @@
 import React, { FC, useEffect } from 'react';
 import { useForm, Controller } from 'react-hook-form';
-import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
 import DashboardButtonsLinks from '../../components/dashboard-buttons-links';
 import {
   TitleWithArrow,
@@ -18,18 +18,28 @@ import {
 } from '../../components/UI';
 import DashboardGrid from '../../layouts/dashboard-grid';
 import { useAppSelector } from '../../redux/store';
+import { getOptions } from '../../redux/common';
 
 const MyDetails: FC = () => {
+  const dispatch = useDispatch();
+  const { register, setValue, control } = useForm();
   const {
     common: { bloodGroups, cities, organizations, sex },
     user: { data: userData },
   } = useAppSelector((state) => state);
-  const { register, setValue, control } = useForm();
+
+  useEffect(() => {
+    dispatch(getOptions('sex'));
+    dispatch(getOptions('bloodGroups'));
+    dispatch(getOptions('cities'));
+    dispatch(getOptions('organizations'));
+  }, []);
 
   useEffect(() => {
     if (!userData) return;
     setValue('fullname', userData.fullname);
     setValue('email', userData.email);
+    setValue('bloodGroupId', userData.bloodGroupId);
     setValue('phone', userData.phone);
     setValue('phoneMobile', userData.phoneMobile);
     setValue('corporateId', userData.corporateId);

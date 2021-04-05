@@ -1,24 +1,30 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
-import { useDispatch } from 'react-redux';
 import { useForm, Controller } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 import { FormItem, Input, Title, Checkbox, StyledLink, Select } from '../../UI';
 import { onChangeState } from './types';
 import { ActionLayout } from './utils';
 import { useAppSelector } from '../../../redux/store';
 import { getOptions } from '../../../redux/common';
-import { signUpAction } from '../../../redux/redusers/user';
 import { IUser } from '../../../interfaces/user';
 import Alert from '../../alert';
+import { isLoading } from '../../helpers';
+import { Loading } from '../../UI/loading';
+import { useAuth } from '../../../hooks/useAuth';
+import { useRequiredAuth } from '../../../hooks/useRequiredAuth';
 
 declare type Props = { onChangeState: onChangeState };
 
 export const SignUpForm: React.FC<Props> = ({ onChangeState }): JSX.Element => {
+  const dispatch = useDispatch();
+  const auth = useAuth();
   const { register, control, handleSubmit } = useForm();
   const { sex, bloodGroups } = useAppSelector((state) => state.common);
   const { status, error } = useAppSelector((state) => state.user);
-  const dispatch = useDispatch();
+
+  useRequiredAuth('/dashboard', '/auth');
 
   useEffect(() => {
     dispatch(getOptions('sex'));
@@ -26,12 +32,12 @@ export const SignUpForm: React.FC<Props> = ({ onChangeState }): JSX.Element => {
   }, []);
 
   const onSubmit = (data: IUser) => {
-    dispatch(signUpAction(data));
+    auth?.signUp(data);
   };
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  const blood = [...bloodGroups.data];
+  if (isLoading(sex) || isLoading(bloodGroups)) return <Loading />;
+
+  const blood = bloodGroups?.data ? [...bloodGroups.data] : [];
   blood.shift();
 
   return (
@@ -118,8 +124,8 @@ export const SignUpForm: React.FC<Props> = ({ onChangeState }): JSX.Element => {
           linkOnClick={() => onChangeState('signIn')}
         />
       </div>
-      {status === 'error' && <Alert>{error}</Alert>}
-      {status === 'success' && <Alert>Вы успешно зарегистрировались</Alert>}
+      {status === 'error' && <Alert dismissible>{error}</Alert>}
+      {status === 'success' && <Alert dismissible>Вы успешно зарегистрировались</Alert>}
     </form>
   );
 };
