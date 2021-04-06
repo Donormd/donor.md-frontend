@@ -33,7 +33,7 @@ const Monitoring: React.FC = (): JSX.Element => {
       <BloodList>
         {data?.values &&
           Object.entries(data.values).map((item: [string, number]) => {
-            return <BloodItem key={item[1]} group={item[0]} quantity={item[1]} />;
+            return <BloodItem key={item[0]} group={item[0]} quantity={item[1]} />;
           })}
       </BloodList>
       <Paragraph align='right'>По состоянию на: {dateUpdate}</Paragraph>

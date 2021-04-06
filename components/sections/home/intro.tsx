@@ -1,8 +1,36 @@
-import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import styled from 'styled-components';
+import { FC } from 'react';
 import { Title, Paragraph, Button } from '../../UI';
+
+export const Intro: FC = (): JSX.Element => (
+  <Section id='intro'>
+    <ImageWrapper>
+      <Image src='/images/pages/home/love.svg' width={300} height={300} layout='responsive' />
+    </ImageWrapper>
+    <Column>
+      <StyledTitle bold>
+        <RedText>DONOR.MD</RedText> - место, где люди помогают людям
+      </StyledTitle>
+      <ColumnParagraph>
+        Web-сервис для тех, кто сдает и ищет донорскую кровь в Приднестровье
+      </ColumnParagraph>
+      <ButtonGroup>
+        <Link href='/articles/minimum-requirements-for-donor' passHref>
+          <Button variant='outline-primary' size='lg'>
+            Стать донором
+          </Button>
+        </Link>
+        <Link href='/donor-search' passHref>
+          <Button variant='outline-danger' size='lg'>
+            Нужна кровь
+          </Button>
+        </Link>
+      </ButtonGroup>
+    </Column>
+  </Section>
+);
 
 const Section = styled.section`
   padding-top: 45px;
@@ -53,33 +81,3 @@ const ButtonGroup = styled.div`
     grid-template-columns: max-content;
   }
 `;
-
-const Intro: React.FC = (): JSX.Element => (
-  <Section id='intro'>
-    <ImageWrapper>
-      <Image src='/images/pages/home/love.svg' width={300} height={300} layout='responsive' />
-    </ImageWrapper>
-    <Column>
-      <StyledTitle bold>
-        <RedText>DONOR.MD</RedText> - место, где люди помогают людям
-      </StyledTitle>
-      <ColumnParagraph>
-        Web-сервис для тех, кто сдает и ищет донорскую кровь в Приднестровье
-      </ColumnParagraph>
-      <ButtonGroup>
-        <Link href='/articles/minimum-requirements-for-donor'>
-          <Button variant='outline-primary' size='lg'>
-            Стать донором
-          </Button>
-        </Link>
-        <Link href='/donor-search'>
-          <Button variant='outline-danger' size='lg'>
-            Нужна кровь
-          </Button>
-        </Link>
-      </ButtonGroup>
-    </Column>
-  </Section>
-);
-
-export default Intro;

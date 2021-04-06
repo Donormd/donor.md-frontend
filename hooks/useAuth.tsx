@@ -5,10 +5,12 @@ import { AuthContext, IAuthContext } from '../context/auth';
 import { IUser } from '../interfaces/user';
 import { storage } from '../services/storage';
 import { setUserDate, signInAction, signUpAction } from '../redux/redusers/user';
+import { useAppSelector } from '../redux/store';
 
 export const useAuth = (): IAuthContext | null => useContext(AuthContext);
 
 const useProvideAuth = (): IAuthContext => {
+  const { data } = useAppSelector((state) => state.user);
   const router = useRouter();
   const dispatch = useDispatch();
   const [user, setUser] = useState<null | IUser>(null);
@@ -16,6 +18,7 @@ const useProvideAuth = (): IAuthContext => {
   const signIn = (data: { email: string; password: string }) => {
     dispatch(signInAction(data));
   };
+
   const signUp = (user: IUser) => {
     dispatch(signUpAction(user));
   };
@@ -28,10 +31,15 @@ const useProvideAuth = (): IAuthContext => {
   };
 
   useEffect(() => {
+    data && setUser(data);
+    data && storage.set('user', data);
+  }, [data]);
+
+  useEffect(() => {
     const user = storage.get('user')?.data as IUser | null;
     user && setUser(user);
     user && dispatch(setUserDate(user));
-  }, []);
+  }, [dispatch]);
 
   return {
     user,
