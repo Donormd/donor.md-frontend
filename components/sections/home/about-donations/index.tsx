@@ -67,7 +67,7 @@ const AboutDonation: React.FC<IProps> = ({ title, data }): JSX.Element => {
       </Title>
       <ArticleList>
         {data.map(({ image, text, link }) => (
-          <article>
+          <article key={image.src}>
             <ImageWrapper>
               <Image
                 src={image.src}

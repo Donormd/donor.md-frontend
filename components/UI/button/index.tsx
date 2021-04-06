@@ -1,4 +1,4 @@
-import React, { ButtonHTMLAttributes } from 'react';
+import { ButtonHTMLAttributes, ForwardedRef, forwardRef } from 'react';
 import styled from 'styled-components';
 import { theme } from '../theme';
 
@@ -18,6 +18,7 @@ export interface IButtonWrapperProps {
   variant: ButtonVariant;
   size: 'sm' | 'md' | 'lg';
   type: 'button' | 'submit' | 'reset';
+  ref: unknown;
 }
 
 const buttonThemes = {
@@ -120,25 +121,31 @@ export const StyledButton = styled.button<IButtonWrapperProps>`
   }
 `;
 
-export const Button: React.FC<IButtonProps> = ({
-  children,
-  className,
-  disabled = false,
-  variant = 'primary',
-  size = 'md',
-  type = 'button',
-  ...rest
-}) => {
-  return (
-    <StyledButton
-      {...rest}
-      className={className}
-      type={type}
-      size={size}
-      variant={variant}
-      disabled={disabled}
-    >
-      {children}
-    </StyledButton>
-  );
-};
+export const Button = forwardRef<HTMLButtonElement, IButtonProps>(
+  (
+    {
+      children,
+      className,
+      disabled = false,
+      variant = 'primary',
+      size = 'md',
+      type = 'button',
+      ...rest
+    },
+    ref,
+  ) => {
+    return (
+      <StyledButton
+        {...rest}
+        className={className}
+        type={type}
+        size={size}
+        variant={variant}
+        disabled={disabled}
+        ref={ref}
+      >
+        {children}
+      </StyledButton>
+    );
+  },
+);
