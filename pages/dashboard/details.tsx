@@ -66,7 +66,9 @@ const MyDetails: FC = () => {
               <Select size='large' placeholder='Ваша группа крови'>
                 {bloodGroups.data &&
                   bloodGroups.data.map(({ _id, text }) => (
-                    <Select.Option value={_id}>{text}</Select.Option>
+                    <Select.Option key={_id} value={_id}>
+                      {text}
+                    </Select.Option>
                   ))}
               </Select>
             }
@@ -81,7 +83,9 @@ const MyDetails: FC = () => {
               <Select size='large' placeholder='Город проживания'>
                 {sex.data &&
                   sex.data.map(({ _id, text }) => (
-                    <Select.Option value={_id}>{text}</Select.Option>
+                    <Select.Option key={_id} value={_id}>
+                      {text}
+                    </Select.Option>
                   ))}
               </Select>
             }
@@ -90,7 +94,11 @@ const MyDetails: FC = () => {
         <FormItem columns={2} label='Город проживания' required>
           <Select size='large' placeholder='Город проживания'>
             {cities.data &&
-              cities.data.map(({ _id, text }) => <Select.Option value={_id}>{text}</Select.Option>)}
+              cities.data.map(({ _id, text }) => (
+                <Select.Option key={_id} value={_id}>
+                  {text}
+                </Select.Option>
+              ))}
           </Select>
         </FormItem>
         <Divider />
@@ -112,7 +120,9 @@ const MyDetails: FC = () => {
               <Select size='large' placeholder='Выберите вашу организацию'>
                 {organizations.data &&
                   organizations.data.map(({ _id, text }) => (
-                    <Select.Option value={_id}>{text}</Select.Option>
+                    <Select.Option key={_id} value={_id}>
+                      {text}
+                    </Select.Option>
                   ))}
               </Select>
             }
