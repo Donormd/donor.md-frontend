@@ -1,11 +1,11 @@
 import React, { FC, useEffect } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
+
 import DashboardButtonsLinks from '../../components/dashboard-buttons-links';
 import {
   TitleWithArrow,
   Button,
-  Form,
   FormItem,
   Input,
   Divider,
@@ -22,7 +22,7 @@ import { getOptions } from '../../redux/common';
 
 const MyDetails: FC = () => {
   const dispatch = useDispatch();
-  const { register, setValue, control } = useForm();
+  const { register, setValue, control, handleSubmit, watch, getValues } = useForm();
   const {
     common: { bloodGroups, cities, organizations, sex },
     user: { data: userData },
@@ -33,25 +33,28 @@ const MyDetails: FC = () => {
     dispatch(getOptions('bloodGroups'));
     dispatch(getOptions('cities'));
     dispatch(getOptions('organizations'));
+
+    if (userData) {
+      setValue('fullname', userData.fullname);
+      setValue('email', userData.email);
+      setValue('bloodGroupId', userData.bloodGroupId);
+      setValue('phone', userData.phone);
+      setValue('phoneMobile', userData.phoneMobile);
+      setValue('corporateId', userData.corporateId);
+      setValue('sexId', userData.sexId);
+      setValue('dateBirth', userData.dateBirth);
+    }
   }, []);
 
-  useEffect(() => {
-    if (!userData) return;
-    setValue('fullname', userData.fullname);
-    setValue('email', userData.email);
-    setValue('bloodGroupId', userData.bloodGroupId);
-    setValue('phone', userData.phone);
-    setValue('phoneMobile', userData.phoneMobile);
-    setValue('corporateId', userData.corporateId);
-    setValue('sexId', userData.sexId);
-    setValue('dateBirth', userData.dateBirth);
-  }, []);
+  const onSubmit = (data) => {
+    console.log('send data --> ', data);
+  };
 
   return (
     <DashboardGrid>
       <TitleWithArrow>Мои данные</TitleWithArrow>
       <DashboardButtonsLinks />
-      <Form>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <FormItem columns={2} label='ФИО' required>
           <Input name='fullname' innerRef={register} />
         </FormItem>
@@ -105,17 +108,24 @@ const MyDetails: FC = () => {
         <Title as='h4' margin='30px' bold>
           Корпоративное донорство
         </Title>
-        <FormItem columns={2}>
-          <Checkbox>
-            <Paragraph as='span' size='1.2em'>
-              Я участник программы корпоративное донорство
-            </Paragraph>
-          </Checkbox>
+        <FormItem>
+          <Controller
+            name='corporateDonations'
+            control={control}
+            as={
+              <Checkbox>
+                <Paragraph as='span' size='1.2em'>
+                  Я участник программы корпоративное донорство
+                </Paragraph>
+              </Checkbox>
+            }
+          />
         </FormItem>
         <FormItem columns={2} label='Выберите вашу организацию'>
           <Controller
             name='corporateId'
             control={control}
+            disabled={false}
             as={
               <Select size='large' placeholder='Выберите вашу организацию'>
                 {organizations.data &&
@@ -155,10 +165,10 @@ const MyDetails: FC = () => {
         <FormItem>
           <TextArea rows={7} name='story' ref={register} />
         </FormItem>
-        <Button variant='outline-danger' size='lg'>
+        <Button type='submit' variant='outline-danger' size='lg'>
           Сохранить
         </Button>
-      </Form>
+      </form>
     </DashboardGrid>
   );
 };

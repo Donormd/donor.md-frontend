@@ -1,6 +1,6 @@
 {
   "name": "donor-frontend",
-  "version": "1.0.4",
+  "version": "1.0.24",
   "private": true,
   "scripts": {
     "dev": "next dev",
