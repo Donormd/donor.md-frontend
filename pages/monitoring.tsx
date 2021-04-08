@@ -41,7 +41,7 @@ const Monitoring: React.FC = () => {
           </Title>
           <Paragraph>
             Заполните пожалуйста форму для отбражение мониторинга запасов крови. Ввод данных по
-            эретрацитной массе.
+          эритроцитарной массе
           </Paragraph>
         </Article>
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -53,7 +53,7 @@ const Monitoring: React.FC = () => {
           </FormItem>
           <StyledDivider />
           <Paragraph align='left'>
-            Ввод данных для монитора крови из остатков запаса по дозам эритроцитную массы.
+            Ввод данных для монитора крови из остатков запаса по дозам эритроцитарной массы.
           </Paragraph>
           <TableForm>
             <Row>
