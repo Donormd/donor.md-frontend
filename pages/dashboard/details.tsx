@@ -1,6 +1,7 @@
 import React, { FC, useEffect } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
+
 import DashboardButtonsLinks from '../../components/dashboard-buttons-links';
 import {
   TitleWithArrow,
@@ -9,7 +10,6 @@ import {
   FormItem,
   Input,
   Divider,
-  TextArea,
   DatePicker,
   Checkbox,
   Title,
@@ -19,6 +19,7 @@ import {
 import DashboardGrid from '../../layouts/dashboard-grid';
 import { useAppSelector } from '../../redux/store';
 import { getOptions } from '../../redux/common';
+import { UserStoryForm } from '../../components/forms/user-story';
 
 const MyDetails: FC = () => {
   const dispatch = useDispatch();
@@ -37,15 +38,10 @@ const MyDetails: FC = () => {
 
   useEffect(() => {
     if (!userData) return;
-    setValue('fullname', userData.fullname);
-    setValue('email', userData.email);
-    setValue('bloodGroupId', userData.bloodGroupId);
-    setValue('phone', userData.phone);
-    setValue('phoneMobile', userData.phoneMobile);
-    setValue('corporateId', userData.corporateId);
-    setValue('sexId', userData.sexId);
-    setValue('dateBirth', userData.dateBirth);
-  }, []);
+
+    const recoveryData = Object.entries(userData);
+    recoveryData.forEach(([key, val]) => key !== 'token' && setValue(key, val));
+  }, [userData]);
 
   return (
     <DashboardGrid>
@@ -141,24 +137,11 @@ const MyDetails: FC = () => {
         <FormItem columns={2} label='Номер домашнего телефона' required>
           <Input name='phone' innerRef={register} />
         </FormItem>
-        <div>
-          <Title as='h5' margin='15px'>
-            Моя история
-          </Title>
-          <Paragraph color='textMuted' margin='15px'>
-            Напишите историю о том, как и почему вы решились стать донором (что для вас это значит).
-            Это поможет многим людям, которые еще не определились, решиться на то, чтобы тоже стать
-            донором. Если вы первый раз сдаете кровь напишите, почему вырешились сдать кровь, потом
-            напишите еще!)
-          </Paragraph>
-        </div>
-        <FormItem>
-          <TextArea rows={7} name='story' ref={register} />
-        </FormItem>
-        <Button variant='outline-danger' size='lg'>
-          Сохранить
+        <Button type='submit' variant='outline-danger' size='lg'>
+          Обновить информацию
         </Button>
       </Form>
+      <UserStoryForm />
     </DashboardGrid>
   );
 };

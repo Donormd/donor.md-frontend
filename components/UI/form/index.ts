@@ -1,4 +1,3 @@
-export { Form } from 'antd';
 export * from './checkbox';
 export * from './date-picker';
 export * from './select';

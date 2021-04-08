@@ -2,15 +2,16 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { apiV1 } from '../constants/url';
 import { IState } from '../../interfaces/initial-state';
+import { IStory } from '../../interfaces/story';
 
-const initialState: IState<any> = {
+const initialState: IState<IStory[]> = {
   status: 'init',
   data: [],
   error: '',
 };
 
-const getData = createAsyncThunk<any, any>('stories/get', async () => {
-  const response = await axios.get(`${apiV1}/stories`);
+const getStories = createAsyncThunk<IStory[]>('stories/get', async () => {
+  const response = await axios.get(`${apiV1}/story`);
   return response.data;
 });
 
@@ -19,14 +20,14 @@ const stories = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getData.fulfilled, (state, action) => {
+    builder.addCase(getStories.fulfilled, (state, action) => {
       state.status = 'success';
       state.data = action.payload;
     });
-    builder.addCase(getData.pending, (state) => {
+    builder.addCase(getStories.pending, (state) => {
       state.status = 'loading';
     });
-    builder.addCase(getData.rejected, (state, action) => {
+    builder.addCase(getStories.rejected, (state, action) => {
       state.status = 'error';
       state.error = String(action.error.message);
     });

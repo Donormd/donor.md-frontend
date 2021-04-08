@@ -1,4 +1,5 @@
 export interface IUser {
+  id: string;
   groupId: string;
   statusId: string;
   bloodGroupId: string;

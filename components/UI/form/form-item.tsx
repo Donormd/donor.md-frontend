@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { Title } from '../typography';
 
+export const Form = styled.form``;
+
 export declare type FormItemProps = {
   columns?: number;
   columnsSm?: number;
