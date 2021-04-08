@@ -78,7 +78,7 @@ const DonorSearchPage: React.FC = (): JSX.Element => {
                 ))}
             </Select>
           </FormItem>
-          <FormItem label='Заболевание кого?' required>
+          <FormItem label='Заболевание/травма' required>
             <Input name='' innerRef={register} />
           </FormItem>
           <FormItem label='Укажите центр переливания крови' required>
@@ -103,9 +103,6 @@ const DonorSearchPage: React.FC = (): JSX.Element => {
               placeholder='Представьте полную информацию,
               чтобы мы могли Вам максимально эффективно помочь'
             />
-          </FormItem>
-          <FormItem label='Заболевание кого?' required>
-            <Input name='' innerRef={register} />
           </FormItem>
           <FormItem
             label='Фото рецепиента'
@@ -141,7 +138,7 @@ const DonorSearchPage: React.FC = (): JSX.Element => {
                   правилами
                 </StyledLink>
               </Link>
-              {` `}обработки персональных данных
+              {` `} пользования сайиа и обработки персональных данных
             </Checkbox>
           </FormItem>
           <Button type='submit' variant='outline-danger' size='lg'>
@@ -152,7 +149,7 @@ const DonorSearchPage: React.FC = (): JSX.Element => {
           dismissible
           message={`
         После обработки Вашего запроса и согласования с Центром переливания крови. 
-        Система автоматически отправить уведомления донорам, подходящим по параметрам.
+        Система автоматически отправить уведомления донорам подходящим по параметрам.
         `}
         />
       </Container>
