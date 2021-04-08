@@ -100,7 +100,7 @@ const DonorSearchPage: React.FC = (): JSX.Element => {
           <FormItem label='Дополнительная информация' required>
             <TextArea
               rows={4}
-              placeholder='Представьте полную информацию,
+              placeholder='Представьте другую на Ваш взгляд важную информацию,
               чтобы мы могли Вам максимально эффективно помочь'
             />
           </FormItem>
