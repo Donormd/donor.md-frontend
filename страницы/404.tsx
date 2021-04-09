@@ -26,7 +26,7 @@ const NotFound: React.FC = (): JSX.Element => {
   return (
     <ContainerWrapper>
       <div>
-        <Title>Увы, такой страницы не существует</Title>
+        <Title>Вы попали на страницу которой не существует, но Вы все еще с нашим!</Title>
         <ImageWrapper>
           <Image src='/images/pages/404.svg' width={300} height={300} layout='responsive' />
         </ImageWrapper>
