@@ -92,7 +92,7 @@ const AboutDonationPage: React.FC = (): JSX.Element => {
         </Paragraph>
         <Paragraph>
           В жизни случаются ситуации, когда в силу чрезвычайных обстоятельств, болезни, травмы,
-          кровотечения человек нуждается в крови или ее компонентах.
+          кровотечения, человек нуждается в донорской крови или ее компонентах.
         </Paragraph>
         <Paragraph>
           Люди, по своей природе, социальны и должны помогать друг другу. Поэтому в таких случаях на
@@ -114,22 +114,22 @@ const AboutDonationPage: React.FC = (): JSX.Element => {
             Подготовка к первой сдачи крови
           </Title>
           <LinkGroup>
-            <Link href='/' passHref>
+            <Link href='/articles/minimum-requirements-for-donor' passHref>
               <StyledLink>Какие требования к донору?</StyledLink>
             </Link>
-            <Link href='/' passHref>
+            <Link href='/articles/how-to-prepare-for-donation' passHref>
               <StyledLink>Как подготовиться к донации?</StyledLink>
             </Link>
             <Link href='/' passHref>
               <StyledLink>Как проходит донация?</StyledLink>
             </Link>
-            <Link href='/' passHref>
+            <Link href='/articles/recovery-from-donation' passHref>
               <StyledLink>Восстановление после донации</StyledLink>
             </Link>
-            <Link href='/' passHref>
+            <Link href='/articles/who-needs-blood' passHref>
               <StyledLink>Кому нужна донорская кровь</StyledLink>
             </Link>
-            <Link href='/' passHref>
+            <Link href='/articles/plasma-donors' passHref>
               <StyledLink>О донорстве плазмы Covid19</StyledLink>
             </Link>
           </LinkGroup>
@@ -186,44 +186,51 @@ const AboutDonationPage: React.FC = (): JSX.Element => {
               key='1'
               header={
                 <Title bold as='h4'>
-                  Какое обследование проходит потенциальный донор в нашем центре или в других
-                  станциях переливания крови?
+                  Если у меня плохое зрение, могу ли я быть донором крови?
                 </Title>
               }
             >
-              У доноров за счет регулярного обновления крови гораздо устойчивее функционирует
-              иммунная система, печень, поджелудочная железа, пищеварительная система.
+              Если у Вас хотя бы у одного глаза потеря зрения больше, чем -4 - Вы не сможете быть донором.
             </Accordion.Panel>
             <Accordion.Panel
               key='2'
               header={
                 <Title bold as='h4'>
-                  Как часто можно сдавать кровь и ее компоненты?
+                  Я детстве болела желтухой (гепатит А), могу ли я сейчас быть донором?
                 </Title>
               }
             >
-              Как часто можно сдавать кровь и ее компоненты?
+              После лечения этого заболевания кровь можно сдавать через 24 месяца. Гепатит А не является абсолютным ограничением к донорству.
             </Accordion.Panel>
             <Accordion.Panel
               key='3'
               header={
                 <Title bold as='h4'>
-                  Чем сдача крови отличается от сдачи плазмы?
+                  Я боюсь сдавать кровь из-за страха, что при донации мне занесут гепатит, это возможно? 
                 </Title>
               }
             >
-              Чем сдача крови отличается от сдачи плазмы?
+              Такое не реально, используется исключительно одноразовый и стерильный инструмент (иголки, трубки, пакеты).  
             </Accordion.Panel>
             <Accordion.Panel
               key='4'
               header={
                 <Title bold as='h4'>
-                  Что происходит с кровью после донации?
+                  Можно ли сдавать кровь после холецистэктомии?
                 </Title>
               }
             >
-              Что происходит с кровью после донации?
+              К сожалению донором, после удаления любого органа быть нельзя. 
             </Accordion.Panel>
+             key='5'
+              header={
+                <Title bold as='h4'>
+                  Какое мясо можно есть перед донацией? 
+                </Title>
+              }
+            >
+              За 2 дня до донации можно есть нежирные сорта мяса, в основном это грудинная часть птицы или вырезка других видов мяса в отварном виде. Избегайте в эти дни жирное мясо (бедро птицы, мясо с жиром или жировыми прослойками, сало) приготовленное в любом виде. 
+            </Accordion.Panel>           
           </StyledAccordion>
         </Article>
       </Container>
