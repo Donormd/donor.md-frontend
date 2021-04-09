@@ -82,7 +82,7 @@ const BonusProgramPage: React.FC = (): JSX.Element => (
         распределены в формате конкурсов на наших социальных площадках.
       </p>
       <p>
-        <b>Как это будет выглядеть для донора?</b>
+        <b>Как бонусная программа будет выглядеть для донора?</b>
       </p>
       <p>
         В личном кабинете донора есть раздел “бонусы”, в котором можно увидеть какие бонусы можно
@@ -112,7 +112,7 @@ const BonusProgramPage: React.FC = (): JSX.Element => (
           <Title align='center' as='h3' size='1.125rem'>
             <b>ООО “Автолялечка”</b>
             <br />
-            Сеть маркетов автоаксессуаровв Приднестровье.
+            Сеть маркетов автоаксессуаровв Приднестровье
           </Title>
         </article>
         <article>
@@ -128,7 +128,7 @@ const BonusProgramPage: React.FC = (): JSX.Element => (
       </OrganizationsList>
       <Alert dismissible>
         Если Вы хотите стать участником бонусной программы{' '}
-        <Link href='/'>
+        <Link href='https://donor.md/#feedback'>
           <StyledLink color='black' underline bold>
             <b>напишите нам</b>
           </StyledLink>
