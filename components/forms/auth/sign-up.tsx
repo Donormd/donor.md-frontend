@@ -93,7 +93,7 @@ export const SignUpForm: React.FC<Props> = ({ onChangeState }): JSX.Element => {
         <FormItemCheckbox>
           <Checkbox checked />
           <p>
-            Я принимаю условия Пользовательского соглашения и даю своё согласие{' '}
+            Я принимаю условия Пользовательского соглашения пользования Web-сервисом donor.md и даю своё согласие{' '}
             <Link href='/'>
               <StyledLink color='textMuted' underline>
                 Donor.md
@@ -113,7 +113,7 @@ export const SignUpForm: React.FC<Props> = ({ onChangeState }): JSX.Element => {
           <Checkbox checked />
           <p>
             Даю согласие на обработку персональных данных (согласно Закону Приднестровья «О
-            персональных данных»
+            персональных данных»)
           </p>
         </FormItemCheckbox>
       </FormItem>
