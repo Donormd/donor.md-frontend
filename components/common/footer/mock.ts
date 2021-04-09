@@ -6,23 +6,23 @@ export declare type MockType = Array<{
 export const column1: MockType = [
   {
     id: 1,
-    href: '/#about-donation',
-    text: 'Как готовиться',
+    href: 'articles/about-donation',
+    text: 'Как стать донором',
   },
   {
     id: 2,
     href: '/#places',
-    text: 'Где сдать ?',
+    text: 'Где сдать?',
   },
   {
     id: 3,
     href: '/#monitoring',
-    text: 'Мониторинг',
+    text: 'Мониторинг запасов',
   },
   {
     id: 4,
-    href: '/articles/useful',
-    text: 'Полезное',
+    href: 'pages/donor-search',
+    text: 'Поиск доноров',
   },
 ];
 
@@ -30,7 +30,7 @@ export const column2: MockType = [
   {
     id: 1,
     href: '/articles/about',
-    text: 'О нас',
+    text: 'О сервисе',
   },
   {
     id: 2,
@@ -39,13 +39,18 @@ export const column2: MockType = [
   },
   {
     id: 3,
-    href: '/donor-stories',
+    href: 'pages/donor-stories',
     text: 'Истории доноров',
   },
   {
     id: 4,
     href: '/articles/privacy-policy',
     text: 'Политика конфиденциальности',
+  },
+  {
+    id: 5,
+    href: '/articles/user-agreement',
+    text: 'Пользовательское соглашение',
   },
 ];
 
