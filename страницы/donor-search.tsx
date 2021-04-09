@@ -78,7 +78,8 @@ const DonorSearchPage: React.FC = (): JSX.Element => {
                 ))}
             </Select>
           </FormItem>
-          <FormItem label='Заболевание/травма' required>
+          <FormItem label='Заболевание/травма' help={`для чего нужна донорская кровь
+          `}  required>
             <Input name='' innerRef={register} />
           </FormItem>
           <FormItem label='Укажите центр переливания крови' required>
