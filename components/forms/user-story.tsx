@@ -51,7 +51,7 @@ export const UserStoryForm: FC = () => {
     <Form onSubmit={handleSubmit(onSubmit)}>
       <Divider />
       <Title as='h5' margin='15px'>
-        Моя история
+        Моя донорская история
       </Title>
       <Paragraph color='textMuted' margin='15px'>
         Напишите историю о том, как и почему вы решились стать донором (что для вас это значит). Это
