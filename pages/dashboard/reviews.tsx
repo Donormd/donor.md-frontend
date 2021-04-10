@@ -59,7 +59,7 @@ const ReviewsAdd: React.FC = (): JSX.Element => {
       <Form>
         <Divider>
           <Title as='h5' bold>
-            Форма обратной связи
+            Форма обратной связи (отзывы, предложения, вопросы)
           </Title>
         </Divider>
         <FormItem label='' columns={1}>
