@@ -56,9 +56,9 @@ const Bonuses: React.FC = (): JSX.Element => {
       <TitleWithArrow>Бонусы</TitleWithArrow>
       <TextWrapper>
         <Paragraph bold margin={false}>
-          Партнерские предложения
+          Партнерские предложения для доноров
         </Paragraph>
-        <Paragraph>Выберите актуальную для себя предложение от наших партнеров.</Paragraph>
+        <Paragraph>Выберайте актуальные для себя предложение от наших партнеров.</Paragraph>
       </TextWrapper>
       {mock.map((item) => (
         <PartnerOfferCard {...item} />
