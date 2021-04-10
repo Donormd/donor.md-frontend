@@ -33,10 +33,14 @@ const Donations: React.FC = (): JSX.Element => {
       <TitleWithArrow>Мои донации</TitleWithArrow>
       <DashboardButtonsLinks />
       <Form>
-        <FormItem label='Номер справки' required>
+        <FormItem label='Номер справки'
+          help={`
+          Найдите на справке шестизначную напечатанный номер`} required>
           <Input />
         </FormItem>
-        <FormItem label='Номер донации' required>
+        <FormItem label='Номер донации' 
+          help={`
+          Обычно дономер донации написан ручкой и состоит из четырех цифр`} required>
           <Input />
         </FormItem>
         <FormItem label='Дата кровосдачи' required>
