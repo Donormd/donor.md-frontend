@@ -1,51 +1,59 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { apiV1 } from '../constants/url';
+import { IState } from '../../interfaces/initial-state';
+import { IRecipient } from '../../interfaces/recipient';
+import { storage } from '../../services/storage';
 
-const initialState = {
-  status: '',
-  error: '',
+const initialState: IState<IRecipient[] | null> = {
+  status: 'init',
+  data: null,
+  error: null,
 };
 
-export interface IRecipient {
-  recipient: {
-    fullname: string;
-    dateBirth: Date;
-    bloodGroupId: string;
-    medicalCenterId: string;
-    bloodCenterId: string;
-    numberDonors: number;
-    deadline: Date;
-    info: string;
-    src: string;
-  };
-  contactPerson: {
-    fullname: string;
-    email: string;
-    phone: string;
-    whoAreYou: string;
-  };
-}
+export const getRecipientRequestAction = createAsyncThunk<IRecipient[]>(
+  'recipients/get',
+  async () => {
+    const response = await axios.get(`${apiV1}/recipient`);
+    return response.data;
+  },
+);
 
-export const sendData = createAsyncThunk<string, IRecipient>('recipients/post', async (payload) => {
-  const response = await axios.post(`${apiV1}/recipient`, {
-    data: [payload],
-  });
-  return response.data;
-});
+export const createRecipientRequestAction = createAsyncThunk<void, IRecipient>(
+  'recipients/post',
+  async (payload) => {
+    const response = await axios.post(`${apiV1}/recipient`, payload);
+    return response.data;
+  },
+);
 
 const recipients = createSlice({
   name: 'recipients',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(sendData.fulfilled, (state) => {
-      state.status = 'success';
-    });
-    builder.addCase(sendData.pending, (state) => {
+    builder.addCase(
+      getRecipientRequestAction.fulfilled,
+      (state, action: PayloadAction<IRecipient[]>) => {
+        state.status = 'success';
+        state.data = action.payload;
+        storage.set('recipients', action.payload);
+      },
+    );
+    builder.addCase(getRecipientRequestAction.pending, (state) => {
       state.status = 'loading';
     });
-    builder.addCase(sendData.rejected, (state, action) => {
+    builder.addCase(getRecipientRequestAction.rejected, (state, action) => {
+      state.status = 'error';
+      state.error = String(action.error.message);
+    });
+    builder.addCase(createRecipientRequestAction.fulfilled, (state) => {
+      state.status = 'success';
+    });
+    builder.addCase(createRecipientRequestAction.pending, (state) => {
+      state.status = 'loading';
+    });
+    builder.addCase(createRecipientRequestAction.rejected, (state, action) => {
       state.status = 'error';
       state.error = String(action.error.message);
     });

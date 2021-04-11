@@ -3,6 +3,7 @@ import axios from 'axios';
 import { apiV1 } from '../constants/url';
 import { IState } from '../../interfaces/initial-state';
 import { IStory } from '../../interfaces/story';
+import { storage } from '../../services/storage';
 
 const initialState: IState<IStory[]> = {
   status: 'init',
@@ -23,6 +24,7 @@ const stories = createSlice({
     builder.addCase(getStories.fulfilled, (state, action) => {
       state.status = 'success';
       state.data = action.payload;
+      storage.set('stories', action.payload);
     });
     builder.addCase(getStories.pending, (state) => {
       state.status = 'loading';

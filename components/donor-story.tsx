@@ -2,6 +2,31 @@ import React from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
 
+export interface IDonorStory {
+  src: string;
+  fullname: string;
+  count: number;
+  story: string;
+  className: string;
+}
+
+export const DonorStory: React.FC<IDonorStory> = ({
+  src,
+  fullname,
+  count,
+  story,
+  className,
+}): JSX.Element => (
+  <Wrapper className={className}>
+    <Image src={src} width={70} height={70} layout='fixed' />
+    <StoryHead>
+      <StoryHeadTitle>{fullname}</StoryHeadTitle>
+      <StoryHeadCount>Количество донаций {count}</StoryHeadCount>
+    </StoryHead>
+    <StoryBody>{story}</StoryBody>
+  </Wrapper>
+);
+
 const Wrapper = styled.article`
   display: grid;
   grid-template-columns: min-content 1fr;
@@ -34,30 +59,3 @@ const StoryBody = styled.div`
     grid-column: 2 / 3;
   }
 `;
-
-export interface IDonorStory {
-  src: string;
-  fullname: string;
-  count: number;
-  story: string;
-  className: string;
-}
-
-const DonorStory: React.FC<IDonorStory> = ({
-  src,
-  fullname,
-  count,
-  story,
-  className,
-}): JSX.Element => (
-  <Wrapper className={className}>
-    <Image src={src} width={70} height={70} layout='fixed' />
-    <StoryHead>
-      <StoryHeadTitle>{fullname}</StoryHeadTitle>
-      <StoryHeadCount>Количество донаций {count}</StoryHeadCount>
-    </StoryHead>
-    <StoryBody>{story}</StoryBody>
-  </Wrapper>
-);
-
-export default React.memo(DonorStory);

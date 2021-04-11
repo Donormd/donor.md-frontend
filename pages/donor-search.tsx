@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React from 'react';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
@@ -19,21 +18,17 @@ import {
   Paragraph,
 } from '../components/UI';
 import { useAppSelector } from '../redux/store';
-import { sendData, IRecipient } from '../redux/redusers/recipients';
+import { createRecipientRequestAction } from '../redux/redusers/recipients';
+import { IRecipient } from '../interfaces/recipient';
 
 const DonorSearchPage: React.FC = (): JSX.Element => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const { bloodGroups, bloodCenter, transfusionCenter } = useAppSelector((state) => state.common);
-  const { register, handleSubmit, getValues } = useForm();
+  const { register, handleSubmit, reset } = useForm();
 
-  const onSubmit = () => {
-    console.log('-->', getValues());
-    /*
-     * const data = getValues();
-     * const recipientObj = {};
-     * dispatch(sendData(recipientObj));
-     * reset();
-     */
+  const onSubmit = (data: IRecipient) => {
+    dispatch(createRecipientRequestAction(data));
+    reset();
   };
 
   return (
