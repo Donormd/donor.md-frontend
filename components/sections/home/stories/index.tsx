@@ -5,7 +5,6 @@ import NextSVG from '../../../../public/images/carousel/next.svg';
 import { Title } from '../../../UI';
 import { WrapperSection, WrapperDonorStory, ButtonGroup, Button } from './styles';
 import { useAppSelector } from '../../../../redux/store';
-import { IDonorStory } from '../../../donor-story';
 
 const Stories: React.FC = (): JSX.Element => {
   const { data } = useAppSelector((state) => state.stories);
@@ -21,9 +20,7 @@ const Stories: React.FC = (): JSX.Element => {
         Истории доноров
       </Title>
       <Carousel ref={ref} dots={false} effect='fade' autoplay>
-        {data.map((props: IDonorStory) => (
-          <WrapperDonorStory {...props} />
-        ))}
+        {data && data.map((props: any) => <WrapperDonorStory {...props} />)}
       </Carousel>
       <ButtonGroup>
         <Button onClick={prev}>

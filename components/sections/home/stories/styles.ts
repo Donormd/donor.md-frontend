@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import DonorStory from '../../../donor-story';
+import { DonorStory } from '../../../donor-story';
 import { Button as DefaultBtn } from '../../../UI';
 import { Section } from '../utils';
 
