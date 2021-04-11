@@ -16,13 +16,15 @@ import {
 import { useAppSelector } from '../../../redux/store';
 import { getOptions } from '../../../redux/common';
 import { IUser } from '../../../interfaces/user';
+import { updateUserAction } from '../../../redux/redusers/user';
+import Alert from '../../alert';
 
 export const DetailsForm: FC = () => {
   const [activeSelect, setSelectStatus] = useState(false);
   const dispatch = useDispatch();
   const { register, setValue, control, handleSubmit } = useForm();
   const {
-    user: { data: userData },
+    user: { data: userData, status },
     common: { bloodGroups, cities, organizations, sex },
   } = useAppSelector((state) => state);
 
@@ -31,17 +33,18 @@ export const DetailsForm: FC = () => {
 
     const recoveryData = Object.entries(userData);
     recoveryData.forEach(([key, val]) => key !== 'token' && setValue(key, val));
-  }, [userData]);
+    userData.corporateId && setSelectStatus(true);
+  }, [setValue, userData]);
 
   useEffect(() => {
     dispatch(getOptions('sex'));
     dispatch(getOptions('bloodGroups'));
     dispatch(getOptions('cities'));
     dispatch(getOptions('organizations'));
-  }, []);
+  }, [dispatch]);
 
   const onSubmit = (data: IUser) => {
-    dispatch(data);
+    dispatch(updateUserAction(data));
   };
 
   return (
@@ -119,7 +122,11 @@ export const DetailsForm: FC = () => {
         Корпоративное донорство
       </Title>
       <FormItem columns={2}>
-        <Checkbox name='corporateDonations' onChange={(e) => setSelectStatus(e.target.checked)}>
+        <Checkbox
+          name='corporateDonations'
+          onChange={(e) => setSelectStatus(e.target.checked)}
+          value={activeSelect}
+        >
           <Paragraph as='span' size='1.2em'>
             Я участник программы корпоративное донорство
           </Paragraph>
@@ -157,6 +164,7 @@ export const DetailsForm: FC = () => {
       <Button type='submit' variant='outline-danger' size='lg'>
         Обновить информацию
       </Button>
+      {status === 'success' && <Alert dismissible>Вы успешно обновили информацию</Alert>}
     </Form>
   );
 };

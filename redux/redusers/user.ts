@@ -24,15 +24,16 @@ export const signUpAction = createAsyncThunk<IUser, IUser>('user/sign-up', async
   return response.data;
 });
 
-export const recoveryAction = createAsyncThunk<void, { email: string }>(
+export const recoveryUserAction = createAsyncThunk<void, { email: string }>(
   'user/recovery',
   async (payload) => {
     await axios.post(`${apiV1}/auth/recovery`, payload);
   },
 );
 
-export const updateUserAction = createAsyncThunk<void, IUser>('user/update', async (payload) => {
+export const updateUserAction = createAsyncThunk<IUser, IUser>('user/update', async (payload) => {
   await axios.post(`${apiV1}/user`, payload);
+  return payload;
 });
 
 const user = createSlice({
@@ -64,6 +65,18 @@ const user = createSlice({
       state.status = 'loading';
     });
     builder.addCase(signUpAction.rejected, (state, action) => {
+      state.status = 'error';
+      state.error = action.error.message || 'Ops something went wrong';
+    });
+    builder.addCase(updateUserAction.fulfilled, (state, action: PayloadAction<IUser>) => {
+      state.status = 'success';
+      state.data = action.payload;
+      storage.set('user', action.payload);
+    });
+    builder.addCase(updateUserAction.pending, (state) => {
+      state.status = 'loading';
+    });
+    builder.addCase(updateUserAction.rejected, (state, action) => {
       state.status = 'error';
       state.error = action.error.message || 'Ops something went wrong';
     });
