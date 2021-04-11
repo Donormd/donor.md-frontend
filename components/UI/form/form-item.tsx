@@ -67,5 +67,6 @@ const Label = styled(Title)<{ required?: boolean }>`
 `;
 
 const Help = styled.span`
+  font-size: 0.875em;
   color: ${({ theme }) => theme.textMuted};
 `;
