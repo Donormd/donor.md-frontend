@@ -1,16 +1,36 @@
-import React, { memo } from 'react';
+import { FC } from 'react';
 import styled from 'styled-components';
 import { Paragraph, Switch, Select, Title, Input } from '../UI';
+import { IQuestionList } from '../../interfaces/question';
 
-export interface IQuestion {
-  title: string;
-  paragraph: string;
-  control: {
-    type: string;
-    options?: Array<string | number>;
-    placeholder?: string;
-  };
-}
+export const Question: FC<IQuestionList> = ({ title, paragraph, control }): JSX.Element => {
+  return (
+    <Wrapper>
+      <div>
+        <Title as='h4' margin='10px'>
+          {title}
+        </Title>
+        <Paragraph color='textMuted' margin='10px'>
+          {paragraph}
+        </Paragraph>
+      </div>
+      <div>
+        {control.variant === 'switch' && <StyledSwitch />}
+        {control.variant === 'input' && <Input placeholder={control.placeholder} />}
+        {control.variant === 'select' && (
+          <Select size='large'>
+            {control.options &&
+              control.options.map((opt) => (
+                <Select.Option key={opt} value={opt}>
+                  {opt}
+                </Select.Option>
+              ))}
+          </Select>
+        )}
+      </div>
+    </Wrapper>
+  );
+};
 
 const Wrapper = styled.div`
   margin-bottom: 30px;
@@ -40,34 +60,3 @@ const StyledSwitch = () => (
     <span>Нет</span>
   </WrapperSwitch>
 );
-
-const Question: React.FC<IQuestion> = ({ title, paragraph, control }): JSX.Element => {
-  return (
-    <Wrapper>
-      <div>
-        <Title as='h4' margin='10px'>
-          {title}
-        </Title>
-        <Paragraph color='textMuted' margin='10px'>
-          {paragraph}
-        </Paragraph>
-      </div>
-      <div>
-        {control.type === 'switch' && <StyledSwitch />}
-        {control.type === 'input' && <Input placeholder={control.placeholder} />}
-        {control.type === 'select' && (
-          <Select size='large'>
-            {control.options &&
-              control.options.map((opt) => (
-                <Select.Option key={opt} value={opt}>
-                  {opt}
-                </Select.Option>
-              ))}
-          </Select>
-        )}
-      </div>
-    </Wrapper>
-  );
-};
-
-export default memo(Question);

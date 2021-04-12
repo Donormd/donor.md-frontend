@@ -1,199 +1,60 @@
-import { createReducer } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import axios from 'axios';
+import { IState } from '../../../../interfaces/initial-state';
+import { apiV1 } from '../../../constants/url';
+import { IQuestion, IQuestionnaireStory } from '../../../../interfaces/question';
+import { storage } from '../../../../services/storage';
 
-const initialState = {
-  data: [
-    {
-      key: 1,
-      title: 'Общее состояние здоровья',
-      list: [
-        {
-          key: 1,
-          control: { type: 'switch' },
-          title: 'Имеете ли вы какие-то проблемы со здоровьем сейчас?',
-          paragraph: `Если самочувствие не удовлетворительное, 
-      человека не допустят к кроводачи с целью не навредить его здоровью.`,
-        },
-        {
-          key: 2,
-          control: { type: 'switch' },
-          title:
-            'Есть ли у Вас сейчас температура, головная боль, боль в горле, насморк, простуда?',
-          paragraph: `Если у человека есть вышеуказанные симптомы, 
-        его временно не допустят к кроводачи, поскольку ей самой нужна помощь.`,
-        },
-        {
-          key: 3,
-          control: { type: 'switch' },
-          title: 'Употребляли Вы в течение последних 48 часов алкоголь?',
-          paragraph: `Перед сдачей крови следует воздержаться от употребления алкоголя за 
-        48 часов до процедуры. Употребление спиртных напитков считается временным 
-        противопоказанием к сдаче крови.`,
-        },
-        {
-          key: 4,
-          control: { type: 'switch' },
-          title: 'Производилось ли за последние две недели посещение стоматолога?',
-          paragraph: ``,
-        },
-        {
-          key: 5,
-          control: { type: 'switch' },
-          title: 'Производилось ли за последние две недели удаление зуба?',
-          paragraph: `Удаление зубов также временным противопоказанием к сдаче крови, 
-        поскольку такая процедура может потребовать введения антибиотиков, является 
-        временным противопоказанием к донорству крови.`,
-        },
-        {
-          key: 6,
-          control: { type: 'switch' },
-          title: 'Принимали ли за последние две недели лекарства, антибиотики?',
-          paragraph: `Период лечения и прием лекарств является временным противопоказанием 
-        к донорству, которое надо согласовать с врачом.`,
-        },
-        {
-          key: 7,
-          control: { type: 'switch' },
-          title: 'Проводились Вам прививки за последний месяц?',
-          paragraph: `Период отстранения (от 10 дней до 1 года) человека от донорства зависит 
-        от чего именно была сделана прививка.`,
-        },
-        {
-          key: 8,
-          control: { type: 'switch' },
-          title: `Делались ли за последний год проколы ушных мочек, иглоукалывание, 
-        татуировки, татуаж, пирсинг?`,
-          paragraph: `Если делали, то для вас существуют временные противопоказания. 
-        Пожалуйста, подождите 12 месяцев после выполнения любой из данных процедур.`,
-        },
-      ],
-    },
-    {
-      key: 2,
-      title: 'За прошедшие месяцы',
-      list: [
-        {
-          key: 1,
-          control: { type: 'switch' },
-          title: 'Подвергались ли Вы хирургической операции за последние 6 месяцев?',
-          paragraph: `Временное противопоказания.`,
-        },
-        {
-          key: 2,
-          control: { type: 'switch' },
-          title: `Была ли у Вас неожиданная потеря веса или длительное повышение температуры, 
-          по неизвестным причинам?`,
-          paragraph: `Временное противопоказания.`,
-        },
-        {
-          key: 3,
-          control: { type: 'switch' },
-          title: 'Производили ли Вам переливание крови или ее препаратов?',
-          paragraph: `Временное противопоказания.`,
-        },
-        {
-          key: 4,
-          control: { type: 'switch' },
-          title: `Были ли Вы в контакте с больными ВИЧ/СПИД инфекцией, ГЕПАТИТом, 
-          ТУБЕРКУЛЕЗОМ в течение 12 месяцев.`,
-          paragraph: `Временное противопоказания.`,
-        },
-        {
-          key: 5,
-          control: { type: 'input', placeholder: 'Укажите страну' },
-          title: `Посещали ли вы страны Африки, Юго-Восточной Азии, 
-          Центральной и Южной Америки за последние 3 месяца`,
-          paragraph: ``,
-        },
-      ],
-    },
-    {
-      key: 3,
-      title: 'Были ли у вас когда-нибудь...',
-      list: [
-        {
-          key: 1,
-          control: { type: 'switch' },
-          title: `Были ли у Вас сотрясения мозга?`,
-          paragraph: ``,
-        },
-        {
-          key: 2,
-          control: { type: 'input', placeholder: '' },
-          title: `Стоите ли вы на диспансерном учете у врача? 
-          Если Да, то по какому поводу и в каком диспансере, поликлинике?`,
-          paragraph: ``,
-        },
-        {
-          key: 3,
-          control: { type: 'switch' },
-          title: `Обмороки и головокружения?`,
-          paragraph: `Симптомы, указывающие на нездоровые процессы в организме. 
-          Поэтому если у человека наблюдаются такие симптомы, ее к донорству не допустят.`,
-        },
-        {
-          key: 4,
-          control: {
-            type: 'select',
-            options: ['Крутилку', 'Гепатит В', 'Гепатит С', 'Туберкулез', 'ИППП'],
-          },
-          title: `Есть ли у Вас вирусные инфекции Гепатит B и C, туберкулез, 
-          инфекции передающейся половым путем?`,
-          paragraph: ``,
-        },
-        {
-          key: 5,
-          control: { type: 'switch' },
-          title: `Принимали ли вы внутривенные инъекции наркотиков?`,
-          paragraph: `paragraph`,
-        },
-        {
-          key: 6,
-          control: { type: 'switch' },
-          title: `Сдавали ли вы ранее кровь как донор?`,
-          paragraph: `Дата последней кроводачи берется из вашей истории.
-          Если человек не был донором крови - это не влияет на допуск к донации. 
-          Если был(а) уже донором, уточняется дата последней донации. 
-          Поскольку сдавать кровь можно раз в 60 дней.`,
-        },
-      ],
-    },
-    {
-      key: 4,
-      title: 'Блок для женщин',
-      list: [
-        {
-          key: 1,
-          control: { type: 'switch' },
-          title: `Беременны ли вы сейчас и была ли беременность за последние 6 недель?`,
-          paragraph: `Период беременности и лактации является временным противопоказанием. 
-          Должно пройти минимум 3 месяца после окончания лактации.`,
-        },
-        {
-          key: 2,
-          control: { type: 'switch' },
-          title: `Прошло 5 дней после окончании последней менструации? `,
-          paragraph: `После окончания менструации должно пройти не менее 5 дней, 
-          прежде чем Вы сможете быть допущены до донации.`,
-        },
-        {
-          key: 3,
-          control: { type: 'switch' },
-          title: `Были ли роды/искусственные роды в течение года?`,
-          paragraph: `Если у Вас были роды/искуственные роды/аборты 
-          на поздних сроках беременности вы можете сдавать кровь через
-          12 месяцев, после стандартного оборота через 6 месяцев`,
-        },
-        {
-          key: 4,
-          control: { type: 'switch' },
-          title: `Являетесь ли вы кормящей матерью?`,
-          paragraph: `Вы можете сдавать кровь после трех месяцев окончания кормления грудью`,
-        },
-      ],
-    },
-  ],
+const initialState: IState<IQuestion[] | null> = {
+  status: 'init',
+  data: null,
+  error: null,
 };
 
-export const questionnaire = createReducer(initialState, (builder) => {
-  builder.addDefaultCase((state) => state);
+export const getQuestionnaireAction = createAsyncThunk<IQuestion[]>(
+  'questionnaire/get',
+  async () => {
+    const response = await axios.get(`${apiV1}/questionnaire`);
+    return response.data;
+  },
+);
+
+export const sendQuestionnaireAction = createAsyncThunk<void, IQuestionnaireStory>(
+  'questionnaire/post',
+  async (payload) => {
+    await axios.post(`${apiV1}/questionnaire`, payload);
+  },
+);
+
+export const questionnaire = createSlice({
+  name: 'questionnaire',
+  initialState,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(
+      getQuestionnaireAction.fulfilled,
+      (state, action: PayloadAction<IQuestion[]>) => {
+        state.status = 'success';
+        state.data = action.payload;
+        storage.set('questionnaire', action.payload);
+      },
+    );
+    builder.addCase(getQuestionnaireAction.pending, (state) => {
+      state.status = 'loading';
+    });
+    builder.addCase(getQuestionnaireAction.rejected, (state, action) => {
+      state.status = 'error';
+      state.error = String(action.error.message);
+    });
+    builder.addCase(sendQuestionnaireAction.fulfilled, (state) => {
+      state.status = 'success';
+    });
+    builder.addCase(sendQuestionnaireAction.pending, (state) => {
+      state.status = 'loading';
+    });
+    builder.addCase(sendQuestionnaireAction.rejected, (state, action) => {
+      state.status = 'error';
+      state.error = String(action.error.message);
+    });
+  },
 });
