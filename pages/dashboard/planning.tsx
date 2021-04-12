@@ -13,6 +13,10 @@ const DonationsPlanning: React.FC = (): JSX.Element => {
       <TitleWithArrow>Мои донации</TitleWithArrow>
       <DashboardButtonsLinks />
       <Form>
+        <p>Планирование донации реализовано для
+        самодициплины, центры переливания крови работают в
+        обычном режиме, но мы их проинформируем, что вы должны
+        прийти в выбранный день.  </p>     
         <FormItem label='Место сдачи'>
           <Select size='large' placeholder='Выберите место сдачи'>
             {bloodCenter.data &&
@@ -22,24 +26,12 @@ const DonationsPlanning: React.FC = (): JSX.Element => {
           </Select>
         </FormItem>
         <FormItem
-          label='Дата кровосдачи'
-          help={`
-        Планирование донации реализовано для
-        самодициплины, центры переливания крови работают в
-        обычном режиме, но мы их проинформируем, что вы должны
-        прийти в выбранный день.
-        `}
+          label='Дата кровосдачи'        
         >
           <DatePicker />
         </FormItem>
         <FormItem
-          label='Время кровосдачи'
-          help={`
-        Планирование донации реализовано для
-        самодициплины, центры переливания крови работают в
-        обычном режиме, но мы их проинформируем, что вы должны
-        прийти в выбранный день.
-        `}
+          label='Время кровосдачи'         
         >
           <Select size='large'>
             <Select.Option value='8:00'>8:00</Select.Option>
