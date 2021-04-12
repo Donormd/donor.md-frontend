@@ -58,3 +58,5 @@ export const questionnaire = createSlice({
     });
   },
 });
+
+export const { actions, reducer, caseReducers } = questionnaire;

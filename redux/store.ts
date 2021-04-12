@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { useSelector, TypedUseSelectorHook } from 'react-redux';
 import { reducer as commonReducer } from './common';
 import { reducer as storiesReducer } from './redusers/stories';
-import { questionnaire } from './redusers/forms/dashboard/questionnaire';
+import { reducer as questionnaire } from './redusers/forms/dashboard/questionnaire';
 import { reducer as monitoringReducer } from './redusers/monitoring';
 import { reducer as leftMenuReducer } from './redusers/left-menu';
 import { reducer as aboutDonationsReducer } from './redusers/about-donations';
