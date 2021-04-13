@@ -10,6 +10,7 @@ export interface IQuestionList {
 }
 
 export interface IQuestion {
+  _id: string;
   title: string;
   list: IQuestionList[];
 }
