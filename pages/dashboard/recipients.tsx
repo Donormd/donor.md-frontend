@@ -1,53 +1,22 @@
-import React from 'react';
+import { FC, useEffect } from 'react';
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
 import DashboardGrid from '../../layouts/dashboard-grid';
 import { TitleWithArrow, Paragraph } from '../../components/UI';
-import RecipientCard, { Props } from '../../components/recipient-card';
+import RecipientCard from '../../components/recipient-card';
+import { IRecipientCard } from '../../interfaces/recipient';
+import { useAppSelector } from '../../redux/store';
+import { getRecipientsAction } from '../../redux/redusers/recipients';
+import Alert from '../../components/alert';
 
-declare type KeyType = { key: string | number };
-declare type MockProps = KeyType & Props;
+const Recipients: FC = () => {
+  const dispatch = useDispatch();
+  const { data, status, error } = useAppSelector((state) => state.recipient);
 
-const mock: Array<MockProps> = [
-  {
-    key: 1,
-    src: '/stub.svg',
-    name: 'Снегирева Алина',
-    age: 24,
-    bloodGroup: 'В(|||) - Rh+',
-    disease: 'Заболевание печени',
-    placeName: 'Республиканская клиническая больница',
-    city: 'Тирасполь, ул. Мира, 33 А',
-    date: new Date().toISOString(),
-  },
-  {
-    key: 2,
-    src: '/stub.svg',
-    name: 'Снегирева Алина',
-    age: 24,
-    bloodGroup: 'В(|||) - Rh+',
-    disease: 'Заболевание печени',
-    placeName: 'Республиканская клиническая больница',
-    city: 'Тирасполь, ул. Мира, 33 А',
-    date: new Date().toISOString(),
-  },
-  {
-    key: 3,
-    src: '/stub.svg',
-    name: 'Снегирева Алина',
-    age: 24,
-    bloodGroup: 'В(|||) - Rh+',
-    disease: 'Заболевание печени',
-    placeName: 'Республиканская клиническая больница',
-    city: 'Тирасполь, ул. Мира, 33 А',
-    date: new Date().toISOString(),
-  },
-];
+  useEffect(() => {
+    dispatch(getRecipientsAction());
+  }, [dispatch]);
 
-const TextWrapper = styled.div`
-  margin: 25px 0 20px 0;
-`;
-
-const Recipients: React.FC = (): JSX.Element => {
   return (
     <DashboardGrid>
       <TitleWithArrow>Реципиенты</TitleWithArrow>
@@ -56,11 +25,14 @@ const Recipients: React.FC = (): JSX.Element => {
           Рекомендованные реципиенты
         </Paragraph>
       </TextWrapper>
-      {mock.map((item) => (
-        <RecipientCard {...item} />
-      ))}
+      {status === 'success' && <Alert dismissible>{error}</Alert>}
+      {data && data.map((item: IRecipientCard) => <RecipientCard {...item} />)}
     </DashboardGrid>
   );
 };
 
 export default Recipients;
+
+const TextWrapper = styled.div`
+  margin: 25px 0 20px 0;
+`;
