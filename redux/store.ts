@@ -13,6 +13,7 @@ import { reducer as userStory } from './redusers/forms/user-story';
 import { reducer as recipient } from './redusers/recipients';
 import { reducer as donations } from './redusers/donation';
 import { reducer as settings } from './redusers/settings';
+import { reducer as bonus } from './redusers/bonus';
 
 export const store = configureStore({
   reducer: {
@@ -29,6 +30,7 @@ export const store = configureStore({
     recipient,
     donations,
     settings,
+    bonus,
   },
 });
 
