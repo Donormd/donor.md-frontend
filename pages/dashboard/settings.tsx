@@ -98,7 +98,7 @@ const Settings: FC = (): JSX.Element => {
 export default Settings;
 
 const successMessage = (
-  <Alert>
+  <Alert dismissible>
     Изменения в настройках сохранены <b>успешно!</b>
   </Alert>
 );

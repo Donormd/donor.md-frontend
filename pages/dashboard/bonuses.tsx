@@ -15,7 +15,7 @@ const Bonuses: FC = (): JSX.Element => {
 
   useEffect(() => {
     dispatch(getBonusesAction());
-  });
+  }, [dispatch]);
 
   return (
     <DashboardGrid>
