@@ -1,11 +1,11 @@
 const DAY_MS: number = 1000 * 60 * 60 * 24;
 
-export interface IStorageItem {
+export interface IStorageItem<T> {
   dateCreation: number;
-  data: unknown;
+  data: T;
 }
 
-const get = (key: string): IStorageItem | null => {
+const get = <T>(key: string): IStorageItem<T> | null => {
   const stringValue = localStorage.getItem(key);
   return stringValue ? JSON.parse(stringValue) : null;
 };
