@@ -40,7 +40,7 @@ const isActualData = (key: string, expire = DAY_MS) => {
 };
 
 const remove = (key: string): void => {
-  localStorage.getItem(key);
+  localStorage.removeItem(key);
 };
 
 export const storage = { get, set, setMemo, remove, isActualData };

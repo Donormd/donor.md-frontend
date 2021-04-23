@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import Link from 'next/link';
 import { Tooltip } from 'antd';
 import { ReactSVG } from 'react-svg';
@@ -13,8 +13,7 @@ type WithButton = {
   handleClick?: () => void;
 };
 
-// onClick={handleClick}
-const MenuLink: React.FC<IMenuLinkProps & { active: boolean } & WithButton> = ({
+const MenuLink: FC<IMenuLinkProps & { active: boolean } & WithButton> = ({
   active,
   imageSrc,
   href,
@@ -34,7 +33,7 @@ const MenuLink: React.FC<IMenuLinkProps & { active: boolean } & WithButton> = ({
   </Link>
 );
 
-const LeftMenu: React.FC<{ image?: string }> = ({ image }): JSX.Element => {
+const LeftMenu: FC<{ image?: string }> = ({ image }): JSX.Element => {
   const { data, selectId } = useAppSelector((state) => state.leftMenu);
   const { pathname } = useRouter();
   const dispatch = useDispatch();
@@ -44,7 +43,7 @@ const LeftMenu: React.FC<{ image?: string }> = ({ image }): JSX.Element => {
   useEffect(() => {
     const activeMenu = data.filter((item) => item.href === pathname)[0];
     activeMenu?.key && dispatch(setMenu(activeMenu.key));
-  }, []);
+  }, [data, dispatch, pathname, setMenu]);
 
   return (
     <Aside image={image}>

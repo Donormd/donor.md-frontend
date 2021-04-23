@@ -4,6 +4,7 @@ import { apiV1 } from '../constants/url';
 import { IState } from '../../interfaces/initial-state';
 import { IUser } from '../../interfaces/user';
 import { storage } from '../../services/storage';
+import fetch from '../../services/fetch';
 
 const initialState: IState<IUser | null> = {
   status: 'init',
@@ -32,7 +33,14 @@ export const recoveryUserAction = createAsyncThunk<void, { email: string }>(
 );
 
 export const updateUserAction = createAsyncThunk<IUser, IUser>('user/update', async (payload) => {
-  await axios.post(`${apiV1}/user`, payload);
+  await fetch({
+    method: 'PUT',
+    url: `${apiV1}/user`,
+    data: payload,
+    headers: {
+      authorization: true,
+    },
+  });
   return payload;
 });
 
