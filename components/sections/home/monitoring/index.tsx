@@ -17,7 +17,7 @@ const Monitoring: React.FC = (): JSX.Element => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getData());
-  }, []);
+  }, [dispatch]);
 
   if (status === 'loading') return <Loading />;
 

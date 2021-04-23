@@ -1,37 +1,91 @@
-import React from 'react';
+import { FC } from 'react';
 import { Title } from '../../../UI';
 import { BloodTitle, Image } from './styles';
 
-const quantityText = (quantity: number): string => {
-  if (quantity < 35) {
+interface IRule {
+  few: number;
+  enough: number;
+}
+
+type BloodGroup =
+  | 'O(I)-'
+  | 'O(I)+'
+  | 'A(II)-'
+  | 'A(II)+'
+  | 'B(III)-'
+  | 'B(III)+'
+  | 'AB(IV)-'
+  | 'AB(IV)+';
+
+const rules: Record<BloodGroup, IRule> = {
+  'O(I)-': {
+    few: 20,
+    enough: 50,
+  },
+  'O(I)+': {
+    few: 50,
+    enough: 120,
+  },
+  'A(II)-': {
+    few: 20,
+    enough: 50,
+  },
+  'A(II)+': {
+    few: 70,
+    enough: 150,
+  },
+  'B(III)-': {
+    few: 15,
+    enough: 40,
+  },
+  'B(III)+': {
+    few: 40,
+    enough: 100,
+  },
+  'AB(IV)-': {
+    few: 15,
+    enough: 30,
+  },
+  'AB(IV)+': {
+    few: 20,
+    enough: 50,
+  },
+};
+
+const quantityText = ({ quantity, group }: IProps) => {
+  if (quantity < rules[group].few) {
     return 'Мало';
   }
-  if (quantity > 50 && quantity < 85) {
+  if (quantity < rules[group].enough) {
     return 'Достаточно';
   }
   return 'Много';
 };
 
-const quantityImage = (quantity: number): string => {
-  if (quantity < 35) {
+const quantityImage = ({ quantity, group }: IProps): string => {
+  if (quantity < rules[group].few) {
     return '/images/pages/home/hearts/few.svg';
   }
-  if (quantity > 50 && quantity < 85) {
+  if (quantity < rules[group].enough) {
     return '/images/pages/home/hearts/enough.svg';
   }
   return '/images/pages/home/hearts/lot.svg';
-
 };
 
-const BloodItem: React.FC<{ group: string; quantity: number }> = ({ group, quantity }) => {
+interface IProps {
+  group: BloodGroup;
+  quantity: number;
+}
+
+const BloodItem: FC<IProps> = ({ group, quantity }) => {
   return (
     <div>
       <BloodTitle as='h6' align='center' bold>
         {group}
       </BloodTitle>
-      <Image src={quantityImage(quantity)} width={25} height={25} layout='responsive' />
+      <Image src={quantityImage({ quantity, group })} width={25} height={25} layout='responsive' />
       <Title as='h6' align='center' bold>
-        {quantityText(quantity)}
+        {quantityText({ quantity, group })}
       </Title>
     </div>
   );
