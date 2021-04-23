@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import {
@@ -9,7 +9,6 @@ import {
   Form,
   FormItem,
   Input,
-  Paragraph,
   Select,
   Title,
 } from '../../UI';
@@ -20,20 +19,21 @@ import { updateUserAction } from '../../../redux/redusers/user';
 import Alert from '../../alert';
 
 export const DetailsForm: FC = () => {
-  const [activeSelect, setSelectStatus] = useState(false);
   const dispatch = useDispatch();
-  const { register, setValue, control, handleSubmit } = useForm();
+  const { register, setValue, control, handleSubmit, watch } = useForm();
   const {
     user: { data: userData, status },
     common: { bloodGroups, cities, organizations, sex },
   } = useAppSelector((state) => state);
+
+  const isCorporateDonation = watch('corporateDonations');
 
   useEffect(() => {
     if (!userData) return;
 
     const recoveryData = Object.entries(userData);
     recoveryData.forEach(([key, val]) => key !== 'token' && setValue(key, val));
-    userData.corporateId && setSelectStatus(true);
+    userData.corporateId && setValue('corporateDonations', true);
   }, [setValue, userData]);
 
   useEffect(() => {
@@ -122,14 +122,8 @@ export const DetailsForm: FC = () => {
         Корпоративное донорство
       </Title>
       <FormItem columns={2}>
-        <Checkbox
-          name='corporateDonations'
-          onChange={(e) => setSelectStatus(e.target.checked)}
-          value={activeSelect}
-        >
-          <Paragraph as='span' size='1.2em'>
-            Я участник программы корпоративное донорство
-          </Paragraph>
+        <Checkbox name='corporateDonations' innerRef={register}>
+          Я участник программы корпоративное донорство
         </Checkbox>
       </FormItem>
       <FormItem columns={2} label='Выберите вашу организацию'>
@@ -137,7 +131,11 @@ export const DetailsForm: FC = () => {
           name='corporateId'
           control={control}
           as={
-            <Select size='large' placeholder='Выберите вашу организацию' disabled={!activeSelect}>
+            <Select
+              size='large'
+              placeholder='Выберите вашу организацию'
+              disabled={!isCorporateDonation}
+            >
               {organizations.data &&
                 organizations.data.map(({ _id, text }) => (
                   <Select.Option key={_id} value={_id}>

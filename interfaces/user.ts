@@ -14,3 +14,7 @@ export interface IUser {
   creationDate: string;
   honorary: boolean;
 }
+
+export interface IUserStore extends IUser {
+  token: string;
+}

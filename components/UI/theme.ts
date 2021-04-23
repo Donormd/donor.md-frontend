@@ -4,6 +4,7 @@ export const theme = {
     black: '#000000',
     primary: '#ffecdd',
     danger: '#ff4d4b',
+    pink: '#f8bab4',
     textMuted: '#808080',
   },
   sizes: {

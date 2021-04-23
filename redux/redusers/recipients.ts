@@ -2,16 +2,16 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { apiV1 } from '../constants/url';
 import { IState } from '../../interfaces/initial-state';
-import { IRecipient } from '../../interfaces/recipient';
+import { IRecipient, IRecipientCard } from '../../interfaces/recipient';
 import { storage } from '../../services/storage';
 
-const initialState: IState<IRecipient[] | null> = {
+const initialState: IState<IRecipientCard[] | null> = {
   status: 'init',
   data: null,
   error: null,
 };
 
-export const getRecipientRequestAction = createAsyncThunk<IRecipient[]>(
+export const getRecipientsAction = createAsyncThunk<IRecipientCard[]>(
   'recipients/get',
   async () => {
     const response = await axios.get(`${apiV1}/recipient`);
@@ -22,8 +22,7 @@ export const getRecipientRequestAction = createAsyncThunk<IRecipient[]>(
 export const createRecipientRequestAction = createAsyncThunk<void, IRecipient>(
   'recipients/post',
   async (payload) => {
-    const response = await axios.post(`${apiV1}/recipient`, payload);
-    return response.data;
+    await axios.post(`${apiV1}/recipient`, payload);
   },
 );
 
@@ -33,17 +32,17 @@ const recipients = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(
-      getRecipientRequestAction.fulfilled,
-      (state, action: PayloadAction<IRecipient[]>) => {
+      getRecipientsAction.fulfilled,
+      (state, action: PayloadAction<IRecipientCard[]>) => {
         state.status = 'success';
         state.data = action.payload;
         storage.set('recipients', action.payload);
       },
     );
-    builder.addCase(getRecipientRequestAction.pending, (state) => {
+    builder.addCase(getRecipientsAction.pending, (state) => {
       state.status = 'loading';
     });
-    builder.addCase(getRecipientRequestAction.rejected, (state, action) => {
+    builder.addCase(getRecipientsAction.rejected, (state, action) => {
       state.status = 'error';
       state.error = String(action.error.message);
     });
@@ -55,7 +54,7 @@ const recipients = createSlice({
     });
     builder.addCase(createRecipientRequestAction.rejected, (state, action) => {
       state.status = 'error';
-      state.error = String(action.error.message);
+      state.error = action.error.message || 'Ops something went wrong';
     });
   },
 });

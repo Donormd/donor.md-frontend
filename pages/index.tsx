@@ -1,6 +1,6 @@
 import React from 'react';
-import Header from '../components/common/header';
-import Footer from '../components/common/footer';
+import { Header } from '../components/common/header';
+import { Footer } from '../components/common/footer';
 import { Container } from '../layouts/container';
 import { Intro } from '../components/sections/home/intro';
 import Monitoring from '../components/sections/home/monitoring';

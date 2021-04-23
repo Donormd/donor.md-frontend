@@ -1,56 +1,22 @@
-import React from 'react';
+import { FC, useEffect } from 'react';
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
 import DashboardGrid from '../../layouts/dashboard-grid';
 import { TitleWithArrow, Paragraph } from '../../components/UI';
-import PartnerOfferCard, { Props } from '../../components/partner-offer-card';
+import PartnerOfferCard from '../../components/partner-offer-card';
+import { useAppSelector } from '../../redux/store';
+import { IBonus } from '../../interfaces/bonus';
+import Alert from '../../components/alert';
+import { getBonusesAction } from '../../redux/redusers/bonus';
 
-declare type KeyType = { key: string | number };
-declare type MockProps = KeyType & Props;
+const Bonuses: FC = (): JSX.Element => {
+  const dispatch = useDispatch();
+  const { status, data, error } = useAppSelector((state) => state.bonus);
 
-const mock: Array<MockProps> = [
-  {
-    key: 1,
-    src: '/stub.svg',
-    name: 'Кофейня "Дайотпить"',
-    discount: 'Скидка на все на питки: 25%',
-    condition: `В течение 3 дней с момента сдачи крови. 
-      По предъявлению справки и документа удостоверяющего личность`,
-    date: new Date().toISOString(),
-  },
-  {
-    key: 2,
-    src: '/stub.svg',
-    name: 'Кофейня "Дайотпить"',
-    discount: 'Скидка на все на питки: 25%',
-    condition: `В течение 3 дней с момента сдачи крови. 
-      По предъявлению справки и документа удостоверяющего личность`,
-    date: new Date().toISOString(),
-  },
-  {
-    key: 3,
-    src: '/stub.svg',
-    name: 'Кофейня "Дайотпить"',
-    discount: 'Скидка на все на питки: 25%',
-    condition: `В течение 3 дней с момента сдачи крови. 
-      По предъявлению справки и документа удостоверяющего личность`,
-    date: new Date().toISOString(),
-  },
-  {
-    key: 4,
-    src: '/stub.svg',
-    name: 'Кофейня "Дайотпить"',
-    discount: 'Скидка на все на питки: 25%',
-    condition: `В течение 3 дней с момента сдачи крови. 
-      По предъявлению справки и документа удостоверяющего личность`,
-    date: new Date().toISOString(),
-  },
-];
+  useEffect(() => {
+    dispatch(getBonusesAction());
+  }, [dispatch]);
 
-const TextWrapper = styled.div`
-  margin: 25px 0 20px 0;
-`;
-
-const Bonuses: React.FC = (): JSX.Element => {
   return (
     <DashboardGrid>
       <TitleWithArrow>Бонусы</TitleWithArrow>
@@ -60,11 +26,14 @@ const Bonuses: React.FC = (): JSX.Element => {
         </Paragraph>
         <Paragraph>Выберите актуальную для себя предложение от наших партнеров.</Paragraph>
       </TextWrapper>
-      {mock.map((item) => (
-        <PartnerOfferCard {...item} />
-      ))}
+      {status === 'error' && <Alert dismissible>{error}</Alert>}
+      {data && data.map((item: IBonus) => <PartnerOfferCard {...item} />)}
     </DashboardGrid>
   );
 };
 
 export default Bonuses;
+
+const TextWrapper = styled.div`
+  margin: 25px 0 20px 0;
+`;

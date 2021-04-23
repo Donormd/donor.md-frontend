@@ -2,19 +2,24 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { apiV1 } from '../constants/url';
 import { IState } from '../../interfaces/initial-state';
-import { IUser } from '../../interfaces/user';
+import { IUser, IUserStore } from '../../interfaces/user';
 import { storage } from '../../services/storage';
+import { fetch } from '../../services/fetch';
 
-const initialState: IState<IUser | null> = {
+const initialState: IState<IUser | IUserStore | null> = {
   status: 'init',
   data: null,
   error: null,
 };
 
-export const signInAction = createAsyncThunk<IUser, { email: string; password: string }>(
+export const signInAction = createAsyncThunk<IUserStore, { email: string; password: string }>(
   'user/sign-in',
   async (payload) => {
-    const response = await axios.post(`${apiV1}/auth/sign-in`, payload);
+    const response = await fetch<IUserStore>({
+      method: 'POST',
+      url: `${apiV1}/auth/sign-in`,
+      data: payload,
+    });
     return response.data;
   },
 );
@@ -31,10 +36,20 @@ export const recoveryUserAction = createAsyncThunk<void, { email: string }>(
   },
 );
 
-export const updateUserAction = createAsyncThunk<IUser, IUser>('user/update', async (payload) => {
-  await axios.post(`${apiV1}/user`, payload);
-  return payload;
-});
+export const updateUserAction = createAsyncThunk<IUser | IUserStore, IUser>(
+  'user/update',
+  async (payload) => {
+    await fetch({
+      method: 'PUT',
+      url: `${apiV1}/user`,
+      data: payload,
+      headers: {
+        authorization: true,
+      },
+    });
+    return payload;
+  },
+);
 
 const user = createSlice({
   name: 'user',
@@ -45,9 +60,11 @@ const user = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(signInAction.fulfilled, (state, action: PayloadAction<IUser>) => {
+    builder.addCase(signInAction.fulfilled, (state, action: PayloadAction<IUserStore>) => {
       state.status = 'success';
       state.data = action.payload;
+      storage.set('token', action.payload.token);
+      action.payload.token = '';
       storage.set('user', action.payload);
     });
     builder.addCase(signInAction.pending, (state) => {
