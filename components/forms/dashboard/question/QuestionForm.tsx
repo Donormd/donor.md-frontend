@@ -39,7 +39,7 @@ export const QuestionForm: FC = () => {
 
   return (
     <FormWrapper onSubmit={handleSubmit(onSubmit)}>
-      <Accordion defaultActiveKey={['1']} onChange={onChangeHandle} ghost>
+      <Accordion defaultActiveKey={data ? data[0]._id : '1'} onChange={onChangeHandle} ghost>
         {data &&
           data.map((panel: IQuestion) => (
             <Panel header={<PanelHeader title={panel.title} />} key={panel._id}>
