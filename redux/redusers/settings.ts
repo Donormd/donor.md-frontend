@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import fetch from '../../services/fetch';
+import { fetch } from '../../services/fetch';
 import { IState } from '../../interfaces/initial-state';
 import { apiV1 } from '../constants/url';
 import { IChangePassword, ISettings } from '../../interfaces/settings';

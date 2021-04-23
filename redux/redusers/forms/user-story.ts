@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import axios from 'axios';
 import { apiV1 } from '../../constants/url';
 import { IState } from '../../../interfaces/initial-state';
 import { IStory } from '../../../interfaces/story';
 import { storage } from '../../../services/storage';
+import { fetch } from '../../../services/fetch';
 
 const initialState: IState<IStory | null> = {
   status: 'init',
@@ -11,15 +11,27 @@ const initialState: IState<IStory | null> = {
   error: '',
 };
 
-export const getUserStory = createAsyncThunk<IStory | null, string>('story/get', async (id) => {
-  const response = await axios.get(`${apiV1}/story/${id}`);
+export const getUserStory = createAsyncThunk<IStory | null>('story/get', async () => {
+  const response = await fetch<IStory | null>({
+    url: `${apiV1}/story/`,
+    headers: {
+      authorization: true,
+    },
+  });
   return response.data;
 });
 
 export const createOrUpdateUserStory = createAsyncThunk<IStory, IStory>(
   'story/post',
   async (payload) => {
-    await axios.post(`${apiV1}/story`, payload);
+    await fetch({
+      method: 'POST',
+      url: `${apiV1}/story`,
+      data: payload,
+      headers: {
+        authorization: true,
+      },
+    });
     return payload;
   },
 );

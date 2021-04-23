@@ -1,8 +1,7 @@
 import axios, { AxiosPromise, AxiosRequestConfig } from 'axios';
 import { storage } from './storage';
-import { IUserStore } from '../interfaces/user';
 
-export default <T>({
+export const fetch = <T>({
   url = '/',
   method = 'get',
   headers = {},
@@ -10,9 +9,9 @@ export default <T>({
   data = {},
 }: AxiosRequestConfig): AxiosPromise<T> => {
   if (headers?.authorization) {
-    const user = storage.get<IUserStore>('user');
-    if (user) {
-      headers.authorization = `Bearer ${user.data.token}`;
+    const token = storage.get<string>('token');
+    if (token) {
+      headers.authorization = `Bearer ${token.data}`;
     }
   }
   return axios({

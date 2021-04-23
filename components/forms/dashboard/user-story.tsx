@@ -17,7 +17,6 @@ export const UserStoryForm: FC = () => {
   const dispatch = useDispatch();
   const {
     userStory: { data: storyData, status },
-    user: { data: userData },
   } = useAppSelector((state) => state);
 
   useEffect(() => {
@@ -27,24 +26,14 @@ export const UserStoryForm: FC = () => {
   }, [storyData]);
 
   useEffect(() => {
-    if (!userData) return;
-
     const story = storage.get('userStory')?.data as IStory | null;
     story && dispatch(setUserStory(story));
 
-    !story && dispatch(getUserStory(userData.id));
-  }, [userData]);
+    !story && dispatch(getUserStory);
+  }, []);
 
   const onSubmit = (data: IStory) => {
-    if (!userData) return;
-
-    data?.story &&
-      dispatch(
-        createOrUpdateUserStory({
-          userId: userData.id,
-          story: data?.story,
-        }),
-      );
+    dispatch(createOrUpdateUserStory(data));
   };
 
   return (
