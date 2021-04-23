@@ -12,7 +12,7 @@ export default <T>({
   if (headers?.authorization) {
     const user = storage.get<IUserStore>('user');
     if (user) {
-      headers.authorization = `JWT ${user.data.token}`;
+      headers.authorization = `Bearer ${user.data.token}`;
     }
   }
   return axios({

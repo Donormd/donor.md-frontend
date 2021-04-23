@@ -7,7 +7,7 @@ interface IRule {
   enough: number;
 }
 
-type BloodGroup =
+export type BloodGroup =
   | 'O(I)-'
   | 'O(I)+'
   | 'A(II)-'
@@ -77,7 +77,7 @@ interface IProps {
   quantity: number;
 }
 
-const BloodItem: FC<IProps> = ({ group, quantity }) => {
+export const BloodItem: FC<IProps> = ({ group, quantity }) => {
   return (
     <div>
       <BloodTitle as='h6' align='center' bold>
@@ -90,5 +90,3 @@ const BloodItem: FC<IProps> = ({ group, quantity }) => {
     </div>
   );
 };
-
-export default BloodItem;

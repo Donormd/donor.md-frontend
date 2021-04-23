@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import styled from 'styled-components';
@@ -22,7 +22,7 @@ const Thanks = styled.div`
   font-size: 0.7rem;
 `;
 
-const Footer: React.FC = (): JSX.Element => (
+export const Footer: FC = () => (
   <StyledFooter>
     <Container>
       <Grid>
@@ -89,5 +89,3 @@ const Footer: React.FC = (): JSX.Element => (
     </Container>
   </StyledFooter>
 );
-
-export default Footer;

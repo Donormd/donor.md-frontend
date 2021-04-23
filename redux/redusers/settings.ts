@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import axios from 'axios';
+import fetch from '../../services/fetch';
 import { IState } from '../../interfaces/initial-state';
 import { apiV1 } from '../constants/url';
 import { IChangePassword, ISettings } from '../../interfaces/settings';
@@ -11,36 +11,44 @@ const initialState: IState<ISettings | null> = {
   error: null,
 };
 
-export const getSettingsAction = createAsyncThunk<ISettings>('settings/get', async () => {
-  const response = await axios.get(`${apiV1}/settings`);
+export const getSettingsAction = createAsyncThunk<ISettings | null>('settings/get', async () => {
+  const response = await fetch<ISettings | null>({
+    url: `${apiV1}/settings`,
+    headers: {
+      authorization: true,
+    },
+  });
   return response.data;
 });
 
 export const updateSettingsAction = createAsyncThunk<ISettings, ISettings>(
   'settings/put',
-  async (payload) => {
-    await axios.put(`${apiV1}/settings`, payload);
-    return payload;
+  async (data) => {
+    await fetch({
+      method: 'put',
+      url: `${apiV1}/settings`,
+      headers: {
+        authorization: true,
+      },
+      data,
+    });
+    return data;
   },
 );
 
-export const changePasswordAction = createAsyncThunk<void, IChangePassword>(
-  'password/put',
-  async (payload) => {
-    await axios.put(`${apiV1}/settings/password`, payload);
-  },
-);
-
-const settings = createSlice({
+export const settings = createSlice({
   name: 'settings',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getSettingsAction.fulfilled, (state, action: PayloadAction<ISettings>) => {
-      state.status = 'success';
-      state.data = action.payload;
-      storage.set('settings', action.payload);
-    });
+    builder.addCase(
+      getSettingsAction.fulfilled,
+      (state, action: PayloadAction<ISettings | null>) => {
+        state.status = 'init';
+        state.data = action.payload;
+        storage.set('settings', action.payload);
+      },
+    );
     builder.addCase(getSettingsAction.pending, (state) => {
       state.status = 'loading';
     });
@@ -60,6 +68,35 @@ const settings = createSlice({
       state.status = 'error';
       state.error = action.error.message || 'Ops something went wrong';
     });
+  },
+});
+
+/* Password Change state reducer */
+
+const initialPasswordState: IState<null> = {
+  status: 'init',
+  data: null,
+  error: null,
+};
+
+export const changePasswordAction = createAsyncThunk<void, IChangePassword>(
+  'password/put',
+  async (data) => {
+    await fetch({
+      url: `${apiV1}/settings/password`,
+      headers: {
+        authorization: true,
+      },
+      data,
+    });
+  },
+);
+
+export const password = createSlice({
+  name: 'passwordReducer',
+  initialState: initialPasswordState,
+  reducers: {},
+  extraReducers: (builder) => {
     builder.addCase(changePasswordAction.fulfilled, (state) => {
       state.status = 'success';
     });
@@ -72,5 +109,3 @@ const settings = createSlice({
     });
   },
 });
-
-export const { actions, reducer, caseReducers } = settings;

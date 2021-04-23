@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { FC, useState } from 'react';
 import Link from 'next/link';
 import { Popover } from 'antd';
 import { StyledLink, Button } from '../../UI';
@@ -14,7 +14,27 @@ import {
 } from './styles';
 import { PopoverStyle } from './popover.style';
 
-const Menu: React.FC<MenuListProps> = (props): JSX.Element => (
+export const Header: FC = () => {
+  const [hide, setToggleOpen] = useState<boolean>(false);
+  return (
+    <HeaderWrapper>
+      <HeaderGrid>
+        <Logo />
+        <PopoverStyle />
+        <Popover content={<Menu displayM='flex' />} trigger='click' placement='bottomRight'>
+          <Burder type='button' onClick={() => setToggleOpen((s) => !s)}>
+            <Dot />
+            <Dot hide={hide} />
+            <Dot />
+          </Burder>
+        </Popover>
+        <Menu />
+      </HeaderGrid>
+    </HeaderWrapper>
+  );
+};
+
+const Menu: FC<MenuListProps> = (props) => (
   <MenuList {...props}>
     <MenuItem>
       <Link href='/articles/about-service' passHref>
@@ -40,22 +60,3 @@ const Menu: React.FC<MenuListProps> = (props): JSX.Element => (
     </MenuItem>
   </MenuList>
 );
-export default function Header(): JSX.Element {
-  const [hide, setToggleOpen] = useState<boolean>(false);
-  return (
-    <HeaderWrapper>
-      <HeaderGrid>
-        <Logo />
-        <PopoverStyle />
-        <Popover content={<Menu displayM='flex' />} trigger='click' placement='bottomRight'>
-          <Burder type='button' onClick={() => setToggleOpen((s) => !s)}>
-            <Dot />
-            <Dot hide={hide} />
-            <Dot />
-          </Burder>
-        </Popover>
-        <Menu />
-      </HeaderGrid>
-    </HeaderWrapper>
-  );
-}
