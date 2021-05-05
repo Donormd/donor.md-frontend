@@ -45,13 +45,13 @@ const Donations: FC = () => {
       <TitleWithArrow>Мои донации</TitleWithArrow>
       <DashboardButtonsLinks />
       <Form onSubmit={handleSubmit(onSubmit)}>
-        <FormItem label='Номер справки' required>
+        <FormItem columns={2} label='Номер справки' required>
           <Input name='referenceNumber' innerRef={register} />
         </FormItem>
-        <FormItem label='Номер донации' required>
+        <FormItem columns={2} label='Номер донации' required>
           <Input name='donationNumber' innerRef={register} />
         </FormItem>
-        <FormItem label='Дата кровосдачи' required>
+        <FormItem columns={2} label='Дата кровосдачи' required>
           <Controller
             name='date'
             control={control}
@@ -66,7 +66,7 @@ const Donations: FC = () => {
             }}
           />
         </FormItem>
-        <FormItem label='Место сдачи' required>
+        <FormItem columns={2} label='Место сдачи' required>
           <Controller
             name='transfusionCenterId'
             control={control}
@@ -80,7 +80,7 @@ const Donations: FC = () => {
             }
           />
         </FormItem>
-        <FormItem label='Ваш реципиент' help='Поле не обязательное' required>
+        <FormItem columns={2} label='Ваш реципиент' help='Поле не обязательное' required>
           <Controller
             name='recipientId'
             control={control}
@@ -97,6 +97,7 @@ const Donations: FC = () => {
           />
         </FormItem>
         <FormItem
+          columns={2}
           label='Загрузить справку'
           help={`
           JPG , PNG объем до 10 Мб.

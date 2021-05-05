@@ -1,4 +1,4 @@
-import React, { InputHTMLAttributes, LegacyRef, useState } from 'react';
+import { FC, InputHTMLAttributes, LegacyRef, useState } from 'react';
 import styled from 'styled-components';
 
 export interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -13,6 +13,32 @@ export interface IInputWrapperProps {
   scale: 'sm' | 'md' | 'lg';
   ref?: any;
 }
+
+const FileInput: FC<IInputProps> = ({ innerRef, scale = 'md', ...rest }): JSX.Element => {
+  const [isSelect, useSelect] = useState(false);
+  return (
+    <InputLabel>
+      <StyledFileInput
+        onChange={(data) => {
+          // eslint-disable-next-line react-hooks/rules-of-hooks
+          useSelect(!!data.target.value.length);
+        }}
+        {...rest}
+        ref={innerRef}
+        scale={scale}
+        type='file'
+      />
+      <HiddenInput scale={scale}>
+        <span>{isSelect ? 'Выбран 1 файл' : 'Выбрать файл'}</span> &#128391;
+      </HiddenInput>
+    </InputLabel>
+  );
+};
+
+export const Input: FC<IInputProps> = ({ innerRef, scale = 'md', type = 'text', ...rest }) => {
+  if (type === 'file') return <FileInput {...rest} innerRef={innerRef} type={type} scale={scale} />;
+  return <StyledInput {...rest} ref={innerRef} type={type} scale={scale} />;
+};
 
 export const StyledInput = styled.input<IInputWrapperProps>`
   appearance: none;
@@ -66,34 +92,3 @@ const HiddenInput = styled.span<{ scale: 'sm' | 'md' | 'lg' }>`
   font-size: ${({ scale, theme }) => theme.sizes.controls[scale].fontSize};
   border-radius: ${({ scale, theme }) => theme.sizes.controls[scale].radius};
 `;
-
-const FileInput: React.FC<IInputProps> = ({ innerRef, scale = 'md', ...rest }): JSX.Element => {
-  const [isSelect, useSelect] = useState(false);
-  return (
-    <InputLabel>
-      <StyledFileInput
-        onChange={(data) => {
-          // eslint-disable-next-line react-hooks/rules-of-hooks
-          useSelect(!!data.target.value.length);
-        }}
-        {...rest}
-        ref={innerRef}
-        scale={scale}
-        type='file'
-      />
-      <HiddenInput scale={scale}>
-        <span>{isSelect ? 'Выбран 1 файл' : 'Выбрать файл'}</span> &#128391;
-      </HiddenInput>
-    </InputLabel>
-  );
-};
-
-export const Input: React.FC<IInputProps> = ({
-  innerRef,
-  scale = 'md',
-  type = 'text',
-  ...rest
-}) => {
-  if (type === 'file') return <FileInput {...rest} innerRef={innerRef} type={type} scale={scale} />;
-  return <StyledInput {...rest} ref={innerRef} type={type} scale={scale} />;
-};
