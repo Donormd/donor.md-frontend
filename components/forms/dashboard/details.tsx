@@ -53,6 +53,7 @@ export const DetailsForm: FC = () => {
         <Input name='fullname' innerRef={register} />
       </FormItem>
       <FormItem columns={2} label='Дата рождения' required>
+        <span>{userData?.dateBirth}</span>
         <Controller
           name='dateBirth'
           control={control}
