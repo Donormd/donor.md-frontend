@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
 import { useForm, Controller } from 'react-hook-form';
@@ -17,10 +17,12 @@ import { useRequiredAuth } from '../../../hooks/useRequiredAuth';
 
 declare type Props = { onChangeState: onChangeState };
 
-export const SignUpForm: React.FC<Props> = ({ onChangeState }): JSX.Element => {
+const validate = { required: 'Обязательное поле' };
+
+export const SignUpForm: FC<Props> = ({ onChangeState }): JSX.Element => {
   const dispatch = useDispatch();
   const auth = useAuth();
-  const { register, control, handleSubmit } = useForm();
+  const { register, control, handleSubmit, errors } = useForm();
   const { sex, bloodGroups } = useAppSelector((state) => state.common);
   const { status, error } = useAppSelector((state) => state.user);
 
@@ -29,7 +31,7 @@ export const SignUpForm: React.FC<Props> = ({ onChangeState }): JSX.Element => {
   useEffect(() => {
     dispatch(getOptions('sex'));
     dispatch(getOptions('bloodGroups'));
-  }, []);
+  }, [dispatch]);
 
   const onSubmit = (data: IUser) => {
     auth?.signUp(data);
@@ -45,11 +47,14 @@ export const SignUpForm: React.FC<Props> = ({ onChangeState }): JSX.Element => {
       <Title as='h2' margin='15px'>
         Регистрация
       </Title>
-      <FormItem>
-        <Input placeholder='Укажите ФИО' name='fullname' innerRef={register} />
+      <FormItem error={errors.fullname?.message}>
+        <Input placeholder='Укажите ФИО' name='fullname' innerRef={register(validate)} />
       </FormItem>
-      <FormItem>
+      <FormItem error={errors.sexId?.message}>
         <Controller
+          name='sexId'
+          control={control}
+          rules={validate}
           as={
             <Select size='large' placeholder='Укажите пол'>
               {sex.data &&
@@ -60,14 +65,13 @@ export const SignUpForm: React.FC<Props> = ({ onChangeState }): JSX.Element => {
                 ))}
             </Select>
           }
-          name='sexId'
-          control={control}
         />
       </FormItem>
-      <FormItem>
+      <FormItem error={errors.bloodGroupId?.message}>
         <Controller
           name='bloodGroupId'
           control={control}
+          rules={validate}
           as={
             <Select size='large' placeholder='Укажите группу крови'>
               {blood &&
@@ -80,18 +84,32 @@ export const SignUpForm: React.FC<Props> = ({ onChangeState }): JSX.Element => {
           }
         />
       </FormItem>
-      <FormItem>
-        <Input placeholder='Укажите номер телефона' name='phoneMobile' innerRef={register} />
+      <FormItem error={errors.phoneMobile?.message}>
+        <Input
+          placeholder='Укажите номер телефона'
+          name='phoneMobile'
+          innerRef={register(validate)}
+        />
       </FormItem>
-      <FormItem>
-        <Input placeholder='Укажите email' type='email' name='email' innerRef={register} />
+      <FormItem error={errors.email?.message}>
+        <Input
+          placeholder='Укажите email'
+          type='email'
+          name='email'
+          innerRef={register(validate)}
+        />
       </FormItem>
-      <FormItem>
-        <Input type='password' placeholder='Укажите пароль' name='password' innerRef={register} />
+      <FormItem error={errors.password?.message}>
+        <Input
+          type='password'
+          placeholder='Укажите пароль'
+          name='password'
+          innerRef={register(validate)}
+        />
       </FormItem>
       <FormItem>
         <FormItemCheckbox>
-          <Checkbox checked />
+          <Checkbox readOnly defaultChecked />
           <p>
             Я принимаю условия Пользовательского соглашения и даю своё согласие{' '}
             <Link href='/'>
@@ -110,7 +128,7 @@ export const SignUpForm: React.FC<Props> = ({ onChangeState }): JSX.Element => {
       </FormItem>
       <FormItem>
         <FormItemCheckbox>
-          <Checkbox checked />
+          <Checkbox readOnly defaultChecked />
           <p>
             Даю согласие на обработку персональных данных (согласно Закону Приднестровья «О
             персональных данных»

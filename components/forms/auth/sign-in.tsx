@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import { useForm } from 'react-hook-form';
 import { FormItem, Input, Title } from '../../UI';
 import { onChangeState } from './types';
@@ -10,9 +10,9 @@ import { useRequiredAuth } from '../../../hooks/useRequiredAuth';
 
 declare type Props = { onChangeState: onChangeState };
 
-export const SignInForm: React.FC<Props> = ({ onChangeState }): JSX.Element => {
+export const SignInForm: FC<Props> = ({ onChangeState }): JSX.Element => {
   const { error } = useAppSelector((state) => state.user);
-  const { handleSubmit, register } = useForm();
+  const { handleSubmit, register, errors } = useForm();
   const auth = useAuth();
 
   useRequiredAuth('/dashboard', '/auth');
@@ -26,7 +26,7 @@ export const SignInForm: React.FC<Props> = ({ onChangeState }): JSX.Element => {
       <Title as='h2' margin='15px'>
         Авторизация
       </Title>
-      <FormItem columns={1}>
+      <FormItem columns={1} error={errors.email?.message}>
         <Input
           placeholder='Введите email'
           name='email'
@@ -39,7 +39,7 @@ export const SignInForm: React.FC<Props> = ({ onChangeState }): JSX.Element => {
           })}
         />
       </FormItem>
-      <FormItem columns={1}>
+      <FormItem columns={1} error={errors.password?.message}>
         <Input
           placeholder='Введите пароль'
           name='password'
