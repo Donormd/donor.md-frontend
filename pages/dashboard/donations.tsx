@@ -14,7 +14,7 @@ import {
   Select,
   DatePicker,
 } from '../../components/UI';
-import DashboardGrid from '../../layouts/dashboard-grid';
+import { DashboardGrid } from '../../layouts/dashboard-grid';
 import { useAppSelector } from '../../redux/store';
 import { getOptions } from '../../redux/common';
 import { IDonation } from '../../interfaces/donation';

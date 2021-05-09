@@ -10,7 +10,7 @@ import {
   TitleWithArrow,
   TextArea,
 } from '../../components/UI';
-import DashboardGrid from '../../layouts/dashboard-grid';
+import { DashboardGrid } from '../../layouts/dashboard-grid';
 import { useAppSelector } from '../../redux/store';
 
 /*

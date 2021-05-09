@@ -1,7 +1,7 @@
 import { FC, useEffect } from 'react';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
-import DashboardGrid from '../../layouts/dashboard-grid';
+import { DashboardGrid } from '../../layouts/dashboard-grid';
 import { TitleWithArrow, Paragraph } from '../../components/UI';
 import PartnerOfferCard from '../../components/partner-offer-card';
 import { useAppSelector } from '../../redux/store';

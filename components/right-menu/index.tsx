@@ -1,25 +1,17 @@
-/* eslint-disable multiline-comment-style */
-import React from 'react';
-import Link from 'next/link';
-import { Aside, Menu, MenuItem, LinkGrid, IconWrapper, ItemParagraph } from './styles';
+import { FC } from 'react';
+import { Aside, AsideWrapper, Menu } from './styles';
+import DonorInfo from '../donor-info';
+import { useAuth } from '../../hooks/useAuth';
+import { Loading } from '../UI/loading';
+import { MenuLink, MenuLinkProps } from './menu-link';
 import Schedule from '../../public/images/pages/dashboard/right-aside/schedule-donation.svg';
 import Add from '../../public/images/pages/dashboard/right-aside/add-donation.svg';
 import Question from '../../public/images/pages/dashboard/right-aside/question.svg';
 import Support from '../../public/images/pages/dashboard/right-aside/support-project.svg';
-import DonorInfo from '../donor-info';
-import { useAuth } from '../../hooks/useAuth';
-import { Loading } from '../UI/loading';
 // import DonorProgress from '../donor-progress';
 // import DonorCard from '../donor-card';
 
-export declare type MenuLinkProps = {
-  key: string | number;
-  Icon: any;
-  href: string;
-  text: string;
-};
-
-const data: Array<MenuLinkProps> = [
+const menu: MenuLinkProps[] = [
   {
     key: 1,
     Icon: Schedule,
@@ -46,20 +38,7 @@ const data: Array<MenuLinkProps> = [
   },
 ];
 
-const MenuLink: React.FC<MenuLinkProps> = ({ Icon, href, text }) => (
-  <MenuItem>
-    <Link href={href}>
-      <LinkGrid>
-        <ItemParagraph>{text}</ItemParagraph>
-        <IconWrapper>
-          <Icon />
-        </IconWrapper>
-      </LinkGrid>
-    </Link>
-  </MenuItem>
-);
-
-const RightMenu: React.FC = (): JSX.Element => {
+const RightMenu: FC = () => {
   const auth = useAuth();
 
   if (!auth?.user) return <Loading />;
@@ -68,14 +47,16 @@ const RightMenu: React.FC = (): JSX.Element => {
 
   return (
     <Aside>
-      <DonorInfo name={name} lastname={lastname} honorary={auth.user.honorary} />
-      {/* <DonorCard />
+      <AsideWrapper>
+        <DonorInfo name={name} lastname={lastname} honorary={auth.user.honorary} />
+        {/* <DonorCard />
       <DonorProgress /> */}
-      <Menu>
-        {data.map((link) => (
-          <MenuLink {...link} />
-        ))}
-      </Menu>
+        <Menu>
+          {menu.map((link) => (
+            <MenuLink {...link} />
+          ))}
+        </Menu>
+      </AsideWrapper>
     </Aside>
   );
 };

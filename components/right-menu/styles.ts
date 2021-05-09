@@ -10,6 +10,11 @@ export const Aside = styled.aside`
   }
 `;
 
+export const AsideWrapper = styled.div`
+  position: sticky;
+  top: 25px;
+`;
+
 export const Menu = styled.ul`
   margin-top: 30px;
   list-style-type: none;

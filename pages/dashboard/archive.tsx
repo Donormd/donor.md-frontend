@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import Pagination from '../../components/pagination';
 import DashboardButtonsLinks from '../../components/dashboard-buttons-links';
 import { StyledLink, Title, TitleWithArrow } from '../../components/UI';
-import DashboardGrid from '../../layouts/dashboard-grid';
+import { DashboardGrid } from '../../layouts/dashboard-grid';
 
 const mock = [
   {

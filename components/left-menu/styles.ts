@@ -20,6 +20,11 @@ export const Aside = styled.aside<{ image?: string }>`
   }
 `;
 
+export const AsideWrapper = styled.div`
+  top: 25px;
+  position: sticky;
+`;
+
 export const Menu = styled.ul`
   margin-top: 30px;
   list-style-type: none;

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import DashboardButtonsLinks from '../../components/dashboard-buttons-links';
 import { Button, DatePicker, Form, FormItem, Select, TitleWithArrow } from '../../components/UI';
-import DashboardGrid from '../../layouts/dashboard-grid';
+import { DashboardGrid } from '../../layouts/dashboard-grid';
 import { useAppSelector } from '../../redux/store';
 import SocialMediaLinks from '../../components/social-media-links';
 

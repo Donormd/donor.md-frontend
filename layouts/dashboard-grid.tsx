@@ -12,21 +12,7 @@ interface IProps {
   className?: string;
 }
 
-const Main = styled.main`
-  display: grid;
-  grid-template-columns: 1fr;
-  height: 100%;
-  @media (min-width: 576px) {
-    grid-template-columns: max-content 1fr max-content;
-  }
-`;
-
-const Container = styled.section`
-  padding: 50px 30px;
-  width: 100%;
-`;
-
-const DashboardGrid: FC<IProps> = ({ children, className, leftImage }) => {
+export const DashboardGrid: FC<IProps> = ({ children, className, leftImage }) => {
   const auth = useAuth();
 
   useRequiredAuth(null, '/auth');
@@ -47,4 +33,16 @@ const DashboardGrid: FC<IProps> = ({ children, className, leftImage }) => {
   );
 };
 
-export default DashboardGrid;
+const Main = styled.main`
+  display: grid;
+  grid-template-columns: 1fr;
+  height: 100%;
+  @media (min-width: 576px) {
+    grid-template-columns: max-content 1fr max-content;
+  }
+`;
+
+const Container = styled.section`
+  padding: 50px 30px;
+  width: 100%;
+`;

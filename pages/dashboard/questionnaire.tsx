@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import DashboardButtonsLinks from '../../components/dashboard-buttons-links';
 import { TitleWithArrow, Paragraph } from '../../components/UI';
-import DashboardGrid from '../../layouts/dashboard-grid';
+import { DashboardGrid } from '../../layouts/dashboard-grid';
 import { QuestionForm } from '../../components/forms/dashboard/question/QuestionForm';
 
 const MyQuestionnaire: FC = () => {
