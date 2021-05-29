@@ -81,16 +81,16 @@ const CorporateDonationPage: React.FC = (): JSX.Element => {
               innerRef={register}
               type='number'
               min={0}
-              defaultValue={10}
+              defaultValue={0}
             />
           </FormItem>
           <FormItem>
             <Checkbox checked>
               Согласен с{' '}
               <Link href='/articles/user-agreement'>
-                <StyledLink underline>правилами</StyledLink>
+                <StyledLink underline>политикой конфиденциальности</StyledLink>
               </Link>{' '}
-              обработки обработки обработки персональных данных
+              и правилами обработки персональных данных Web-сервиса Donor.md
             </Checkbox>
           </FormItem>
           <FormItem>
