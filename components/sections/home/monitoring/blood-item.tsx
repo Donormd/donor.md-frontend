@@ -54,12 +54,12 @@ const rules: Record<BloodGroup, IRule> = {
 
 const quantityText = ({ quantity, group }: IProps) => {
   if (quantity < rules[group].few) {
-    return 'Мало';
+    return 'Критично';
   }
   if (quantity < rules[group].enough) {
-    return 'Достаточно';
+    return 'Мало';
   }
-  return 'Много';
+  return 'Достаточно';
 };
 
 const quantityImage = ({ quantity, group }: IProps): string => {
