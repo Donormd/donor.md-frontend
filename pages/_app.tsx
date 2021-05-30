@@ -11,7 +11,7 @@ import { store } from '../redux/store';
 import { AuthProvider } from '../hooks/useAuth';
 import { PlanningButton } from '../components/planning-button';
 
-const App: FC<AppProps> = ({ Component, pageProps }): JSX.Element => {
+const App: FC<AppProps> = ({ Component, pageProps }) => {
   return (
     <Provider store={store}>
       <ThemeProvider theme={theme}>

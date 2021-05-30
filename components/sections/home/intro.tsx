@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { FC } from 'react';
 import { Title, Paragraph, Button } from '../../UI';
 
-export const Intro: FC = (): JSX.Element => (
+export const Intro: FC = () => (
   <Section id='intro'>
     <ImageWrapper>
       <Image src='/images/pages/home/love.svg' width={300} height={300} layout='responsive' />

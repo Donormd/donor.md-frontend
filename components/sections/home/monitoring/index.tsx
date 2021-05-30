@@ -6,7 +6,7 @@ import { BloodList } from './styles';
 import { BloodGroup, BloodItem } from './blood-item';
 import { useAppSelector } from '../../../../redux/store';
 import { getData } from '../../../../redux/redusers/monitoring';
-import Alert from '../../../alert';
+import { Alert } from '../../../alert';
 import { Loading } from '../../../UI/loading';
 
 const Monitoring: FC = () => {
@@ -27,7 +27,7 @@ const Monitoring: FC = () => {
 
   return (
     <Section id='monitoring'>
-      <Title as='h2' className='h1' bold>
+      <Title as='h2' bold>
         Мониторинг запасов
       </Title>
       <BloodList>

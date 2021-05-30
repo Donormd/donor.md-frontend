@@ -66,7 +66,7 @@ const DividerWrapper = styled(Divider)`
   }
 `;
 
-const PanelHeader: FC<{ title: string }> = ({ title }): JSX.Element => (
+const PanelHeader: FC<{ title: string }> = ({ title }) => (
   <DividerWrapper>
     <Title as='h4' bold>
       {title}

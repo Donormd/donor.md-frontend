@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { FC, useEffect } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import Alert from '../../components/alert';
+import { Alert } from '../../components/alert';
 import DashboardButtonsLinks from '../../components/dashboard-buttons-links';
 import SocialMediaLinks from '../../components/social-media-links';
 import {

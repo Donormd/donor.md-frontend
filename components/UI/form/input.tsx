@@ -14,7 +14,7 @@ export interface IInputWrapperProps {
   ref?: any;
 }
 
-const FileInput: FC<IInputProps> = ({ innerRef, scale = 'md', ...rest }): JSX.Element => {
+const FileInput: FC<IInputProps> = ({ innerRef, scale = 'md', ...rest }) => {
   const [isSelect, useSelect] = useState(false);
   return (
     <InputLabel>
@@ -61,6 +61,7 @@ export const StyledInput = styled.input<IInputWrapperProps>`
   }
 
   &::placeholder {
+    font-size: 0.9em;
     color: ${({ theme }) => theme.textMuted};
   }
 

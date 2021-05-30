@@ -1,15 +1,15 @@
-import React from 'react';
+import { FC } from 'react';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { Title, Divider, FormItem, Input, Button, Checkbox, StyledLink } from '../../components/UI';
-import HeaderContentFooter from '../../layouts/header-content-footer';
+import { HeaderContentFooter } from '../../layouts/header-content-footer';
 import { Container } from '../../layouts/container';
-import Alert from '../../components/alert';
+import { Alert } from '../../components/alert';
 import { sendData, ICorporateDonation } from '../../redux/redusers/corporate-donation';
 import { useAppSelector } from '../../redux/store';
 
-const CorporateDonationPage: React.FC = (): JSX.Element => {
+const CorporateDonationPage: FC = () => {
   const { handleSubmit, register, reset } = useForm();
   const { status, error } = useAppSelector((state) => state.corporateDonation);
   const dispatch = useDispatch();

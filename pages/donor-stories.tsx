@@ -1,22 +1,23 @@
 /* eslint no-console:0 */
-import React from 'react';
+import { FC } from 'react';
 import styled from 'styled-components';
-import HeaderContentFooter from '../layouts/header-content-footer';
-import ButtonGroup, { ButtonsProps, OnClickProps } from '../components/UI/button-group';
+import { HeaderContentFooter } from '../layouts/header-content-footer';
+import { ButtonGroup } from '../components/UI/button-group';
 import { DonorStory } from '../components/donor-story';
 import Pagination from '../components/pagination';
 import { Title } from '../components/UI';
 import { Container } from '../layouts/container';
 import { useAppSelector } from '../redux/store';
+import { IOptions } from '../redux/common';
 
-const buttons: Array<ButtonsProps> = [
-  { key: 1, text: 'Истории доноров' },
-  { key: 2, text: 'Истории рецепиентов' },
+const buttons: IOptions[] = [
+  { _id: '1', text: 'Истории доноров' },
+  { _id: '2', text: 'Истории рецепиентов' },
 ];
 
-const handleClick: OnClickProps = (val) => console.log(val);
+const handleClick: (val: string) => void = (val) => console.log(val);
 
-const DonorStoriesPage: React.FC = (): JSX.Element => {
+const DonorStoriesPage: FC = () => {
   const { data } = useAppSelector((state) => state.stories);
   return (
     <HeaderContentFooter background='/images/pages/welcome.png'>

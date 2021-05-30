@@ -3,11 +3,11 @@ import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { DashboardGrid } from '../../layouts/dashboard-grid';
 import { TitleWithArrow, Paragraph } from '../../components/UI';
-import RecipientCard from '../../components/recipient-card';
+import { RecipientCard } from '../../components/recipient-card';
 import { IRecipientCard } from '../../interfaces/recipient';
 import { useAppSelector } from '../../redux/store';
 import { getRecipientsAction } from '../../redux/redusers/recipients';
-import Alert from '../../components/alert';
+import { Alert } from '../../components/alert';
 
 const Recipients: FC = () => {
   const dispatch = useDispatch();

@@ -1,13 +1,30 @@
-import React, { useState } from 'react';
+import { FC, memo, useState } from 'react';
 import styled from 'styled-components';
 import { Paragraph } from './UI';
 
-export declare type Props = {
+interface IProps {
   dismissible?: boolean;
   message?: string;
   className?: string;
-  children?: React.ReactNode;
-};
+}
+
+export const Alert: FC<IProps> = memo(({ message, children, className, dismissible }) => {
+  const [hide, setHide] = useState<boolean>(false);
+
+  return (
+    <Message hide={hide}>
+      <Paragraph className={className}>{message || children}</Paragraph>
+      {dismissible && (
+        <ButtonWrapper>
+          <CloseIcon arial-role='button' onClick={() => setHide(true)}>
+            <Line />
+            <Line />
+          </CloseIcon>
+        </ButtonWrapper>
+      )}
+    </Message>
+  );
+});
 
 const ButtonWrapper = styled.div`
   align-self: center;
@@ -42,23 +59,3 @@ const Message = styled.div<{ hide: boolean }>`
   box-shadow: 0 25px 25px -25px rgba(0, 0, 0, 0.25);
   background: white;
 `;
-
-const Alert: React.FC<Props> = ({ message, children, className, dismissible }): JSX.Element => {
-  const [hide, setHide] = useState<boolean>(false);
-
-  return (
-    <Message hide={hide}>
-      <Paragraph className={className}>{message || children}</Paragraph>
-      {dismissible && (
-        <ButtonWrapper>
-          <CloseIcon arial-role='button' onClick={() => setHide(true)}>
-            <Line />
-            <Line />
-          </CloseIcon>
-        </ButtonWrapper>
-      )}
-    </Message>
-  );
-};
-
-export default React.memo(Alert);

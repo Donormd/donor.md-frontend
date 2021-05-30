@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import styled from 'styled-components';
 import {
   Button,
@@ -24,7 +24,7 @@ import { useAppSelector } from '../../redux/store';
  * };
  */
 
-const ReviewsAdd: React.FC = (): JSX.Element => {
+const ReviewsAdd: FC = () => {
   const { bloodCenter } = useAppSelector((state) => state.common);
   return (
     <DashboardGrid>

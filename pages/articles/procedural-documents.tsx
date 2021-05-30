@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-wrap-multilines */
-import React from 'react';
+import { FC } from 'react';
 import styled from 'styled-components';
-import HeaderContentFooter from '../../layouts/header-content-footer';
+import { HeaderContentFooter } from '../../layouts/header-content-footer';
 import { Container } from '../../layouts/container';
 import { Paragraph as PH, Title as TL, Accordion } from '../../components/UI';
 
@@ -16,7 +16,7 @@ const Title = styled(TL)`
   }
 `;
 
-const ProceduralDocuments: React.FC = (): JSX.Element => {
+const ProceduralDocuments: FC = () => {
   return (
     <HeaderContentFooter background='/images/pages/welcome.png'>
       <Container>

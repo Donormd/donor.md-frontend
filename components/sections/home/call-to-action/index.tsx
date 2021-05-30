@@ -1,13 +1,13 @@
-import React from 'react';
+import { FC } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Title, Button } from '../../../UI';
 import { Section } from '../utils';
 import { SectionTitle, Underline, ImageWrapper, ArticleGrid, Article } from './styles';
 
-const CallToAction: React.FC = (): JSX.Element => (
+const CallToAction: FC = () => (
   <Section id='call-to-action'>
-    <SectionTitle as='h2' className='h1' bold>
+    <SectionTitle as='h2' bold>
       С нами уже{' '}
       <Link href='/top-donors'>
         <Underline>105 доноров</Underline>

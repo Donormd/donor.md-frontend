@@ -1,16 +1,16 @@
-import React, { useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
-import HeaderContentFooter from '../layouts/header-content-footer';
+import { HeaderContentFooter } from '../layouts/header-content-footer';
 import { Container } from '../layouts/container';
 import { FormItem, Input, Paragraph, Title, Divider, Button } from '../components/UI';
 import { useAppSelector } from '../redux/store';
 import { sendData, getData, IMonitoring } from '../redux/redusers/monitoring';
 import { Loading } from '../components/UI/loading';
-import Alert from '../components/alert';
+import { Alert } from '../components/alert';
 
-const Monitoring: React.FC = () => {
+const Monitoring: FC = () => {
   const { register, handleSubmit } = useForm();
   const dispatch = useDispatch();
   const { action, values } = useAppSelector((state) => state.monitoring);
@@ -19,7 +19,7 @@ const Monitoring: React.FC = () => {
     if (!values.data) {
       dispatch(getData());
     }
-  }, []);
+  }, [dispatch, values.data]);
   const { status, error } = action;
 
   const onSubmit = (data: any) => {
@@ -41,7 +41,7 @@ const Monitoring: React.FC = () => {
           </Title>
           <Paragraph>
             Заполните пожалуйста форму для отбражение мониторинга запасов крови. Ввод данных по
-          эритроцитарной массе
+            эритроцитарной массе
           </Paragraph>
         </Article>
         <form onSubmit={handleSubmit(onSubmit)}>

@@ -1,28 +1,17 @@
 /* eslint-disable no-console */
-import React from 'react';
+import { FC } from 'react';
 import styled from 'styled-components';
-import HeaderContentFooter from '../../layouts/header-content-footer';
+import { HeaderContentFooter } from '../../layouts/header-content-footer';
 import { Container } from '../../layouts/container';
 import { Paragraph as PH, Title as TL, Accordion } from '../../components/UI';
-import ButtonGroup from '../../components/UI/button-group';
-
-const Paragraph = styled(PH)`
-  margin-bottom: 15px;
-`;
-
-const Title = styled(TL)`
-  margin-bottom: 15px;
-  &:first-child {
-    margin-bottom: 40px;
-  }
-`;
+import { ButtonGroup } from '../../components/UI/button-group';
 
 const buttons = [
-  { key: 1, text: 'Временные противопоказания' },
-  { key: 2, text: 'Абсолютные  противопоказания' },
+  { _id: '1', text: 'Временные противопоказания' },
+  { _id: '2', text: 'Абсолютные  противопоказания' },
 ];
 
-const MinimumRequirementsForDonor: React.FC = (): JSX.Element => {
+const MinimumRequirementsForDonor: FC = () => {
   return (
     <HeaderContentFooter background='/images/pages/welcome.png'>
       <Container>
@@ -96,3 +85,14 @@ const MinimumRequirementsForDonor: React.FC = (): JSX.Element => {
 };
 
 export default MinimumRequirementsForDonor;
+
+const Paragraph = styled(PH)`
+  margin-bottom: 15px;
+`;
+
+const Title = styled(TL)`
+  margin-bottom: 15px;
+  &:first-child {
+    margin-bottom: 40px;
+  }
+`;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { FC, useState } from 'react';
 import styled from 'styled-components';
 import { Logo } from '../components/logo';
 import { Container } from '../layouts/container';
@@ -7,7 +7,7 @@ import { SignInForm } from '../components/forms/auth/sign-in';
 import { SignUpForm } from '../components/forms/auth/sign-up';
 import { RecoveryForm } from '../components/forms/auth/recovery';
 
-const AuthPage: React.FC = (): JSX.Element => {
+const AuthPage: FC = () => {
   const [state, setState] = useState<string>('signIn');
 
   return (

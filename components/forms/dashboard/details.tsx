@@ -16,7 +16,7 @@ import { useAppSelector } from '../../../redux/store';
 import { getOptions } from '../../../redux/common';
 import { IUser } from '../../../interfaces/user';
 import { updateUserAction } from '../../../redux/redusers/user';
-import Alert from '../../alert';
+import { Alert } from '../../alert';
 
 export const DetailsForm: FC = () => {
   const dispatch = useDispatch();

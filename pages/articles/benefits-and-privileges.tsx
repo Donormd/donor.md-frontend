@@ -1,6 +1,6 @@
-import React from 'react';
+import { FC } from 'react';
 import styled from 'styled-components';
-import HeaderContentFooter from '../../layouts/header-content-footer';
+import { HeaderContentFooter } from '../../layouts/header-content-footer';
 import { Container } from '../../layouts/container';
 import { Paragraph as PH, Title as TL } from '../../components/UI';
 
@@ -23,7 +23,7 @@ const ListItem = styled.li`
   padding-bottom: 10px;
 `;
 
-const BenefitsAndPrivileges: React.FC = (): JSX.Element => {
+const BenefitsAndPrivileges: FC = () => {
   return (
     <HeaderContentFooter background='/images/pages/welcome.png'>
       <Container>

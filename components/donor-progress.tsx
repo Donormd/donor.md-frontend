@@ -1,5 +1,5 @@
 import { Progress } from 'antd';
-import React from 'react';
+import { FC } from 'react';
 import styled from 'styled-components';
 
 const Layout = styled.div`
@@ -9,7 +9,7 @@ const Layout = styled.div`
   background: white;
 `;
 
-const DonorProgress: React.FC = (): JSX.Element => {
+const DonorProgress: FC = () => {
   return (
     <Layout>
       <Progress percent={75} showInfo={false} status='exception' />

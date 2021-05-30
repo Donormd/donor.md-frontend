@@ -1,20 +1,20 @@
 import styled from 'styled-components';
+import { FC } from 'react';
 import { Title } from '../typography';
 
 export const Form = styled.form``;
 
-export declare type FormItemProps = {
-  columns?: number;
-  columnsSm?: number;
-  children?: React.ReactNode;
-  help?: string;
-  label?: string;
-  marginBottom?: string;
-  required?: boolean;
-  error?: string;
-};
+interface IProps {
+  columns: number;
+  columnsSm: number;
+  help: string;
+  label: string;
+  marginBottom: string;
+  required: boolean;
+  error: string;
+}
 
-export const FormItem: React.FC<FormItemProps> = ({
+export const FormItem: FC<Partial<IProps>> = ({
   label,
   help,
   children,

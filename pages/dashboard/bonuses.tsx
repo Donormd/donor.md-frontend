@@ -3,13 +3,13 @@ import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { DashboardGrid } from '../../layouts/dashboard-grid';
 import { TitleWithArrow, Paragraph } from '../../components/UI';
-import PartnerOfferCard from '../../components/partner-offer-card';
+import { PartnerOfferCard } from '../../components/partner-offer-card';
 import { useAppSelector } from '../../redux/store';
 import { IBonus } from '../../interfaces/bonus';
-import Alert from '../../components/alert';
+import { Alert } from '../../components/alert';
 import { getBonusesAction } from '../../redux/redusers/bonus';
 
-const Bonuses: FC = (): JSX.Element => {
+const Bonuses: FC = () => {
   const dispatch = useDispatch();
   const { status, data, error } = useAppSelector((state) => state.bonus);
 

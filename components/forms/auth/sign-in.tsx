@@ -4,13 +4,13 @@ import { FormItem, Input, Title } from '../../UI';
 import { onChangeState } from './types';
 import { ActionLayout, WrappedLink } from './utils';
 import { useAppSelector } from '../../../redux/store';
-import Alert from '../../alert';
+import { Alert } from '../../alert';
 import { useAuth } from '../../../hooks/useAuth';
 import { useRequiredAuth } from '../../../hooks/useRequiredAuth';
 
 declare type Props = { onChangeState: onChangeState };
 
-export const SignInForm: FC<Props> = ({ onChangeState }): JSX.Element => {
+export const SignInForm: FC<Props> = ({ onChangeState }) => {
   const { error } = useAppSelector((state) => state.user);
   const { handleSubmit, register, errors } = useForm();
   const auth = useAuth();

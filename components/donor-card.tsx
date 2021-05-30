@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
 import { Title, Paragraph } from './UI';
@@ -25,7 +25,7 @@ const Bold = styled.span`
   font-weight: bold;
 `;
 
-const DonorCard: React.FC = (): JSX.Element => {
+const DonorCard: FC = () => {
   return (
     <Layer>
       <Counter>

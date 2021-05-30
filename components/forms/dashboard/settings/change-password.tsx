@@ -5,7 +5,7 @@ import { Button, Divider, Form, FormItem, Input } from '../../../UI';
 import { IChangePassword } from '../../../../interfaces/settings';
 import { changePasswordAction } from '../../../../redux/redusers/settings';
 import { useAppSelector } from '../../../../redux/store';
-import Alert from '../../../alert';
+import { Alert } from '../../../alert';
 
 export const ChangePassword: FC = () => {
   const dispatch = useDispatch();

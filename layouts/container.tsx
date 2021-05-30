@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import styled from 'styled-components';
 
 const StyledContainer = styled.section`
@@ -43,21 +43,13 @@ export declare type Props = {
   className?: string;
 };
 
-export const Container: React.FC<Props> = ({
-  children,
-  as = 'section',
-  className,
-}): JSX.Element => (
+export const Container: FC<Props> = ({ children, as = 'section', className }) => (
   <StyledContainer className={className} as={as}>
     {children}
   </StyledContainer>
 );
 
-export const ContainerFluid: React.FC<Props> = ({
-  children,
-  as = 'section',
-  className,
-}): JSX.Element => (
+export const ContainerFluid: FC<Props> = ({ children, as = 'section', className }) => (
   <StyledContainerFluid className={className} as={as}>
     {children}
   </StyledContainerFluid>

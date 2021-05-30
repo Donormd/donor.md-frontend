@@ -3,14 +3,14 @@ import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { Button, Checkbox, Form, Paragraph, Title, TitleWithArrow } from '../../components/UI';
-import Alert from '../../components/alert';
+import { Alert } from '../../components/alert';
 import { DashboardGrid } from '../../layouts/dashboard-grid';
 import { useAppSelector } from '../../redux/store';
 import { ISettings } from '../../interfaces/settings';
 import { getSettingsAction, updateSettingsAction } from '../../redux/redusers/settings';
 import { ChangePassword } from '../../components/forms/dashboard/settings/change-password';
 
-const Settings: FC = (): JSX.Element => {
+const Settings: FC = () => {
   const dispatch = useDispatch();
   const { handleSubmit, setValue, register } = useForm();
 

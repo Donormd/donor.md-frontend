@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { FormItem, Input, Title } from '../../UI';
 import { onChangeState } from './types';
 import { ActionLayout } from './utils';
-// import Alert from '../../alert';
+// import { Alert } from '../../alert';
 
 declare type Props = { onChangeState: onChangeState };
 

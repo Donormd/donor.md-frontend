@@ -1,9 +1,9 @@
-import React from 'react';
+import { FC } from 'react';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import HeaderContentFooter from '../layouts/header-content-footer';
-import Alert from '../components/alert';
+import { HeaderContentFooter } from '../layouts/header-content-footer';
+import { Alert } from '../components/alert';
 import { Container } from '../layouts/container';
 import {
   FormItem,
@@ -21,7 +21,7 @@ import { useAppSelector } from '../redux/store';
 import { createRecipientRequestAction } from '../redux/redusers/recipients';
 import { IRecipient } from '../interfaces/recipient';
 
-const DonorSearchPage: React.FC = (): JSX.Element => {
+const DonorSearchPage: FC = () => {
   const dispatch = useDispatch();
   const { bloodGroups, bloodCenter, transfusionCenter } = useAppSelector((state) => state.common);
   const { register, handleSubmit, reset } = useForm();

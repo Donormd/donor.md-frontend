@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
 import { Title } from '../components/UI';
@@ -22,7 +22,7 @@ const ImageWrapper = styled.div`
   }
 `;
 
-const NotFound: React.FC = (): JSX.Element => {
+const NotFound: FC = () => {
   return (
     <ContainerWrapper>
       <div>

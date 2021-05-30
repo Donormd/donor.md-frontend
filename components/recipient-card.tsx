@@ -1,63 +1,54 @@
-import React, { FC } from 'react';
+import { FC, memo } from 'react';
 import ImageNext from 'next/image';
 import styled from 'styled-components';
 import HeartIcon from '../public/images/icons/heart+.svg';
 import { Button, Title, Paragraph } from './UI';
-import Rate from './rate';
+import { Rate } from './rate';
 import { IRecipientCard } from '../interfaces/recipient';
 
-const RecipientCard: FC<IRecipientCard> = ({
-  src,
-  name,
-  age,
-  bloodGroup,
-  disease,
-  placeName,
-  city,
-  date,
-}) => {
-  const dateObj = new Date(date);
-  const validity = `${dateObj.getDay()}/${dateObj.getMonth()}/${dateObj.getFullYear()}`;
-  return (
-    <Card>
-      <Image src={src} width={100} height={100} layout='fixed' />
-      <One>
-        <Title as='h3' margin='10px' bold>
-          {name}{' '}
-          <Paragraph as='span' color='textMuted'>
-            {age} лет
-          </Paragraph>
-        </Title>
-        <Title as='h4' margin='10px'>
-          {bloodGroup}
-        </Title>
-        <Title as='h4' margin='10px' color='black'>
-          {disease}
-        </Title>
-      </One>
-      <Second>
-        <SecondTitle as='h5' color='black'>
-          {placeName}
-        </SecondTitle>
-        <Paragraph color='textMuted'>{city}</Paragraph>
-      </Second>
-      <Three>
-        <Rate total={12} count={8} />
-        <Title as='h4'>
-          <RedHighlight>Срок до: {validity}</RedHighlight>
-        </Title>
-      </Three>
-      <Four>
-        <FourButton variant='outline-danger' size='lg'>
-          Помочь
-          <HeartIcon width={25} height={25} />
-        </FourButton>
-      </Four>
-    </Card>
-  );
-};
-
-export default React.memo(RecipientCard);
+export const RecipientCard: FC<IRecipientCard> = memo(
+  ({ src, name, age, bloodGroup, disease, placeName, city, date }) => {
+    const dateObj = new Date(date);
+    const validity = `${dateObj.getDay()}/${dateObj.getMonth()}/${dateObj.getFullYear()}`;
+    return (
+      <Card>
+        <Image src={src} width={100} height={100} layout='fixed' />
+        <One>
+          <Title as='h3' margin='10px' bold>
+            {name}{' '}
+            <Paragraph as='span' color='textMuted'>
+              {age} лет
+            </Paragraph>
+          </Title>
+          <Title as='h4' margin='10px'>
+            {bloodGroup}
+          </Title>
+          <Title as='h4' margin='10px' color='black'>
+            {disease}
+          </Title>
+        </One>
+        <Second>
+          <SecondTitle as='h5' color='black'>
+            {placeName}
+          </SecondTitle>
+          <Paragraph color='textMuted'>{city}</Paragraph>
+        </Second>
+        <Three>
+          <Rate total={12} count={8} />
+          <Title as='h4'>
+            <RedHighlight>Срок до: {validity}</RedHighlight>
+          </Title>
+        </Three>
+        <Four>
+          <FourButton variant='outline-danger' size='lg'>
+            Помочь
+            <HeartIcon width={25} height={25} />
+          </FourButton>
+        </Four>
+      </Card>
+    );
+  },
+);
 
 const Card = styled.article`
   display: grid;

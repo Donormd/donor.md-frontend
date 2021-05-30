@@ -9,7 +9,7 @@ import { ActionLayout } from './utils';
 import { useAppSelector } from '../../../redux/store';
 import { getOptions } from '../../../redux/common';
 import { IUser } from '../../../interfaces/user';
-import Alert from '../../alert';
+import { Alert } from '../../alert';
 import { isLoading } from '../../helpers';
 import { Loading } from '../../UI/loading';
 import { useAuth } from '../../../hooks/useAuth';
@@ -19,7 +19,7 @@ declare type Props = { onChangeState: onChangeState };
 
 const validate = { required: 'Обязательное поле' };
 
-export const SignUpForm: FC<Props> = ({ onChangeState }): JSX.Element => {
+export const SignUpForm: FC<Props> = ({ onChangeState }) => {
   const dispatch = useDispatch();
   const auth = useAuth();
   const { register, control, handleSubmit, errors } = useForm();
@@ -111,7 +111,8 @@ export const SignUpForm: FC<Props> = ({ onChangeState }): JSX.Element => {
         <FormItemCheckbox>
           <Checkbox readOnly defaultChecked />
           <p>
-            Я принимаю условия Пользовательского соглашения пользования Web-сервисом donor.md и даю своё согласие{' '}
+            Я принимаю условия Пользовательского соглашения пользования Web-сервисом donor.md и даю
+            своё согласие{' '}
             <Link href='/'>
               <StyledLink color='textMuted' underline>
                 Donor.md

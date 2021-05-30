@@ -1,6 +1,6 @@
-import React from 'react';
+import { FC } from 'react';
 import styled from 'styled-components';
-import HeaderContentFooter from '../../layouts/header-content-footer';
+import { HeaderContentFooter } from '../../layouts/header-content-footer';
 import { Container } from '../../layouts/container';
 import { Paragraph as PH, Title as TL } from '../../components/UI';
 
@@ -15,7 +15,7 @@ const Title = styled(TL)`
   }
 `;
 
-const DonorAndWork: React.FC = (): JSX.Element => {
+const DonorAndWork: FC = () => {
   return (
     <HeaderContentFooter background='/images/pages/welcome.png'>
       <Container>

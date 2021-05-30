@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-wrap-multilines */
-import React from 'react';
+import { FC } from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
-import HeaderContentFooter from '../../layouts/header-content-footer';
+import { HeaderContentFooter } from '../../layouts/header-content-footer';
 import { Container } from '../../layouts/container';
 import { Paragraph as PH, Title as TL, Accordion } from '../../components/UI';
 import AboutDonation from '../../components/sections/home/about-donations';
@@ -77,7 +77,7 @@ const Facts = styled.div`
   }
 `;
 
-const AboutDonationPage: React.FC = (): JSX.Element => {
+const AboutDonationPage: FC = () => {
   const { aboutPage: data } = useAppSelector((state) => state.aboutDonations);
   return (
     <HeaderContentFooter background='/images/pages/welcome.png'>
@@ -110,7 +110,7 @@ const AboutDonationPage: React.FC = (): JSX.Element => {
           интересные факты, льготы и привилегии для доноров и многое другое.
         </Paragraph>
         <Article background='/images/pages/articles/about-donation/preparation-blood-donation.svg'>
-          <Title as='h2' className='h1' bold>
+          <Title as='h2' bold>
             Подготовка к первой сдачи крови
           </Title>
           <LinkGroup>
@@ -135,7 +135,7 @@ const AboutDonationPage: React.FC = (): JSX.Element => {
           </LinkGroup>
         </Article>
         <AboutDonation title='Возможности для доноров' data={data} />
-        <Title as='h2' className='h1' bold>
+        <Title as='h2' bold>
           Факты о донорстве
         </Title>
         <Paragraph size='1.1rem'>
@@ -177,7 +177,7 @@ const AboutDonationPage: React.FC = (): JSX.Element => {
             человека доброе сердце”.
           </Paragraph>
         </Facts>
-        <Title as='h2' className='h1' bold>
+        <Title as='h2' bold>
           Вопросы по донорству
         </Title>
         <Article background='/images/pages/articles/about-donation/donation-questions.svg'>

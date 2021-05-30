@@ -9,7 +9,7 @@ import {
 } from '../../../redux/redusers/forms/user-story';
 import { IStory } from '../../../interfaces/story';
 import { useAppSelector } from '../../../redux/store';
-import Alert from '../../alert';
+import { Alert } from '../../alert';
 import { storage } from '../../../services/storage';
 
 export const UserStoryForm: FC = () => {

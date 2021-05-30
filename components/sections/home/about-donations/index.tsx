@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import styled from 'styled-components';
@@ -59,10 +59,10 @@ export interface IProps {
   data: IMockItem[];
 }
 
-const AboutDonation: React.FC<IProps> = ({ title, data }): JSX.Element => {
+const AboutDonation: FC<IProps> = ({ title, data }) => {
   return (
     <Section id='about-donation'>
-      <Title as='h2' className='h1' bold>
+      <Title as='h2' bold>
         {title}
       </Title>
       <ArticleList>

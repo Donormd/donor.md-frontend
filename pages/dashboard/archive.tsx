@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import React from 'react';
+import { FC } from 'react';
 import { Table as AntTable } from 'antd';
 import styled from 'styled-components';
 import Pagination from '../../components/pagination';
@@ -188,7 +188,7 @@ const columns = [
   },
 ];
 
-const DonationsArchive: React.FC = (): JSX.Element => {
+const DonationsArchive: FC = () => {
   return (
     <DashboardGrid>
       <TitleWithArrow>Мои донации</TitleWithArrow>

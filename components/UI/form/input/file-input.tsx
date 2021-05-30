@@ -1,8 +1,8 @@
 import { FC, InputHTMLAttributes, LegacyRef, ChangeEvent, useState } from 'react';
 import styled from 'styled-components';
 
-import Paperclip from '/images/icons/paperclip.svg';
-import Close from '/images/icons/close.svg';
+// import Paperclip from '../images/icons/paperclip.svg';
+// import Close from '../images/icons/close.svg';
 import { bytesToMegabytes } from '../../../../helpers/converters';
 
 interface IProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -11,7 +11,7 @@ interface IProps extends InputHTMLAttributes<HTMLInputElement> {
   innerRef?: LegacyRef<any>;
 }
 
-export const FileInput: FC<IProps> = ({ innerRef, className, ...rest }): JSX.Element => {
+export const FileInput: FC<IProps> = ({ innerRef, className, ...rest }) => {
   const [files, setFiles] = useState<File[] | null>(null);
 
   const reset = () => setFiles(null);
@@ -29,9 +29,7 @@ export const FileInput: FC<IProps> = ({ innerRef, className, ...rest }): JSX.Ele
         <InputLabel>
           <StyledFileInput {...rest} type='file' onChange={onChange} ref={innerRef} multiple />
           <HiddenInput className={className} isSelected={!!files}>
-            <PaperPicture>
-              <Paperclip />
-            </PaperPicture>
+            <PaperPicture>{/* <Paperclip /> */}</PaperPicture>
             Attach Files
           </HiddenInput>
         </InputLabel>
@@ -99,7 +97,8 @@ const List = styled.ul`
   }
 `;
 
-const CloseIcon = styled(Close)`
+// const CloseIcon = styled(Close)`
+const CloseIcon = styled.div`
   cursor: pointer;
   width: 12px;
   height: 12px;

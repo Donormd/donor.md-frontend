@@ -1,29 +1,32 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, FC, useCallback } from 'react';
 import styled from 'styled-components';
 import { Button } from '../button';
-import { KeyType, ButtonsProps, Props } from './types';
+import { IProps } from './types';
 
-const ButtonGroup: React.FC<Props> = ({ buttons, handleClick }): JSX.Element => {
-  const [buttonId, setButtonId] = useState<KeyType>(0);
+export const ButtonGroup: FC<IProps> = ({ buttons, handleClick }) => {
+  const [buttonId, setButtonId] = useState<string>('0');
+  const [{ _id }] = buttons;
 
-  const onClick = (key: KeyType) => {
-    if (key === buttonId) return;
-    handleClick(key);
-    setButtonId(key);
-  };
+  const onClick = useCallback(
+    (_id: string) => {
+      if (_id === buttonId) return;
+      handleClick(_id);
+      setButtonId(_id);
+    },
+    [buttonId, handleClick],
+  );
 
-  const [{ key }] = buttons;
-  useEffect(() => onClick(key), []);
+  useEffect(() => onClick(_id), [_id, onClick]);
 
   return (
     <ButtonsWrapper>
-      {buttons.map(({ key, text }: ButtonsProps) => (
+      {buttons.map(({ _id, text }) => (
         <StyledButton
-          key={key}
+          key={_id}
           size='lg'
           variant='outline-primary'
-          active={buttonId === key}
-          onClick={() => onClick(key)}
+          active={buttonId === _id}
+          onClick={() => onClick(_id)}
         >
           {text}
         </StyledButton>
@@ -31,9 +34,6 @@ const ButtonGroup: React.FC<Props> = ({ buttons, handleClick }): JSX.Element => 
     </ButtonsWrapper>
   );
 };
-
-export * from './types';
-export default React.memo(ButtonGroup);
 
 const ButtonsWrapper = styled.div`
   display: flex;

@@ -1,6 +1,6 @@
-import React from 'react';
+import { FC } from 'react';
 import styled from 'styled-components';
-import HeaderContentFooter from '../../layouts/header-content-footer';
+import { HeaderContentFooter } from '../../layouts/header-content-footer';
 import { Container } from '../../layouts/container';
 import { Paragraph as PH, Title as TL } from '../../components/UI';
 
@@ -35,7 +35,7 @@ const ListItem = styled.li`
   margin-bottom: 15px;
 `;
 
-const UserAgreement: React.FC = (): JSX.Element => {
+const UserAgreement: FC = () => {
   return (
     <HeaderContentFooter background='/images/pages/welcome.png'>
       <Container>
