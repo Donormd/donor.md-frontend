@@ -3,6 +3,7 @@ import axios from 'axios';
 import { IState } from '../../interfaces/initial-state';
 import { apiV1 } from '../constants/url';
 import { IReview } from '../../interfaces/review';
+import { fetch } from '../../services/fetch';
 
 const initialState: IState<IReview[] | null> = {
   status: 'init',
@@ -13,8 +14,12 @@ const initialState: IState<IReview[] | null> = {
 export const createReviewAction = createAsyncThunk<IReview, IReview>(
   'review/post',
   async (payload) => {
-    const response = await axios.post(`${apiV1}/review`, payload);
-    return response.data;
+    await fetch<IReview>({
+      url: `${apiV1}/review`,
+      method: 'POST',
+      data: payload,
+    });
+    return payload;
   },
 );
 

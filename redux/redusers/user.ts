@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import axios from 'axios';
 import { apiV1 } from '../constants/url';
 import { IState } from '../../interfaces/initial-state';
 import { IUser, IUserStore } from '../../interfaces/user';
@@ -25,14 +24,22 @@ export const signInAction = createAsyncThunk<IUserStore, { email: string; passwo
 );
 
 export const signUpAction = createAsyncThunk<IUser, IUser>('user/sign-up', async (payload) => {
-  const response = await axios.post(`${apiV1}/auth/sign-up`, payload);
+  const response = await fetch<IUser>({
+    method: 'POST',
+    url: `${apiV1}/auth/sign-up`,
+    data: payload,
+  });
   return response.data;
 });
 
 export const recoveryUserAction = createAsyncThunk<void, { email: string }>(
   'user/recovery',
   async (payload) => {
-    await axios.post(`${apiV1}/auth/recovery`, payload);
+    await fetch<void>({
+      method: 'POST',
+      url: `${apiV1}/auth/recovery`,
+      data: payload,
+    });
   },
 );
 

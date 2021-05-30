@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
 import { storage } from '../services/storage';
 import { IState } from '../interfaces/initial-state';
 import { apiV1 } from './constants/url';
+import { fetch } from '../services/fetch';
 
 export interface IOptions {
   _id: string;
@@ -38,23 +38,12 @@ type Options =
   | 'userStatus'
   | 'sex';
 
-const commonMap: Record<Options, string> = {
-  cities: `${apiV1}/city`,
-  bloodGroups: `${apiV1}/blood-group`,
-  bloodCenter: `${apiV1}/blood-center`,
-  organizations: `${apiV1}/organization`,
-  transfusionCenter: `${apiV1}/transfusion-center`,
-  typesAssistance: `${apiV1}/types-assistance`,
-  userGroup: `${apiV1}/user-group`,
-  userStatus: `${apiV1}/user-status`,
-  sex: `${apiV1}/sex`,
-};
-
 export const getOptions = createAsyncThunk<IOptions[], Options>(
   'common/options/get',
   async (dataType) => {
-    if (storage.isActualData(dataType)) return storage.get(dataType)?.data;
-    const response = await axios.get(commonMap[dataType]);
+    const response = await fetch<IOptions[]>({
+      url: `${apiV1}/${dataType}`,
+    });
     return response.data;
   },
 );

@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import axios from 'axios';
 import { apiV1 } from '../constants/url';
 import { IState } from '../../interfaces/initial-state';
 import { IRecipient, IRecipientCard } from '../../interfaces/recipient';
 import { storage } from '../../services/storage';
+import { fetch } from '../../services/fetch';
 
 const initialState: IState<IRecipientCard[] | null> = {
   status: 'init',
@@ -14,7 +14,9 @@ const initialState: IState<IRecipientCard[] | null> = {
 export const getRecipientsAction = createAsyncThunk<IRecipientCard[]>(
   'recipients/get',
   async () => {
-    const response = await axios.get(`${apiV1}/recipient`);
+    const response = await fetch<IRecipientCard[]>({
+      url: `${apiV1}/recipient`,
+    });
     return response.data;
   },
 );
@@ -22,7 +24,11 @@ export const getRecipientsAction = createAsyncThunk<IRecipientCard[]>(
 export const createRecipientRequestAction = createAsyncThunk<void, IRecipient>(
   'recipients/post',
   async (payload) => {
-    await axios.post(`${apiV1}/recipient`, payload);
+    await fetch({
+      url: `${apiV1}/recipient`,
+      method: 'POST',
+      data: payload,
+    });
   },
 );
 
