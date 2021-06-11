@@ -1,8 +1,9 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import { IState } from '../../interfaces/initial-state';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+
 import { IBonus } from '../../interfaces/bonus';
-import { apiV1 } from '../constants/url';
+import { IState } from '../../interfaces/redux';
 import { fetch } from '../../services/fetch';
+import { apiV1 } from '../constants/url';
 
 const initialState: IState<IBonus[] | null> = {
   status: 'init',

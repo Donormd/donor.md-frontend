@@ -1,36 +1,50 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { apiV1 } from '../constants/url';
-import { IState } from '../../interfaces/initial-state';
-import { IUser, IUserStore } from '../../interfaces/user';
-import { storage } from '../../services/storage';
-import { fetch } from '../../services/fetch';
 
-const initialState: IState<IUser | IUserStore | null> = {
+import { IRejectValue, IState } from '../../interfaces/redux';
+import { IUser, IUserStore } from '../../interfaces/user';
+import { fetch } from '../../services/fetch';
+import { storage } from '../../services/storage';
+import { apiV1 } from '../constants/url';
+
+const initialState: IState<IUser | null> = {
   status: 'init',
   data: null,
   error: null,
 };
 
-export const signInAction = createAsyncThunk<IUserStore, { email: string; password: string }>(
-  'user/sign-in',
-  async (payload) => {
+export const signInAction = createAsyncThunk<
+  IUserStore,
+  { email: string; password: string },
+  IRejectValue
+>('user/sign-in', async (payload, { rejectWithValue }) => {
+  try {
     const response = await fetch<IUserStore>({
       method: 'POST',
       url: `${apiV1}/auth/sign-in`,
       data: payload,
     });
+
     return response.data;
+  } catch (e) {
+    return rejectWithValue(e.response.data);
+  }
+});
+
+export const signUpAction = createAsyncThunk<IUser, IUser, IRejectValue>(
+  'user/sign-up',
+  async (payload, { rejectWithValue }) => {
+    try {
+      const response = await fetch<IUser>({
+        method: 'POST',
+        url: `${apiV1}/auth/sign-up`,
+        data: payload,
+      });
+      return response.data;
+    } catch (e) {
+      return rejectWithValue(e);
+    }
   },
 );
-
-export const signUpAction = createAsyncThunk<IUser, IUser>('user/sign-up', async (payload) => {
-  const response = await fetch<IUser>({
-    method: 'POST',
-    url: `${apiV1}/auth/sign-up`,
-    data: payload,
-  });
-  return response.data;
-});
 
 export const recoveryUserAction = createAsyncThunk<void, { email: string }>(
   'user/recovery',
@@ -79,7 +93,7 @@ const user = createSlice({
     });
     builder.addCase(signInAction.rejected, (state, action) => {
       state.status = 'error';
-      state.error = action.error.message || 'Ops something went wrong';
+      state.error = action.payload?.errorMessage || 'Ops something went wrong';
     });
     builder.addCase(signUpAction.fulfilled, (state, action: PayloadAction<IUser>) => {
       state.status = 'success';
@@ -90,7 +104,7 @@ const user = createSlice({
     });
     builder.addCase(signUpAction.rejected, (state, action) => {
       state.status = 'error';
-      state.error = action.error.message || 'Ops something went wrong';
+      state.error = action.payload?.errorMessage || 'Ops something went wrong';
     });
     builder.addCase(updateUserAction.fulfilled, (state, action: PayloadAction<IUser>) => {
       state.status = 'success';

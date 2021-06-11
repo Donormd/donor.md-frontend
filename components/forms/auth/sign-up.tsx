@@ -1,19 +1,20 @@
-import { FC, useEffect } from 'react';
-import styled from 'styled-components';
 import Link from 'next/link';
-import { useForm, Controller } from 'react-hook-form';
+import { FC, useEffect } from 'react';
+import { Controller, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import { FormItem, Input, Title, Checkbox, StyledLink, Select } from '../../UI';
-import { onChangeState } from './types';
-import { ActionLayout } from './utils';
-import { useAppSelector } from '../../../redux/store';
-import { getOptions } from '../../../redux/common';
-import { IUser } from '../../../interfaces/user';
-import { Alert } from '../../alert';
-import { isLoading } from '../../helpers';
-import { Loading } from '../../UI/loading';
+import styled from 'styled-components';
+
 import { useAuth } from '../../../hooks/useAuth';
 import { useRequiredAuth } from '../../../hooks/useRequiredAuth';
+import { IUser } from '../../../interfaces/user';
+import { getOptions } from '../../../redux/common';
+import { useAppSelector } from '../../../redux/store';
+import { Alert } from '../../alert';
+import { isLoading } from '../../helpers';
+import { Checkbox, FormItem, Input, Select, StyledLink, Title } from '../../UI';
+import { Loading } from '../../UI/loading';
+import { onChangeState } from './types';
+import { ActionLayout } from './utils';
 
 declare type Props = { onChangeState: onChangeState };
 

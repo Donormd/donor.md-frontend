@@ -1,7 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { apiV1 } from '../constants/url';
-import { IState } from '../../interfaces/initial-state';
+
+import { IState } from '../../interfaces/redux';
 import { fetch } from '../../services/fetch';
+import { apiV1 } from '../constants/url';
 
 export interface IMonitoring {
   _id: string;

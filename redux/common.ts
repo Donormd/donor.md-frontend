@@ -1,13 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { storage } from '../services/storage';
-import { IState } from '../interfaces/initial-state';
-import { apiV1 } from './constants/url';
-import { fetch } from '../services/fetch';
 
-export interface IOptions {
-  _id: string;
-  text: string | number;
-}
+import { IOptions } from '../interfaces/IIterableStruct';
+import { IState } from '../interfaces/redux';
+import { fetch } from '../services/fetch';
+import { storage } from '../services/storage';
+import { apiV1 } from './constants/url';
 
 const insideState: IState<IOptions[] | null> = {
   status: 'init',
@@ -38,11 +35,23 @@ type Options =
   | 'userStatus'
   | 'sex';
 
+const urlMap = {
+  cities: 'cities',
+  bloodGroups: 'blood-groups',
+  bloodCenter: 'blood-center',
+  organizations: 'organizations',
+  transfusionCenter: 'transfusion-center',
+  typesAssistance: 'types-assistance',
+  userGroup: 'user-group',
+  userStatus: 'user-status',
+  sex: 'sex',
+};
+
 export const getOptions = createAsyncThunk<IOptions[], Options>(
   'common/options/get',
-  async (dataType) => {
+  async (group) => {
     const response = await fetch<IOptions[]>({
-      url: `${apiV1}/${dataType}`,
+      url: `${apiV1}/${urlMap[group]}`,
     });
     return response.data;
   },
