@@ -1,18 +1,17 @@
-import React from 'react';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
-import { Title, Divider, FormItem, Input, Button, Checkbox, StyledLink } from '../../components/UI';
-import HeaderContentFooter from '../../layouts/header-content-footer';
-import { Container } from '../../layouts/container';
-import Alert from '../../components/alert';
-import { sendData, ICorporateDonation } from '../../redux/redusers/corporate-donation';
-import { useAppSelector } from '../../redux/store';
 
-const CorporateDonationPage: React.FC = (): JSX.Element => {
+import { Alert } from '../../components/alert';
+import { Button, Checkbox, Divider, FormItem, Input, StyledLink, Title } from '../../components/UI';
+import { Container } from '../../core/layouts/container';
+import { HeaderContentFooter } from '../../core/layouts/header-content-footer';
+import { ICorporateDonation, sendData } from '../../redux/redusers/corporate-donation';
+import { useAppDispatch, useAppSelector } from '../../redux/store';
+
+const CorporateDonationPage = () => {
   const { handleSubmit, register, reset } = useForm();
   const { status, error } = useAppSelector((state) => state.corporateDonation);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const onSubmit = (data: ICorporateDonation) => {
     dispatch(sendData(data));
     reset();

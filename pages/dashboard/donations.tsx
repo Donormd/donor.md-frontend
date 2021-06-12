@@ -1,27 +1,27 @@
+import { useEffect } from 'react';
+import { Controller, useForm } from 'react-hook-form';
 import styled from 'styled-components';
-import { FC, useEffect } from 'react';
-import { useForm, Controller } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
-import Alert from '../../components/alert';
+
+import { Alert } from '../../components/alert';
 import DashboardButtonsLinks from '../../components/dashboard-buttons-links';
 import SocialMediaLinks from '../../components/social-media-links';
 import {
   Button,
+  DatePicker,
   Form,
   FormItem,
   Input,
-  TitleWithArrow,
   Select,
-  DatePicker,
+  TitleWithArrow,
 } from '../../components/UI';
-import DashboardGrid from '../../layouts/dashboard-grid';
-import { useAppSelector } from '../../redux/store';
+import { IDonation } from '../../core/interfaces/donation';
+import { DashboardGrid } from '../../core/layouts/dashboard-grid';
 import { getOptions } from '../../redux/common';
-import { IDonation } from '../../interfaces/donation';
 import { addDonationAction } from '../../redux/redusers/donation';
+import { useAppDispatch, useAppSelector } from '../../redux/store';
 
-const Donations: FC = () => {
-  const dispatch = useDispatch();
+const Donations = () => {
+  const dispatch = useAppDispatch();
   const { register, control, handleSubmit } = useForm();
   const { bloodCenter, transfusionCenter } = useAppSelector((state) => state.common);
   const { data: userData, status } = useAppSelector((state) => state.user);
@@ -45,13 +45,13 @@ const Donations: FC = () => {
       <TitleWithArrow>Мои донации</TitleWithArrow>
       <DashboardButtonsLinks />
       <Form onSubmit={handleSubmit(onSubmit)}>
-        <FormItem label='Номер справки' required>
+        <FormItem columns={2} label='Номер справки' required>
           <Input name='referenceNumber' innerRef={register} />
         </FormItem>
-        <FormItem label='Номер донации' required>
+        <FormItem columns={2} label='Номер донации' required>
           <Input name='donationNumber' innerRef={register} />
         </FormItem>
-        <FormItem label='Дата кровосдачи' required>
+        <FormItem columns={2} label='Дата кровосдачи' required>
           <Controller
             name='date'
             control={control}
@@ -66,7 +66,7 @@ const Donations: FC = () => {
             }}
           />
         </FormItem>
-        <FormItem label='Место сдачи' required>
+        <FormItem columns={2} label='Место сдачи' required>
           <Controller
             name='transfusionCenterId'
             control={control}
@@ -80,7 +80,7 @@ const Donations: FC = () => {
             }
           />
         </FormItem>
-        <FormItem label='Ваш реципиент' help='Поле не обязательное' required>
+        <FormItem columns={2} label='Ваш реципиент' help='Поле не обязательное' required>
           <Controller
             name='recipientId'
             control={control}
@@ -97,6 +97,7 @@ const Donations: FC = () => {
           />
         </FormItem>
         <FormItem
+          columns={2}
           label='Загрузить справку'
           help={`
           JPG , PNG объем до 10 Мб.

@@ -1,10 +1,11 @@
-import React from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
+import Link from 'next/link';
+import { FC } from 'react';
 import styled from 'styled-components';
-import { Section } from '../utils';
-import { Title, Paragraph } from '../../../UI';
+
 import { IMockItem } from '../../../../redux/redusers/about-donations';
+import { Paragraph, Title } from '../../../UI';
+import { Section } from '../utils';
 
 const ArticleList = styled.div`
   padding-top: 30px;
@@ -59,10 +60,10 @@ export interface IProps {
   data: IMockItem[];
 }
 
-const AboutDonation: React.FC<IProps> = ({ title, data }): JSX.Element => {
+const AboutDonation: FC<IProps> = ({ title, data }) => {
   return (
     <Section id='about-donation'>
-      <Title as='h2' className='h1' bold>
+      <Title as='h2' bold>
         {title}
       </Title>
       <ArticleList>

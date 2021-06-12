@@ -1,41 +1,29 @@
-import React, { useState } from 'react';
-import { YMaps, Map, Placemark } from 'react-yandex-maps';
+import React, { FC, useState } from 'react';
+import { Map, Placemark, YMaps } from 'react-yandex-maps';
 import styled from 'styled-components';
-import ButtonGroup from '../../../UI/button-group';
+
+import { IOptions } from '../../../../core/interfaces/IIterableStruct';
 import { Title } from '../../../UI';
+import { ButtonGroup } from '../../../UI/button-group';
 import { Section } from '../utils';
-import Place from './place';
+import { Place } from './place';
 
-const MapWrapper = styled.div`
-  margin-bottom: 15px;
-  width: 100%;
-  height: 200px;
-  border: ${({ theme }) => `1px solid ${theme.redDiluted}`};
-  border-radius: ${({ theme }) => theme.radius};
-  overflow: hidden;
-`;
-
-export interface IButtons {
-  key: number | string;
-  text: string;
-}
-
-const buttons: IButtons[] = [
+const buttons: IOptions[] = [
   {
-    key: 0,
+    _id: '0',
     text: 'Тирасполь',
   },
   {
-    key: 1,
+    _id: '1',
     text: 'Бендеры',
   },
   {
-    key: 2,
+    _id: '2',
     text: 'Рыбница',
   },
 ];
 
-export interface IPlace {
+interface IPlace {
   id: number;
   city: string;
   location: string;
@@ -91,30 +79,15 @@ const places: IPlace[] = [
   },
 ];
 
-const SectionHeader = styled.div`
-  @media (min-width: 768px) {
-    display: flex;
-    justify-content: space-between;
-  }
-`;
-
-const SectionBody = styled.div`
-  @media (min-width: 992px) {
-    display: grid;
-    grid-template-columns: 40% 60%;
-    column-gap: 40px;
-  }
-`;
-
-const Places: React.FC = (): JSX.Element => {
-  const [id, setId] = useState<number | string>(0);
+export const Places: FC = () => {
+  const [id, setId] = useState<string>('0');
 
   const { placeName, location, timeWork, numbers, geometry } = places[+id];
 
   return (
     <Section id='places'>
       <SectionHeader>
-        <Title as='h2' className='h1' margin='15px' bold>
+        <Title as='h2' margin='15px' bold>
           Где сдать кровь ?
         </Title>
         <ButtonGroup buttons={buttons} handleClick={setId} />
@@ -145,4 +118,26 @@ const Places: React.FC = (): JSX.Element => {
   );
 };
 
-export default Places;
+const MapWrapper = styled.div`
+  margin-bottom: 15px;
+  width: 100%;
+  height: 200px;
+  border: ${({ theme }) => `1px solid ${theme.redDiluted}`};
+  border-radius: ${({ theme }) => theme.radius};
+  overflow: hidden;
+`;
+
+const SectionHeader = styled.div`
+  @media (min-width: 768px) {
+    display: flex;
+    justify-content: space-between;
+  }
+`;
+
+const SectionBody = styled.div`
+  @media (min-width: 992px) {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    column-gap: 40px;
+  }
+`;

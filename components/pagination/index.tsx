@@ -1,5 +1,5 @@
-import React from 'react';
 import { Pagination as AntPagination } from 'antd';
+import { FC } from 'react';
 import styled from 'styled-components';
 
 export declare type onChangeType = (page: number) => void;
@@ -31,7 +31,7 @@ const Pagination = styled(AntPagination)`
     }
 `;
 
-const PaginationWrapper: React.FC<{ onChange: onChangeType }> = ({ onChange }): JSX.Element => (
+const PaginationWrapper: FC<{ onChange: onChangeType }> = ({ onChange }) => (
   <Pagination onChange={onChange} defaultCurrent={1} total={50} />
 );
 

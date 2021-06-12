@@ -1,11 +1,11 @@
-import React from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
+import Link from 'next/link';
 import styled from 'styled-components';
-import { Title, Divider, StyledLink } from '../../components/UI';
-import HeaderContentFooter from '../../layouts/header-content-footer';
-import Alert from '../../components/alert';
-import { Container } from '../../layouts/container';
+
+import { Alert } from '../../components/alert';
+import { Divider, StyledLink, Title } from '../../components/UI';
+import { Container } from '../../core/layouts/container';
+import { HeaderContentFooter } from '../../core/layouts/header-content-footer';
 
 const BonusesList = styled.ul`
   list-style-type: none;
@@ -41,7 +41,7 @@ const TitleOrganizations = styled(Title)`
   margin: 40px 0 25px;
 `;
 
-const BonusProgramPage: React.FC = (): JSX.Element => (
+const BonusProgramPage = () => (
   <HeaderContentFooter background='/images/pages/welcome.png'>
     <Container>
       <Title margin='15px' bold>

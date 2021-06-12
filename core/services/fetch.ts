@@ -1,4 +1,5 @@
 import axios, { AxiosPromise, AxiosRequestConfig } from 'axios';
+
 import { storage } from './storage';
 
 export const fetch = <T>({

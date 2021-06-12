@@ -1,9 +1,10 @@
-import Link from 'next/link';
 import { useRouter } from 'next/dist/client/router';
-import React from 'react';
+import Link from 'next/link';
+import { FC } from 'react';
 import styled from 'styled-components';
+
 import { Button } from '../UI';
-import { routs, IRoutsItem, RoutsKey } from './mock';
+import { IRoutsItem, routs, RoutsKey } from './mock';
 
 const ButtonGroup = styled.div`
   display: grid;
@@ -12,7 +13,7 @@ const ButtonGroup = styled.div`
   margin: 50px 0;
 `;
 
-const DashboardButtonsLinks: React.FC = (): JSX.Element => {
+const DashboardButtonsLinks: FC = () => {
   const { push, pathname } = useRouter();
   const rout: RoutsKey = pathname.split('/')[2] as RoutsKey;
 

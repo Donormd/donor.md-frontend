@@ -1,26 +1,29 @@
-import React, { useEffect } from 'react';
-import styled from 'styled-components';
 import Link from 'next/link';
-import { useForm, Controller } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
-import { FormItem, Input, Title, Checkbox, StyledLink, Select } from '../../UI';
+import { FC, useEffect } from 'react';
+import { Controller, useForm } from 'react-hook-form';
+import styled from 'styled-components';
+
+import { isLoading } from '../../../core/helpers/state';
+import { useAuth } from '../../../core/hooks/useAuth';
+import { useRequiredAuth } from '../../../core/hooks/useRequiredAuth';
+import { IOptions } from '../../../core/interfaces/IIterableStruct';
+import { IUser } from '../../../core/interfaces/user';
+import { getOptions } from '../../../redux/common';
+import { useAppDispatch, useAppSelector } from '../../../redux/store';
+import { Alert } from '../../alert';
+import { Checkbox, FormItem, Input, Select, StyledLink, Title } from '../../UI';
+import { Loading } from '../../UI/loading';
 import { onChangeState } from './types';
 import { ActionLayout } from './utils';
-import { useAppSelector } from '../../../redux/store';
-import { getOptions } from '../../../redux/common';
-import { IUser } from '../../../interfaces/user';
-import Alert from '../../alert';
-import { isLoading } from '../../helpers';
-import { Loading } from '../../UI/loading';
-import { useAuth } from '../../../hooks/useAuth';
-import { useRequiredAuth } from '../../../hooks/useRequiredAuth';
 
 declare type Props = { onChangeState: onChangeState };
 
-export const SignUpForm: React.FC<Props> = ({ onChangeState }): JSX.Element => {
-  const dispatch = useDispatch();
+const validate = { required: 'Обязательное поле' };
+
+export const SignUpForm: FC<Props> = ({ onChangeState }) => {
+  const dispatch = useAppDispatch();
   const auth = useAuth();
-  const { register, control, handleSubmit } = useForm();
+  const { register, control, handleSubmit, errors } = useForm();
   const { sex, bloodGroups } = useAppSelector((state) => state.common);
   const { status, error } = useAppSelector((state) => state.user);
 
@@ -29,13 +32,13 @@ export const SignUpForm: React.FC<Props> = ({ onChangeState }): JSX.Element => {
   useEffect(() => {
     dispatch(getOptions('sex'));
     dispatch(getOptions('bloodGroups'));
-  }, []);
+  }, [dispatch]);
 
   const onSubmit = (data: IUser) => {
     auth?.signUp(data);
   };
 
-  if (isLoading(sex) || isLoading(bloodGroups)) return <Loading />;
+  if (isLoading<IOptions>(sex) || isLoading<IOptions>(bloodGroups)) return <Loading />;
 
   const blood = bloodGroups?.data ? [...bloodGroups.data] : [];
   blood.shift();
@@ -45,11 +48,14 @@ export const SignUpForm: React.FC<Props> = ({ onChangeState }): JSX.Element => {
       <Title as='h2' margin='15px'>
         Регистрация
       </Title>
-      <FormItem>
-        <Input placeholder='Укажите ФИО' name='fullname' innerRef={register} />
+      <FormItem error={errors.fullname?.message}>
+        <Input placeholder='Укажите ФИО' name='fullname' innerRef={register(validate)} />
       </FormItem>
-      <FormItem>
+      <FormItem error={errors.sexId?.message}>
         <Controller
+          name='sexId'
+          control={control}
+          rules={validate}
           as={
             <Select size='large' placeholder='Укажите пол'>
               {sex.data &&
@@ -60,14 +66,13 @@ export const SignUpForm: React.FC<Props> = ({ onChangeState }): JSX.Element => {
                 ))}
             </Select>
           }
-          name='sexId'
-          control={control}
         />
       </FormItem>
-      <FormItem>
+      <FormItem error={errors.bloodGroupId?.message}>
         <Controller
           name='bloodGroupId'
           control={control}
+          rules={validate}
           as={
             <Select size='large' placeholder='Укажите группу крови'>
               {blood &&
@@ -80,20 +85,35 @@ export const SignUpForm: React.FC<Props> = ({ onChangeState }): JSX.Element => {
           }
         />
       </FormItem>
-      <FormItem>
-        <Input placeholder='Укажите номер телефона' name='phoneMobile' innerRef={register} />
+      <FormItem error={errors.phoneMobile?.message}>
+        <Input
+          placeholder='Укажите номер телефона'
+          name='phoneMobile'
+          innerRef={register(validate)}
+        />
       </FormItem>
-      <FormItem>
-        <Input placeholder='Укажите email' type='email' name='email' innerRef={register} />
+      <FormItem error={errors.email?.message}>
+        <Input
+          placeholder='Укажите email'
+          type='email'
+          name='email'
+          innerRef={register(validate)}
+        />
       </FormItem>
-      <FormItem>
-        <Input type='password' placeholder='Укажите пароль' name='password' innerRef={register} />
+      <FormItem error={errors.password?.message}>
+        <Input
+          type='password'
+          placeholder='Укажите пароль'
+          name='password'
+          innerRef={register(validate)}
+        />
       </FormItem>
       <FormItem>
         <FormItemCheckbox>
-          <Checkbox checked />
+          <Checkbox readOnly defaultChecked />
           <p>
-            Я принимаю условия Пользовательского соглашения пользования Web-сервисом donor.md и даю своё согласие{' '}
+            Я принимаю условия Пользовательского соглашения пользования Web-сервисом donor.md и даю
+            своё согласие{' '}
             <Link href='/'>
               <StyledLink color='textMuted' underline>
                 Donor.md
@@ -110,7 +130,7 @@ export const SignUpForm: React.FC<Props> = ({ onChangeState }): JSX.Element => {
       </FormItem>
       <FormItem>
         <FormItemCheckbox>
-          <Checkbox checked />
+          <Checkbox readOnly defaultChecked />
           <p>
             Даю согласие на обработку персональных данных (согласно Закону Приднестровья «О
             персональных данных»)

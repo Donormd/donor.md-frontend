@@ -1,9 +1,10 @@
 import Link from 'next/link';
-import { Container } from '../../layouts/container';
-import { Title, StyledLink } from '../../components/UI';
-import HeaderContentFooter from '../../layouts/header-content-footer';
 
-const SupportProject: React.FC = (): JSX.Element => (
+import { StyledLink, Title } from '../../components/UI';
+import { Container } from '../../core/layouts/container';
+import { HeaderContentFooter } from '../../core/layouts/header-content-footer';
+
+const SupportProject = () => (
   <HeaderContentFooter background='/articles/images/pages/love-pic.png'>
     <Container>
       <Title margin='15px' bold>

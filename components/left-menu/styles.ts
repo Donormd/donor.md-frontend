@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { Button } from '../UI';
 
 export const Aside = styled.aside<{ image?: string }>`
@@ -18,6 +19,11 @@ export const Aside = styled.aside<{ image?: string }>`
     background-repeat: no-repeat;
     background-position: left bottom;
   }
+`;
+
+export const AsideWrapper = styled.div`
+  top: 25px;
+  position: sticky;
 `;
 
 export const Menu = styled.ul`

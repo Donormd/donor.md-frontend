@@ -1,8 +1,8 @@
-import React from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
+
 import { Title } from '../components/UI';
-import { Container } from '../layouts/container';
+import { Container } from '../core/layouts/container';
 
 const ContainerWrapper = styled(Container)`
   padding-top: 50px;
@@ -22,7 +22,7 @@ const ImageWrapper = styled.div`
   }
 `;
 
-const NotFound: React.FC = (): JSX.Element => {
+const NotFound = () => {
   return (
     <ContainerWrapper>
       <div>

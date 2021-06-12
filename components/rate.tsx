@@ -1,5 +1,5 @@
-import React from 'react';
 import Image from 'next/image';
+import { FC, memo } from 'react';
 import styled from 'styled-components';
 
 export declare type Props = {
@@ -19,8 +19,10 @@ const RateWrapper = styled.div`
   }
 `;
 
-const Rate: React.FC<Props> = ({ count, total }): JSX.Element => {
-  const icons = Array(total).fill(0);
+export const Rate: FC<Props> = memo(({ count, total }) => {
+  const icons = Array(total)
+    .fill(1)
+    .map((v, i) => i + 1);
 
   return (
     <RateWrapper>
@@ -30,6 +32,4 @@ const Rate: React.FC<Props> = ({ count, total }): JSX.Element => {
       })}
     </RateWrapper>
   );
-};
-
-export default React.memo(Rate);
+});

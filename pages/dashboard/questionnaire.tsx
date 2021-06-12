@@ -1,10 +1,9 @@
-import { FC } from 'react';
 import DashboardButtonsLinks from '../../components/dashboard-buttons-links';
-import { TitleWithArrow, Paragraph } from '../../components/UI';
-import DashboardGrid from '../../layouts/dashboard-grid';
 import { QuestionForm } from '../../components/forms/dashboard/question/QuestionForm';
+import { Paragraph, TitleWithArrow } from '../../components/UI';
+import { DashboardGrid } from '../../core/layouts/dashboard-grid';
 
-const MyQuestionnaire: FC = () => {
+const MyQuestionnaire = () => {
   return (
     <DashboardGrid>
       <TitleWithArrow>Анкета донора</TitleWithArrow>
@@ -18,8 +17,8 @@ const MyQuestionnaire: FC = () => {
         <Paragraph as='span' bold>
           Важно
         </Paragraph>
-        : Если Вы будете приходить в Центры переливания крови с распечатанной анкетой с нашего Web-сервиса, то заполнение анкеты
-        должно быть не позже, чем за 2 дня до Вашей донации.
+        : Если Вы будете приходить в Центры переливания крови с распечатанной анкетой с нашего
+        Web-сервиса, то заполнение анкеты должно быть не позже, чем за 2 дня до Вашей донации.
       </Paragraph>
       <QuestionForm />
     </DashboardGrid>

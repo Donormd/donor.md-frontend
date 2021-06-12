@@ -1,21 +1,18 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
-import { storage } from '../services/storage';
-import { IState } from '../interfaces/initial-state';
+
+import { IOptions } from '../core/interfaces/IIterableStruct';
+import { IState } from '../core/interfaces/redux';
+import { fetch } from '../core/services/fetch';
+import { storage } from '../core/services/storage';
 import { apiV1 } from './constants/url';
 
-export interface IOptions {
-  _id: string;
-  text: string | number;
-}
-
-const insideState: IState<IOptions[] | null> = {
+const insideState: IState<IOptions[]> = {
   status: 'init',
-  data: null,
+  data: [],
   error: null,
 };
 
-const initialState: Record<string, IState<IOptions[] | null>> = {
+const initialState: Record<string, IState<IOptions[]>> = {
   cities: insideState,
   bloodGroups: insideState,
   bloodCenter: insideState,
@@ -38,23 +35,24 @@ type Options =
   | 'userStatus'
   | 'sex';
 
-const commonMap: Record<Options, string> = {
-  cities: `${apiV1}/city`,
-  bloodGroups: `${apiV1}/blood-group`,
-  bloodCenter: `${apiV1}/blood-center`,
-  organizations: `${apiV1}/organization`,
-  transfusionCenter: `${apiV1}/transfusion-center`,
-  typesAssistance: `${apiV1}/types-assistance`,
-  userGroup: `${apiV1}/user-group`,
-  userStatus: `${apiV1}/user-status`,
-  sex: `${apiV1}/sex`,
+const urlMap = {
+  cities: 'cities',
+  bloodGroups: 'blood-groups',
+  bloodCenter: 'blood-center',
+  organizations: 'organizations',
+  transfusionCenter: 'transfusion-center',
+  typesAssistance: 'types-assistance',
+  userGroup: 'user-group',
+  userStatus: 'user-status',
+  sex: 'sex',
 };
 
 export const getOptions = createAsyncThunk<IOptions[], Options>(
   'common/options/get',
-  async (dataType) => {
-    if (storage.isActualData(dataType)) return storage.get(dataType)?.data;
-    const response = await axios.get(commonMap[dataType]);
+  async (group) => {
+    const response = await fetch<IOptions[]>({
+      url: `${apiV1}/${urlMap[group]}`,
+    });
     return response.data;
   },
 );

@@ -1,29 +1,22 @@
-import React from 'react';
 import Image from 'next/image';
-import styled from 'styled-components';
+import { FC } from 'react';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
-import { Button, FormItem, Input, TextArea, Title } from '../../../UI';
-import { Section } from '../utils';
-import { Grid, SectionParagraph, ImageWrapper, Social } from './styles';
+import styled from 'styled-components';
+
+import { IFeedback, sendFeedback } from '../../../../redux/redusers/feedback';
+import { useAppDispatch, useAppSelector } from '../../../../redux/store';
+import { Alert } from '../../../alert';
 import SocialMediaLinks from '../../../social-media-links';
-import Alert from '../../../alert';
-import { useAppSelector } from '../../../../redux/store';
-import { sendFeedback, IFeedback } from '../../../../redux/redusers/feedback';
+import { Button, FormItem, Input, TextArea, Title } from '../../../UI';
 import { Loading } from '../../../UI/loading';
+import { Section } from '../utils';
+import { Grid, ImageWrapper, SectionParagraph, Social } from './styles';
 
-const HalfWidth = styled.div`
-  width: 100%;
-  @media (min-width: ${({ theme }) => theme.media.md}) {
-    width: 50%;
-  }
-`;
-
-const Feedback: React.FC = (): JSX.Element => {
+const Feedback: FC = () => {
   const { handleSubmit, register, reset } = useForm();
 
   const { status, error } = useAppSelector((state) => state.feedback);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const onSubmit = (data: IFeedback) => {
     dispatch(sendFeedback(data));
@@ -34,7 +27,7 @@ const Feedback: React.FC = (): JSX.Element => {
     <Section id='feedback' marginBottom='40px'>
       <Grid>
         <div>
-          <Title as='h2' className='h1' bold>
+          <Title as='h2' bold>
             Напишите нам
           </Title>
           <SectionParagraph>
@@ -81,3 +74,10 @@ const Feedback: React.FC = (): JSX.Element => {
 };
 
 export default Feedback;
+
+const HalfWidth = styled.div`
+  width: 100%;
+  @media (min-width: ${({ theme }) => theme.media.md}) {
+    width: 50%;
+  }
+`;

@@ -1,20 +1,20 @@
 import { FC, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { Paragraph, Title } from '../../../UI';
-import { Section } from '../utils';
-import { BloodList } from './styles';
-import { BloodGroup, BloodItem } from './blood-item';
-import { useAppSelector } from '../../../../redux/store';
+
 import { getData } from '../../../../redux/redusers/monitoring';
-import Alert from '../../../alert';
+import { useAppDispatch, useAppSelector } from '../../../../redux/store';
+import { Alert } from '../../../alert';
+import { Paragraph, Title } from '../../../UI';
 import { Loading } from '../../../UI/loading';
+import { Section } from '../utils';
+import { BloodGroup, BloodItem } from './blood-item';
+import { BloodList } from './styles';
 
 const Monitoring: FC = () => {
   const {
     values: { status, data, error },
   } = useAppSelector((state) => state.monitoring);
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(getData());
   }, [dispatch]);
@@ -27,7 +27,7 @@ const Monitoring: FC = () => {
 
   return (
     <Section id='monitoring'>
-      <Title as='h2' className='h1' bold>
+      <Title as='h2' bold>
         Мониторинг запасов
       </Title>
       <BloodList>

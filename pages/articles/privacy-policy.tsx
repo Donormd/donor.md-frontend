@@ -1,9 +1,9 @@
-import React from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
-import HeaderContentFooter from '../../layouts/header-content-footer';
-import { Container } from '../../layouts/container';
-import { Title, Paragraph, StyledLink } from '../../components/UI';
+
+import { Paragraph, StyledLink, Title } from '../../components/UI';
+import { Container } from '../../core/layouts/container';
+import { HeaderContentFooter } from '../../core/layouts/header-content-footer';
 
 const List = styled.div`
   ol {
@@ -22,7 +22,7 @@ const ListItem = styled.li`
   margin-bottom: 15px;
 `;
 
-const PrivacyPolicy: React.FC = (): JSX.Element => {
+const PrivacyPolicy = () => {
   return (
     <HeaderContentFooter background='/images/pages/welcome.png'>
       <Container>

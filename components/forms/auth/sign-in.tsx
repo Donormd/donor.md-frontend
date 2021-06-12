@@ -1,18 +1,16 @@
-import React from 'react';
 import { useForm } from 'react-hook-form';
+
+import { useAuth } from '../../../core/hooks/useAuth';
+import { useRequiredAuth } from '../../../core/hooks/useRequiredAuth';
+import { useAppSelector } from '../../../redux/store';
+import { Alert } from '../../alert';
 import { FormItem, Input, Title } from '../../UI';
 import { onChangeState } from './types';
 import { ActionLayout, WrappedLink } from './utils';
-import { useAppSelector } from '../../../redux/store';
-import Alert from '../../alert';
-import { useAuth } from '../../../hooks/useAuth';
-import { useRequiredAuth } from '../../../hooks/useRequiredAuth';
 
-declare type Props = { onChangeState: onChangeState };
-
-export const SignInForm: React.FC<Props> = ({ onChangeState }): JSX.Element => {
+export const SignInForm = ({ onChangeState }: { onChangeState: onChangeState }) => {
   const { error } = useAppSelector((state) => state.user);
-  const { handleSubmit, register } = useForm();
+  const { handleSubmit, register, errors } = useForm();
   const auth = useAuth();
 
   useRequiredAuth('/dashboard', '/auth');
@@ -26,7 +24,7 @@ export const SignInForm: React.FC<Props> = ({ onChangeState }): JSX.Element => {
       <Title as='h2' margin='15px'>
         Авторизация
       </Title>
-      <FormItem columns={1}>
+      <FormItem columns={1} error={errors.email?.message}>
         <Input
           placeholder='Введите email'
           name='email'
@@ -39,7 +37,7 @@ export const SignInForm: React.FC<Props> = ({ onChangeState }): JSX.Element => {
           })}
         />
       </FormItem>
-      <FormItem columns={1}>
+      <FormItem columns={1} error={errors.password?.message}>
         <Input
           placeholder='Введите пароль'
           name='password'

@@ -1,13 +1,14 @@
-import React from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
-import { Title, Button } from '../../../UI';
-import { Section } from '../utils';
-import { SectionTitle, Underline, ImageWrapper, ArticleGrid, Article } from './styles';
+import Link from 'next/link';
+import { FC } from 'react';
 
-const CallToAction: React.FC = (): JSX.Element => (
+import { Button, Title } from '../../../UI';
+import { Section } from '../utils';
+import { Article, ArticleGrid, ImageWrapper, SectionTitle, Underline } from './styles';
+
+const CallToAction: FC = () => (
   <Section id='call-to-action'>
-    <SectionTitle as='h2' className='h1' bold>
+    <SectionTitle as='h2' bold>
       С нами уже{' '}
       <Link href='/top-donors'>
         <Underline>105 доноров</Underline>

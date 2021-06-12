@@ -1,9 +1,10 @@
 import { FC } from 'react';
 import styled from 'styled-components';
-import { Paragraph, Switch, Select, Title, Input } from '../../../UI';
-import { IQuestionList } from '../../../../interfaces/question';
 
-export const Question: FC<IQuestionList> = ({ title, paragraph, control }): JSX.Element => {
+import { IQuestionList } from '../../../../core/interfaces/question';
+import { Input, Paragraph, Select, Switch, Title } from '../../../UI';
+
+export const Question: FC<IQuestionList> = ({ title, paragraph, control }) => {
   return (
     <Wrapper>
       <div>

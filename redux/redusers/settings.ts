@@ -1,9 +1,10 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { fetch } from '../../services/fetch';
-import { IState } from '../../interfaces/initial-state';
+
+import { IState } from '../../core/interfaces/redux';
+import { IChangePassword, ISettings } from '../../core/interfaces/settings';
+import { fetch } from '../../core/services/fetch';
+import { storage } from '../../core/services/storage';
 import { apiV1 } from '../constants/url';
-import { IChangePassword, ISettings } from '../../interfaces/settings';
-import { storage } from '../../services/storage';
 
 const initialState: IState<ISettings | null> = {
   status: 'init',

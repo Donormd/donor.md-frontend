@@ -1,4 +1,4 @@
-import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/document';
+import Document, { DocumentContext, Head, Html, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 
 class MyDocument extends Document {
@@ -25,22 +25,17 @@ class MyDocument extends Document {
     }
   }
 
-  render(): JSX.Element {
+  render() {
     return (
       <Html>
         <Head>
           <meta name='theme-color' content='#ff4d4b' />
-          <meta property='og:title' content='' />
-          <meta property='og:description' content='' />
-          <meta property='og:url' content='' />
-          <meta property='og:image' content='' />
-          <meta name='description' content='' />
           <link rel='canonical' href='https://donor.md' />
           <meta name='keywords' content='' />
           <meta name='description' content='' />
-          <link rel='icon' href='/app-icon/icon.ico' />
-          <link rel='icon' href='/app-icon/icon.svg' type='image/svg+xml' />
-          <link rel='apple-touch-icon' href='/app-icon/apple-touch-icon.png' />
+          <link rel='icon' href='/app-icons/icon.ico' />
+          <link rel='icon' href='/app-icons/icon.svg' type='image/svg+xml' />
+          <link rel='apple-touch-icon' href='/app-icons/apple-touch-icon.png' />
           <link rel='manifest' href='/manifest.json' />
           <title>DONOR.MD - место, где люди помогают людям</title>
         </Head>

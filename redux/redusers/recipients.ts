@@ -1,28 +1,32 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import axios from 'axios';
-import { apiV1 } from '../constants/url';
-import { IState } from '../../interfaces/initial-state';
-import { IRecipient, IRecipientCard } from '../../interfaces/recipient';
-import { storage } from '../../services/storage';
 
-const initialState: IState<IRecipientCard[] | null> = {
+import { IRecipient } from '../../core/interfaces/recipient';
+import { IState } from '../../core/interfaces/redux';
+import { fetch } from '../../core/services/fetch';
+import { storage } from '../../core/services/storage';
+import { apiV1 } from '../constants/url';
+
+const initialState: IState<IRecipient[]> = {
   status: 'init',
-  data: null,
+  data: [],
   error: null,
 };
 
-export const getRecipientsAction = createAsyncThunk<IRecipientCard[]>(
-  'recipients/get',
-  async () => {
-    const response = await axios.get(`${apiV1}/recipient`);
-    return response.data;
-  },
-);
+export const getRecipientsAction = createAsyncThunk<IRecipient[]>('recipients/get', async () => {
+  const response = await fetch<IRecipient[]>({
+    url: `${apiV1}/recipient`,
+  });
+  return response.data;
+});
 
 export const createRecipientRequestAction = createAsyncThunk<void, IRecipient>(
   'recipients/post',
   async (payload) => {
-    await axios.post(`${apiV1}/recipient`, payload);
+    await fetch({
+      url: `${apiV1}/recipient`,
+      method: 'POST',
+      data: payload,
+    });
   },
 );
 
@@ -31,14 +35,11 @@ const recipients = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(
-      getRecipientsAction.fulfilled,
-      (state, action: PayloadAction<IRecipientCard[]>) => {
-        state.status = 'success';
-        state.data = action.payload;
-        storage.set('recipients', action.payload);
-      },
-    );
+    builder.addCase(getRecipientsAction.fulfilled, (state, action: PayloadAction<IRecipient[]>) => {
+      state.status = 'success';
+      state.data = action.payload;
+      storage.set('recipients', action.payload);
+    });
     builder.addCase(getRecipientsAction.pending, (state) => {
       state.status = 'loading';
     });

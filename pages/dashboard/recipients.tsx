@@ -1,16 +1,16 @@
-import { FC, useEffect } from 'react';
+import { useEffect } from 'react';
 import styled from 'styled-components';
-import { useDispatch } from 'react-redux';
-import DashboardGrid from '../../layouts/dashboard-grid';
-import { TitleWithArrow, Paragraph } from '../../components/UI';
-import RecipientCard from '../../components/recipient-card';
-import { IRecipientCard } from '../../interfaces/recipient';
-import { useAppSelector } from '../../redux/store';
-import { getRecipientsAction } from '../../redux/redusers/recipients';
-import Alert from '../../components/alert';
 
-const Recipients: FC = () => {
-  const dispatch = useDispatch();
+import { Alert } from '../../components/alert';
+import { RecipientCard } from '../../components/recipient-card';
+import { Paragraph, TitleWithArrow } from '../../components/UI';
+import { IRecipient } from '../../core/interfaces/recipient';
+import { DashboardGrid } from '../../core/layouts/dashboard-grid';
+import { getRecipientsAction } from '../../redux/redusers/recipients';
+import { useAppDispatch, useAppSelector } from '../../redux/store';
+
+const Recipients = () => {
+  const dispatch = useAppDispatch();
   const { data, status, error } = useAppSelector((state) => state.recipient);
 
   useEffect(() => {
@@ -25,8 +25,9 @@ const Recipients: FC = () => {
           Рекомендованные реципиенты
         </Paragraph>
       </TextWrapper>
-      {status === 'success' && <Alert dismissible>{error}</Alert>}
-      {data && data.map((item: IRecipientCard) => <RecipientCard {...item} />)}
+      {status === 'error' && <Alert dismissible>{error}</Alert>}
+      {data &&
+        data.map((item: IRecipient) => <RecipientCard key={item._id} recipient={item.recipient} />)}
     </DashboardGrid>
   );
 };

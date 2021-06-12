@@ -1,20 +1,20 @@
 import { FC, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
-import { Button, Divider, Form, FormItem, Paragraph, TextArea, Title } from '../../UI';
+
+import { IStory } from '../../../core/interfaces/story';
+import { storage } from '../../../core/services/storage';
 import {
   createOrUpdateUserStory,
   getUserStory,
   setUserStory,
 } from '../../../redux/redusers/forms/user-story';
-import { IStory } from '../../../interfaces/story';
-import { useAppSelector } from '../../../redux/store';
-import Alert from '../../alert';
-import { storage } from '../../../services/storage';
+import { useAppDispatch, useAppSelector } from '../../../redux/store';
+import { Alert } from '../../alert';
+import { Button, Divider, Form, FormItem, Paragraph, TextArea, Title } from '../../UI';
 
 export const UserStoryForm: FC = () => {
   const { register, handleSubmit, setValue } = useForm();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const {
     userStory: { data: storyData, status },
   } = useAppSelector((state) => state);

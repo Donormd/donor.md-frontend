@@ -1,42 +1,16 @@
-import { FC, useEffect } from 'react';
-import Link from 'next/link';
-import { Tooltip } from 'antd';
-import { ReactSVG } from 'react-svg';
-import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/dist/client/router';
-import { MenuItem, IconWrapper, Paragraph, Aside, Menu, LinkButton } from './styles';
+import { FC, useEffect } from 'react';
+
+import { actions } from '../../redux/redusers/left-menu';
+import { useAppDispatch, useAppSelector } from '../../redux/store';
 import { ResponsiveLogo } from '../logo';
-import { IMenuLinkProps, actions } from '../../redux/redusers/left-menu';
-import { useAppSelector } from '../../redux/store';
+import { MenuLink } from './menu-link';
+import { Aside, AsideWrapper, Menu } from './styles';
 
-type WithButton = {
-  handleClick?: () => void;
-};
-
-const MenuLink: FC<IMenuLinkProps & { active: boolean } & WithButton> = ({
-  active,
-  imageSrc,
-  href,
-  text,
-}) => (
-  <Link href={href} passHref>
-    <Tooltip title={text} placement='left'>
-      <MenuItem>
-        <LinkButton size='lg' active={active} variant='outline-primary'>
-          <IconWrapper>
-            <ReactSVG src={imageSrc} />
-          </IconWrapper>
-          <Paragraph>{text}</Paragraph>
-        </LinkButton>
-      </MenuItem>
-    </Tooltip>
-  </Link>
-);
-
-const LeftMenu: FC<{ image?: string }> = ({ image }): JSX.Element => {
+const LeftMenu: FC<{ image?: string }> = ({ image }) => {
   const { data, selectId } = useAppSelector((state) => state.leftMenu);
   const { pathname } = useRouter();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const { setMenu } = actions;
 
@@ -47,16 +21,18 @@ const LeftMenu: FC<{ image?: string }> = ({ image }): JSX.Element => {
 
   return (
     <Aside image={image}>
-      <ResponsiveLogo />
-      <Menu>
-        {data.map((item, i) => (
-          <MenuLink
-            active={i + 1 === selectId}
-            {...item}
-            handleClick={() => dispatch(setMenu(i))}
-          />
-        ))}
-      </Menu>
+      <AsideWrapper>
+        <ResponsiveLogo />
+        <Menu>
+          {data.map((item, i) => (
+            <MenuLink
+              active={i + 1 === selectId}
+              {...item}
+              handleClick={() => dispatch(setMenu(i))}
+            />
+          ))}
+        </Menu>
+      </AsideWrapper>
     </Aside>
   );
 };

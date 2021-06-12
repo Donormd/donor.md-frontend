@@ -1,11 +1,11 @@
 /* eslint-disable no-console */
-import React from 'react';
 import { Table as AntTable } from 'antd';
 import styled from 'styled-components';
-import Pagination from '../../components/pagination';
+
 import DashboardButtonsLinks from '../../components/dashboard-buttons-links';
+import Pagination from '../../components/pagination';
 import { StyledLink, Title, TitleWithArrow } from '../../components/UI';
-import DashboardGrid from '../../layouts/dashboard-grid';
+import { DashboardGrid } from '../../core/layouts/dashboard-grid';
 
 const mock = [
   {
@@ -188,7 +188,7 @@ const columns = [
   },
 ];
 
-const DonationsArchive: React.FC = (): JSX.Element => {
+const DonationsArchive = () => {
   return (
     <DashboardGrid>
       <TitleWithArrow>Мои донации</TitleWithArrow>

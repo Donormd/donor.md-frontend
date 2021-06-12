@@ -1,9 +1,10 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
+
+import { IDonation } from '../../core/interfaces/donation';
+import { IState } from '../../core/interfaces/redux';
+import { storage } from '../../core/services/storage';
 import { apiV1 } from '../constants/url';
-import { IState } from '../../interfaces/initial-state';
-import { storage } from '../../services/storage';
-import { IDonation } from '../../interfaces/donation';
 
 const initialState: IState<IDonation[]> = {
   status: 'init',

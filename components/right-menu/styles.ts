@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { Paragraph } from '../UI';
 
 export const Aside = styled.aside`
@@ -8,6 +9,11 @@ export const Aside = styled.aside`
   @media (min-width: 992px) {
     display: block;
   }
+`;
+
+export const AsideWrapper = styled.div`
+  position: sticky;
+  top: 25px;
 `;
 
 export const Menu = styled.ul`

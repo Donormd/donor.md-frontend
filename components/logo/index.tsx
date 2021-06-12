@@ -1,13 +1,14 @@
-import React, { FC } from 'react';
-import Image from 'next/image';
 import { Tooltip } from 'antd';
+import Image from 'next/image';
 import Link from 'next/link';
+import React, { FC } from 'react';
+
 import {
   LogoWrapper,
+  ResponsiveLogoWrapper,
   ResponsiveTextWrapper,
   StyledTitle,
   WrappedParagraph,
-  ResponsiveLogoWrapper,
 } from './styles';
 
 export const Logo: FC = () => (

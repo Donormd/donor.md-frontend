@@ -1,9 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
+
+import { IState } from '../../core/interfaces/redux';
+import { IStory } from '../../core/interfaces/story';
+import { fetch } from '../../core/services/fetch';
+import { storage } from '../../core/services/storage';
 import { apiV1 } from '../constants/url';
-import { IState } from '../../interfaces/initial-state';
-import { IStory } from '../../interfaces/story';
-import { storage } from '../../services/storage';
 
 const initialState: IState<IStory[]> = {
   status: 'init',
@@ -12,7 +13,9 @@ const initialState: IState<IStory[]> = {
 };
 
 const getStories = createAsyncThunk<IStory[]>('stories/get', async () => {
-  const response = await axios.get(`${apiV1}/story`);
+  const response = await fetch<IStory[]>({
+    url: `${apiV1}/story`,
+  });
   return response.data;
 });
 

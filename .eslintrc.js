@@ -22,8 +22,31 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module',
   },
-  plugins: ['react', '@typescript-eslint', 'import', 'prettier', 'react-hooks', 'jsx-a11y'],
+  plugins: [
+    'react',
+    '@typescript-eslint',
+    'import',
+    'prettier',
+    'react-hooks',
+    'jsx-a11y',
+    'simple-import-sort',
+  ],
+  overrides: [
+    {
+      files: 'server/**/*.js',
+      env: { node: true },
+      rules: {
+        'simple-import-sort/imports': 'off',
+        'import/order': ['error', { 'newlines-between': 'always' }],
+      },
+    },
+  ],
   rules: {
+    'simple-import-sort/imports': 'error',
+    'simple-import-sort/exports': 'error',
+    'import/first': 'error',
+    'import/newline-after-import': 'error',
+    'import/no-duplicates': 'error',
     'arrow-parens': ['error', 'always'],
     'arrow-spacing': [
       'error',

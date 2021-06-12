@@ -3,3 +3,9 @@ export interface IState<T> {
   data: T;
   error: string | null;
 }
+
+export interface IRejectValue {
+  rejectValue: {
+    errorMessage: string;
+  };
+}

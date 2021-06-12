@@ -1,61 +1,13 @@
 /* eslint no-console:0 */
-import React from 'react';
 import { Table as AntTable } from 'antd';
 import styled from 'styled-components';
-import ButtonGroup, { ButtonsProps, OnClickProps } from '../components/UI/button-group';
-import { Title, StyledLink } from '../components/UI';
-import { Container } from '../layouts/container';
-import HeaderContentFooter from '../layouts/header-content-footer';
+
+import { StyledLink, Title } from '../components/UI';
+import { ButtonGroup } from '../components/UI/button-group';
+import { IOptions } from '../core/interfaces/IIterableStruct';
+import { Container } from '../core/layouts/container';
+import { HeaderContentFooter } from '../core/layouts/header-content-footer';
 import { useAppSelector } from '../redux/store';
-
-const Table = styled(AntTable)`
-  & .ant-table {
-    overflow-x: scroll;
-  }
-
-  & .ant-table,
-  & .ant-table-thead > tr > th {
-    background: transparent;
-  }
-
-  & .ant-table-thead > tr > th {
-    color: var(--red);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  }
-
-  & .ant-table-tbody > tr > td {
-    border: none;
-  }
-
-  & .ant-table-tbody > tr.ant-table-row:hover > td {
-    background: #fafafa8a;
-  }
-
-  @media (min-width: 992px) {
-    & .ant-table {
-      overflow-x: hidden;
-    }
-  }
-`;
-
-const Count = styled.div`
-  margin: 0;
-  color: var(--red);
-  background: var(--red-diluted);
-  line-height: 50px;
-  border-radius: 5px;
-  font-weight: bold;
-  font-size: 1.4rem;
-  text-align: center;
-  width: 50px;
-  height: 50px;
-  vertical-align: middle;
-`;
-
-const Link = styled(StyledLink)`
-  color: black;
-  text-decoration: underline;
-`;
 
 const columns = [
   {
@@ -106,27 +58,14 @@ const columns = [
   },
 ];
 
-const StoriesHead = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 25px;
-  align-items: start;
-  @media (min-width: 768px) {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
-`;
-
-const buttons: Array<ButtonsProps> = [
-  { key: 1, text: 'Мужчины' },
-  { key: 2, text: 'Женщины' },
+const buttons: IOptions[] = [
+  { _id: '1', text: 'Мужчины' },
+  { _id: '2', text: 'Женщины' },
 ];
 
-const handleClick: OnClickProps = (val) => console.log(val);
+const handleClick: (val: string) => void = (val) => console.log(val);
 
-const TopDonorsPage: React.FC = (): JSX.Element => {
+const TopDonorsPage = () => {
   const { data } = useAppSelector((state) => state.stories);
   return (
     <HeaderContentFooter background='/images/pages/welcome.png'>
@@ -144,3 +83,65 @@ const TopDonorsPage: React.FC = (): JSX.Element => {
 };
 
 export default TopDonorsPage;
+
+const Table = styled(AntTable)`
+  & .ant-table {
+    overflow-x: scroll;
+  }
+
+  & .ant-table,
+  & .ant-table-thead > tr > th {
+    background: transparent;
+  }
+
+  & .ant-table-thead > tr > th {
+    color: var(--red);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  & .ant-table-tbody > tr > td {
+    border: none;
+  }
+
+  & .ant-table-tbody > tr.ant-table-row:hover > td {
+    background: #fafafa8a;
+  }
+
+  @media (min-width: 992px) {
+    & .ant-table {
+      overflow-x: hidden;
+    }
+  }
+`;
+
+const Count = styled.div`
+  margin: 0;
+  color: var(--red);
+  background: var(--red-diluted);
+  line-height: 50px;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 1.4rem;
+  text-align: center;
+  width: 50px;
+  height: 50px;
+  vertical-align: middle;
+`;
+
+const Link = styled(StyledLink)`
+  color: black;
+  text-decoration: underline;
+`;
+
+const StoriesHead = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 25px;
+  align-items: start;
+  @media (min-width: 768px) {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+`;

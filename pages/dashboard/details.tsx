@@ -1,13 +1,10 @@
-import { FC } from 'react';
-
 import DashboardButtonsLinks from '../../components/dashboard-buttons-links';
-
-import DashboardGrid from '../../layouts/dashboard-grid';
+import { DetailsForm } from '../../components/forms/dashboard/details';
 import { UserStoryForm } from '../../components/forms/dashboard/user-story';
 import { TitleWithArrow } from '../../components/UI';
-import { DetailsForm } from '../../components/forms/dashboard/details';
+import { DashboardGrid } from '../../core/layouts/dashboard-grid';
 
-const MyDetails: FC = () => {
+const MyDetails = () => {
   return (
     <DashboardGrid>
       <TitleWithArrow>Мои данные</TitleWithArrow>

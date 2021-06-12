@@ -1,35 +1,69 @@
-import React, { FC } from 'react';
 import ImageNext from 'next/image';
+import { memo, useEffect } from 'react';
 import styled from 'styled-components';
-import HeartIcon from '../public/images/icons/heart+.svg';
-import { Button, Title, Paragraph } from './UI';
-import Rate from './rate';
-import { IRecipientCard } from '../interfaces/recipient';
 
-const RecipientCard: FC<IRecipientCard> = ({
-  src,
-  name,
-  age,
-  bloodGroup,
-  disease,
-  placeName,
-  city,
-  date,
-}) => {
-  const dateObj = new Date(date);
-  const validity = `${dateObj.getDay()}/${dateObj.getMonth()}/${dateObj.getFullYear()}`;
+import { formatDate, yearOrYears } from '../core/helpers/converters';
+import { isLoading } from '../core/helpers/state';
+import { IOptions } from '../core/interfaces/IIterableStruct';
+import { IRecipient } from '../core/interfaces/recipient';
+import HeartIcon from '../public/images/icons/heart+.svg';
+import { getOptions } from '../redux/common';
+import { useAppDispatch, useAppSelector } from '../redux/store';
+import { Rate } from './rate';
+import { Button, Paragraph, Title } from './UI';
+import { Loading } from './UI/loading';
+
+type RecipientCardType = Pick<IRecipient, 'recipient'>;
+
+export const RecipientCard = memo(({ recipient }: RecipientCardType) => {
+  const {
+    fullname,
+    dateBirth,
+    bloodGroupId,
+    medicalCenterId,
+    bloodCenterId,
+    numberDonors,
+    deadline,
+    disease,
+    // src,
+  } = recipient;
+
+  const dispatch = useAppDispatch();
+
+  const { bloodGroups, bloodCenter, transfusionCenter } = useAppSelector((state) => state.common);
+
+  const years = new Date().getFullYear() - new Date(dateBirth).getFullYear();
+
+  useEffect(() => {
+    dispatch(getOptions('bloodCenter'));
+    dispatch(getOptions('bloodGroups'));
+    dispatch(getOptions('transfusionCenter'));
+  }, [dispatch]);
+
+  if (
+    isLoading<IOptions>(bloodGroups) ||
+    isLoading<IOptions>(bloodCenter) ||
+    isLoading<IOptions>(transfusionCenter)
+  )
+    return <Loading />;
+
+  const userBlood = bloodGroups.data.find((i) => i._id === bloodGroupId)?.text;
+  const medicalCenter = bloodCenter.data.find((i) => i._id === medicalCenterId)?.text;
+  const place = transfusionCenter.data.find((i) => i._id === bloodCenterId)?.text;
+
   return (
     <Card>
-      <Image src={src} width={100} height={100} layout='fixed' />
+      <Image src='/images/avatars/women.png' width={100} height={100} layout='fixed' />
       <One>
         <Title as='h3' margin='10px' bold>
-          {name}{' '}
+          {fullname}
+          {` `}
           <Paragraph as='span' color='textMuted'>
-            {age} лет
+            {years} {yearOrYears(years)}
           </Paragraph>
         </Title>
         <Title as='h4' margin='10px'>
-          {bloodGroup}
+          {userBlood}
         </Title>
         <Title as='h4' margin='10px' color='black'>
           {disease}
@@ -37,14 +71,14 @@ const RecipientCard: FC<IRecipientCard> = ({
       </One>
       <Second>
         <SecondTitle as='h5' color='black'>
-          {placeName}
+          {medicalCenter}
         </SecondTitle>
-        <Paragraph color='textMuted'>{city}</Paragraph>
+        <Paragraph color='textMuted'>{place}</Paragraph>
       </Second>
       <Three>
-        <Rate total={12} count={8} />
+        <Rate total={12} count={numberDonors} />
         <Title as='h4'>
-          <RedHighlight>Срок до: {validity}</RedHighlight>
+          <RedHighlight>Срок до: {formatDate(new Date(deadline))}</RedHighlight>
         </Title>
       </Three>
       <Four>
@@ -55,9 +89,7 @@ const RecipientCard: FC<IRecipientCard> = ({
       </Four>
     </Card>
   );
-};
-
-export default React.memo(RecipientCard);
+});
 
 const Card = styled.article`
   display: grid;

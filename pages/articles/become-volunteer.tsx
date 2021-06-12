@@ -1,20 +1,20 @@
-import React from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
+
 import {
-  Title,
+  Button,
+  Checkbox,
   Divider,
   Form,
   FormItem,
   Input,
-  TextArea,
   Select,
-  Checkbox,
   StyledLink,
-  Button,
+  TextArea,
+  Title,
 } from '../../components/UI';
-import HeaderContentFooter from '../../layouts/header-content-footer';
-import { Container } from '../../layouts/container';
+import { Container } from '../../core/layouts/container';
+import { HeaderContentFooter } from '../../core/layouts/header-content-footer';
 import { useAppSelector } from '../../redux/store';
 
 const FormItemCheckbox = styled.div`
@@ -23,7 +23,7 @@ const FormItemCheckbox = styled.div`
   grid-gap: 15px;
 `;
 
-const BecomeVolunteerPage: React.FC = (): JSX.Element => {
+const BecomeVolunteerPage = () => {
   const { cities, typesAssistance } = useAppSelector((state) => state.common);
   return (
     <HeaderContentFooter background='/images/pages/welcome.png'>

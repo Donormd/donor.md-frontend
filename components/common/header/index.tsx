@@ -1,18 +1,19 @@
-import { FC, useState } from 'react';
-import Link from 'next/link';
 import { Popover } from 'antd';
-import { StyledLink, Button } from '../../UI';
+import Link from 'next/link';
+import { FC, useState } from 'react';
+
 import { Logo } from '../../logo';
+import { Button, StyledLink } from '../../UI';
+import { PopoverStyle } from './popover.style';
 import {
-  HeaderWrapper,
-  HeaderGrid,
-  MenuList,
-  MenuListProps,
-  MenuItem,
   Burder,
   Dot,
+  HeaderGrid,
+  HeaderWrapper,
+  MenuItem,
+  MenuList,
+  MenuListProps,
 } from './styles';
-import { PopoverStyle } from './popover.style';
 
 export const Header: FC = () => {
   const [hide, setToggleOpen] = useState<boolean>(false);

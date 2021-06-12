@@ -1,9 +1,10 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+
+import { IState } from '../../../core/interfaces/redux';
+import { IStory } from '../../../core/interfaces/story';
+import { fetch } from '../../../core/services/fetch';
+import { storage } from '../../../core/services/storage';
 import { apiV1 } from '../../constants/url';
-import { IState } from '../../../interfaces/initial-state';
-import { IStory } from '../../../interfaces/story';
-import { storage } from '../../../services/storage';
-import { fetch } from '../../../services/fetch';
 
 const initialState: IState<IStory | null> = {
   status: 'init',

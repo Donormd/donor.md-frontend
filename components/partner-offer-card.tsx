@@ -1,15 +1,50 @@
-import React from 'react';
 import ImageNext from 'next/image';
+import { FC, memo } from 'react';
 import styled from 'styled-components';
-import { Button, Title, Paragraph } from './UI';
 
-export declare type Props = {
+import { Button, Paragraph, Title } from './UI';
+
+export interface IProps {
   src: string;
   name: string;
   discount: string;
   condition: string;
   date: string;
-};
+}
+
+export const PartnerOfferCard: FC<IProps> = memo(({ src, name, discount, condition, date }) => {
+  const dateObj = new Date(date);
+  const validity = `${dateObj.getDay()} / ${dateObj.getMonth()} / ${dateObj.getFullYear()}`;
+  return (
+    <Card>
+      <Image src={src} width={100} height={100} layout='fixed' />
+      <One>
+        <Title as='h3'>{name}</Title>
+        <Paragraph>
+          <RedHighlight>{discount}</RedHighlight>
+        </Paragraph>
+      </One>
+      <Second>
+        <Title as='h6' color='textMuted' bold>
+          Условие:
+        </Title>
+        <Paragraph size='0.85rem' color='textMuted'>
+          {condition}
+        </Paragraph>
+      </Second>
+      <Three>
+        <ThreeParagraph bold>
+          Срок действия предложения до <RedHighlight>{validity}</RedHighlight>
+        </ThreeParagraph>
+      </Three>
+      <Four>
+        <Button variant='outline-danger' size='lg'>
+          Подробнее
+        </Button>
+      </Four>
+    </Card>
+  );
+});
 
 const Card = styled.article`
   display: grid;
@@ -80,45 +115,3 @@ const ThreeParagraph = styled(Paragraph)`
     margin-left: auto;
   }
 `;
-
-const PartnerOfferCard: React.FC<Props> = ({
-  src,
-  name,
-  discount,
-  condition,
-  date,
-}): JSX.Element => {
-  const dateObj = new Date(date);
-  const validity = `${dateObj.getDay()} / ${dateObj.getMonth()} / ${dateObj.getFullYear()}`;
-  return (
-    <Card>
-      <Image src={src} width={100} height={100} layout='fixed' />
-      <One>
-        <Title as='h3'>{name}</Title>
-        <Paragraph>
-          <RedHighlight>{discount}</RedHighlight>
-        </Paragraph>
-      </One>
-      <Second>
-        <Title as='h6' color='textMuted' bold>
-          Условие:
-        </Title>
-        <Paragraph size='0.85rem' color='textMuted'>
-          {condition}
-        </Paragraph>
-      </Second>
-      <Three>
-        <ThreeParagraph bold>
-          Срок действия предложения до <RedHighlight>{validity}</RedHighlight>
-        </ThreeParagraph>
-      </Three>
-      <Four>
-        <Button variant='outline-danger' size='lg'>
-          Подробнее
-        </Button>
-      </Four>
-    </Card>
-  );
-};
-
-export default React.memo(PartnerOfferCard);

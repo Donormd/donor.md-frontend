@@ -1,7 +1,8 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import axios from 'axios';
-import { IState } from '../../interfaces/initial-state';
-import { IBonus } from '../../interfaces/bonus';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+
+import { IBonus } from '../../core/interfaces/bonus';
+import { IState } from '../../core/interfaces/redux';
+import { fetch } from '../../core/services/fetch';
 import { apiV1 } from '../constants/url';
 
 const initialState: IState<IBonus[] | null> = {
@@ -11,7 +12,7 @@ const initialState: IState<IBonus[] | null> = {
 };
 
 export const getBonusesAction = createAsyncThunk<IBonus[]>('bonuses/get', async () => {
-  const response = await axios.get(`${apiV1}/bonus`);
+  const response = await fetch<IBonus[]>({ url: `${apiV1}/bonus` });
   return response.data;
 });
 

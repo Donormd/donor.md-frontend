@@ -1,7 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
+
+import { IState } from '../../core/interfaces/redux';
+import { fetch } from '../../core/services/fetch';
 import { apiV1 } from '../constants/url';
-import { IState } from '../../interfaces/initial-state';
 
 export interface IMonitoring {
   _id: string;
@@ -29,12 +30,16 @@ const initialState: IInitialState = {
 };
 
 export const getData = createAsyncThunk<IMonitoring[]>('monitoring/get', async () => {
-  const response = await axios.get(`${apiV1}/monitoring`);
+  const response = await fetch<IMonitoring[]>({ url: `${apiV1}/monitoring` });
   return response.data;
 });
 
 export const sendData = createAsyncThunk<void, IMonitoring>('monitoring/post', async (payload) => {
-  await axios.put(`${apiV1}/monitoring`, payload);
+  await fetch({
+    url: `${apiV1}/monitoring`,
+    method: 'POST',
+    data: payload,
+  });
 });
 
 const monitoring = createSlice({

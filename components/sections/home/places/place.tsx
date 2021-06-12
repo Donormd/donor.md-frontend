@@ -1,8 +1,9 @@
-import React from 'react';
+import { FC } from 'react';
 import styled from 'styled-components';
+
 import { Title } from '../../../UI';
 
-export declare type Props = {
+interface IProps {
   placeName: string;
   location: string;
   timeWork: {
@@ -11,21 +12,16 @@ export declare type Props = {
     dinner: string;
   };
   numbers: Array<string>;
-};
+}
 
-const AdditionalInformation = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-`;
-
-const Place: React.FC<Props> = (props): JSX.Element => {
+export const Place: FC<IProps> = (props) => {
   const { placeName, location, timeWork, numbers } = props;
   return (
-    <address className='style.place__donation__article'>
+    <address>
       <Title as='h3' bold>
         {placeName}
       </Title>
-      <p className='style.place__donation__address'>{`Расположена по адресу ${location}`}</p>
+      <p>{`Расположена по адресу ${location}`}</p>
       <AdditionalInformation>
         <div>
           <b>Режим работы</b>
@@ -44,4 +40,7 @@ const Place: React.FC<Props> = (props): JSX.Element => {
   );
 };
 
-export default Place;
+const AdditionalInformation = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+`;

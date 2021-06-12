@@ -1,14 +1,14 @@
 import { FC } from 'react';
-import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
-import { Button, Divider, Form, FormItem, Input } from '../../../UI';
-import { IChangePassword } from '../../../../interfaces/settings';
+
+import { IChangePassword } from '../../../../core/interfaces/settings';
 import { changePasswordAction } from '../../../../redux/redusers/settings';
-import { useAppSelector } from '../../../../redux/store';
-import Alert from '../../../alert';
+import { useAppDispatch, useAppSelector } from '../../../../redux/store';
+import { Alert } from '../../../alert';
+import { Button, Divider, Form, FormItem, Input } from '../../../UI';
 
 export const ChangePassword: FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { register, handleSubmit } = useForm();
 
   const { status, error } = useAppSelector((store) => store.password);

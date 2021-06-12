@@ -1,8 +1,9 @@
-import React from 'react';
 import Image from 'next/image';
+import { FC } from 'react';
+
 import { List, ListItem } from './styles';
 
-const SocialMediaLinks: React.FC<{ className?: string }> = ({ className }) => (
+const SocialMediaLinks: FC<{ className?: string }> = ({ className }) => (
   <List className={className}>
     <ListItem>
       <a href='https://vk.com/yadonorpmr'>
