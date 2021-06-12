@@ -1,5 +1,5 @@
-import { FC, memo } from 'react';
 import Image from 'next/image';
+import { FC, memo } from 'react';
 import styled from 'styled-components';
 
 export declare type Props = {

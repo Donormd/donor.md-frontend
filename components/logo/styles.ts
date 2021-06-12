@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { Paragraph, Title } from '../UI';
 
 export const LogoWrapper = styled.div`

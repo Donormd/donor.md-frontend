@@ -1,5 +1,6 @@
 import { FC, memo, useState } from 'react';
 import styled from 'styled-components';
+
 import { Paragraph } from './UI';
 
 interface IProps {

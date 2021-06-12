@@ -1,18 +1,18 @@
 import { FC, useEffect } from 'react';
-import styled from 'styled-components';
-import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
-import { IQuestion, IQuestionList } from '../../../../interfaces/question';
-import { Accordion, Button, Divider, Form, Title } from '../../../UI';
-import { Question } from './question';
-import { useAppSelector } from '../../../../redux/store';
+import styled from 'styled-components';
+
+import { IQuestion, IQuestionList } from '../../../../core/interfaces/question';
 import { getQuestionnaireAction } from '../../../../redux/redusers/forms/dashboard/questionnaire';
+import { useAppDispatch, useAppSelector } from '../../../../redux/store';
+import { Accordion, Button, Divider, Form, Title } from '../../../UI';
 import { Loading } from '../../../UI/loading';
+import { Question } from './question';
 
 const { Panel } = Accordion;
 
 export const QuestionForm: FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { data, status } = useAppSelector((state) => state.questionnaire);
 
   const { handleSubmit } = useForm();

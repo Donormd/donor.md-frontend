@@ -1,5 +1,6 @@
-import styled from 'styled-components';
 import NextImage from 'next/image';
+import styled from 'styled-components';
+
 import { Title } from '../../../UI';
 
 export const BloodList = styled.div`

@@ -1,14 +1,15 @@
 /* eslint no-console:0 */
-import { FC } from 'react';
+
 import styled from 'styled-components';
-import { HeaderContentFooter } from '../layouts/header-content-footer';
-import { ButtonGroup } from '../components/UI/button-group';
+
 import { DonorStory } from '../components/donor-story';
 import Pagination from '../components/pagination';
 import { Title } from '../components/UI';
-import { Container } from '../layouts/container';
+import { ButtonGroup } from '../components/UI/button-group';
+import { IOptions } from '../core/interfaces/IIterableStruct';
+import { Container } from '../core/layouts/container';
+import { HeaderContentFooter } from '../core/layouts/header-content-footer';
 import { useAppSelector } from '../redux/store';
-import { IOptions } from '../redux/common';
 
 const buttons: IOptions[] = [
   { _id: '1', text: 'Истории доноров' },
@@ -17,7 +18,7 @@ const buttons: IOptions[] = [
 
 const handleClick: (val: string) => void = (val) => console.log(val);
 
-const DonorStoriesPage: FC = () => {
+const DonorStoriesPage = () => {
   const { data } = useAppSelector((state) => state.stories);
   return (
     <HeaderContentFooter background='/images/pages/welcome.png'>

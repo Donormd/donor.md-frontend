@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { TypedUseSelectorHook, useSelector } from 'react-redux';
+import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 
 import { reducer as commonReducer } from './common';
 import { reducer as aboutDonationsReducer } from './redusers/about-donations';
@@ -36,6 +36,10 @@ export const store = configureStore({
   },
 });
 
-export type TypeState = ReturnType<typeof store.getState>;
+export type RootState = ReturnType<typeof store.getState>;
 
-export const useAppSelector: TypedUseSelectorHook<TypeState> = useSelector;
+export type AppDispatch = typeof store.dispatch;
+
+export const useAppDispatch = () => useDispatch<AppDispatch>();
+
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;

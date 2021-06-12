@@ -1,18 +1,18 @@
-import { FC, useEffect } from 'react';
-import styled from 'styled-components';
-import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { HeaderContentFooter } from '../layouts/header-content-footer';
-import { Container } from '../layouts/container';
-import { FormItem, Input, Paragraph, Title, Divider, Button } from '../components/UI';
-import { useAppSelector } from '../redux/store';
-import { sendData, getData, IMonitoring } from '../redux/redusers/monitoring';
-import { Loading } from '../components/UI/loading';
-import { Alert } from '../components/alert';
+import styled from 'styled-components';
 
-const Monitoring: FC = () => {
+import { Alert } from '../components/alert';
+import { Button, Divider, FormItem, Input, Paragraph, Title } from '../components/UI';
+import { Loading } from '../components/UI/loading';
+import { Container } from '../core/layouts/container';
+import { HeaderContentFooter } from '../core/layouts/header-content-footer';
+import { getData, IMonitoring, sendData } from '../redux/redusers/monitoring';
+import { useAppDispatch, useAppSelector } from '../redux/store';
+
+const Monitoring = () => {
   const { register, handleSubmit } = useForm();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { action, values } = useAppSelector((state) => state.monitoring);
 
   useEffect(() => {

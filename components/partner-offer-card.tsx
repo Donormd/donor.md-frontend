@@ -1,7 +1,8 @@
-import { FC, memo } from 'react';
 import ImageNext from 'next/image';
+import { FC, memo } from 'react';
 import styled from 'styled-components';
-import { Button, Title, Paragraph } from './UI';
+
+import { Button, Paragraph, Title } from './UI';
 
 export interface IProps {
   src: string;

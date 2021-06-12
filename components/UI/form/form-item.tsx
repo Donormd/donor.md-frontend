@@ -1,5 +1,6 @@
-import styled from 'styled-components';
 import { FC } from 'react';
+import styled from 'styled-components';
+
 import { Title } from '../typography';
 
 export const Form = styled.form``;

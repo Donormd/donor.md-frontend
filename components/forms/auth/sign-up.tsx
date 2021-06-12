@@ -1,16 +1,16 @@
 import Link from 'next/link';
 import { FC, useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
-import { useAuth } from '../../../hooks/useAuth';
-import { useRequiredAuth } from '../../../hooks/useRequiredAuth';
-import { IUser } from '../../../interfaces/user';
+import { isLoading } from '../../../core/helpers/state';
+import { useAuth } from '../../../core/hooks/useAuth';
+import { useRequiredAuth } from '../../../core/hooks/useRequiredAuth';
+import { IOptions } from '../../../core/interfaces/IIterableStruct';
+import { IUser } from '../../../core/interfaces/user';
 import { getOptions } from '../../../redux/common';
-import { useAppSelector } from '../../../redux/store';
+import { useAppDispatch, useAppSelector } from '../../../redux/store';
 import { Alert } from '../../alert';
-import { isLoading } from '../../helpers';
 import { Checkbox, FormItem, Input, Select, StyledLink, Title } from '../../UI';
 import { Loading } from '../../UI/loading';
 import { onChangeState } from './types';
@@ -21,7 +21,7 @@ declare type Props = { onChangeState: onChangeState };
 const validate = { required: 'Обязательное поле' };
 
 export const SignUpForm: FC<Props> = ({ onChangeState }) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const auth = useAuth();
   const { register, control, handleSubmit, errors } = useForm();
   const { sex, bloodGroups } = useAppSelector((state) => state.common);
@@ -38,7 +38,7 @@ export const SignUpForm: FC<Props> = ({ onChangeState }) => {
     auth?.signUp(data);
   };
 
-  if (isLoading(sex) || isLoading(bloodGroups)) return <Loading />;
+  if (isLoading<IOptions>(sex) || isLoading<IOptions>(bloodGroups)) return <Loading />;
 
   const blood = bloodGroups?.data ? [...bloodGroups.data] : [];
   blood.shift();

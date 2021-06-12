@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-import { IQuestion, IQuestionnaireStory } from '../../../../interfaces/question';
-import { IState } from '../../../../interfaces/redux';
-import { storage } from '../../../../services/storage';
+import { IQuestion, IQuestionnaireStory } from '../../../../core/interfaces/question';
+import { IState } from '../../../../core/interfaces/redux';
+import { storage } from '../../../../core/services/storage';
 import { apiV1 } from '../../../constants/url';
 
 const initialState: IState<IQuestion[] | null> = {

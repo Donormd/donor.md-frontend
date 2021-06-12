@@ -1,18 +1,18 @@
-import React, { FC, useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { useDispatch } from 'react-redux';
+import React, { FC, useContext, useEffect, useState } from 'react';
+
+import { setUserDate, signInAction, signUpAction } from '../../redux/redusers/user';
+import { useAppDispatch, useAppSelector } from '../../redux/store';
 import { AuthContext, IAuthContext } from '../context/auth';
 import { IUser } from '../interfaces/user';
 import { storage } from '../services/storage';
-import { setUserDate, signInAction, signUpAction } from '../redux/redusers/user';
-import { useAppSelector } from '../redux/store';
 
 export const useAuth = (): IAuthContext | null => useContext(AuthContext);
 
 const useProvideAuth = (): IAuthContext => {
   const { data } = useAppSelector((state) => state.user);
   const router = useRouter();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const [user, setUser] = useState<null | IUser>(null);
 
   const signIn = (data: { email: string; password: string }) => {

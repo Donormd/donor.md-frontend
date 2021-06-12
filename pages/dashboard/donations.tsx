@@ -1,27 +1,27 @@
+import { useEffect } from 'react';
+import { Controller, useForm } from 'react-hook-form';
 import styled from 'styled-components';
-import { FC, useEffect } from 'react';
-import { useForm, Controller } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+
 import { Alert } from '../../components/alert';
 import DashboardButtonsLinks from '../../components/dashboard-buttons-links';
 import SocialMediaLinks from '../../components/social-media-links';
 import {
   Button,
+  DatePicker,
   Form,
   FormItem,
   Input,
-  TitleWithArrow,
   Select,
-  DatePicker,
+  TitleWithArrow,
 } from '../../components/UI';
-import { DashboardGrid } from '../../layouts/dashboard-grid';
-import { useAppSelector } from '../../redux/store';
+import { IDonation } from '../../core/interfaces/donation';
+import { DashboardGrid } from '../../core/layouts/dashboard-grid';
 import { getOptions } from '../../redux/common';
-import { IDonation } from '../../interfaces/donation';
 import { addDonationAction } from '../../redux/redusers/donation';
+import { useAppDispatch, useAppSelector } from '../../redux/store';
 
-const Donations: FC = () => {
-  const dispatch = useDispatch();
+const Donations = () => {
+  const dispatch = useAppDispatch();
   const { register, control, handleSubmit } = useForm();
   const { bloodCenter, transfusionCenter } = useAppSelector((state) => state.common);
   const { data: userData, status } = useAppSelector((state) => state.user);

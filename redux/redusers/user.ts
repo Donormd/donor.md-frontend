@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { IRejectValue, IState } from '../../interfaces/redux';
-import { IUser, IUserStore } from '../../interfaces/user';
-import { fetch } from '../../services/fetch';
-import { storage } from '../../services/storage';
+import { IRejectValue, IState } from '../../core/interfaces/redux';
+import { IUser, IUserStore } from '../../core/interfaces/user';
+import { fetch } from '../../core/services/fetch';
+import { storage } from '../../core/services/storage';
 import { apiV1 } from '../constants/url';
 
 const initialState: IState<IUser | null> = {

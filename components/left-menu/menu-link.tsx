@@ -1,7 +1,8 @@
-import { FC } from 'react';
-import Link from 'next/link';
 import { Tooltip } from 'antd';
+import Link from 'next/link';
+import { FC } from 'react';
 import { ReactSVG } from 'react-svg';
+
 import { IMenuLinkProps } from '../../redux/redusers/left-menu';
 import { IconWrapper, LinkButton, MenuItem, Paragraph } from './styles';
 

@@ -1,10 +1,11 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
-import LeftMenu from '../components/left-menu';
-import RightMenu from '../components/right-menu';
-import { useRequiredAuth } from '../hooks/useRequiredAuth';
+
+import LeftMenu from '../../components/left-menu';
+import RightMenu from '../../components/right-menu';
+import { Loading } from '../../components/UI/loading';
 import { useAuth } from '../hooks/useAuth';
-import { Loading } from '../components/UI/loading';
+import { useRequiredAuth } from '../hooks/useRequiredAuth';
 import CenterAllAxes from './center-all-axes';
 
 interface IProps {

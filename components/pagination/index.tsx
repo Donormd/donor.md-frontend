@@ -1,5 +1,5 @@
-import { FC } from 'react';
 import { Pagination as AntPagination } from 'antd';
+import { FC } from 'react';
 import styled from 'styled-components';
 
 export declare type onChangeType = (page: number) => void;

@@ -1,26 +1,23 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { IRecipient, IRecipientCard } from '../../interfaces/recipient';
-import { IState } from '../../interfaces/redux';
-import { fetch } from '../../services/fetch';
-import { storage } from '../../services/storage';
+import { IRecipient } from '../../core/interfaces/recipient';
+import { IState } from '../../core/interfaces/redux';
+import { fetch } from '../../core/services/fetch';
+import { storage } from '../../core/services/storage';
 import { apiV1 } from '../constants/url';
 
-const initialState: IState<IRecipientCard[] | null> = {
+const initialState: IState<IRecipient[]> = {
   status: 'init',
-  data: null,
+  data: [],
   error: null,
 };
 
-export const getRecipientsAction = createAsyncThunk<IRecipientCard[]>(
-  'recipients/get',
-  async () => {
-    const response = await fetch<IRecipientCard[]>({
-      url: `${apiV1}/recipient`,
-    });
-    return response.data;
-  },
-);
+export const getRecipientsAction = createAsyncThunk<IRecipient[]>('recipients/get', async () => {
+  const response = await fetch<IRecipient[]>({
+    url: `${apiV1}/recipient`,
+  });
+  return response.data;
+});
 
 export const createRecipientRequestAction = createAsyncThunk<void, IRecipient>(
   'recipients/post',
@@ -38,14 +35,11 @@ const recipients = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(
-      getRecipientsAction.fulfilled,
-      (state, action: PayloadAction<IRecipientCard[]>) => {
-        state.status = 'success';
-        state.data = action.payload;
-        storage.set('recipients', action.payload);
-      },
-    );
+    builder.addCase(getRecipientsAction.fulfilled, (state, action: PayloadAction<IRecipient[]>) => {
+      state.status = 'success';
+      state.data = action.payload;
+      storage.set('recipients', action.payload);
+    });
     builder.addCase(getRecipientsAction.pending, (state) => {
       state.status = 'loading';
     });

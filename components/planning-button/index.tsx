@@ -1,8 +1,9 @@
-import styled from 'styled-components';
-import { FC, useState } from 'react';
 import Image from 'next/image';
+import { FC, useState } from 'react';
+import styled from 'styled-components';
+
+import { useAuth } from '../../core/hooks/useAuth';
 import { AdditionalButtons } from './additional-buttons';
-import { useAuth } from '../../hooks/useAuth';
 
 export const PlanningButton: FC = () => {
   const [visible, setVisible] = useState(false);

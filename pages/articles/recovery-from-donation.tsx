@@ -1,8 +1,8 @@
-import { FC } from 'react';
 import styled from 'styled-components';
-import { HeaderContentFooter } from '../../layouts/header-content-footer';
-import { Container } from '../../layouts/container';
+
 import { Paragraph as PH, Title as TL } from '../../components/UI';
+import { Container } from '../../core/layouts/container';
+import { HeaderContentFooter } from '../../core/layouts/header-content-footer';
 
 const Paragraph = styled(PH)`
   margin-bottom: 15px;
@@ -24,7 +24,7 @@ const ListItem = styled.li`
   padding-bottom: 10px;
 `;
 
-const RecoveryFromDonation: FC = () => {
+const RecoveryFromDonation = () => {
   return (
     <HeaderContentFooter background='/images/pages/welcome.png'>
       <Container>

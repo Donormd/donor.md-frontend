@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { Container } from '../../../layouts/container';
+
+import { Container } from '../../../core/layouts/container';
 
 export const HeaderWrapper = styled.header`
   position: fixed;

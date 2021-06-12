@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 
-import { useAuth } from '../../../hooks/useAuth';
-import { useRequiredAuth } from '../../../hooks/useRequiredAuth';
+import { useAuth } from '../../../core/hooks/useAuth';
+import { useRequiredAuth } from '../../../core/hooks/useRequiredAuth';
 import { useAppSelector } from '../../../redux/store';
 import { Alert } from '../../alert';
 import { FormItem, Input, Title } from '../../UI';

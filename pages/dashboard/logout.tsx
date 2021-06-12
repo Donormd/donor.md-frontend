@@ -1,10 +1,11 @@
-import { FC, useEffect } from 'react';
-import { Loading } from '../../components/UI/loading';
-import { useRequiredAuth } from '../../hooks/useRequiredAuth';
-import { useAuth } from '../../hooks/useAuth';
-import CenterAllAxes from '../../layouts/center-all-axes';
+import { useEffect } from 'react';
 
-const Dashboard: FC = () => {
+import { Loading } from '../../components/UI/loading';
+import { useAuth } from '../../core/hooks/useAuth';
+import { useRequiredAuth } from '../../core/hooks/useRequiredAuth';
+import CenterAllAxes from '../../core/layouts/center-all-axes';
+
+const Dashboard = () => {
   const auth = useAuth();
 
   useRequiredAuth('/auth', '/');

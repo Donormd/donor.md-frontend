@@ -1,13 +1,14 @@
-import { FC, useState } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
-import { Logo } from '../components/logo';
-import { Container } from '../layouts/container';
-import { TitleWithArrow } from '../components/UI';
+
+import { RecoveryForm } from '../components/forms/auth/recovery';
 import { SignInForm } from '../components/forms/auth/sign-in';
 import { SignUpForm } from '../components/forms/auth/sign-up';
-import { RecoveryForm } from '../components/forms/auth/recovery';
+import { Logo } from '../components/logo';
+import { TitleWithArrow } from '../components/UI';
+import { Container } from '../core/layouts/container';
 
-const AuthPage: FC = () => {
+const AuthPage = () => {
   const [state, setState] = useState<string>('signIn');
 
   return (

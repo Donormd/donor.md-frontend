@@ -1,7 +1,8 @@
-import React, { FC } from 'react';
 import Image from 'next/image';
+import React, { FC } from 'react';
 import styled from 'styled-components';
-import { Title, Paragraph } from './UI';
+
+import { Paragraph, Title } from './UI';
 
 export interface IProps {
   honorary: boolean;

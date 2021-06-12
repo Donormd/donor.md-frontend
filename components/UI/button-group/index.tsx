@@ -1,5 +1,6 @@
-import { useState, useEffect, FC, useCallback } from 'react';
+import { FC, useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
+
 import { Button } from '../button';
 import { IProps } from './types';
 

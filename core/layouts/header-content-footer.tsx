@@ -1,7 +1,8 @@
 import { FC } from 'react';
 import styled from 'styled-components';
-import { Footer } from '../components/common/footer';
-import { Header } from '../components/common/header';
+
+import { Footer } from '../../components/common/footer';
+import { Header } from '../../components/common/header';
 
 interface IProps {
   background: string;

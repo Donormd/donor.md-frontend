@@ -1,9 +1,10 @@
-import Link from 'next/link';
 import { useRouter } from 'next/dist/client/router';
+import Link from 'next/link';
 import { FC } from 'react';
 import styled from 'styled-components';
+
 import { Button } from '../UI';
-import { routs, IRoutsItem, RoutsKey } from './mock';
+import { IRoutsItem, routs, RoutsKey } from './mock';
 
 const ButtonGroup = styled.div`
   display: grid;

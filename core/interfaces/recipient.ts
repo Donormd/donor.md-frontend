@@ -1,4 +1,5 @@
 export interface IRecipient {
+  _id: string;
   recipient: {
     fullname: string;
     dateBirth: Date;
@@ -7,6 +8,7 @@ export interface IRecipient {
     bloodCenterId: string;
     numberDonors: number;
     deadline: Date;
+    disease: string;
     info: string;
     src: string;
   };
@@ -16,16 +18,4 @@ export interface IRecipient {
     phone: string;
     whoAreYou: string;
   };
-}
-
-export interface IRecipientCard {
-  _id: string;
-  src: string;
-  name: string;
-  age: number;
-  bloodGroup: string;
-  disease: string;
-  placeName: string;
-  city: string;
-  date: Date;
 }

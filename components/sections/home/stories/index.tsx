@@ -1,10 +1,11 @@
-import { FC, useRef } from 'react';
 import { Carousel } from 'antd';
-import PrevSVG from '../../../../public/images/carousel/prev.svg';
+import { FC, useRef } from 'react';
+
 import NextSVG from '../../../../public/images/carousel/next.svg';
-import { Title } from '../../../UI';
-import { WrapperSection, WrapperDonorStory, ButtonGroup, Button } from './styles';
+import PrevSVG from '../../../../public/images/carousel/prev.svg';
 import { useAppSelector } from '../../../../redux/store';
+import { Title } from '../../../UI';
+import { Button, ButtonGroup, WrapperDonorStory, WrapperSection } from './styles';
 
 const Stories: FC = () => {
   const { data } = useAppSelector((state) => state.stories);

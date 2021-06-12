@@ -1,11 +1,11 @@
 /* eslint-disable react/jsx-wrap-multilines */
-import { FC } from 'react';
-import styled from 'styled-components';
 import Link from 'next/link';
-import { HeaderContentFooter } from '../../layouts/header-content-footer';
-import { Container } from '../../layouts/container';
-import { Paragraph as PH, Title as TL, Accordion } from '../../components/UI';
+import styled from 'styled-components';
+
 import AboutDonation from '../../components/sections/home/about-donations';
+import { Accordion, Paragraph as PH, Title as TL } from '../../components/UI';
+import { Container } from '../../core/layouts/container';
+import { HeaderContentFooter } from '../../core/layouts/header-content-footer';
 import { useAppSelector } from '../../redux/store';
 
 const Paragraph = styled(PH)`
@@ -77,7 +77,7 @@ const Facts = styled.div`
   }
 `;
 
-const AboutDonationPage: FC = () => {
+const AboutDonationPage = () => {
   const { aboutPage: data } = useAppSelector((state) => state.aboutDonations);
   return (
     <HeaderContentFooter background='/images/pages/welcome.png'>

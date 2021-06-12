@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { Paragraph } from '../../../UI';
 
 export const Grid = styled.div`

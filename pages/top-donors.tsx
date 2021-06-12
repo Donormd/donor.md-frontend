@@ -1,13 +1,13 @@
 /* eslint no-console:0 */
-import { FC } from 'react';
 import { Table as AntTable } from 'antd';
 import styled from 'styled-components';
+
+import { StyledLink, Title } from '../components/UI';
 import { ButtonGroup } from '../components/UI/button-group';
-import { Title, StyledLink } from '../components/UI';
-import { Container } from '../layouts/container';
-import { HeaderContentFooter } from '../layouts/header-content-footer';
+import { IOptions } from '../core/interfaces/IIterableStruct';
+import { Container } from '../core/layouts/container';
+import { HeaderContentFooter } from '../core/layouts/header-content-footer';
 import { useAppSelector } from '../redux/store';
-import { IOptions } from '../redux/common';
 
 const columns = [
   {
@@ -65,7 +65,7 @@ const buttons: IOptions[] = [
 
 const handleClick: (val: string) => void = (val) => console.log(val);
 
-const TopDonorsPage: FC = () => {
+const TopDonorsPage = () => {
   const { data } = useAppSelector((state) => state.stories);
   return (
     <HeaderContentFooter background='/images/pages/welcome.png'>

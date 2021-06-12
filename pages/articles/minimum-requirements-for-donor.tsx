@@ -1,17 +1,18 @@
 /* eslint-disable no-console */
-import { FC } from 'react';
+
 import styled from 'styled-components';
-import { HeaderContentFooter } from '../../layouts/header-content-footer';
-import { Container } from '../../layouts/container';
-import { Paragraph as PH, Title as TL, Accordion } from '../../components/UI';
+
+import { Accordion, Paragraph as PH, Title as TL } from '../../components/UI';
 import { ButtonGroup } from '../../components/UI/button-group';
+import { Container } from '../../core/layouts/container';
+import { HeaderContentFooter } from '../../core/layouts/header-content-footer';
 
 const buttons = [
   { _id: '1', text: 'Временные противопоказания' },
   { _id: '2', text: 'Абсолютные  противопоказания' },
 ];
 
-const MinimumRequirementsForDonor: FC = () => {
+const MinimumRequirementsForDonor = () => {
   return (
     <HeaderContentFooter background='/images/pages/welcome.png'>
       <Container>

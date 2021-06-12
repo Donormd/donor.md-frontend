@@ -1,4 +1,5 @@
 import { createContext } from 'react';
+
 import { IUser } from '../interfaces/user';
 
 export interface IAuthContext {

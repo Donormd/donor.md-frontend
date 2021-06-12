@@ -1,4 +1,4 @@
-import { IOptions } from '../../../redux/common';
+import { IOptions } from '../../../core/interfaces/IIterableStruct';
 
 export interface IProps {
   buttons: IOptions[];

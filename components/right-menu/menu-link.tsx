@@ -1,5 +1,6 @@
-import { FC } from 'react';
 import Link from 'next/link';
+import { FC } from 'react';
+
 import { IconWrapper, ItemParagraph, LinkGrid, MenuItem } from './styles';
 
 export interface MenuLinkProps {

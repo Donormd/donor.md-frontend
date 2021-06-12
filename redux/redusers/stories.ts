@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { IState } from '../../interfaces/redux';
-import { IStory } from '../../interfaces/story';
-import { fetch } from '../../services/fetch';
-import { storage } from '../../services/storage';
+import { IState } from '../../core/interfaces/redux';
+import { IStory } from '../../core/interfaces/story';
+import { fetch } from '../../core/services/fetch';
+import { storage } from '../../core/services/storage';
 import { apiV1 } from '../constants/url';
 
 const initialState: IState<IStory[]> = {

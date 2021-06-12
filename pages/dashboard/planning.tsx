@@ -1,12 +1,12 @@
-import { FC } from 'react';
 import styled from 'styled-components';
-import DashboardButtonsLinks from '../../components/dashboard-buttons-links';
-import { Button, DatePicker, Form, FormItem, Select, TitleWithArrow } from '../../components/UI';
-import { DashboardGrid } from '../../layouts/dashboard-grid';
-import { useAppSelector } from '../../redux/store';
-import SocialMediaLinks from '../../components/social-media-links';
 
-const DonationsPlanning: FC = () => {
+import DashboardButtonsLinks from '../../components/dashboard-buttons-links';
+import SocialMediaLinks from '../../components/social-media-links';
+import { Button, DatePicker, Form, FormItem, Select, TitleWithArrow } from '../../components/UI';
+import { DashboardGrid } from '../../core/layouts/dashboard-grid';
+import { useAppSelector } from '../../redux/store';
+
+const DonationsPlanning = () => {
   const { bloodCenter } = useAppSelector((state) => state.common);
   return (
     <DashboardGrid>

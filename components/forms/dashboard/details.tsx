@@ -1,6 +1,11 @@
 import { FC, useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+
+import { IUser } from '../../../core/interfaces/user';
+import { getOptions } from '../../../redux/common';
+import { updateUserAction } from '../../../redux/redusers/user';
+import { useAppDispatch, useAppSelector } from '../../../redux/store';
+import { Alert } from '../../alert';
 import {
   Button,
   Checkbox,
@@ -12,14 +17,9 @@ import {
   Select,
   Title,
 } from '../../UI';
-import { useAppSelector } from '../../../redux/store';
-import { getOptions } from '../../../redux/common';
-import { IUser } from '../../../interfaces/user';
-import { updateUserAction } from '../../../redux/redusers/user';
-import { Alert } from '../../alert';
 
 export const DetailsForm: FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { register, setValue, control, handleSubmit, watch } = useForm();
   const {
     user: { data: userData, status },

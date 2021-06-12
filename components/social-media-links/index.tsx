@@ -1,5 +1,6 @@
-import { FC } from 'react';
 import Image from 'next/image';
+import { FC } from 'react';
+
 import { List, ListItem } from './styles';
 
 const SocialMediaLinks: FC<{ className?: string }> = ({ className }) => (

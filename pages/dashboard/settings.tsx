@@ -1,17 +1,17 @@
-import { FC, useEffect } from 'react';
-import styled from 'styled-components';
-import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { Button, Checkbox, Form, Paragraph, Title, TitleWithArrow } from '../../components/UI';
-import { Alert } from '../../components/alert';
-import { DashboardGrid } from '../../layouts/dashboard-grid';
-import { useAppSelector } from '../../redux/store';
-import { ISettings } from '../../interfaces/settings';
-import { getSettingsAction, updateSettingsAction } from '../../redux/redusers/settings';
-import { ChangePassword } from '../../components/forms/dashboard/settings/change-password';
+import styled from 'styled-components';
 
-const Settings: FC = () => {
-  const dispatch = useDispatch();
+import { Alert } from '../../components/alert';
+import { ChangePassword } from '../../components/forms/dashboard/settings/change-password';
+import { Button, Checkbox, Form, Paragraph, Title, TitleWithArrow } from '../../components/UI';
+import { ISettings } from '../../core/interfaces/settings';
+import { DashboardGrid } from '../../core/layouts/dashboard-grid';
+import { getSettingsAction, updateSettingsAction } from '../../redux/redusers/settings';
+import { useAppDispatch, useAppSelector } from '../../redux/store';
+
+const Settings = () => {
+  const dispatch = useAppDispatch();
   const { handleSubmit, setValue, register } = useForm();
 
   const { status, data, error } = useAppSelector((store) => store.settings);

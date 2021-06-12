@@ -13,6 +13,7 @@ module.exports = wrapperPWA({
   reactStrictMode: true,
   images: {
     deviceSizes: [576, 768, 992, 1140],
+    // domains: ['avatars.mds.yandex.net'],
   },
   pwa: {
     dest: 'public',

@@ -1,9 +1,10 @@
-import { FC } from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
-import { Title, Button } from '../../../UI';
+import Link from 'next/link';
+import { FC } from 'react';
+
+import { Button, Title } from '../../../UI';
 import { Section } from '../utils';
-import { SectionTitle, Underline, ImageWrapper, ArticleGrid, Article } from './styles';
+import { Article, ArticleGrid, ImageWrapper, SectionTitle, Underline } from './styles';
 
 const CallToAction: FC = () => (
   <Section id='call-to-action'>

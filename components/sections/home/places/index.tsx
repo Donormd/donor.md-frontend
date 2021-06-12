@@ -1,11 +1,12 @@
 import React, { FC, useState } from 'react';
-import { YMaps, Map, Placemark } from 'react-yandex-maps';
+import { Map, Placemark, YMaps } from 'react-yandex-maps';
 import styled from 'styled-components';
-import { ButtonGroup } from '../../../UI/button-group';
+
+import { IOptions } from '../../../../core/interfaces/IIterableStruct';
 import { Title } from '../../../UI';
+import { ButtonGroup } from '../../../UI/button-group';
 import { Section } from '../utils';
 import { Place } from './place';
-import { IOptions } from '../../../../redux/common';
 
 const buttons: IOptions[] = [
   {

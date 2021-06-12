@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-import { IState } from '../../interfaces/redux';
-import { IReview } from '../../interfaces/review';
-import { fetch } from '../../services/fetch';
+import { IState } from '../../core/interfaces/redux';
+import { IReview } from '../../core/interfaces/review';
+import { fetch } from '../../core/services/fetch';
 import { apiV1 } from '../constants/url';
 
 const initialState: IState<IReview[] | null> = {

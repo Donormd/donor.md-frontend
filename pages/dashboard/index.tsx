@@ -1,10 +1,10 @@
-import { FC } from 'react';
 import styled from 'styled-components';
-import { HeaderContentFooter } from '../../layouts/header-content-footer';
-import { Loading } from '../../components/UI/loading';
-import { useRequiredAuth } from '../../hooks/useRequiredAuth';
 
-const Dashboard: FC = () => {
+import { Loading } from '../../components/UI/loading';
+import { useRequiredAuth } from '../../core/hooks/useRequiredAuth';
+import { HeaderContentFooter } from '../../core/layouts/header-content-footer';
+
+const Dashboard = () => {
   useRequiredAuth('/dashboard/details', '/auth');
 
   return (

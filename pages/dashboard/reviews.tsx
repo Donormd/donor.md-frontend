@@ -1,16 +1,16 @@
-import { FC } from 'react';
 import styled from 'styled-components';
+
 import {
   Button,
   Divider,
   Form,
   FormItem,
   Select,
+  TextArea,
   Title,
   TitleWithArrow,
-  TextArea,
 } from '../../components/UI';
-import { DashboardGrid } from '../../layouts/dashboard-grid';
+import { DashboardGrid } from '../../core/layouts/dashboard-grid';
 import { useAppSelector } from '../../redux/store';
 
 /*
@@ -24,7 +24,7 @@ import { useAppSelector } from '../../redux/store';
  * };
  */
 
-const ReviewsAdd: FC = () => {
+const ReviewsAdd = () => {
   const { bloodCenter } = useAppSelector((state) => state.common);
   return (
     <DashboardGrid>

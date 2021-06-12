@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { Button } from '../UI';
 
 export const Aside = styled.aside<{ image?: string }>`

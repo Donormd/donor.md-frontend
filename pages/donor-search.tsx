@@ -1,28 +1,27 @@
-import { FC } from 'react';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
-import { HeaderContentFooter } from '../layouts/header-content-footer';
+
 import { Alert } from '../components/alert';
-import { Container } from '../layouts/container';
 import {
-  FormItem,
-  Input,
-  TextArea,
-  Select,
+  Button,
   Checkbox,
   Divider,
-  Title,
-  Button,
-  StyledLink,
+  FormItem,
+  Input,
   Paragraph,
+  Select,
+  StyledLink,
+  TextArea,
+  Title,
 } from '../components/UI';
-import { useAppSelector } from '../redux/store';
+import { IRecipient } from '../core/interfaces/recipient';
+import { Container } from '../core/layouts/container';
+import { HeaderContentFooter } from '../core/layouts/header-content-footer';
 import { createRecipientRequestAction } from '../redux/redusers/recipients';
-import { IRecipient } from '../interfaces/recipient';
+import { useAppDispatch, useAppSelector } from '../redux/store';
 
-const DonorSearchPage: FC = () => {
-  const dispatch = useDispatch();
+const DonorSearchPage = () => {
+  const dispatch = useAppDispatch();
   const { bloodGroups, bloodCenter, transfusionCenter } = useAppSelector((state) => state.common);
   const { register, handleSubmit, reset } = useForm();
 

@@ -1,22 +1,22 @@
-import { FC } from 'react';
 import Image from 'next/image';
-import styled from 'styled-components';
+import { FC } from 'react';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
-import { Button, FormItem, Input, TextArea, Title } from '../../../UI';
-import { Section } from '../utils';
-import { Grid, SectionParagraph, ImageWrapper, Social } from './styles';
-import SocialMediaLinks from '../../../social-media-links';
+import styled from 'styled-components';
+
+import { IFeedback, sendFeedback } from '../../../../redux/redusers/feedback';
+import { useAppDispatch, useAppSelector } from '../../../../redux/store';
 import { Alert } from '../../../alert';
-import { useAppSelector } from '../../../../redux/store';
-import { sendFeedback, IFeedback } from '../../../../redux/redusers/feedback';
+import SocialMediaLinks from '../../../social-media-links';
+import { Button, FormItem, Input, TextArea, Title } from '../../../UI';
 import { Loading } from '../../../UI/loading';
+import { Section } from '../utils';
+import { Grid, ImageWrapper, SectionParagraph, Social } from './styles';
 
 const Feedback: FC = () => {
   const { handleSubmit, register, reset } = useForm();
 
   const { status, error } = useAppSelector((state) => state.feedback);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const onSubmit = (data: IFeedback) => {
     dispatch(sendFeedback(data));

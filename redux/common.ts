@@ -1,18 +1,18 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { IOptions } from '../interfaces/IIterableStruct';
-import { IState } from '../interfaces/redux';
-import { fetch } from '../services/fetch';
-import { storage } from '../services/storage';
+import { IOptions } from '../core/interfaces/IIterableStruct';
+import { IState } from '../core/interfaces/redux';
+import { fetch } from '../core/services/fetch';
+import { storage } from '../core/services/storage';
 import { apiV1 } from './constants/url';
 
-const insideState: IState<IOptions[] | null> = {
+const insideState: IState<IOptions[]> = {
   status: 'init',
-  data: null,
+  data: [],
   error: null,
 };
 
-const initialState: Record<string, IState<IOptions[] | null>> = {
+const initialState: Record<string, IState<IOptions[]>> = {
   cities: insideState,
   bloodGroups: insideState,
   bloodCenter: insideState,

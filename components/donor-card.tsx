@@ -1,7 +1,8 @@
-import { FC } from 'react';
 import Image from 'next/image';
+import { FC } from 'react';
 import styled from 'styled-components';
-import { Title, Paragraph } from './UI';
+
+import { Paragraph, Title } from './UI';
 
 const Layer = styled.div`
   display: flex;

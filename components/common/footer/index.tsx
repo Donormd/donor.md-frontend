@@ -1,17 +1,18 @@
-import React, { FC } from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
+import Link from 'next/link';
+import React, { FC } from 'react';
 import styled from 'styled-components';
+
+import { Container } from '../../../core/layouts/container';
+import { Paragraph, StyledLink, Title } from '../../UI';
 import { column1, column2, column3 } from './mock';
-import { Container } from '../../../layouts/container';
-import { StyledLink, Title, Paragraph } from '../../UI';
 import {
-  StyledFooter,
-  Grid,
-  TitleBrand,
-  ParagraphSlogan,
   ColumnList,
   ColumnListItem,
+  Grid,
+  ParagraphSlogan,
+  StyledFooter,
+  TitleBrand,
 } from './styles';
 
 const Thanks = styled.div`

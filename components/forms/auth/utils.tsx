@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import styled from 'styled-components';
-import { StyledLink, Button } from '../../UI';
+
+import { Button, StyledLink } from '../../UI';
 
 export declare type Props = {
   btnText: string;
