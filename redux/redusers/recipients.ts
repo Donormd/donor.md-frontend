@@ -15,6 +15,9 @@ const initialState: IState<IRecipient[]> = {
 export const getRecipientsAction = createAsyncThunk<IRecipient[]>('recipients/get', async () => {
   const response = await fetch<IRecipient[]>({
     url: `${apiV1}/recipient`,
+    headers: {
+      authorization: true,
+    },
   });
   return response.data;
 });

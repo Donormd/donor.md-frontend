@@ -12,7 +12,12 @@ const initialState: IState<IBonus[] | null> = {
 };
 
 export const getBonusesAction = createAsyncThunk<IBonus[]>('bonuses/get', async () => {
-  const response = await fetch<IBonus[]>({ url: `${apiV1}/bonus` });
+  const response = await fetch<IBonus[]>({
+    url: `${apiV1}/bonus`,
+    headers: {
+      authorization: true,
+    },
+  });
   return response.data;
 });
 

@@ -1,7 +1,8 @@
 import ImageNext from 'next/image';
-import { FC, memo } from 'react';
+import { memo } from 'react';
 import styled from 'styled-components';
 
+import { formatDate } from '../core/helpers/converters';
 import { Button, Paragraph, Title } from './UI';
 
 export interface IProps {
@@ -12,9 +13,7 @@ export interface IProps {
   date: string;
 }
 
-export const PartnerOfferCard: FC<IProps> = memo(({ src, name, discount, condition, date }) => {
-  const dateObj = new Date(date);
-  const validity = `${dateObj.getDay()} / ${dateObj.getMonth()} / ${dateObj.getFullYear()}`;
+export const PartnerOfferCard = memo(({ src, name, discount, condition, date }: IProps) => {
   return (
     <Card>
       <Image src={src} width={100} height={100} layout='fixed' />
@@ -34,7 +33,7 @@ export const PartnerOfferCard: FC<IProps> = memo(({ src, name, discount, conditi
       </Second>
       <Three>
         <ThreeParagraph bold>
-          Срок действия предложения до <RedHighlight>{validity}</RedHighlight>
+          Срок действия предложения до <RedHighlight>{formatDate(new Date(date))}</RedHighlight>
         </ThreeParagraph>
       </Three>
       <Four>
