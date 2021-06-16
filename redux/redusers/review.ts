@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import axios from 'axios';
 
 import { IState } from '../../core/interfaces/redux';
 import { IReview } from '../../core/interfaces/review';
@@ -12,20 +11,27 @@ const initialState: IState<IReview[] | null> = {
   error: null,
 };
 
-export const createReviewAction = createAsyncThunk<IReview, IReview>(
+export const createReviewAction = createAsyncThunk<void, IReview>(
   'review/post',
   async (payload) => {
     await fetch<IReview>({
       url: `${apiV1}/review`,
       method: 'POST',
       data: payload,
+      headers: {
+        authorization: true,
+      },
     });
-    return payload;
   },
 );
 
 export const getReviewAction = createAsyncThunk<IReview[]>('review/get', async () => {
-  const response = await axios.get(`${apiV1}/review`);
+  const response = await fetch<IReview[]>({
+    url: `${apiV1}/review`,
+    headers: {
+      authorization: true,
+    },
+  });
   return response.data;
 });
 
@@ -45,9 +51,8 @@ const review = createSlice({
       state.status = 'error';
       state.error = action.error.message || 'Ops something went wrong';
     });
-    builder.addCase(createReviewAction.fulfilled, (state, action: PayloadAction<IReview>) => {
+    builder.addCase(createReviewAction.fulfilled, (state) => {
       state.status = 'success';
-      state.data = state.data ? [...state.data, action.payload] : [action.payload];
     });
     builder.addCase(createReviewAction.pending, (state) => {
       state.status = 'loading';
