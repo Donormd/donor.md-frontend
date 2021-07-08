@@ -12,6 +12,7 @@ import { reducer as userStory } from './redusers/forms/user-story';
 import { reducer as leftMenuReducer } from './redusers/left-menu';
 import { reducer as monitoringReducer } from './redusers/monitoring';
 import { reducer as recipient } from './redusers/recipients';
+import { reducer as review } from './redusers/review';
 import { password, settings } from './redusers/settings';
 import { reducer as storiesReducer } from './redusers/stories';
 import { reducer as userReducer } from './redusers/user';
@@ -33,6 +34,7 @@ export const store = configureStore({
     settings: settings.reducer,
     password: password.reducer,
     bonus,
+    review,
   },
 });
 

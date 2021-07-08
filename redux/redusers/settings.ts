@@ -3,7 +3,6 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IState } from '../../core/interfaces/redux';
 import { IChangePassword, ISettings } from '../../core/interfaces/settings';
 import { fetch } from '../../core/services/fetch';
-import { storage } from '../../core/services/storage';
 import { apiV1 } from '../constants/url';
 
 const initialState: IState<ISettings | null> = {
@@ -47,7 +46,6 @@ export const settings = createSlice({
       (state, action: PayloadAction<ISettings | null>) => {
         state.status = 'init';
         state.data = action.payload;
-        storage.set('settings', action.payload);
       },
     );
     builder.addCase(getSettingsAction.pending, (state) => {
@@ -60,7 +58,6 @@ export const settings = createSlice({
     builder.addCase(updateSettingsAction.fulfilled, (state, action: PayloadAction<ISettings>) => {
       state.status = 'success';
       state.data = action.payload;
-      storage.set('settings', action.payload);
     });
     builder.addCase(updateSettingsAction.pending, (state) => {
       state.status = 'loading';

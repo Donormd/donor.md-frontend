@@ -1,5 +1,5 @@
 import { ButtonHTMLAttributes, forwardRef } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { theme } from '../theme';
 
@@ -108,9 +108,11 @@ export const StyledButton = styled.button<IButtonWrapperProps>`
     border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 
   &:hover {
-    color: ${({ variant }) => buttonThemes[variant].hover.color};
-    background: ${({ variant }) => buttonThemes[variant].hover.background};
-    border: 1px solid ${({ variant }) => buttonThemes[variant].hover.borderColor};
+    ${({ variant }) => css`
+      color: ${buttonThemes[variant].hover.color};
+      background: ${buttonThemes[variant].hover.background};
+      border: 1px solid ${buttonThemes[variant].hover.borderColor};
+    `}
   }
 
   &:focus {
