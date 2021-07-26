@@ -1,12 +1,20 @@
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 
-import { Alert } from '../../components/alert';
-import { Button, Checkbox, Divider, FormItem, Input, StyledLink, Title } from '../../components/UI';
-import { Container } from '../../core/layouts/container';
-import { HeaderContentFooter } from '../../core/layouts/header-content-footer';
-import { ICorporateDonation, sendData } from '../../redux/redusers/corporate-donation';
-import { useAppDispatch, useAppSelector } from '../../redux/store';
+import { Alert } from '../../src/components/alert';
+import {
+  Button,
+  Checkbox,
+  Divider,
+  FormItem,
+  Input,
+  StyledLink,
+  Title,
+} from '../../src/components/UI';
+import { Container } from '../../src/core/layouts/container';
+import { HeaderContentFooter } from '../../src/core/layouts/header-content-footer';
+import { ICorporateDonation, sendData } from '../../src/redux/redusers/corporate-donation';
+import { useAppDispatch, useAppSelector } from '../../src/redux/store';
 
 const CorporateDonationPage = () => {
   const { handleSubmit, register, reset } = useForm();

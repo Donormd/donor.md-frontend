@@ -2,10 +2,10 @@
 
 import styled from 'styled-components';
 
-import { Accordion, Paragraph as PH, Title as TL } from '../../components/UI';
-import { ButtonGroup } from '../../components/UI/button-group';
-import { Container } from '../../core/layouts/container';
-import { HeaderContentFooter } from '../../core/layouts/header-content-footer';
+import { Accordion, Paragraph as PH, Title as TL } from '../../src/components/UI';
+import { ButtonGroup } from '../../src/components/UI/button-group';
+import { Container } from '../../src/core/layouts/container';
+import { HeaderContentFooter } from '../../src/core/layouts/header-content-footer';
 
 const buttons = [
   { _id: '1', text: 'Временные противопоказания' },

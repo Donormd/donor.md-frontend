@@ -1,21 +1,14 @@
-import { useEffect } from 'react';
+import { useQuery } from 'react-query';
 import styled from 'styled-components';
 
-import { Alert } from '../../components/alert';
-import { PartnerOfferCard } from '../../components/partner-offer-card';
-import { Paragraph, TitleWithArrow } from '../../components/UI';
-import { IBonus } from '../../core/interfaces/bonus';
-import { DashboardGrid } from '../../core/layouts/dashboard-grid';
-import { getBonusesAction } from '../../redux/redusers/bonus';
-import { useAppDispatch, useAppSelector } from '../../redux/store';
+import { PartnerOfferCard } from '../../src/components/partner-offer-card';
+import { Paragraph, TitleWithArrow } from '../../src/components/UI';
+import { Loading } from '../../src/components/UI/loading';
+import { DashboardGrid } from '../../src/core/layouts/dashboard-grid';
+import { getBonuses } from '../../src/queries/dashboard/bonuses';
 
 const Bonuses = () => {
-  const dispatch = useAppDispatch();
-  const { status, data, error } = useAppSelector((state) => state.bonus);
-
-  useEffect(() => {
-    dispatch(getBonusesAction());
-  }, [dispatch]);
+  const { data, isLoading } = useQuery('bonuses', getBonuses);
 
   return (
     <DashboardGrid>
@@ -24,10 +17,10 @@ const Bonuses = () => {
         <Paragraph bold margin={false}>
           Партнерские предложения для доноров
         </Paragraph>
-        <Paragraph>Выберайте актуальные для себя предложение от наших партнеров.</Paragraph>
+        <Paragraph>Выбирайте актуальные для себя предложение от наших партнеров.</Paragraph>
       </TextWrapper>
-      {status === 'error' && <Alert dismissible>{error}</Alert>}
-      {data && data.map((item: IBonus) => <PartnerOfferCard {...item} />)}
+      {isLoading && <Loading />}
+      {data && data.map((item) => <PartnerOfferCard key={item._id} {...item} />)}
     </DashboardGrid>
   );
 };

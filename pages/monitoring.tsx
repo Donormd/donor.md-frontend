@@ -1,35 +1,39 @@
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import { useMutation, useQuery } from 'react-query';
 import styled from 'styled-components';
 
-import { Alert } from '../components/alert';
-import { Button, Divider, FormItem, Input, Paragraph, Title } from '../components/UI';
-import { Loading } from '../components/UI/loading';
-import { Container } from '../core/layouts/container';
-import { HeaderContentFooter } from '../core/layouts/header-content-footer';
-import { getData, IMonitoring, sendData } from '../redux/redusers/monitoring';
-import { useAppDispatch, useAppSelector } from '../redux/store';
+import { Alert } from '../src/components/alert';
+import { Button, Divider, FormItem, Input, Paragraph, Title } from '../src/components/UI';
+import { IMonitoringResponse } from '../src/core/interfaces/monitoring';
+import { Container } from '../src/core/layouts/container';
+import { HeaderContentFooter } from '../src/core/layouts/header-content-footer';
+import { getMonitoringData, updateMonitoringData } from '../src/queries/dashboard/monitoring';
 
 const Monitoring = () => {
-  const { register, handleSubmit } = useForm();
-  const dispatch = useAppDispatch();
-  const { action, values } = useAppSelector((state) => state.monitoring);
+  const { register, handleSubmit, setValue } = useForm();
+
+  const { data: monitoringData } = useQuery('monitoring', getMonitoringData);
+  const { mutate, isError, isSuccess } = useMutation('monitoring', (payload: IMonitoringResponse) =>
+    updateMonitoringData(payload),
+  );
 
   useEffect(() => {
-    if (!values.data) {
-      dispatch(getData());
-    }
-  }, [dispatch, values.data]);
-  const { status, error } = action;
+    monitoringData?.values?.forEach((item) => {
+      setValue(item.group, item.quantity);
+    });
+  }, [monitoringData, setValue]);
 
-  const onSubmit = (data: any) => {
-    if (!values.data) return;
-    const prepareData: IMonitoring = {
-      _id: values.data._id,
-      fullname: data.fullname,
-      values: data,
+  const onSubmit = (formData: IMonitoringResponse['values'] & { fullname: string }) => {
+    if (!monitoringData) return;
+
+    const prepareData = {
+      _id: monitoringData._id,
+      fullname: formData.fullname,
+      values: formData,
     };
-    dispatch(sendData(prepareData));
+
+    mutate(prepareData);
   };
 
   return (
@@ -40,7 +44,7 @@ const Monitoring = () => {
             Для сотрудников центра крови
           </Title>
           <Paragraph>
-            Заполните пожалуйста форму для отбражение мониторинга запасов крови. Ввод данных по
+            Заполните пожалуйста форму для отображение мониторинга запасов крови. Ввод данных по
             эритроцитарной массе
           </Paragraph>
         </Article>
@@ -93,8 +97,8 @@ const Monitoring = () => {
           <Button type='submit' variant='outline-danger' size='lg'>
             Сохранить данные
           </Button>
-          {status === 'loading' && <Loading />}
-          {status === 'error' && <Alert dismissible>{error}</Alert>}
+          {isSuccess && <Alert dismissible>Данные добавлены</Alert>}
+          {isError && <Alert dismissible>Упс, что-то пошло не так</Alert>}
         </form>
       </Container>
     </HeaderContentFooter>

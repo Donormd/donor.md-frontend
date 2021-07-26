@@ -2,13 +2,13 @@ import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 
-import { Alert } from '../../components/alert';
-import { ChangePassword } from '../../components/forms/dashboard/settings/change-password';
-import { Button, Checkbox, Form, Paragraph, Title, TitleWithArrow } from '../../components/UI';
-import { ISettings } from '../../core/interfaces/settings';
-import { DashboardGrid } from '../../core/layouts/dashboard-grid';
-import { getSettingsAction, updateSettingsAction } from '../../redux/redusers/settings';
-import { useAppDispatch, useAppSelector } from '../../redux/store';
+import { Alert } from '../../src/components/alert';
+import { ChangePassword } from '../../src/components/forms/dashboard/settings/change-password';
+import { Button, Checkbox, Form, Paragraph, Title, TitleWithArrow } from '../../src/components/UI';
+import { ISettings } from '../../src/core/interfaces/settings';
+import { DashboardGrid } from '../../src/core/layouts/dashboard-grid';
+import { getSettingsAction, updateSettingsAction } from '../../src/redux/redusers/settings';
+import { useAppDispatch, useAppSelector } from '../../src/redux/store';
 
 const Settings = () => {
   const dispatch = useAppDispatch();

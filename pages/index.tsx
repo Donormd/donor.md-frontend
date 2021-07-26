@@ -1,14 +1,14 @@
-import { Footer } from '../components/common/footer';
-import { Header } from '../components/common/header';
-import AboutDonation from '../components/sections/home/about-donations';
-import CallToAction from '../components/sections/home/call-to-action';
-import Feedback from '../components/sections/home/feedback';
-import { Intro } from '../components/sections/home/intro';
-import Monitoring from '../components/sections/home/monitoring';
-import { Places } from '../components/sections/home/places';
-import Stories from '../components/sections/home/stories';
-import { Container } from '../core/layouts/container';
-import { useAppSelector } from '../redux/store';
+import { Footer } from '../src/components/common/footer';
+import { Header } from '../src/components/common/header';
+import AboutDonation from '../src/components/sections/home/about-donations';
+import CallToAction from '../src/components/sections/home/call-to-action';
+import Feedback from '../src/components/sections/home/feedback';
+import { Intro } from '../src/components/sections/home/intro';
+import { Monitoring } from '../src/components/sections/home/monitoring';
+import { Places } from '../src/components/sections/home/places';
+import { Stories } from '../src/components/sections/home/stories';
+import { Container } from '../src/core/layouts/container';
+import { useAppSelector } from '../src/redux/store';
 
 const HomePage = () => {
   const { home: data } = useAppSelector((state) => state.aboutDonations);

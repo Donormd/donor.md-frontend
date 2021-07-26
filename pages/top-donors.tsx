@@ -1,13 +1,15 @@
 /* eslint no-console:0 */
 import { Table as AntTable } from 'antd';
+import { useQuery } from 'react-query';
 import styled from 'styled-components';
 
-import { StyledLink, Title } from '../components/UI';
-import { ButtonGroup } from '../components/UI/button-group';
-import { IOptions } from '../core/interfaces/IIterableStruct';
-import { Container } from '../core/layouts/container';
-import { HeaderContentFooter } from '../core/layouts/header-content-footer';
-import { useAppSelector } from '../redux/store';
+import { StyledLink, Title } from '../src/components/UI';
+import { ButtonGroup } from '../src/components/UI/button-group';
+import { Loading } from '../src/components/UI/loading';
+import { IOptions } from '../src/core/interfaces/IIterableStruct';
+import { Container } from '../src/core/layouts/container';
+import { HeaderContentFooter } from '../src/core/layouts/header-content-footer';
+import { getTopDonors } from '../src/queries/getTopDonors';
 
 const columns = [
   {
@@ -66,7 +68,7 @@ const buttons: IOptions[] = [
 const handleClick: (val: string) => void = (val) => console.log(val);
 
 const TopDonorsPage = () => {
-  const { data } = useAppSelector((state) => state.stories);
+  const { data, isLoading, isSuccess } = useQuery('stories', () => getTopDonors(buttons[0]._id));
   return (
     <HeaderContentFooter background='/images/pages/welcome.png'>
       <Container>
@@ -76,7 +78,8 @@ const TopDonorsPage = () => {
           </Title>
           <ButtonGroup buttons={buttons} handleClick={handleClick} />
         </StoriesHead>
-        <Table columns={columns} dataSource={data} pagination={false} />
+        {isLoading && <Loading />}
+        {isSuccess && <Table columns={columns} dataSource={data} pagination={false} />}
       </Container>
     </HeaderContentFooter>
   );

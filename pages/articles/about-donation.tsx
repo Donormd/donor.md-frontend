@@ -2,11 +2,11 @@
 import Link from 'next/link';
 import styled from 'styled-components';
 
-import AboutDonation from '../../components/sections/home/about-donations';
-import { Accordion, Paragraph as PH, Title as TL } from '../../components/UI';
-import { Container } from '../../core/layouts/container';
-import { HeaderContentFooter } from '../../core/layouts/header-content-footer';
-import { useAppSelector } from '../../redux/store';
+import AboutDonation from '../../src/components/sections/home/about-donations';
+import { Accordion, Paragraph as PH, Title as TL } from '../../src/components/UI';
+import { Container } from '../../src/core/layouts/container';
+import { HeaderContentFooter } from '../../src/core/layouts/header-content-footer';
+import { useAppSelector } from '../../src/redux/store';
 
 const Paragraph = styled(PH)`
   margin-bottom: 15px;

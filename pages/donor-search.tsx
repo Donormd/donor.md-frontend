@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
+import { useMutation } from 'react-query';
 
-import { Alert } from '../components/alert';
+import { Alert } from '../src/components/alert';
 import {
   Button,
   Checkbox,
@@ -13,20 +14,20 @@ import {
   StyledLink,
   TextArea,
   Title,
-} from '../components/UI';
-import { IRecipient } from '../core/interfaces/recipient';
-import { Container } from '../core/layouts/container';
-import { HeaderContentFooter } from '../core/layouts/header-content-footer';
-import { createRecipientRequestAction } from '../redux/redusers/recipients';
-import { useAppDispatch, useAppSelector } from '../redux/store';
+} from '../src/components/UI';
+import { IRecipient } from '../src/core/interfaces/recipient';
+import { Container } from '../src/core/layouts/container';
+import { HeaderContentFooter } from '../src/core/layouts/header-content-footer';
+import { createRecipients } from '../src/queries/dashboard/recipients';
+import { useAppSelector } from '../src/redux/store';
 
 const DonorSearchPage = () => {
-  const dispatch = useAppDispatch();
+  const { mutate } = useMutation('recipient', (payload: IRecipient) => createRecipients(payload));
   const { bloodGroups, bloodCenter, transfusionCenter } = useAppSelector((state) => state.common);
   const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = (data: IRecipient) => {
-    dispatch(createRecipientRequestAction(data));
+    mutate(data);
     reset();
   };
 

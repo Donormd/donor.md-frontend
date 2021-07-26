@@ -1,11 +1,13 @@
 /* eslint-disable no-console */
 import { Table as AntTable } from 'antd';
+import { useQuery } from 'react-query';
 import styled from 'styled-components';
 
-import DashboardButtonsLinks from '../../components/dashboard-buttons-links';
-import Pagination from '../../components/pagination';
-import { StyledLink, Title, TitleWithArrow } from '../../components/UI';
-import { DashboardGrid } from '../../core/layouts/dashboard-grid';
+import DashboardButtonsLinks from '../../src/components/dashboard-buttons-links';
+import Pagination from '../../src/components/pagination';
+import { StyledLink, Title, TitleWithArrow } from '../../src/components/UI';
+import { DashboardGrid } from '../../src/core/layouts/dashboard-grid';
+import { getDonation } from '../../src/queries/dashboard/donations';
 
 const mock = [
   {
@@ -90,55 +92,6 @@ const mock = [
   },
 ];
 
-const Table = styled(AntTable)`
-  & .ant-table {
-    overflow-x: scroll;
-  }
-
-  & .ant-table,
-  & .ant-table-thead > tr > th {
-    background: transparent;
-  }
-
-  & .ant-table-thead > tr > th {
-    color: var(--red);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  }
-
-  & .ant-table-tbody > tr > td {
-    border: none;
-  }
-
-  & .ant-table-tbody > tr.ant-table-row:hover > td {
-    background: #fafafa8a;
-  }
-
-  @media (min-width: 992px) {
-    & .ant-table {
-      overflow-x: hidden;
-    }
-  }
-`;
-
-const Count = styled.div`
-  margin: 0;
-  color: var(--red);
-  background: var(--red-diluted);
-  line-height: 50px;
-  border-radius: 5px;
-  font-weight: bold;
-  font-size: 1.4rem;
-  text-align: center;
-  width: 50px;
-  height: 50px;
-  vertical-align: middle;
-`;
-
-const Link = styled(StyledLink)`
-  color: black;
-  text-decoration: underline;
-`;
-
 const columns = [
   {
     title: '',
@@ -189,6 +142,9 @@ const columns = [
 ];
 
 const DonationsArchive = () => {
+  const { data, isLoading } = useQuery('donations', getDonation);
+
+  console.log(data, isLoading);
   return (
     <DashboardGrid>
       <TitleWithArrow>Мои донации</TitleWithArrow>
@@ -200,3 +156,52 @@ const DonationsArchive = () => {
 };
 
 export default DonationsArchive;
+
+const Table = styled(AntTable)`
+  & .ant-table {
+    overflow-x: scroll;
+  }
+
+  & .ant-table,
+  & .ant-table-thead > tr > th {
+    background: transparent;
+  }
+
+  & .ant-table-thead > tr > th {
+    color: var(--red);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  & .ant-table-tbody > tr > td {
+    border: none;
+  }
+
+  & .ant-table-tbody > tr.ant-table-row:hover > td {
+    background: #fafafa8a;
+  }
+
+  @media (min-width: 992px) {
+    & .ant-table {
+      overflow-x: hidden;
+    }
+  }
+`;
+
+const Count = styled.div`
+  margin: 0;
+  color: var(--red);
+  background: var(--red-diluted);
+  line-height: 50px;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 1.4rem;
+  text-align: center;
+  width: 50px;
+  height: 50px;
+  vertical-align: middle;
+`;
+
+const Link = styled(StyledLink)`
+  color: black;
+  text-decoration: underline;
+`;

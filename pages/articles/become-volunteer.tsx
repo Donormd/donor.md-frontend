@@ -12,10 +12,10 @@ import {
   StyledLink,
   TextArea,
   Title,
-} from '../../components/UI';
-import { Container } from '../../core/layouts/container';
-import { HeaderContentFooter } from '../../core/layouts/header-content-footer';
-import { useAppSelector } from '../../redux/store';
+} from '../../src/components/UI';
+import { Container } from '../../src/core/layouts/container';
+import { HeaderContentFooter } from '../../src/core/layouts/header-content-footer';
+import { useAppSelector } from '../../src/redux/store';
 
 const FormItemCheckbox = styled.div`
   display: grid;

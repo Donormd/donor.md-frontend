@@ -1,6 +1,6 @@
-import { ReviewForm } from '../../components/forms/dashboard/review';
-import { Divider, Paragraph, Title, TitleWithArrow } from '../../components/UI';
-import { DashboardGrid } from '../../core/layouts/dashboard-grid';
+import { ReviewForm } from '../../src/components/forms/dashboard/review';
+import { Divider, Paragraph, Title, TitleWithArrow } from '../../src/components/UI';
+import { DashboardGrid } from '../../src/core/layouts/dashboard-grid';
 
 // TODO add validation on form
 

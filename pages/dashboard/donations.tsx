@@ -2,23 +2,15 @@ import { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import styled from 'styled-components';
 
-import { Alert } from '../../components/alert';
-import DashboardButtonsLinks from '../../components/dashboard-buttons-links';
-import SocialMediaLinks from '../../components/social-media-links';
-import {
-  Button,
-  DatePicker,
-  Form,
-  FormItem,
-  Input,
-  Select,
-  TitleWithArrow,
-} from '../../components/UI';
-import { IDonation } from '../../core/interfaces/donation';
-import { DashboardGrid } from '../../core/layouts/dashboard-grid';
-import { getOptions } from '../../redux/common';
-import { addDonationAction } from '../../redux/redusers/donation';
-import { useAppDispatch, useAppSelector } from '../../redux/store';
+import { Alert } from '../../src/components/alert';
+import DashboardButtonsLinks from '../../src/components/dashboard-buttons-links';
+import SocialMediaLinks from '../../src/components/social-media-links';
+import { Button, Form, FormItem, Input, Select, TitleWithArrow } from '../../src/components/UI';
+import { IDonation } from '../../src/core/interfaces/donation';
+import { DashboardGrid } from '../../src/core/layouts/dashboard-grid';
+import { getOptions } from '../../src/redux/common';
+import { addDonationAction } from '../../src/redux/redusers/donation';
+import { useAppDispatch, useAppSelector } from '../../src/redux/store';
 
 const Donations = () => {
   const dispatch = useAppDispatch();
@@ -52,19 +44,7 @@ const Donations = () => {
           <Input name='donationNumber' innerRef={register} />
         </FormItem>
         <FormItem columns={2} label='Дата кровосдачи' required>
-          <Controller
-            name='date'
-            control={control}
-            render={({ onChange }) => {
-              return (
-                <DatePicker
-                  onChange={(_, date) => {
-                    onChange(date);
-                  }}
-                />
-              );
-            }}
-          />
+          <Input name='date' type='date' />
         </FormItem>
         <FormItem columns={2} label='Место сдачи' required>
           <Controller
@@ -106,7 +86,7 @@ const Donations = () => {
           `}
           required
         >
-          <Input name='referenceImg' innerRef={register} />
+          <Input type='file' name='referenceImg' innerRef={register} />
         </FormItem>
         <ButtonsRow>
           <Button type='submit' variant='outline-danger' size='lg'>
