@@ -4,7 +4,6 @@ import axios from 'axios';
 import { apiV1 } from '../../../../core/constants/url';
 import { IQuestion, IQuestionnaireStory } from '../../../../core/interfaces/question';
 import { IState } from '../../../../core/interfaces/redux';
-import { storage } from '../../../../core/services/storage';
 
 const initialState: IState<IQuestion[] | null> = {
   status: 'init',
@@ -37,7 +36,6 @@ export const questionnaire = createSlice({
       (state, action: PayloadAction<IQuestion[]>) => {
         state.status = 'success';
         state.data = action.payload;
-        storage.set('questionnaire', action.payload);
       },
     );
     builder.addCase(getQuestionnaireAction.pending, (state) => {

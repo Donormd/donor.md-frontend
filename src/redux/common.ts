@@ -3,7 +3,6 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { IOptions } from '../core/interfaces/IIterableStruct';
 import { IState } from '../core/interfaces/redux';
 import { baseFetch } from '../core/services/fetch';
-import { storage } from '../core/services/storage';
 
 const insideState: IState<IOptions[]> = {
   status: 'init',
@@ -66,7 +65,6 @@ const common = createSlice({
       state[arg].status = 'success';
       state[arg].data = action.payload;
       state[arg].error = null;
-      storage.set(arg, action.payload);
     });
     builder.addCase(getOptions.pending, (state, action) => {
       const { arg } = action.meta;

@@ -3,7 +3,6 @@ import axios from 'axios';
 
 import { IDonation } from '../../core/interfaces/donation';
 import { IState } from '../../core/interfaces/redux';
-import { storage } from '../../core/services/storage';
 
 const initialState: IState<IDonation[]> = {
   status: 'init',
@@ -32,7 +31,6 @@ const recipients = createSlice({
     builder.addCase(getDonationAction.fulfilled, (state, action: PayloadAction<IDonation[]>) => {
       state.status = 'success';
       state.data = action.payload;
-      storage.set('donations', action.payload);
     });
     builder.addCase(getDonationAction.pending, (state) => {
       state.status = 'loading';
@@ -44,7 +42,6 @@ const recipients = createSlice({
     builder.addCase(addDonationAction.fulfilled, (state, action: PayloadAction<IDonation>) => {
       state.status = 'success';
       state.data = [...state.data, action.payload];
-      storage.set('donations', [...state.data, action.payload]);
     });
     builder.addCase(addDonationAction.pending, (state) => {
       state.status = 'loading';

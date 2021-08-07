@@ -85,7 +85,6 @@ const user = createSlice({
       state.data = action.payload;
       storage.set('token', action.payload.token);
       action.payload.token = '';
-      storage.set('user', action.payload);
     });
     builder.addCase(signInAction.pending, (state) => {
       state.status = 'loading';
@@ -108,7 +107,6 @@ const user = createSlice({
     builder.addCase(updateUserAction.fulfilled, (state, action: PayloadAction<IUser>) => {
       state.status = 'success';
       state.data = action.payload;
-      storage.set('user', action.payload);
     });
     builder.addCase(updateUserAction.pending, (state) => {
       state.status = 'loading';
