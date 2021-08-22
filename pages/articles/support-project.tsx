@@ -1,8 +1,8 @@
 import Link from 'next/link';
 
-import { StyledLink, Title } from '../../components/UI';
-import { Container } from '../../core/layouts/container';
-import { HeaderContentFooter } from '../../core/layouts/header-content-footer';
+import { StyledLink, Title } from '../../src/components/UI';
+import { Container } from '../../src/core/layouts/container';
+import { HeaderContentFooter } from '../../src/core/layouts/header-content-footer';
 
 const SupportProject = () => (
   <HeaderContentFooter background='/articles/images/pages/love-pic.png'>

@@ -19,3 +19,6 @@
 
 #eslint 
 .eslintcache
+
+# public
+/public

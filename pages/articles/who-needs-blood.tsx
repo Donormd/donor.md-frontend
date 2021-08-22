@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-import { Paragraph as PH, Title as TL } from '../../components/UI';
-import { Container } from '../../core/layouts/container';
-import { HeaderContentFooter } from '../../core/layouts/header-content-footer';
+import { Paragraph as PH, Title as TL } from '../../src/components/UI';
+import { Container } from '../../src/core/layouts/container';
+import { HeaderContentFooter } from '../../src/core/layouts/header-content-footer';
 
 const Paragraph = styled(PH)`
   margin-bottom: 15px;

@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 
-import { RecoveryForm } from '../components/forms/auth/recovery';
-import { SignInForm } from '../components/forms/auth/sign-in';
-import { SignUpForm } from '../components/forms/auth/sign-up';
-import { Logo } from '../components/logo';
-import { TitleWithArrow } from '../components/UI';
-import { Container } from '../core/layouts/container';
+import { RecoveryForm } from '../src/components/forms/auth/recovery';
+import { SignInForm } from '../src/components/forms/auth/sign-in';
+import { SignUpForm } from '../src/components/forms/auth/sign-up';
+import { Logo } from '../src/components/logo';
+import { TitleWithArrow } from '../src/components/UI';
+import { Container } from '../src/core/layouts/container';
 
 const AuthPage = () => {
   const [state, setState] = useState<string>('signIn');

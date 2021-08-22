@@ -1,80 +1,38 @@
-import styled from 'styled-components';
+import { QueryClient } from 'react-query';
+import { dehydrate } from 'react-query/hydration';
 
-import {
-  Button,
-  Divider,
-  Form,
-  FormItem,
-  Select,
-  TextArea,
-  Title,
-  TitleWithArrow,
-} from '../../components/UI';
-import { DashboardGrid } from '../../core/layouts/dashboard-grid';
-import { useAppSelector } from '../../redux/store';
-
-/*
- * const marks = {
- *   0: '0',
- *   20: '1',
- *   40: '2',
- *   60: '3',
- *   80: '4',
- *   100: '5',
- * };
- */
+import { ReviewForm } from '../../src/components/forms/dashboard/review';
+import { Divider, Paragraph, Title, TitleWithArrow } from '../../src/components/UI';
+import { DashboardGrid } from '../../src/core/layouts/dashboard-grid';
+import { getUser } from '../../src/queries/user';
 
 const ReviewsAdd = () => {
-  const { bloodCenter } = useAppSelector((state) => state.common);
   return (
     <DashboardGrid>
       <TitleWithArrow margin='50px'>Добавить отзыв</TitleWithArrow>
+      <Paragraph>
+        На этой странице вы можете оставить отзыв, написать вопрос и оценить качество работы службы
+        переливания крови.
+      </Paragraph>
       <Divider orientation='left'>
         <Title as='h5' bold>
           Оценка качества
         </Title>
       </Divider>
-      <StyledForm>
-        <FormItem label='Выбрать Центр крови'>
-          <Select size='large' placeholder='Выбор центра'>
-            {bloodCenter.data &&
-              bloodCenter.data.map((item) => (
-                <Select.Option value={item._id}>{item.text}</Select.Option>
-              ))}
-          </Select>
-        </FormItem>
-        <FormItem label='Отношение персонала' marginBottom='10px'>
-          {/* <Slider marks={marks} step={10} defaultValue={40} /> */}
-        </FormItem>
-        <FormItem label='Комфортность при донации' marginBottom='10px'>
-          {/* <Slider marks={marks} step={10} defaultValue={40} /> */}
-        </FormItem>
-        <FormItem label='Время ожидания услуги' marginBottom='10px'>
-          {/* <Slider marks={marks} step={10} defaultValue={40} /> */}
-        </FormItem>
-        <Button variant='outline-danger' size='lg'>
-          Оценить
-        </Button>
-      </StyledForm>
-      <Form>
-        <Divider>
-          <Title as='h5' bold>
-            Форма обратной связи
-          </Title>
-        </Divider>
-        <FormItem label='' columns={1}>
-          <TextArea rows={7} />
-        </FormItem>
-        <Button variant='outline-danger' size='lg'>
-          Отправить
-        </Button>
-      </Form>
+      <ReviewForm />
     </DashboardGrid>
   );
 };
 
 export default ReviewsAdd;
 
-const StyledForm = styled(Form)`
-  margin-top: 30px;
-`;
+export const getServerSideProps = async () => {
+  const queryClient = new QueryClient();
+
+  await queryClient.prefetchQuery('user', getUser);
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
+  };
+};

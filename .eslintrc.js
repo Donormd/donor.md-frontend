@@ -8,7 +8,6 @@ module.exports = {
     'plugin:react/recommended',
     'airbnb',
     'plugin:@typescript-eslint/recommended',
-    'prettier/@typescript-eslint',
     'plugin:prettier/recommended',
     'plugin:import/errors',
     'plugin:import/warnings',
@@ -31,16 +30,17 @@ module.exports = {
     'jsx-a11y',
     'simple-import-sort',
   ],
-  overrides: [
-    {
-      files: 'server/**/*.js',
-      env: { node: true },
-      rules: {
-        'simple-import-sort/imports': 'off',
-        'import/order': ['error', { 'newlines-between': 'always' }],
+  settings: {
+    'import/parsers': {
+      '@typescript-eslint/parser': ['.ts', '.tsx'],
+    },
+    'import/resolver': {
+      typescript: {
+        alwaysTryTypes: true,
       },
     },
-  ],
+  },
+  ignorePatterns: ['**/*.js'],
   rules: {
     'simple-import-sort/imports': 'error',
     'simple-import-sort/exports': 'error',
@@ -54,7 +54,7 @@ module.exports = {
         before: true,
         after: true,
       },
-    ], // Пробелы до и после '=>'
+    ], // РџСЂРѕР±РµР»С‹ РґРѕ Рё РїРѕСЃР»Рµ '=>'
     'rest-spread-spacing': ['error', 'never'],
     'global-require': 'off',
     'object-curly-newline': 'off',
@@ -85,7 +85,7 @@ module.exports = {
         ignoreExport: false,
       },
     ],
-    camelcase: 'error',
+    camelcase: 'off',
     'block-spacing': 'error', // { space }
     'new-parens': 'error',
     'new-cap': [
@@ -96,8 +96,8 @@ module.exports = {
     ],
     'lines-between-class-members': ['error', 'always'],
     'one-var': ['error', 'never'],
-    'no-unneeded-ternary': 'error', // Упращение тернарных операторов
-    'no-nested-ternary': 'error', // Откл вложенные тернарные операторы
+    'no-unneeded-ternary': 'error', // РЈРїСЂР°С‰РµРЅРёРµ С‚РµСЂРЅР°СЂРЅС‹С… РѕРїРµСЂР°С‚РѕСЂРѕРІ
+    'no-nested-ternary': 'error', // РћС‚РєР» РІР»РѕР¶РµРЅРЅС‹Рµ С‚РµСЂРЅР°СЂРЅС‹Рµ РѕРїРµСЂР°С‚РѕСЂС‹
     'newline-per-chained-call': ['error'],
     'wrap-regex': 'error',
     'no-underscore-dangle': 0,
@@ -175,5 +175,11 @@ module.exports = {
     // For Next.js
     'react/react-in-jsx-scope': 'off',
     'react/jsx-uses-react': 'off',
+    // for alias import
+    'import/no-unresolved': 'off',
+    '@typescript-eslint/interface-name-prefix': 'off',
+    // disable FC
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
+    'react/no-danger': 'off',
   },
 };

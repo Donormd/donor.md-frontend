@@ -1,0 +1,40 @@
+import { createGlobalStyle } from 'styled-components';
+
+import { theme } from '../components/UI/theme';
+
+const GlobalStyles = createGlobalStyle`
+
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+}
+
+::selection {
+  color: white;
+  background: ${theme.red};
+}
+
+html,
+body,
+#__next {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 100%;
+  color: ${theme.textDark};
+  background: ${theme.backgroundSm};
+}
+
+@media (min-width: 992px) {
+  body {
+    background: ${theme.background};
+  }
+}
+
+`;
+
+export default GlobalStyles;

@@ -1,43 +1,36 @@
-import { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
+import { QueryClient } from 'react-query';
+import { dehydrate } from 'react-query/hydration';
 import styled from 'styled-components';
 
-import { Alert } from '../../components/alert';
-import DashboardButtonsLinks from '../../components/dashboard-buttons-links';
-import SocialMediaLinks from '../../components/social-media-links';
-import {
-  Button,
-  DatePicker,
-  Form,
-  FormItem,
-  Input,
-  Select,
-  TitleWithArrow,
-} from '../../components/UI';
-import { IDonation } from '../../core/interfaces/donation';
-import { DashboardGrid } from '../../core/layouts/dashboard-grid';
-import { getOptions } from '../../redux/common';
-import { addDonationAction } from '../../redux/redusers/donation';
-import { useAppDispatch, useAppSelector } from '../../redux/store';
+import { Alert } from '../../src/components/alert';
+import { DashboardButtonsLinks } from '../../src/components/dashboard-buttons-links';
+import { SocialMediaLinks } from '../../src/components/social-media-links';
+import { Button, Form, FormItem, Input, Select, TitleWithArrow } from '../../src/components/UI';
+import { IDonation } from '../../src/core/interfaces/donation';
+import { DashboardGrid } from '../../src/core/layouts/dashboard-grid';
+import { getOptions } from '../../src/queries/common';
+import { addDonation } from '../../src/queries/donations';
+import { getUser } from '../../src/queries/user';
+import { useTypedMutation, useTypedQuery } from '../../src/queries/utils';
 
 const Donations = () => {
-  const dispatch = useAppDispatch();
   const { register, control, handleSubmit } = useForm();
-  const { bloodCenter, transfusionCenter } = useAppSelector((state) => state.common);
-  const { data: userData, status } = useAppSelector((state) => state.user);
-
-  useEffect(() => {
-    dispatch(getOptions('transfusionCenter'));
-  }, [dispatch]);
+  const { data: bloodCenter } = useTypedQuery('bloodCenter', () => getOptions('bloodCenter'));
+  const { data: transfusionCenter } = useTypedQuery('transfusionCenter', () =>
+    getOptions('transfusionCenter'),
+  );
+  const { data: user } = useTypedQuery('user', getUser);
+  const { mutate, isSuccess, isError } = useTypedMutation('donations', (data: IDonation) =>
+    addDonation(data),
+  );
 
   const onSubmit = (data: IDonation) => {
-    if (!userData) return;
-    dispatch(
-      addDonationAction({
+    user?.id &&
+      mutate({
         ...data,
-        userId: userData.id,
-      }),
-    );
+        userId: user.id,
+      });
   };
 
   return (
@@ -52,19 +45,7 @@ const Donations = () => {
           <Input name='donationNumber' innerRef={register} />
         </FormItem>
         <FormItem columns={2} label='Дата кровосдачи' required>
-          <Controller
-            name='date'
-            control={control}
-            render={({ onChange }) => {
-              return (
-                <DatePicker
-                  onChange={(_, date) => {
-                    onChange(date);
-                  }}
-                />
-              );
-            }}
-          />
+          <Input name='date' type='date' />
         </FormItem>
         <FormItem columns={2} label='Место сдачи' required>
           <Controller
@@ -72,8 +53,8 @@ const Donations = () => {
             control={control}
             as={
               <Select size='large' placeholder='Выберите место сдачи'>
-                {transfusionCenter.data &&
-                  transfusionCenter.data.map(({ _id, text }) => (
+                {transfusionCenter &&
+                  transfusionCenter.map(({ _id, text }) => (
                     <Select.Option value={_id}>{text}</Select.Option>
                   ))}
               </Select>
@@ -86,8 +67,8 @@ const Donations = () => {
             control={control}
             as={
               <Select size='large' placeholder='Выберите реципиента'>
-                {bloodCenter.data &&
-                  bloodCenter.data.map(({ _id, text }) => (
+                {bloodCenter &&
+                  bloodCenter.map(({ _id, text }) => (
                     <Select.Option key={_id} value={_id}>
                       {text}
                     </Select.Option>
@@ -106,7 +87,7 @@ const Donations = () => {
           `}
           required
         >
-          <Input name='referenceImg' innerRef={register} />
+          <Input type='file' name='referenceImg' innerRef={register} />
         </FormItem>
         <ButtonsRow>
           <Button type='submit' variant='outline-danger' size='lg'>
@@ -115,18 +96,30 @@ const Donations = () => {
           <SocialButtons />
         </ButtonsRow>
       </Form>
-      {status === 'success' && (
+      {isSuccess && (
         <Alert dismissible>
           Спасибо, Ваша донация отправлена на проверку. Если Выправильно заполнилнили форму и
           прикрепили нужную справку,то после проверки ваша донация автоматически добавиться.Для
           проверки необходимо до 5-ти рабочих дней.Не забывайте заходить в Ваш личный кабинет.
         </Alert>
       )}
+      {isError && <Alert dismissible>Что-то пошло не так</Alert>}
     </DashboardGrid>
   );
 };
 
 export default Donations;
+
+export const getServerSideProps = async () => {
+  const queryClient = new QueryClient();
+
+  await queryClient.prefetchQuery('user', getUser);
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
+  };
+};
 
 const ButtonsRow = styled.div`
   display: flex;

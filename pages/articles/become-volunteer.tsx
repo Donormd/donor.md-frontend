@@ -12,19 +12,16 @@ import {
   StyledLink,
   TextArea,
   Title,
-} from '../../components/UI';
-import { Container } from '../../core/layouts/container';
-import { HeaderContentFooter } from '../../core/layouts/header-content-footer';
-import { useAppSelector } from '../../redux/store';
-
-const FormItemCheckbox = styled.div`
-  display: grid;
-  grid-template-columns: min-content 1fr;
-  grid-gap: 15px;
-`;
+} from '../../src/components/UI';
+import { Container } from '../../src/core/layouts/container';
+import { HeaderContentFooter } from '../../src/core/layouts/header-content-footer';
+import { getOptions } from '../../src/queries/common';
+import { useTypedQuery } from '../../src/queries/utils';
 
 const BecomeVolunteerPage = () => {
-  const { cities, typesAssistance } = useAppSelector((state) => state.common);
+  const { data: cities } = useTypedQuery('cities', () => getOptions('cities'));
+  const { data: typesAssistance } = useTypedQuery('cities', () => getOptions('cities'));
+
   return (
     <HeaderContentFooter background='/images/pages/welcome.png'>
       <Container>
@@ -65,8 +62,8 @@ const BecomeVolunteerPage = () => {
           </FormItem>
           <FormItem label='Город проживания'>
             <Select size='large'>
-              {cities.data &&
-                cities.data.map(({ text, _id }) => (
+              {cities &&
+                cities.map(({ text, _id }) => (
                   <Select.Option key={_id} value={_id}>
                     {text}
                   </Select.Option>
@@ -75,8 +72,8 @@ const BecomeVolunteerPage = () => {
           </FormItem>
           <FormItem label='Я могу помочь'>
             <Select size='large'>
-              {typesAssistance.data &&
-                typesAssistance.data.map(({ text, _id }) => (
+              {typesAssistance &&
+                typesAssistance.map(({ text, _id }) => (
                   <Select.Option key={_id} value={_id}>
                     {text}
                   </Select.Option>
@@ -111,3 +108,9 @@ const BecomeVolunteerPage = () => {
   );
 };
 export default BecomeVolunteerPage;
+
+const FormItemCheckbox = styled.div`
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  grid-gap: 15px;
+`;

@@ -1,24 +1,24 @@
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import { QueryClient } from 'react-query';
+import { dehydrate } from 'react-query/hydration';
 import styled from 'styled-components';
 
-import { Alert } from '../../components/alert';
-import { ChangePassword } from '../../components/forms/dashboard/settings/change-password';
-import { Button, Checkbox, Form, Paragraph, Title, TitleWithArrow } from '../../components/UI';
-import { ISettings } from '../../core/interfaces/settings';
-import { DashboardGrid } from '../../core/layouts/dashboard-grid';
-import { getSettingsAction, updateSettingsAction } from '../../redux/redusers/settings';
-import { useAppDispatch, useAppSelector } from '../../redux/store';
+import { Alert } from '../../src/components/alert';
+import { ChangePassword } from '../../src/components/forms/dashboard/settings/change-password';
+import { Button, Checkbox, Form, Paragraph, Title, TitleWithArrow } from '../../src/components/UI';
+import { ISettings } from '../../src/core/interfaces/settings';
+import { DashboardGrid } from '../../src/core/layouts/dashboard-grid';
+import { getSettings, updateSettings } from '../../src/queries/settings';
+import { getUser } from '../../src/queries/user';
+import { useTypedMutation, useTypedQuery } from '../../src/queries/utils';
 
 const Settings = () => {
-  const dispatch = useAppDispatch();
   const { handleSubmit, setValue, register } = useForm();
-
-  const { status, data, error } = useAppSelector((store) => store.settings);
-
-  useEffect(() => {
-    dispatch(getSettingsAction());
-  }, [dispatch]);
+  const { mutate, isSuccess, isError } = useTypedMutation('settings', (data: ISettings) =>
+    updateSettings(data),
+  );
+  const { data } = useTypedQuery('settings', getSettings);
 
   useEffect(() => {
     if (!data) return;
@@ -27,7 +27,7 @@ const Settings = () => {
   }, [data, setValue]);
 
   const onSubmitSettings = (data: ISettings) => {
-    dispatch(updateSettingsAction(data));
+    mutate(data);
   };
 
   return (
@@ -71,8 +71,8 @@ const Settings = () => {
         <Button type='submit' variant='outline-danger' size='lg'>
           Сохранить
         </Button>
-        {status === 'error' && <Alert dismissible>{error}</Alert>}
-        {status === 'success' && successMessage}
+        {isError && <Alert dismissible>adasd</Alert>}
+        {isSuccess && successMessage}
       </Form>
       <ChangePassword />
     </DashboardGrid>
@@ -80,6 +80,18 @@ const Settings = () => {
 };
 
 export default Settings;
+
+export const getServerSideProps = async () => {
+  const queryClient = new QueryClient();
+
+  await queryClient.prefetchQuery('user', getUser);
+  await queryClient.prefetchQuery('settings', getSettings);
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
+  };
+};
 
 const successMessage = (
   <Alert dismissible>

@@ -1,19 +1,30 @@
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 
-import { Alert } from '../../components/alert';
-import { Button, Checkbox, Divider, FormItem, Input, StyledLink, Title } from '../../components/UI';
-import { Container } from '../../core/layouts/container';
-import { HeaderContentFooter } from '../../core/layouts/header-content-footer';
-import { ICorporateDonation, sendData } from '../../redux/redusers/corporate-donation';
-import { useAppDispatch, useAppSelector } from '../../redux/store';
+import { Alert } from '../../src/components/alert';
+import {
+  Button,
+  Checkbox,
+  Divider,
+  FormItem,
+  Input,
+  StyledLink,
+  Title,
+} from '../../src/components/UI';
+import { ICorporateDonation } from '../../src/core/interfaces/donation';
+import { Container } from '../../src/core/layouts/container';
+import { HeaderContentFooter } from '../../src/core/layouts/header-content-footer';
+import { createCorporateDonations } from '../../src/queries/corporate-donation';
+import { useTypedMutation } from '../../src/queries/utils';
 
 const CorporateDonationPage = () => {
   const { handleSubmit, register, reset } = useForm();
-  const { status, error } = useAppSelector((state) => state.corporateDonation);
-  const dispatch = useAppDispatch();
+  const { mutate, isError, isSuccess, error } = useTypedMutation(
+    ['corporate', 'donation'],
+    (payload: ICorporateDonation) => createCorporateDonations(payload),
+  );
   const onSubmit = (data: ICorporateDonation) => {
-    dispatch(sendData(data));
+    mutate(data);
     reset();
   };
   return (
@@ -98,8 +109,8 @@ const CorporateDonationPage = () => {
             </Button>
           </FormItem>
         </form>
-        {status === 'success' && <Alert dismissible>Спасибо что оставили заявку</Alert>}
-        {status === 'error' && <Alert dismissible>{error}</Alert>}
+        {isSuccess && <Alert dismissible>Спасибо что оставили заявку</Alert>}
+        {isError && <Alert dismissible>{error}</Alert>}
       </Container>
     </HeaderContentFooter>
   );
