@@ -1,6 +1,5 @@
 /* eslint no-console:0 */
 import { Table as AntTable } from 'antd';
-import { useQuery } from 'react-query';
 import styled from 'styled-components';
 
 import { StyledLink, Title } from '../src/components/UI';
@@ -10,6 +9,7 @@ import { IOptions } from '../src/core/interfaces/IIterableStruct';
 import { Container } from '../src/core/layouts/container';
 import { HeaderContentFooter } from '../src/core/layouts/header-content-footer';
 import { getTopDonors } from '../src/queries/getTopDonors';
+import { useTypedQuery } from '../src/queries/utils';
 
 const columns = [
   {
@@ -68,7 +68,9 @@ const buttons: IOptions[] = [
 const handleClick: (val: string) => void = (val) => console.log(val);
 
 const TopDonorsPage = () => {
-  const { data, isLoading, isSuccess } = useQuery('stories', () => getTopDonors(buttons[0]._id));
+  const { data, isLoading, isSuccess } = useTypedQuery('stories', () =>
+    getTopDonors(buttons[0]._id),
+  );
   return (
     <HeaderContentFooter background='/images/pages/welcome.png'>
       <Container>

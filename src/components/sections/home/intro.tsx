@@ -1,11 +1,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { FC } from 'react';
 import styled from 'styled-components';
 
 import { Button, Paragraph, Title } from '../../UI';
 
-export const Intro: FC = () => (
+export const Intro = () => (
   <Section id='intro'>
     <ImageWrapper>
       <Image src='/images/pages/home/love.svg' width={300} height={300} layout='responsive' />

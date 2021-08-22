@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
-import { useMutation } from 'react-query';
 
 import { Alert } from '../src/components/alert';
 import {
@@ -18,12 +17,19 @@ import {
 import { IRecipient } from '../src/core/interfaces/recipient';
 import { Container } from '../src/core/layouts/container';
 import { HeaderContentFooter } from '../src/core/layouts/header-content-footer';
-import { createRecipients } from '../src/queries/dashboard/recipients';
-import { useAppSelector } from '../src/redux/store';
+import { getOptions } from '../src/queries/common';
+import { createRecipients } from '../src/queries/recipients';
+import { useTypedMutation, useTypedQuery } from '../src/queries/utils';
 
 const DonorSearchPage = () => {
-  const { mutate } = useMutation('recipient', (payload: IRecipient) => createRecipients(payload));
-  const { bloodGroups, bloodCenter, transfusionCenter } = useAppSelector((state) => state.common);
+  const { data: bloodGroups } = useTypedQuery('bloodGroups', () => getOptions('bloodGroups'));
+  const { data: bloodCenter } = useTypedQuery('bloodCenter', () => getOptions('bloodCenter'));
+  const { data: transfusionCenter } = useTypedQuery('transfusionCenter', () =>
+    getOptions('transfusionCenter'),
+  );
+  const { mutate } = useTypedMutation('recipient', (payload: IRecipient) =>
+    createRecipients(payload),
+  );
   const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = (data: IRecipient) => {
@@ -55,8 +61,8 @@ const DonorSearchPage = () => {
           </FormItem>
           <FormItem label='Выберите необходимую группу крови' required>
             <Select size='large'>
-              {bloodGroups.data &&
-                bloodGroups.data.map(({ _id, text }) => (
+              {bloodGroups &&
+                bloodGroups.map(({ _id, text }) => (
                   <Select.Option key={_id} value={_id}>
                     {text}
                   </Select.Option>
@@ -65,8 +71,8 @@ const DonorSearchPage = () => {
           </FormItem>
           <FormItem label='Медицинское учреждение' help='В котором находится реципиент' required>
             <Select size='large'>
-              {bloodCenter.data &&
-                bloodCenter.data.map(({ _id, text }) => (
+              {bloodCenter &&
+                bloodCenter.map(({ _id, text }) => (
                   <Select.Option key={_id} value={_id}>
                     {text}
                   </Select.Option>
@@ -78,8 +84,8 @@ const DonorSearchPage = () => {
           </FormItem>
           <FormItem label='Укажите центр переливания крови' required>
             <Select size='large'>
-              {transfusionCenter.data &&
-                transfusionCenter.data.map(({ _id, text }) => (
+              {transfusionCenter &&
+                transfusionCenter.map(({ _id, text }) => (
                   <Select.Option key={_id} value={_id}>
                     {text}
                   </Select.Option>

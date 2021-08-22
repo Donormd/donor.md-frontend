@@ -9,6 +9,14 @@ interface IProps {
   className: string;
 }
 
+export const HeaderContentFooter: FC<Partial<IProps>> = ({ children, ...rest }) => (
+  <>
+    <Header />
+    <Main {...rest}>{children}</Main>
+    <Footer />
+  </>
+);
+
 const Main = styled.main<{ background?: string }>`
   padding: 50px 0;
   margin-top: 75px;
@@ -22,11 +30,3 @@ const Main = styled.main<{ background?: string }>`
     background-position: left bottom;
   }
 `;
-
-export const HeaderContentFooter: FC<Partial<IProps>> = ({ children, ...rest }) => (
-  <>
-    <Header />
-    <Main {...rest}>{children}</Main>
-    <Footer />
-  </>
-);

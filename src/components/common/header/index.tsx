@@ -1,6 +1,6 @@
 import { Popover } from 'antd';
 import Link from 'next/link';
-import { FC, useState } from 'react';
+import { useState } from 'react';
 
 import { Logo } from '../../logo';
 import { Button, StyledLink } from '../../UI';
@@ -15,7 +15,7 @@ import {
   MenuListProps,
 } from './styles';
 
-export const Header: FC = () => {
+export const Header = () => {
   const [hide, setToggleOpen] = useState<boolean>(false);
   return (
     <HeaderWrapper>
@@ -35,7 +35,7 @@ export const Header: FC = () => {
   );
 };
 
-const Menu: FC<MenuListProps> = (props) => (
+const Menu = (props: MenuListProps) => (
   <MenuList {...props}>
     <MenuItem>
       <Link href='/articles/about-service' passHref>

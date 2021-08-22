@@ -1,10 +1,10 @@
 import Image from 'next/image';
-import { FC } from 'react';
+import { memo } from 'react';
 
 import { List, ListItem } from './styles';
 
-const SocialMediaLinks: FC<{ className?: string }> = ({ className }) => (
-  <List className={className}>
+export const SocialMediaLinks = memo(({ ...rest }) => (
+  <List {...rest}>
     <ListItem>
       <a href='https://vk.com/yadonorpmr'>
         <Image src='/images/social-icons/vk.svg' width={30} height={30} layout='fixed' />
@@ -26,6 +26,4 @@ const SocialMediaLinks: FC<{ className?: string }> = ({ className }) => (
       </a>
     </ListItem>
   </List>
-);
-
-export default SocialMediaLinks;
+));

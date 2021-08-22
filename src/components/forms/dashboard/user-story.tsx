@@ -1,19 +1,23 @@
 import { useForm } from 'react-hook-form';
-import { useQuery } from 'react-query';
 
-import { IStory } from '../../../core/interfaces/story';
-import { getStories } from '../../../queries/dashboard/stories';
+import { createOrUpdateUserStory, getUserStory } from '../../../queries/stories';
+import { useTypedMutation, useTypedQuery } from '../../../queries/utils';
 import { Alert } from '../../alert';
 import { Button, Divider, Form, FormItem, Paragraph, TextArea, Title } from '../../UI';
 
 export const UserStoryForm = () => {
-  const { isSuccess } = useQuery(['user', 'story'], getStories);
-  const { register, handleSubmit } = useForm();
+  const { data: story } = useTypedQuery(['user', 'story'], getUserStory);
+  const { isSuccess, isError, mutate } = useTypedMutation(['user', 'story'], (story: string) =>
+    createOrUpdateUserStory(story),
+  );
+  const { register, handleSubmit } = useForm({
+    defaultValues: {
+      story,
+    },
+  });
 
-  const onSubmit = (data: IStory) => {
-    // eslint-disable-next-line no-console
-    console.log(data);
-    // dispatch(createOrUpdateUserStory(data));
+  const onSubmit = ({ story }: { story: string }) => {
+    mutate(story);
   };
 
   return (
@@ -35,6 +39,7 @@ export const UserStoryForm = () => {
         Сохранить историю
       </Button>
       {isSuccess && <Alert dismissible>История добавлена</Alert>}
+      {isError && <Alert dismissible>Что-то пошло не так</Alert>}
     </Form>
   );
 };

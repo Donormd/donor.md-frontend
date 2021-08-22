@@ -1,11 +1,47 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { FC } from 'react';
 import styled from 'styled-components';
 
-import { IMockItem } from '../../../../redux/redusers/about-donations';
+import { IMockItem } from '../../../../mocks/articles';
 import { Paragraph, Title } from '../../../UI';
 import { Section } from '../utils';
+
+type AboutDonationType = {
+  title: string;
+  data: IMockItem[];
+};
+
+export const AboutDonation = ({ title, data }: AboutDonationType) => {
+  return (
+    <Section id='about-donation'>
+      <Title as='h2' bold>
+        {title}
+      </Title>
+      <ArticleList>
+        {data.map(({ image, text, link }) => (
+          <article key={image.src}>
+            <ImageWrapper>
+              <Image
+                src={image.src}
+                width={image.width}
+                height={image.height}
+                layout='responsive'
+              />
+            </ImageWrapper>
+            <Link href={link}>
+              <ArticleBody>
+                <Title as='h3' margin='15px' color='red' bold>
+                  {text.head}
+                </Title>
+                <Paragraph>{text.paragraph}</Paragraph>
+              </ArticleBody>
+            </Link>
+          </article>
+        ))}
+      </ArticleList>
+    </Section>
+  );
+};
 
 const ArticleList = styled.div`
   padding-top: 30px;
@@ -54,42 +90,3 @@ const ArticleBody = styled.div`
     text-align: left;
   }
 `;
-
-export interface IProps {
-  title: string;
-  data: IMockItem[];
-}
-
-const AboutDonation: FC<IProps> = ({ title, data }) => {
-  return (
-    <Section id='about-donation'>
-      <Title as='h2' bold>
-        {title}
-      </Title>
-      <ArticleList>
-        {data.map(({ image, text, link }) => (
-          <article key={image.src}>
-            <ImageWrapper>
-              <Image
-                src={image.src}
-                width={image.width}
-                height={image.height}
-                layout='responsive'
-              />
-            </ImageWrapper>
-            <Link href={link}>
-              <ArticleBody>
-                <Title as='h3' margin='15px' color='red' bold>
-                  {text.head}
-                </Title>
-                <Paragraph>{text.paragraph}</Paragraph>
-              </ArticleBody>
-            </Link>
-          </article>
-        ))}
-      </ArticleList>
-    </Section>
-  );
-};
-
-export default AboutDonation;

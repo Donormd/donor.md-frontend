@@ -1,31 +1,27 @@
-import { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import { useMutation } from 'react-query';
+import { QueryClient } from 'react-query';
+import { dehydrate } from 'react-query/hydration';
 import styled from 'styled-components';
 
 import { Alert } from '../../src/components/alert';
-import DashboardButtonsLinks from '../../src/components/dashboard-buttons-links';
-import SocialMediaLinks from '../../src/components/social-media-links';
+import { DashboardButtonsLinks } from '../../src/components/dashboard-buttons-links';
+import { SocialMediaLinks } from '../../src/components/social-media-links';
 import { Button, Form, FormItem, Input, Select, TitleWithArrow } from '../../src/components/UI';
 import { PlanningForm } from '../../src/core/interfaces/planning';
 import { DashboardGrid } from '../../src/core/layouts/dashboard-grid';
-import { sendPlanningForm } from '../../src/queries/dashboard/planning';
-import { getOptions } from '../../src/redux/common';
-import { useAppDispatch, useAppSelector } from '../../src/redux/store';
+import { getOptions } from '../../src/queries/common';
+import { sendPlanningForm } from '../../src/queries/planning';
+import { getUser } from '../../src/queries/user';
+import { useTypedMutation, useTypedQuery } from '../../src/queries/utils';
 
 const times = ['8:00', '8:30', '9:00', '9:30', '10:00', '10:30', '11:00', '11:30', '12:00'];
 
 const DonationsPlanning = () => {
-  const { isSuccess, mutate } = useMutation(['planning', 'form'], (data: PlanningForm) =>
+  const { handleSubmit, register, control } = useForm();
+  const { data: bloodCenter } = useTypedQuery('bloodCenter', () => getOptions('bloodCenter'));
+  const { isSuccess, mutate } = useTypedMutation(['planning', 'form'], (data: PlanningForm) =>
     sendPlanningForm(data),
   );
-  const { handleSubmit, register, control } = useForm();
-  const dispatch = useAppDispatch();
-  const { bloodCenter } = useAppSelector((state) => state.common);
-
-  useEffect(() => {
-    dispatch(getOptions('bloodCenter'));
-  }, [dispatch]);
 
   const onSubmit = (data: PlanningForm) => {
     mutate(data);
@@ -42,9 +38,10 @@ const DonationsPlanning = () => {
             control={control}
             as={
               <Select size='large' placeholder='Выберите место сдачи'>
-                {bloodCenter.data?.map((item) => (
-                  <Select.Option value={item._id}>{item.text}</Select.Option>
-                ))}
+                {bloodCenter &&
+                  bloodCenter.map((item) => (
+                    <Select.Option value={item._id}>{item.text}</Select.Option>
+                  ))}
               </Select>
             }
           />
@@ -96,6 +93,17 @@ const DonationsPlanning = () => {
 };
 
 export default DonationsPlanning;
+
+export const getServerSideProps = async () => {
+  const queryClient = new QueryClient();
+
+  await queryClient.prefetchQuery('user', getUser);
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
+  };
+};
 
 const SocialButtons = styled(SocialMediaLinks)`
   margin-bottom: 0;

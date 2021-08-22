@@ -1,11 +1,11 @@
 import { FC } from 'react';
 import styled from 'styled-components';
 
-interface IProps {
+type AdditionalButtonsType = {
   onClick: () => void;
-}
+};
 
-export const AdditionalButtons: FC<IProps> = ({ children, onClick, ...rest }) => (
+export const AdditionalButtons: FC<AdditionalButtonsType> = ({ children, onClick, ...rest }) => (
   <Button type='button' onClick={onClick} {...rest}>
     {children}
   </Button>

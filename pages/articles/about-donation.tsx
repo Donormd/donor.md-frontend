@@ -2,83 +2,14 @@
 import Link from 'next/link';
 import styled from 'styled-components';
 
-import AboutDonation from '../../src/components/sections/home/about-donations';
+import { AboutDonation } from '../../src/components/sections/home/about-donations';
 import { Accordion, Paragraph as PH, Title as TL } from '../../src/components/UI';
 import { Container } from '../../src/core/layouts/container';
 import { HeaderContentFooter } from '../../src/core/layouts/header-content-footer';
-import { useAppSelector } from '../../src/redux/store';
-
-const Paragraph = styled(PH)`
-  margin-bottom: 15px;
-`;
-
-const Title = styled(TL)`
-  margin-bottom: 15px;
-`;
-
-const Article = styled.div<{ background: string }>`
-  width: 100%;
-  height: 500px;
-  background: url(${({ background }) => background});
-  background-repeat: no-repeat;
-  background-position: right;
-  background-size: contain;
-`;
-
-const LinkGroup = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  height: 400px;
-`;
-
-const StyledLink = styled.a`
-  text-decoration: underline;
-  font-size: 1.2em;
-  font-weight: bold;
-  color: ${({ theme }) => theme.colors.black};
-
-  &:hover {
-    color: ${({ theme }) => theme.colors.danger};
-  }
-`;
-
-const StyledAccordion = styled(Accordion)`
-  @media (min-width: ${({ theme }) => theme.media.lg}) {
-    max-width: 60%;
-  }
-`;
-
-const Facts = styled.div`
-  counter-reset: count;
-  display: grid;
-  padding: 30px 0;
-
-  ${Paragraph} {
-    position: relative;
-    padding-left: 40px;
-  }
-  ${Paragraph}::before {
-    position: absolute;
-    top: 0;
-    left: 0;
-    counter-increment: count;
-    content: counter(count);
-    font-size: 3.5em;
-    line-height: 1;
-    font-weight: bold;
-    color: ${({ theme }) => `${theme.colors.danger}50`};
-  }
-
-  @media (min-width: ${({ theme }) => theme.media.lg}) {
-    grid-template-columns: 1fr 1fr;
-    column-gap: 50px;
-    row-gap: 15px;
-  }
-`;
+import { articlesMock } from '../../src/mocks/articles';
 
 const AboutDonationPage = () => {
-  const { aboutPage: data } = useAppSelector((state) => state.aboutDonations);
+  const { aboutPage: data } = articlesMock;
   return (
     <HeaderContentFooter background='/images/pages/welcome.png'>
       <Container>
@@ -230,5 +161,74 @@ const AboutDonationPage = () => {
     </HeaderContentFooter>
   );
 };
+
+const Paragraph = styled(PH)`
+  margin-bottom: 15px;
+`;
+
+const Title = styled(TL)`
+  margin-bottom: 15px;
+`;
+
+const Article = styled.div<{ background: string }>`
+  width: 100%;
+  height: 500px;
+  background: url(${({ background }) => background});
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: contain;
+`;
+
+const LinkGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 400px;
+`;
+
+const StyledLink = styled.a`
+  text-decoration: underline;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: ${({ theme }) => theme.colors.black};
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.danger};
+  }
+`;
+
+const StyledAccordion = styled(Accordion)`
+  @media (min-width: ${({ theme }) => theme.media.lg}) {
+    max-width: 60%;
+  }
+`;
+
+const Facts = styled.div`
+  counter-reset: count;
+  display: grid;
+  padding: 30px 0;
+
+  ${Paragraph} {
+    position: relative;
+    padding-left: 40px;
+  }
+  ${Paragraph}::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    counter-increment: count;
+    content: counter(count);
+    font-size: 3.5em;
+    line-height: 1;
+    font-weight: bold;
+    color: ${({ theme }) => `${theme.colors.danger}50`};
+  }
+
+  @media (min-width: ${({ theme }) => theme.media.lg}) {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 50px;
+    row-gap: 15px;
+  }
+`;
 
 export default AboutDonationPage;

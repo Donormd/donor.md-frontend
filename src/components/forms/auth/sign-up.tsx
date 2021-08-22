@@ -1,15 +1,11 @@
 import Link from 'next/link';
-import { FC, useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import styled from 'styled-components';
 
-import { isLoading } from '../../../core/helpers/state';
-import { useAuth } from '../../../core/hooks/useAuth';
-import { useRequiredAuth } from '../../../core/hooks/useRequiredAuth';
-import { IOptions } from '../../../core/interfaces/IIterableStruct';
 import { IUser } from '../../../core/interfaces/user';
-import { getOptions } from '../../../redux/common';
-import { useAppDispatch, useAppSelector } from '../../../redux/store';
+import { getOptions } from '../../../queries/common';
+import { createUser } from '../../../queries/user';
+import { useTypedMutation, useTypedQuery } from '../../../queries/utils';
 import { Alert } from '../../alert';
 import { Checkbox, FormItem, Input, Select, StyledLink, Title } from '../../UI';
 import { Loading } from '../../UI/loading';
@@ -20,27 +16,23 @@ declare type Props = { onChangeState: onChangeState };
 
 const validate = { required: 'Обязательное поле' };
 
-export const SignUpForm: FC<Props> = ({ onChangeState }) => {
-  const dispatch = useAppDispatch();
-  const auth = useAuth();
+export const SignUpForm = ({ onChangeState }: Props) => {
   const { register, control, handleSubmit, errors } = useForm();
-  const { sex, bloodGroups } = useAppSelector((state) => state.common);
-  const { status, error } = useAppSelector((state) => state.user);
+  const { data: bloodGroups, isLoading: bloodGroupsLoading } = useTypedQuery('bloodGroups', () =>
+    getOptions('bloodGroups'),
+  );
+  const { data: sex, isLoading: sexLoading } = useTypedQuery('sex', () => getOptions('sex'));
+  const { mutate, isError, isSuccess } = useTypedMutation('user', (payload: IUser) =>
+    createUser(payload),
+  );
 
-  useRequiredAuth('/dashboard', '/auth');
-
-  useEffect(() => {
-    dispatch(getOptions('sex'));
-    dispatch(getOptions('bloodGroups'));
-  }, [dispatch]);
-
-  const onSubmit = (data: IUser) => {
-    auth?.signUp(data);
+  const onSubmit = (payload: IUser) => {
+    mutate(payload);
   };
 
-  if (isLoading<IOptions>(sex) || isLoading<IOptions>(bloodGroups)) return <Loading />;
+  if (bloodGroupsLoading || sexLoading) return <Loading />;
 
-  const blood = bloodGroups?.data ? [...bloodGroups.data] : [];
+  const blood = bloodGroups ? [...bloodGroups] : [];
   blood.shift();
 
   return (
@@ -58,8 +50,8 @@ export const SignUpForm: FC<Props> = ({ onChangeState }) => {
           rules={validate}
           as={
             <Select size='large' placeholder='Укажите пол'>
-              {sex.data &&
-                sex.data.map(({ text, _id }) => (
+              {sex &&
+                sex.map(({ text, _id }) => (
                   <Select.Option key={_id} value={_id}>
                     {text}
                   </Select.Option>
@@ -144,8 +136,8 @@ export const SignUpForm: FC<Props> = ({ onChangeState }) => {
           linkOnClick={() => onChangeState('signIn')}
         />
       </div>
-      {status === 'error' && <Alert dismissible>{error}</Alert>}
-      {status === 'success' && <Alert dismissible>Вы успешно зарегистрировались</Alert>}
+      {isError && <Alert dismissible>error</Alert>}
+      {isSuccess && <Alert dismissible>Вы успешно зарегистрировались</Alert>}
     </form>
   );
 };

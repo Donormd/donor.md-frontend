@@ -1,8 +1,7 @@
-import { FC } from 'react';
 import { ReactSVG } from 'react-svg';
 import styled from 'styled-components';
 
-export const Loading: FC = () => (
+export const Loading = () => (
   <Wrapper>
     <Image
       afterInjection={(_err: Error, svg: SVGAElement) => {

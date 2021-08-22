@@ -1,14 +1,12 @@
 import ImageNext from 'next/image';
-import { memo, useEffect } from 'react';
+import { memo } from 'react';
 import styled from 'styled-components';
 
 import HeartIcon from '../../public/images/icons/heart+.svg';
 import { formatDate, yearOrYears } from '../core/helpers/converters';
-import { isLoading } from '../core/helpers/state';
-import { IOptions } from '../core/interfaces/IIterableStruct';
 import { IRecipient } from '../core/interfaces/recipient';
-import { getOptions } from '../redux/common';
-import { useAppDispatch, useAppSelector } from '../redux/store';
+import { getOptions } from '../queries/common';
+import { useTypedQuery } from '../queries/utils';
 import { Rate } from './rate';
 import { Button, Paragraph, Title } from './UI';
 import { Loading } from './UI/loading';
@@ -28,28 +26,24 @@ export const RecipientCard = memo(({ recipient }: RecipientCardType) => {
     // src,
   } = recipient;
 
-  const dispatch = useAppDispatch();
-
-  const { bloodGroups, bloodCenter, transfusionCenter } = useAppSelector((state) => state.common);
+  const { data: bloodCenter, isLoading: bloodCenterLoading } = useTypedQuery('bloodCenter', () =>
+    getOptions('bloodCenter'),
+  );
+  const { data: bloodGroups, isLoading: bloodGroupsLoading } = useTypedQuery('bloodGroups', () =>
+    getOptions('bloodGroups'),
+  );
+  const {
+    data: transfusionCenter,
+    isLoading: transfusionCenterLoading,
+  } = useTypedQuery('transfusionCenter', () => getOptions('transfusionCenter'));
 
   const years = new Date().getFullYear() - new Date(dateBirth).getFullYear();
 
-  useEffect(() => {
-    dispatch(getOptions('bloodCenter'));
-    dispatch(getOptions('bloodGroups'));
-    dispatch(getOptions('transfusionCenter'));
-  }, [dispatch]);
+  if (bloodCenterLoading || bloodGroupsLoading || transfusionCenterLoading) return <Loading />;
 
-  if (
-    isLoading<IOptions>(bloodGroups) ||
-    isLoading<IOptions>(bloodCenter) ||
-    isLoading<IOptions>(transfusionCenter)
-  )
-    return <Loading />;
-
-  const userBlood = bloodGroups.data.find((i) => i._id === bloodGroupId)?.text;
-  const medicalCenter = bloodCenter.data.find((i) => i._id === medicalCenterId)?.text;
-  const place = transfusionCenter.data.find((i) => i._id === bloodCenterId)?.text;
+  const userBlood = bloodGroups?.find((i) => i._id === bloodGroupId)?.text;
+  const medicalCenter = bloodCenter?.find((i) => i._id === medicalCenterId)?.text;
+  const place = transfusionCenter?.find((i) => i._id === bloodCenterId)?.text;
 
   return (
     <Card>

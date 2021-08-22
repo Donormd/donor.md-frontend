@@ -1,44 +1,44 @@
 if (!self.define) {
   const e = (e) => {
       'require' !== e && (e += '.js');
-      let a = Promise.resolve();
+      let s = Promise.resolve();
       return (
-        s[e] ||
-          (a = new Promise(async (a) => {
+        i[e] ||
+          (s = new Promise(async (s) => {
             if ('document' in self) {
-              const s = document.createElement('script');
-              (s.src = e), document.head.appendChild(s), (s.onload = a);
-            } else importScripts(e), a();
+              const i = document.createElement('script');
+              (i.src = e), document.head.appendChild(i), (i.onload = s);
+            } else importScripts(e), s();
           })),
-        a.then(() => {
-          if (!s[e]) throw new Error(`Module ${e} didn’t register its module`);
-          return s[e];
+        s.then(() => {
+          if (!i[e]) throw new Error(`Module ${e} didn’t register its module`);
+          return i[e];
         })
       );
     },
-    a = (a, s) => {
-      Promise.all(a.map(e)).then((e) => s(1 === e.length ? e[0] : e));
+    s = (s, i) => {
+      Promise.all(s.map(e)).then((e) => i(1 === e.length ? e[0] : e));
     },
-    s = { require: Promise.resolve(a) };
-  self.define = (a, c, i) => {
-    s[a] ||
-      (s[a] = Promise.resolve().then(() => {
-        let s = {};
-        const r = { uri: location.origin + a.slice(1) };
+    i = { require: Promise.resolve(s) };
+  self.define = (s, a, c) => {
+    i[s] ||
+      (i[s] = Promise.resolve().then(() => {
+        let i = {};
+        const r = { uri: location.origin + s.slice(1) };
         return Promise.all(
-          c.map((a) => {
-            switch (a) {
+          a.map((s) => {
+            switch (s) {
               case 'exports':
-                return s;
+                return i;
               case 'module':
                 return r;
               default:
-                return e(a);
+                return e(s);
             }
           }),
         ).then((e) => {
-          const a = i(...e);
-          return s.default || (s.default = a), s;
+          const s = c(...e);
+          return i.default || (i.default = s), i;
         });
       }));
   };
@@ -50,249 +50,249 @@ define('./sw.js', ['./workbox-030153e1'], function (e) {
     e.clientsClaim(),
     e.precacheAndRoute(
       [
-        { url: '/_error', revision: 'avwvc9zOPlTOy9NZRcr1h' },
+        { url: '/_error', revision: 'Kq-owiusuOQe5XXwiyic8' },
         {
-          url: '/_next/static/avwvc9zOPlTOy9NZRcr1h/_buildManifest.js',
-          revision: 'avwvc9zOPlTOy9NZRcr1h',
+          url: '/_next/static/Kq-owiusuOQe5XXwiyic8/_buildManifest.js',
+          revision: 'Kq-owiusuOQe5XXwiyic8',
         },
         {
-          url: '/_next/static/avwvc9zOPlTOy9NZRcr1h/_ssgManifest.js',
-          revision: 'avwvc9zOPlTOy9NZRcr1h',
+          url: '/_next/static/Kq-owiusuOQe5XXwiyic8/_ssgManifest.js',
+          revision: 'Kq-owiusuOQe5XXwiyic8',
         },
         {
           url:
             '/_next/static/chunks/01ce56f8ce1c5d27e76189942ee1b98c9b150809.711a085e0fc64669e78e.js',
-          revision: 'avwvc9zOPlTOy9NZRcr1h',
+          revision: 'Kq-owiusuOQe5XXwiyic8',
         },
         {
           url:
             '/_next/static/chunks/0265feb85496f2a37375034cc94530149fde49bb.3e49f28a4ebb8a270d8a.js',
-          revision: 'avwvc9zOPlTOy9NZRcr1h',
+          revision: 'Kq-owiusuOQe5XXwiyic8',
         },
         {
           url:
             '/_next/static/chunks/29d6c67bd6bb448dc602bfd073b3344e9f9ef061.3856597b62ba55b89b64.js',
-          revision: 'avwvc9zOPlTOy9NZRcr1h',
+          revision: 'Kq-owiusuOQe5XXwiyic8',
         },
         {
           url:
             '/_next/static/chunks/2adcea914c69283f1076d983b042ea69cbba9991.aa039e14170c60f90bd3.js',
-          revision: 'avwvc9zOPlTOy9NZRcr1h',
+          revision: 'Kq-owiusuOQe5XXwiyic8',
         },
         {
           url:
-            '/_next/static/chunks/2bb27e1b28134815661cb90d54979a269ff39642.abaeef6e7424b163092d.js',
-          revision: 'avwvc9zOPlTOy9NZRcr1h',
+            '/_next/static/chunks/2bb27e1b28134815661cb90d54979a269ff39642.95cca43c4d4ab9683807.js',
+          revision: 'Kq-owiusuOQe5XXwiyic8',
         },
         {
           url:
             '/_next/static/chunks/49e5663c7ccc1a8b90ada3c22412f94a860e3638.7ca4f2f5b59c911c74e9.js',
-          revision: 'avwvc9zOPlTOy9NZRcr1h',
+          revision: 'Kq-owiusuOQe5XXwiyic8',
         },
         {
           url:
             '/_next/static/chunks/65a938e47bc96bbae06947233e5aeb2d5d34ef93.bb43cae950eb13edf05c.js',
-          revision: 'avwvc9zOPlTOy9NZRcr1h',
+          revision: 'Kq-owiusuOQe5XXwiyic8',
         },
         {
           url:
             '/_next/static/chunks/74ece7d08a12930595c5b5dd03315b594af8552d.13c50238cc7a56212b62.js',
-          revision: 'avwvc9zOPlTOy9NZRcr1h',
+          revision: 'Kq-owiusuOQe5XXwiyic8',
         },
         {
           url:
             '/_next/static/chunks/77d010a37db0eb0bc725180b984c431079ff263a.a38a9982afa772a1a911.js',
-          revision: 'avwvc9zOPlTOy9NZRcr1h',
+          revision: 'Kq-owiusuOQe5XXwiyic8',
         },
         {
           url:
             '/_next/static/chunks/7f23d6e10eb2652a11e7d3aebc1ab4c93c48f036.27e28f77f3d70e722ca8.js',
-          revision: 'avwvc9zOPlTOy9NZRcr1h',
+          revision: 'Kq-owiusuOQe5XXwiyic8',
         },
         {
           url:
             '/_next/static/chunks/ca4c1ef1ed95b44ec06aa66b6affd2c3ab009150.d1a6fdc4af89e9be8ace.js',
-          revision: 'avwvc9zOPlTOy9NZRcr1h',
+          revision: 'Kq-owiusuOQe5XXwiyic8',
         },
         {
           url: '/_next/static/chunks/commons.f14731b27e2f3e896ac9.js',
-          revision: 'avwvc9zOPlTOy9NZRcr1h',
+          revision: 'Kq-owiusuOQe5XXwiyic8',
         },
         {
           url: '/_next/static/chunks/d90ce74f.b49a158ac8e0abf8851b.js',
-          revision: 'avwvc9zOPlTOy9NZRcr1h',
+          revision: 'Kq-owiusuOQe5XXwiyic8',
         },
         {
           url:
-            '/_next/static/chunks/ec4dd5cb3240a4c06d6f8f4bd9fee35ebc2575ff.4aa9eacce57770913ddc.js',
-          revision: 'avwvc9zOPlTOy9NZRcr1h',
+            '/_next/static/chunks/ec4dd5cb3240a4c06d6f8f4bd9fee35ebc2575ff.78eb73daf7f32d5ef3ef.js',
+          revision: 'Kq-owiusuOQe5XXwiyic8',
         },
         {
           url:
             '/_next/static/chunks/f1bd3cb8055efd14ad015987a185a9002f2aaad5.81e0a2341dc4b034b7a0.js',
-          revision: 'avwvc9zOPlTOy9NZRcr1h',
+          revision: 'Kq-owiusuOQe5XXwiyic8',
         },
         {
           url: '/_next/static/chunks/framework.de2efbee652401e3d726.js',
-          revision: 'avwvc9zOPlTOy9NZRcr1h',
+          revision: 'Kq-owiusuOQe5XXwiyic8',
         },
         {
           url: '/_next/static/chunks/main-05f1e86af31028bb284d.js',
-          revision: 'avwvc9zOPlTOy9NZRcr1h',
+          revision: 'Kq-owiusuOQe5XXwiyic8',
         },
         {
           url: '/_next/static/chunks/pages/404-a8f99614076276ee70b9.js',
-          revision: 'avwvc9zOPlTOy9NZRcr1h',
+          revision: 'Kq-owiusuOQe5XXwiyic8',
         },
         {
-          url: '/_next/static/chunks/pages/_app-5cb6ae689de79ad1afd1.js',
-          revision: 'avwvc9zOPlTOy9NZRcr1h',
+          url: '/_next/static/chunks/pages/_app-6e497ff5433d7ce88683.js',
+          revision: 'Kq-owiusuOQe5XXwiyic8',
         },
         {
           url: '/_next/static/chunks/pages/_error-09b6eaa76b4abe9e790a.js',
-          revision: 'avwvc9zOPlTOy9NZRcr1h',
+          revision: 'Kq-owiusuOQe5XXwiyic8',
         },
         {
           url: '/_next/static/chunks/pages/articles/about-donation-2573943ef77d2d9fbb5b.js',
-          revision: 'avwvc9zOPlTOy9NZRcr1h',
+          revision: 'Kq-owiusuOQe5XXwiyic8',
         },
         {
           url: '/_next/static/chunks/pages/articles/become-volunteer-4fdfec36f086030e951b.js',
-          revision: 'avwvc9zOPlTOy9NZRcr1h',
+          revision: 'Kq-owiusuOQe5XXwiyic8',
         },
         {
           url:
             '/_next/static/chunks/pages/articles/benefits-and-privileges-7a40d3ca6e94f1e8f8c1.js',
-          revision: 'avwvc9zOPlTOy9NZRcr1h',
+          revision: 'Kq-owiusuOQe5XXwiyic8',
         },
         {
           url: '/_next/static/chunks/pages/articles/bonus-program-41d0e3e5e9043a7b52c8.js',
-          revision: 'avwvc9zOPlTOy9NZRcr1h',
+          revision: 'Kq-owiusuOQe5XXwiyic8',
         },
         {
           url: '/_next/static/chunks/pages/articles/corporate-donation-6311408f196ac2ed0525.js',
-          revision: 'avwvc9zOPlTOy9NZRcr1h',
+          revision: 'Kq-owiusuOQe5XXwiyic8',
         },
         {
           url: '/_next/static/chunks/pages/articles/donor-and-work-9d44b4e2cd993c06e49b.js',
-          revision: 'avwvc9zOPlTOy9NZRcr1h',
+          revision: 'Kq-owiusuOQe5XXwiyic8',
         },
         {
           url:
             '/_next/static/chunks/pages/articles/how-to-prepare-for-donation-33d9f68f65d68686ea9a.js',
-          revision: 'avwvc9zOPlTOy9NZRcr1h',
+          revision: 'Kq-owiusuOQe5XXwiyic8',
         },
         {
           url:
             '/_next/static/chunks/pages/articles/minimum-requirements-for-donor-aa6fb3e49b793d8601ef.js',
-          revision: 'avwvc9zOPlTOy9NZRcr1h',
+          revision: 'Kq-owiusuOQe5XXwiyic8',
         },
         {
           url: '/_next/static/chunks/pages/articles/plasma-donors-1cb7de0de432662c06d0.js',
-          revision: 'avwvc9zOPlTOy9NZRcr1h',
+          revision: 'Kq-owiusuOQe5XXwiyic8',
         },
         {
           url: '/_next/static/chunks/pages/articles/privacy-policy-52acf961acfb3c1419e7.js',
-          revision: 'avwvc9zOPlTOy9NZRcr1h',
+          revision: 'Kq-owiusuOQe5XXwiyic8',
         },
         {
           url: '/_next/static/chunks/pages/articles/procedural-documents-151bc79852c0375f23db.js',
-          revision: 'avwvc9zOPlTOy9NZRcr1h',
+          revision: 'Kq-owiusuOQe5XXwiyic8',
         },
         {
           url: '/_next/static/chunks/pages/articles/recovery-from-donation-f755bd7c92d8450fdd34.js',
-          revision: 'avwvc9zOPlTOy9NZRcr1h',
+          revision: 'Kq-owiusuOQe5XXwiyic8',
         },
         {
           url: '/_next/static/chunks/pages/articles/support-project-1323cb0fefbd89f74c51.js',
-          revision: 'avwvc9zOPlTOy9NZRcr1h',
+          revision: 'Kq-owiusuOQe5XXwiyic8',
         },
         {
           url: '/_next/static/chunks/pages/articles/user-agreement-d3379b2281a61fe75526.js',
-          revision: 'avwvc9zOPlTOy9NZRcr1h',
+          revision: 'Kq-owiusuOQe5XXwiyic8',
         },
         {
           url: '/_next/static/chunks/pages/articles/who-needs-blood-88efcc7410de81872e04.js',
-          revision: 'avwvc9zOPlTOy9NZRcr1h',
+          revision: 'Kq-owiusuOQe5XXwiyic8',
         },
         {
-          url: '/_next/static/chunks/pages/auth-437b0803ff841cbf25cf.js',
-          revision: 'avwvc9zOPlTOy9NZRcr1h',
+          url: '/_next/static/chunks/pages/auth-3e15ad471f88f13cbd66.js',
+          revision: 'Kq-owiusuOQe5XXwiyic8',
         },
         {
-          url: '/_next/static/chunks/pages/dashboard-3f5efb6d7d83eddeafd8.js',
-          revision: 'avwvc9zOPlTOy9NZRcr1h',
+          url: '/_next/static/chunks/pages/dashboard-af7ea8f6e0e2d3de5e01.js',
+          revision: 'Kq-owiusuOQe5XXwiyic8',
         },
         {
           url: '/_next/static/chunks/pages/dashboard/archive-aa460fcfe2a50b973bfd.js',
-          revision: 'avwvc9zOPlTOy9NZRcr1h',
+          revision: 'Kq-owiusuOQe5XXwiyic8',
         },
         {
           url: '/_next/static/chunks/pages/dashboard/bonuses-04a10fefd809aedffa1b.js',
-          revision: 'avwvc9zOPlTOy9NZRcr1h',
+          revision: 'Kq-owiusuOQe5XXwiyic8',
         },
         {
-          url: '/_next/static/chunks/pages/dashboard/details-6ef0652c259ca19fbdc0.js',
-          revision: 'avwvc9zOPlTOy9NZRcr1h',
+          url: '/_next/static/chunks/pages/dashboard/details-4b54942575bf8c911714.js',
+          revision: 'Kq-owiusuOQe5XXwiyic8',
         },
         {
           url: '/_next/static/chunks/pages/dashboard/donations-86beda1df50b5883501a.js',
-          revision: 'avwvc9zOPlTOy9NZRcr1h',
+          revision: 'Kq-owiusuOQe5XXwiyic8',
         },
         {
-          url: '/_next/static/chunks/pages/dashboard/logout-22fe38970a5449466444.js',
-          revision: 'avwvc9zOPlTOy9NZRcr1h',
+          url: '/_next/static/chunks/pages/dashboard/logout-14aaf541f95bcdd9cd91.js',
+          revision: 'Kq-owiusuOQe5XXwiyic8',
         },
         {
-          url: '/_next/static/chunks/pages/dashboard/planning-07a0cdd5a234b19730fb.js',
-          revision: 'avwvc9zOPlTOy9NZRcr1h',
+          url: '/_next/static/chunks/pages/dashboard/planning-d1b0159a8e796dcfa728.js',
+          revision: 'Kq-owiusuOQe5XXwiyic8',
         },
         {
           url: '/_next/static/chunks/pages/dashboard/questionnaire-1fbb8bbcba2ff96c230b.js',
-          revision: 'avwvc9zOPlTOy9NZRcr1h',
+          revision: 'Kq-owiusuOQe5XXwiyic8',
         },
         {
           url: '/_next/static/chunks/pages/dashboard/recipients-a97a457be4f796aa77ce.js',
-          revision: 'avwvc9zOPlTOy9NZRcr1h',
+          revision: 'Kq-owiusuOQe5XXwiyic8',
         },
         {
           url: '/_next/static/chunks/pages/dashboard/reviews-c92251c8488b338d1386.js',
-          revision: 'avwvc9zOPlTOy9NZRcr1h',
+          revision: 'Kq-owiusuOQe5XXwiyic8',
         },
         {
           url: '/_next/static/chunks/pages/dashboard/settings-e2d91b52cb4cc41a1050.js',
-          revision: 'avwvc9zOPlTOy9NZRcr1h',
+          revision: 'Kq-owiusuOQe5XXwiyic8',
         },
         {
           url: '/_next/static/chunks/pages/donor-search-047153ad64f05652dea7.js',
-          revision: 'avwvc9zOPlTOy9NZRcr1h',
+          revision: 'Kq-owiusuOQe5XXwiyic8',
         },
         {
           url: '/_next/static/chunks/pages/donor-stories-80fd7738641f829c50cf.js',
-          revision: 'avwvc9zOPlTOy9NZRcr1h',
+          revision: 'Kq-owiusuOQe5XXwiyic8',
         },
         {
           url: '/_next/static/chunks/pages/index-4bb4b7f6e981a54076d7.js',
-          revision: 'avwvc9zOPlTOy9NZRcr1h',
+          revision: 'Kq-owiusuOQe5XXwiyic8',
         },
         {
           url: '/_next/static/chunks/pages/monitoring-692128bc3c07b8bb5a1e.js',
-          revision: 'avwvc9zOPlTOy9NZRcr1h',
+          revision: 'Kq-owiusuOQe5XXwiyic8',
         },
         {
           url: '/_next/static/chunks/pages/top-donors-9760c775b544c7dbaf62.js',
-          revision: 'avwvc9zOPlTOy9NZRcr1h',
+          revision: 'Kq-owiusuOQe5XXwiyic8',
         },
         {
           url: '/_next/static/chunks/polyfills-b11c1fb6b732584812ef.js',
-          revision: 'avwvc9zOPlTOy9NZRcr1h',
+          revision: 'Kq-owiusuOQe5XXwiyic8',
         },
         {
           url: '/_next/static/chunks/webpack-eb080e3f091731f228fb.js',
-          revision: 'avwvc9zOPlTOy9NZRcr1h',
+          revision: 'Kq-owiusuOQe5XXwiyic8',
         },
-        { url: '/_next/static/css/28c57f715760a4d6e6ab.css', revision: 'avwvc9zOPlTOy9NZRcr1h' },
-        { url: '/_next/static/css/679831fc89b69737c4c0.css', revision: 'avwvc9zOPlTOy9NZRcr1h' },
+        { url: '/_next/static/css/28c57f715760a4d6e6ab.css', revision: 'Kq-owiusuOQe5XXwiyic8' },
+        { url: '/_next/static/css/679831fc89b69737c4c0.css', revision: 'Kq-owiusuOQe5XXwiyic8' },
         { url: '/app-icons/128x128.png', revision: '0488af03c47d1ad8dde145dda8bbf351' },
         { url: '/app-icons/144x144.png', revision: 'f55cff57b3c0622dbc7e09798e6f86b7' },
         { url: '/app-icons/192x192.png', revision: 'a152185562d9bc6c46847691a2b02269' },
@@ -478,7 +478,7 @@ define('./sw.js', ['./workbox-030153e1'], function (e) {
         cacheName: 'static-image-assets',
         plugins: [
           {
-            handlerDidError: async ({ request: e, event: a, error: s, state: c }) =>
+            handlerDidError: async ({ request: e, event: s, error: i, state: a }) =>
               caches.match('/offline.jpg', { ignoreSearch: !0 }),
           },
           new e.ExpirationPlugin({ maxEntries: 64, maxAgeSeconds: 86400, purgeOnQuotaError: !0 }),
@@ -544,7 +544,7 @@ define('./sw.js', ['./workbox-030153e1'], function (e) {
         networkTimeoutSeconds: 10,
         plugins: [
           {
-            handlerDidError: async ({ request: e, event: a, error: s, state: c }) =>
+            handlerDidError: async ({ request: e, event: s, error: i, state: a }) =>
               caches.match('/_error', { ignoreSearch: !0 }),
           },
           new e.ExpirationPlugin({ maxEntries: 32, maxAgeSeconds: 86400, purgeOnQuotaError: !0 }),

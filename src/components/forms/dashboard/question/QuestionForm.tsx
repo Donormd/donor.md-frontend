@@ -1,40 +1,36 @@
-import { FC, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 
-import { IQuestion, IQuestionList } from '../../../../core/interfaces/question';
-import { getQuestionnaireAction } from '../../../../redux/redusers/forms/dashboard/questionnaire';
-import { useAppDispatch, useAppSelector } from '../../../../redux/store';
+import {
+  IQuestion,
+  IQuestionList,
+  IQuestionnaireStory,
+} from '../../../../core/interfaces/question';
+import { createQuestionnaireAction, getQuestionnaire } from '../../../../queries/questionnaire';
+import { useTypedMutation, useTypedQuery } from '../../../../queries/utils';
+import { Alert } from '../../../alert';
 import { Accordion, Button, Divider, Form, Title } from '../../../UI';
 import { Loading } from '../../../UI/loading';
 import { Question } from './question';
 
 const { Panel } = Accordion;
 
-export const QuestionForm: FC = () => {
-  const dispatch = useAppDispatch();
-  const { data, status } = useAppSelector((state) => state.questionnaire);
-
+export const QuestionForm = () => {
+  const { data, isLoading } = useTypedQuery('question', getQuestionnaire);
+  const { error, mutate, isError } = useTypedMutation('question', (payload: IQuestionnaireStory) =>
+    createQuestionnaireAction(payload),
+  );
   const { handleSubmit } = useForm();
-
-  useEffect(() => {
-    dispatch(getQuestionnaireAction());
-  }, [dispatch]);
 
   const onChangeHandle = (...rest: any[]) => {
     // eslint-disable-next-line no-console
     console.log(rest);
   };
 
-  if (status === 'loading') return <Loading />;
+  if (isLoading) return <Loading />;
 
-  // data?.forEach((item) => {
-  //   console.log(item);
-  // });
-
-  const onSubmit = (data: any) => {
-    // eslint-disable-next-line no-console
-    console.log({ data });
+  const onSubmit = (data: IQuestionnaireStory) => {
+    mutate(data);
   };
 
   return (
@@ -49,12 +45,21 @@ export const QuestionForm: FC = () => {
             </Panel>
           ))}
       </Accordion>
+      {isError && <Alert dismissible>{error?.message}</Alert>}
       <Button variant='outline-danger' size='lg'>
         Сохранить
       </Button>
     </FormWrapper>
   );
 };
+
+const PanelHeader = ({ title }: { title: string }) => (
+  <DividerWrapper>
+    <Title as='h4' bold>
+      {title}
+    </Title>
+  </DividerWrapper>
+);
 
 const FormWrapper = styled(Form)`
   margin-top: 25px;
@@ -65,11 +70,3 @@ const DividerWrapper = styled(Divider)`
     margin: 0;
   }
 `;
-
-const PanelHeader: FC<{ title: string }> = ({ title }) => (
-  <DividerWrapper>
-    <Title as='h4' bold>
-      {title}
-    </Title>
-  </DividerWrapper>
-);

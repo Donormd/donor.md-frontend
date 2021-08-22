@@ -15,6 +15,6 @@ export interface IUser {
   honorary: boolean;
 }
 
-export interface IUserStore extends IUser {
+export interface IUserWithToken extends IUser {
   token: string;
 }

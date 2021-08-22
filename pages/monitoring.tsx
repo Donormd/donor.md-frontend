@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { useMutation, useQuery } from 'react-query';
 import styled from 'styled-components';
 
 import { Alert } from '../src/components/alert';
@@ -8,14 +7,16 @@ import { Button, Divider, FormItem, Input, Paragraph, Title } from '../src/compo
 import { IMonitoringResponse } from '../src/core/interfaces/monitoring';
 import { Container } from '../src/core/layouts/container';
 import { HeaderContentFooter } from '../src/core/layouts/header-content-footer';
-import { getMonitoringData, updateMonitoringData } from '../src/queries/dashboard/monitoring';
+import { getMonitoringData, updateMonitoringData } from '../src/queries/monitoring';
+import { useTypedMutation, useTypedQuery } from '../src/queries/utils';
 
 const Monitoring = () => {
   const { register, handleSubmit, setValue } = useForm();
 
-  const { data: monitoringData } = useQuery('monitoring', getMonitoringData);
-  const { mutate, isError, isSuccess } = useMutation('monitoring', (payload: IMonitoringResponse) =>
-    updateMonitoringData(payload),
+  const { data: monitoringData } = useTypedQuery('monitoring', getMonitoringData);
+  const { mutate, isError, isSuccess } = useTypedMutation(
+    'monitoring',
+    (payload: IMonitoringResponse) => updateMonitoringData(payload),
   );
 
   useEffect(() => {

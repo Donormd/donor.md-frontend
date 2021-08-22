@@ -18,7 +18,7 @@ export const baseFetch = <T>({
   if (headers?.authorization) {
     const token = storage.get<string>('token');
     if (token) {
-      headers.authorization = `Bearer ${token.data}`;
+      headers.authorization = `Bearer ${token}`;
     }
   }
   return api({

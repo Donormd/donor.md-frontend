@@ -1,9 +1,7 @@
 import { FC } from 'react';
 import styled from 'styled-components';
 
-const CenterAllAxes: FC<{ children: React.ReactNode }> = ({ children }) => (
-  <Wrapper>{children}</Wrapper>
-);
+const CenterAllAxes: FC = ({ children }) => <Wrapper>{children}</Wrapper>;
 
 export default CenterAllAxes;
 

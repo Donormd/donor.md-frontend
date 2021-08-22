@@ -1,16 +1,16 @@
 import { Carousel } from 'antd';
 import { useRef } from 'react';
-import { useQuery } from 'react-query';
 
 import NextSVG from '../../../../../public/images/carousel/next.svg';
 import PrevSVG from '../../../../../public/images/carousel/prev.svg';
-import { getStories } from '../../../../queries/dashboard/stories';
+import { getStories } from '../../../../queries/stories';
+import { useTypedQuery } from '../../../../queries/utils';
 import { Title } from '../../../UI';
 import { Loading } from '../../../UI/loading';
 import { Button, ButtonGroup, WrapperDonorStory, WrapperSection } from './styles';
 
 export const Stories = () => {
-  const { data, isLoading } = useQuery('stories', getStories);
+  const { data, isLoading } = useTypedQuery('stories', getStories);
 
   const ref = useRef<any>(null);
 

@@ -1,12 +1,14 @@
+const colors = {
+  white: '#ffffff',
+  black: '#000000',
+  primary: '#ffecdd',
+  danger: '#ff4d4b',
+  pink: '#f8bab4',
+  textMuted: '#808080',
+};
+
 export const theme = {
-  colors: {
-    white: '#ffffff',
-    black: '#000000',
-    primary: '#ffecdd',
-    danger: '#ff4d4b',
-    pink: '#f8bab4',
-    textMuted: '#808080',
-  },
+  colors,
   sizes: {
     controls: {
       sm: {

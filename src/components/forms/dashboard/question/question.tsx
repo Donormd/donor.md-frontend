@@ -1,10 +1,9 @@
-import { FC } from 'react';
 import styled from 'styled-components';
 
 import { IQuestionList } from '../../../../core/interfaces/question';
 import { Input, Paragraph, Select, Switch, Title } from '../../../UI';
 
-export const Question: FC<IQuestionList> = ({ title, paragraph, control }) => {
+export const Question = ({ title, paragraph, control }: IQuestionList) => {
   return (
     <Wrapper>
       <div>

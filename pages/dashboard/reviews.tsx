@@ -1,8 +1,10 @@
+import { QueryClient } from 'react-query';
+import { dehydrate } from 'react-query/hydration';
+
 import { ReviewForm } from '../../src/components/forms/dashboard/review';
 import { Divider, Paragraph, Title, TitleWithArrow } from '../../src/components/UI';
 import { DashboardGrid } from '../../src/core/layouts/dashboard-grid';
-
-// TODO add validation on form
+import { getUser } from '../../src/queries/user';
 
 const ReviewsAdd = () => {
   return (
@@ -23,3 +25,14 @@ const ReviewsAdd = () => {
 };
 
 export default ReviewsAdd;
+
+export const getServerSideProps = async () => {
+  const queryClient = new QueryClient();
+
+  await queryClient.prefetchQuery('user', getUser);
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
+  };
+};

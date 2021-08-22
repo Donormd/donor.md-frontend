@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { FC } from 'react';
 import styled from 'styled-components';
 
 import { Container } from '../../../core/layouts/container';
@@ -23,7 +22,7 @@ const Thanks = styled.div`
   font-size: 0.7rem;
 `;
 
-export const Footer: FC = () => (
+export const Footer = () => (
   <StyledFooter>
     <Container>
       <Grid>

@@ -1,4 +1,3 @@
-import React, { FC } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { FormItem, Input, Title } from '../../UI';
@@ -8,7 +7,7 @@ import { ActionLayout } from './utils';
 
 declare type Props = { onChangeState: onChangeState };
 
-export const RecoveryForm: FC<Props> = ({ onChangeState }) => {
+export const RecoveryForm = ({ onChangeState }: Props) => {
   const { register, handleSubmit } = useForm();
 
   const onSubmit = (data: { email: string }) => {

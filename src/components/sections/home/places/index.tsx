@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import { useState } from 'react';
 import { Map, Placemark, YMaps } from 'react-yandex-maps';
 import styled from 'styled-components';
 
@@ -79,7 +79,7 @@ const places: IPlace[] = [
   },
 ];
 
-export const Places: FC = () => {
+export const Places = () => {
   const [id, setId] = useState<string>('0');
 
   const { placeName, location, timeWork, numbers, geometry } = places[+id];

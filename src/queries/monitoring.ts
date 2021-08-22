@@ -1,8 +1,8 @@
-import { BloodGroup } from '../../components/sections/home/monitoring/blood-item';
-import { monitoringUrl } from '../../core/constants/url';
-import { formatDate } from '../../core/helpers/converters';
-import { IMonitoring, IMonitoringResponse } from '../../core/interfaces/monitoring';
-import { baseFetch } from '../../core/services/fetch';
+import { BloodGroup } from '../components/sections/home/monitoring/blood-item';
+import { monitoringUrl } from '../core/constants/url';
+import { formatDate } from '../core/helpers/converters';
+import { IMonitoring, IMonitoringResponse } from '../core/interfaces/monitoring';
+import { baseFetch } from '../core/services/fetch';
 
 interface ValuesType {
   group: BloodGroup;

@@ -1,6 +1,5 @@
 /* eslint no-console:0 */
 
-import { useQuery } from 'react-query';
 import styled from 'styled-components';
 
 import { DonorStory } from '../src/components/donor-story';
@@ -11,7 +10,8 @@ import { Loading } from '../src/components/UI/loading';
 import { IOptions } from '../src/core/interfaces/IIterableStruct';
 import { Container } from '../src/core/layouts/container';
 import { HeaderContentFooter } from '../src/core/layouts/header-content-footer';
-import { getStories } from '../src/queries/dashboard/stories';
+import { getStories } from '../src/queries/stories';
+import { useTypedQuery } from '../src/queries/utils';
 
 const buttons: IOptions[] = [
   { _id: '1', text: 'Истории доноров' },
@@ -21,7 +21,7 @@ const buttons: IOptions[] = [
 const handleClick: (val: string) => void = (val) => console.log(val);
 
 const DonorStoriesPage = () => {
-  const { data, isLoading } = useQuery(['donor', 'stories'], getStories);
+  const { data, isLoading } = useTypedQuery('stories', getStories);
   return (
     <HeaderContentFooter background='/images/pages/welcome.png'>
       <Container>

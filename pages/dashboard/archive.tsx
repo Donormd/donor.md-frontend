@@ -1,13 +1,16 @@
 /* eslint-disable no-console */
 import { Table as AntTable } from 'antd';
-import { useQuery } from 'react-query';
-import styled from 'styled-components';
+import { QueryClient } from 'react-query';
+import { dehydrate } from 'react-query/hydration';
+import styled, { css } from 'styled-components';
 
-import DashboardButtonsLinks from '../../src/components/dashboard-buttons-links';
+import { DashboardButtonsLinks } from '../../src/components/dashboard-buttons-links';
 import Pagination from '../../src/components/pagination';
 import { StyledLink, Title, TitleWithArrow } from '../../src/components/UI';
 import { DashboardGrid } from '../../src/core/layouts/dashboard-grid';
-import { getDonation } from '../../src/queries/dashboard/donations';
+import { getDonation } from '../../src/queries/donations';
+import { getUser } from '../../src/queries/user';
+import { useTypedQuery } from '../../src/queries/utils';
 
 const mock = [
   {
@@ -142,7 +145,7 @@ const columns = [
 ];
 
 const DonationsArchive = () => {
-  const { data, isLoading } = useQuery('donations', getDonation);
+  const { data, isLoading } = useTypedQuery('donations', getDonation);
 
   console.log(data, isLoading);
   return (
@@ -156,6 +159,17 @@ const DonationsArchive = () => {
 };
 
 export default DonationsArchive;
+
+export const getServerSideProps = async () => {
+  const queryClient = new QueryClient();
+
+  await queryClient.prefetchQuery('user', getUser);
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
+  };
+};
 
 const Table = styled(AntTable)`
   & .ant-table {
@@ -187,19 +201,21 @@ const Table = styled(AntTable)`
   }
 `;
 
-const Count = styled.div`
-  margin: 0;
-  color: var(--red);
-  background: var(--red-diluted);
-  line-height: 50px;
-  border-radius: 5px;
-  font-weight: bold;
-  font-size: 1.4rem;
-  text-align: center;
-  width: 50px;
-  height: 50px;
-  vertical-align: middle;
-`;
+const Count = styled.div(
+  ({ theme }) => css`
+    margin: 0;
+    color: ${theme.colors.red};
+    background: ${theme.colors.redDiluted};
+    line-height: 50px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1.4rem;
+    text-align: center;
+    width: 50px;
+    height: 50px;
+    vertical-align: middle;
+  `,
+);
 
 const Link = styled(StyledLink)`
   color: black;

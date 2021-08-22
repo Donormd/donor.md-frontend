@@ -1,12 +1,11 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { FC } from 'react';
 
 import { Button, Title } from '../../../UI';
 import { Section } from '../utils';
 import { Article, ArticleGrid, ImageWrapper, SectionTitle, Underline } from './styles';
 
-const CallToAction: FC = () => (
+export const CallToAction = () => (
   <Section id='call-to-action'>
     <SectionTitle as='h2' bold>
       С нами уже{' '}
@@ -41,5 +40,3 @@ const CallToAction: FC = () => (
     </ArticleGrid>
   </Section>
 );
-
-export default CallToAction;

@@ -1,23 +1,17 @@
 import Image from 'next/image';
-import { FC, useState } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 
-import { useAuth } from '../../core/hooks/useAuth';
 import { AdditionalButtons } from './additional-buttons';
 
-export const PlanningButton: FC = () => {
+export const PlanningButton = () => {
   const [visible, setVisible] = useState(false);
-  const auth = useAuth();
-
-  if (!auth?.user) return null;
 
   return (
     <div>
       <ButtonGroup visible={visible}>
-        {/* eslint-disable-next-line @typescript-eslint/no-empty-function */}
-        <ButtonRed onClick={() => {}}>Запланировать донацию</ButtonRed>
-        {/* eslint-disable-next-line @typescript-eslint/no-empty-function */}
-        <ButtonRed onClick={() => {}}>Добавить донацию</ButtonRed>
+        <ButtonRed onClick={() => null}>Запланировать донацию</ButtonRed>
+        <ButtonRed onClick={() => null}>Добавить донацию</ButtonRed>
       </ButtonGroup>
       <ButtonWrapper onClick={() => setVisible((s) => !s)}>
         <Image src='/images/icons/planning-button.svg' layout='fill' />

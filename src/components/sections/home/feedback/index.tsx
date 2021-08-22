@@ -1,25 +1,25 @@
 import Image from 'next/image';
-import { FC } from 'react';
 import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 
-import { IFeedback, sendFeedback } from '../../../../redux/redusers/feedback';
-import { useAppDispatch, useAppSelector } from '../../../../redux/store';
+import { createFeedback, IFeedback } from '../../../../queries/feedback';
+import { useTypedMutation } from '../../../../queries/utils';
 import { Alert } from '../../../alert';
-import SocialMediaLinks from '../../../social-media-links';
+import { SocialMediaLinks } from '../../../social-media-links';
 import { Button, FormItem, Input, TextArea, Title } from '../../../UI';
 import { Loading } from '../../../UI/loading';
 import { Section } from '../utils';
 import { Grid, ImageWrapper, SectionParagraph, Social } from './styles';
 
-const Feedback: FC = () => {
+export const Feedback = () => {
   const { handleSubmit, register, reset } = useForm();
-
-  const { status, error } = useAppSelector((state) => state.feedback);
-  const dispatch = useAppDispatch();
+  const { mutate, isError, isLoading, isSuccess, error } = useTypedMutation(
+    'feedback',
+    (payload: IFeedback) => createFeedback(payload),
+  );
 
   const onSubmit = (data: IFeedback) => {
-    dispatch(sendFeedback(data));
+    mutate(data);
     reset();
   };
 
@@ -35,9 +35,9 @@ const Feedback: FC = () => {
             нашего общего сотрудничества
           </SectionParagraph>
           <form onSubmit={handleSubmit(onSubmit)}>
-            {status === 'success' && <Alert dismissible message='Спасибо что написали нам' />}
-            {status === 'error' && <Alert dismissible message={error} />}
-            {status === 'loading' && <Loading />}
+            {isSuccess && <Alert dismissible message='Спасибо что написали нам' />}
+            {isError && <Alert dismissible message={error?.message} />}
+            {isLoading && <Loading />}
             <FormItem columns={1}>
               <HalfWidth>
                 <Input
@@ -72,8 +72,6 @@ const Feedback: FC = () => {
     </Section>
   );
 };
-
-export default Feedback;
 
 const HalfWidth = styled.div`
   width: 100%;

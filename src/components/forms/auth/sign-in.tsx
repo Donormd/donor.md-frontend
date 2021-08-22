@@ -1,22 +1,19 @@
 import { useForm } from 'react-hook-form';
 
-import { useAuth } from '../../../core/hooks/useAuth';
-import { useRequiredAuth } from '../../../core/hooks/useRequiredAuth';
-import { useAppSelector } from '../../../redux/store';
+import { emailRegex } from '../../../core/constants/regex';
+import { signIn, signInType } from '../../../queries/user';
+import { useTypedMutation } from '../../../queries/utils';
 import { Alert } from '../../alert';
 import { FormItem, Input, Title } from '../../UI';
 import { onChangeState } from './types';
 import { ActionLayout, WrappedLink } from './utils';
 
 export const SignInForm = ({ onChangeState }: { onChangeState: onChangeState }) => {
-  const { error } = useAppSelector((state) => state.user);
+  const { mutate, isError } = useTypedMutation('user', (payload: signInType) => signIn(payload));
   const { handleSubmit, register, errors } = useForm();
-  const auth = useAuth();
 
-  useRequiredAuth('/dashboard', '/auth');
-
-  const onSubmit = (data: { email: string; password: string }) => {
-    auth?.signIn(data);
+  const onSubmit = (data: signInType) => {
+    mutate(data);
   };
 
   return (
@@ -31,7 +28,7 @@ export const SignInForm = ({ onChangeState }: { onChangeState: onChangeState }) 
           innerRef={register({
             required: 'Обязательное поле',
             pattern: {
-              value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+              value: emailRegex,
               message: 'Введите email',
             },
           })}
@@ -61,7 +58,7 @@ export const SignInForm = ({ onChangeState }: { onChangeState: onChangeState }) 
           Забыли пароль?
         </WrappedLink>
       </div>
-      {error && <Alert dismissible>{error}</Alert>}
+      {isError && <Alert dismissible />}
     </form>
   );
 };

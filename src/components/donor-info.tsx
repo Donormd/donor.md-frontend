@@ -1,15 +1,16 @@
 import Image from 'next/image';
+import { memo } from 'react';
 import styled from 'styled-components';
 
 import { Paragraph, Title } from './UI';
 
-export interface DonorInfoProps {
+type DonorInfoType = {
   honorary: boolean;
   name: string;
   lastname: string;
-}
+};
 
-export const DonorInfo = ({ honorary, name, lastname }: DonorInfoProps) => {
+export const DonorInfo = memo(({ honorary, name, lastname }: DonorInfoType) => {
   return (
     <Layer>
       <ImageWrapper>
@@ -26,7 +27,7 @@ export const DonorInfo = ({ honorary, name, lastname }: DonorInfoProps) => {
       </div>
     </Layer>
   );
-};
+});
 
 const Layer = styled.div`
   display: flex;

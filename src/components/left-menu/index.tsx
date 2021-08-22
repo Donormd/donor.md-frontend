@@ -1,40 +1,32 @@
 import { useRouter } from 'next/dist/client/router';
-import { FC, useEffect } from 'react';
+import { memo, useEffect } from 'react';
+import { useRecoilState } from 'recoil';
 
-import { actions } from '../../redux/redusers/left-menu';
-import { useAppDispatch, useAppSelector } from '../../redux/store';
+import { leftMenuAtom } from '../../store/atoms/left-menu-atom';
 import { ResponsiveLogo } from '../logo';
 import { MenuLink } from './menu-link';
+import { mock } from './mock';
 import { Aside, AsideWrapper, Menu } from './styles';
 
-const LeftMenu: FC<{ image?: string }> = ({ image }) => {
-  const { data, selectId } = useAppSelector((state) => state.leftMenu);
+export const LeftMenu = memo(({ image }: { image?: string }) => {
+  const [activeId, setActiveId] = useRecoilState(leftMenuAtom);
   const { pathname } = useRouter();
-  const dispatch = useAppDispatch();
-
-  const { setMenu } = actions;
 
   useEffect(() => {
-    const activeMenu = data.filter((item) => item.href === pathname)[0];
-    activeMenu?.key && dispatch(setMenu(activeMenu.key));
-  }, [data, dispatch, pathname, setMenu]);
+    const activeMenu = mock.filter((item) => item.href === pathname)[0];
+    activeMenu.key && setActiveId(activeMenu.key);
+  }, [pathname, setActiveId]);
 
   return (
     <Aside image={image}>
       <AsideWrapper>
         <ResponsiveLogo />
         <Menu>
-          {data.map((item, i) => (
-            <MenuLink
-              active={i + 1 === selectId}
-              {...item}
-              handleClick={() => dispatch(setMenu(i))}
-            />
+          {mock.map((item, i) => (
+            <MenuLink active={i === activeId} {...item} handleClick={() => setActiveId(i)} />
           ))}
         </Menu>
       </AsideWrapper>
     </Aside>
   );
-};
-
-export default LeftMenu;
+});

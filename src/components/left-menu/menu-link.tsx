@@ -1,21 +1,17 @@
 import { Tooltip } from 'antd';
 import Link from 'next/link';
-import { FC } from 'react';
 import { ReactSVG } from 'react-svg';
 
-import { IMenuLinkProps } from '../../redux/redusers/left-menu';
+import { IMenuLinkProps } from './mock';
 import { IconWrapper, LinkButton, MenuItem, Paragraph } from './styles';
 
 type WithButton = {
   handleClick?: () => void;
 };
 
-export const MenuLink: FC<IMenuLinkProps & { active: boolean } & WithButton> = ({
-  active,
-  imageSrc,
-  href,
-  text,
-}) => (
+type MenuLinkType = IMenuLinkProps & { active: boolean } & WithButton;
+
+export const MenuLink = ({ active, imageSrc, href, text }: MenuLinkType) => (
   <Link href={href} passHref>
     <Tooltip title={text} placement='left'>
       <MenuItem>

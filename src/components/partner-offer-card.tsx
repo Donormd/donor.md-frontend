@@ -5,45 +5,47 @@ import styled from 'styled-components';
 import { formatDate } from '../core/helpers/converters';
 import { Button, Paragraph, Title } from './UI';
 
-export interface IProps {
+type PartnerOfferCardType = {
   src: string;
   name: string;
   discount: string;
   condition: string;
   date: string;
-}
+};
 
-export const PartnerOfferCard = memo(({ src, name, discount, condition, date }: IProps) => {
-  return (
-    <Card>
-      <Image src={src} width={100} height={100} layout='fixed' />
-      <One>
-        <Title as='h3'>{name}</Title>
-        <Paragraph>
-          <RedHighlight>{discount}</RedHighlight>
-        </Paragraph>
-      </One>
-      <Second>
-        <Title as='h6' color='textMuted' bold>
-          Условие:
-        </Title>
-        <Paragraph size='0.85rem' color='textMuted'>
-          {condition}
-        </Paragraph>
-      </Second>
-      <Three>
-        <ThreeParagraph bold>
-          Срок действия предложения до <RedHighlight>{formatDate(new Date(date))}</RedHighlight>
-        </ThreeParagraph>
-      </Three>
-      <Four>
-        <Button variant='outline-danger' size='lg'>
-          Подробнее
-        </Button>
-      </Four>
-    </Card>
-  );
-});
+export const PartnerOfferCard = memo(
+  ({ src, name, discount, condition, date }: PartnerOfferCardType) => {
+    return (
+      <Card>
+        <Image src={src} width={100} height={100} layout='fixed' />
+        <One>
+          <Title as='h3'>{name}</Title>
+          <Paragraph>
+            <RedHighlight>{discount}</RedHighlight>
+          </Paragraph>
+        </One>
+        <Second>
+          <Title as='h6' color='textMuted' bold>
+            Условие:
+          </Title>
+          <Paragraph size='0.85rem' color='textMuted'>
+            {condition}
+          </Paragraph>
+        </Second>
+        <Three>
+          <ThreeParagraph bold>
+            Срок действия предложения до <RedHighlight>{formatDate(new Date(date))}</RedHighlight>
+          </ThreeParagraph>
+        </Three>
+        <Four>
+          <Button variant='outline-danger' size='lg'>
+            Подробнее
+          </Button>
+        </Four>
+      </Card>
+    );
+  },
+);
 
 const Card = styled.article`
   display: grid;

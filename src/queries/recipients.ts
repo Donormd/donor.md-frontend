@@ -1,5 +1,5 @@
-import { IRecipient } from '../../core/interfaces/recipient';
-import { baseFetch } from '../../core/services/fetch';
+import { IRecipient } from '../core/interfaces/recipient';
+import { baseFetch } from '../core/services/fetch';
 
 export const getRecipients = async () => {
   const { data } = await baseFetch<IRecipient[]>({

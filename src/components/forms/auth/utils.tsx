@@ -1,15 +1,14 @@
-import { FC } from 'react';
 import styled from 'styled-components';
 
 import { Button, StyledLink } from '../../UI';
 
-export declare type Props = {
+type ActionLayoutType = {
   btnText: string;
   linkText: string;
   linkOnClick: () => void;
 };
 
-export const ActionLayout: FC<Props> = ({ btnText, linkText, linkOnClick }) => (
+export const ActionLayout = ({ btnText, linkText, linkOnClick }: ActionLayoutType) => (
   <StyledLayout>
     <Button type='submit' variant='danger' size='lg'>
       {btnText}

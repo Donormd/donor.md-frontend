@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import styled from 'styled-components';
 
 import { Title } from '../../../UI';
@@ -11,11 +10,10 @@ interface IProps {
     time: string;
     dinner: string;
   };
-  numbers: Array<string>;
+  numbers: string[];
 }
 
-export const Place: FC<IProps> = (props) => {
-  const { placeName, location, timeWork, numbers } = props;
+export const Place = ({ placeName, location, timeWork, numbers }: IProps) => {
   return (
     <address>
       <Title as='h3' bold>

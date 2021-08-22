@@ -1,11 +1,10 @@
-import { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import styled from 'styled-components';
 
 import { IReview } from '../../../core/interfaces/review';
-import { getOptions } from '../../../redux/common';
-import { createReviewAction } from '../../../redux/redusers/review';
-import { useAppDispatch, useAppSelector } from '../../../redux/store';
+import { getOptions } from '../../../queries/common';
+import { createReview } from '../../../queries/review';
+import { useTypedMutation, useTypedQuery } from '../../../queries/utils';
 import { Alert } from '../../alert';
 import { Button, Divider, Form, FormItem, Select, Slider, TextArea, Title } from '../../UI';
 
@@ -21,24 +20,26 @@ const marks = {
 const formatter = (value?: number) => value && `${((5 / 100) * value).toFixed(1)}`;
 
 export const ReviewForm = () => {
-  const dispatch = useAppDispatch();
   const { control, handleSubmit, register } = useForm();
 
-  const { data, status: bloodStatus } = useAppSelector((state) => state.common.bloodCenter);
-  const { status, error: reviewError } = useAppSelector((state) => state.review);
+  const { data: bloodCenter, isLoading: bloodCenterLoading } = useTypedQuery('bloodCenter', () =>
+    getOptions('bloodCenter'),
+  );
 
-  useEffect(() => {
-    dispatch(getOptions('bloodCenter'));
-  }, [dispatch]);
+  const { mutate, isSuccess: isSuccessReview, isError: isErrorReview } = useTypedMutation(
+    'review',
+    (review: IReview) => createReview(review),
+  );
 
   const onSubmit = (data: IReview) => {
-    const sendData = Object.entries(data).reduce((acc, [key, value]) => {
+    const preparedData = Object.entries(data).reduce((acc, [key, value]) => {
       return {
         ...acc,
         [key]: typeof value === 'number' ? Math.round(value / 25) : value,
       };
     }, {} as IReview);
-    dispatch(createReviewAction(sendData));
+
+    mutate(preparedData);
   };
 
   return (
@@ -48,14 +49,11 @@ export const ReviewForm = () => {
           name='bloodCenterId'
           control={control}
           render={(props) => (
-            <Select
-              size='large'
-              placeholder='Выбор центра'
-              loading={bloodStatus === 'loading'}
-              {...props}
-            >
-              {data.length &&
-                data.map((item) => <Select.Option value={item._id}>{item.text}</Select.Option>)}
+            <Select size='large' placeholder='Выбор центра' loading={bloodCenterLoading} {...props}>
+              {bloodCenter &&
+                bloodCenter.map((item) => (
+                  <Select.Option value={item._id}>{item.text}</Select.Option>
+                ))}
             </Select>
           )}
         />
@@ -124,8 +122,8 @@ export const ReviewForm = () => {
       <Button variant='outline-danger' size='lg' type='submit'>
         Отправить
       </Button>
-      {status === 'error' && <Alert dismissible>{reviewError}</Alert>}
-      {status === 'success' && <Alert dismissible>Спасибо что оставили отзыв</Alert>}
+      {isErrorReview && <Alert dismissible>Что-то пошло не так</Alert>}
+      {isSuccessReview && <Alert dismissible>Спасибо что оставили отзыв</Alert>}
     </FormWrapper>
   );
 };

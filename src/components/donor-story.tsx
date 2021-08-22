@@ -1,9 +1,10 @@
 import Image from 'next/image';
+import { memo } from 'react';
 import styled from 'styled-components';
 
 import { IDonorStory } from '../core/interfaces/story';
 
-export const DonorStory = ({ src, fullname, count, story, ...rest }: IDonorStory) => (
+export const DonorStory = memo(({ src, fullname, count, story, ...rest }: IDonorStory) => (
   <Wrapper {...rest}>
     <Image src={src} width={70} height={70} layout='fixed' />
     <StoryHead>
@@ -12,7 +13,7 @@ export const DonorStory = ({ src, fullname, count, story, ...rest }: IDonorStory
     </StoryHead>
     <StoryBody>{story}</StoryBody>
   </Wrapper>
-);
+));
 
 const Wrapper = styled.article`
   display: grid;

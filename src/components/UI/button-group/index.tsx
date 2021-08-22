@@ -1,10 +1,10 @@
-import { FC, useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import { Button } from '../button';
 import { IProps } from './types';
 
-export const ButtonGroup: FC<IProps> = ({ buttons, handleClick }) => {
+export const ButtonGroup = ({ buttons, handleClick }: IProps) => {
   const [buttonId, setButtonId] = useState<string>('0');
   const [{ _id }] = buttons;
 

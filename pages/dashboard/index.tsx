@@ -1,12 +1,12 @@
+import { QueryClient } from 'react-query';
+import { dehydrate } from 'react-query/hydration';
 import styled from 'styled-components';
 
 import { Loading } from '../../src/components/UI/loading';
-import { useRequiredAuth } from '../../src/core/hooks/useRequiredAuth';
 import { HeaderContentFooter } from '../../src/core/layouts/header-content-footer';
+import { getUser } from '../../src/queries/user';
 
 const Dashboard = () => {
-  useRequiredAuth('/dashboard/details', '/auth');
-
   return (
     <HeaderContentFooter>
       <Wrapper>
@@ -21,3 +21,14 @@ const Wrapper = styled.div`
 `;
 
 export default Dashboard;
+
+export const getServerSideProps = async () => {
+  const queryClient = new QueryClient();
+
+  await queryClient.prefetchQuery('user', getUser);
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
+  };
+};

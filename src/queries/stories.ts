@@ -1,9 +1,19 @@
-import { IDonorStory } from '../../core/interfaces/story';
-import { baseFetch } from '../../core/services/fetch';
+import { IDonorStory } from '../core/interfaces/story';
+import { baseFetch } from '../core/services/fetch';
 
 export const getStories = async () => {
   const { data } = await baseFetch<IDonorStory[]>({
     url: `/story/`,
+    headers: {
+      authorization: true,
+    },
+  });
+  return data;
+};
+
+export const getUserStory = async () => {
+  const { data } = await baseFetch<IDonorStory[]>({
+    url: `/user/story/`,
     headers: {
       authorization: true,
     },

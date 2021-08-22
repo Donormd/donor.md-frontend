@@ -1,5 +1,5 @@
-import { PlanningForm } from '../../core/interfaces/planning';
-import { baseFetch } from '../../core/services/fetch';
+import { PlanningForm } from '../core/interfaces/planning';
+import { baseFetch } from '../core/services/fetch';
 
 export const getPlanning = async () => {
   await baseFetch({

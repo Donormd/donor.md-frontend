@@ -1,8 +1,8 @@
 import Image from 'next/image';
-import { FC, memo } from 'react';
+import { memo } from 'react';
 import styled from 'styled-components';
 
-export declare type Props = {
+type RateType = {
   count: number;
   total: number;
 };
@@ -19,7 +19,7 @@ const RateWrapper = styled.div`
   }
 `;
 
-export const Rate: FC<Props> = memo(({ count, total }) => {
+export const Rate = memo(({ count, total }: RateType) => {
   const icons = Array(total)
     .fill(1)
     .map((v, i) => i + 1);

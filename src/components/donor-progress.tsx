@@ -1,15 +1,7 @@
 import { Progress } from 'antd';
-import { FC } from 'react';
 import styled from 'styled-components';
 
-const Layout = styled.div`
-  padding: 10px;
-  border-radius: ${({ theme }) => theme.radius};
-  border: ${({ theme }) => `1px solid ${theme.red}`};
-  background: white;
-`;
-
-const DonorProgress: FC = () => {
+export const DonorProgress = () => {
   return (
     <Layout>
       <Progress percent={75} showInfo={false} status='exception' />
@@ -18,4 +10,9 @@ const DonorProgress: FC = () => {
   );
 };
 
-export default DonorProgress;
+const Layout = styled.div`
+  padding: 10px;
+  border-radius: ${({ theme }) => theme.radius};
+  border: ${({ theme }) => `1px solid ${theme.red}`};
+  background: white;
+`;

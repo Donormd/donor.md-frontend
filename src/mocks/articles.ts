@@ -1,5 +1,3 @@
-import { createSlice } from '@reduxjs/toolkit';
-
 export interface IMockItem {
   _id: string;
   image: {
@@ -19,7 +17,7 @@ export interface IMockType {
   aboutPage: IMockItem[];
 }
 
-const mock: IMockType = {
+export const articlesMock: IMockType = {
   home: [
     {
       _id: '1',
@@ -105,15 +103,3 @@ const mock: IMockType = {
     },
   ],
 };
-
-const initialState = {
-  ...mock,
-};
-
-const aboutDonations = createSlice({
-  name: 'AboutDonations',
-  initialState,
-  reducers: {},
-});
-
-export const { reducer, caseReducers, actions } = aboutDonations;

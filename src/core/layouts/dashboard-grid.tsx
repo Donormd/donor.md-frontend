@@ -1,30 +1,17 @@
-import React, { FC } from 'react';
+import { FC, memo } from 'react';
 import styled from 'styled-components';
 
-import LeftMenu from '../../components/left-menu';
+import { LeftMenu } from '../../components/left-menu';
 import RightMenu from '../../components/right-menu';
-import { Loading } from '../../components/UI/loading';
 import { useAuth } from '../hooks/useAuth';
-import { useRequiredAuth } from '../hooks/useRequiredAuth';
-import CenterAllAxes from './center-all-axes';
 
-interface IProps {
+type DashboardGridType = {
   leftImage?: string;
   className?: string;
-}
+};
 
-export const DashboardGrid: FC<IProps> = ({ children, className, leftImage }) => {
-  const auth = useAuth();
-
-  useRequiredAuth(null, '/auth');
-
-  if (!auth?.user)
-    return (
-      <CenterAllAxes>
-        <Loading />
-      </CenterAllAxes>
-    );
-
+export const DashboardGrid: FC<DashboardGridType> = memo(({ children, className, leftImage }) => {
+  useAuth();
   return (
     <Main>
       <LeftMenu image={leftImage} />
@@ -32,7 +19,7 @@ export const DashboardGrid: FC<IProps> = ({ children, className, leftImage }) =>
       <RightMenu />
     </Main>
   );
-};
+});
 
 const Main = styled.main`
   display: grid;

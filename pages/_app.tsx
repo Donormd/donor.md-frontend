@@ -6,14 +6,13 @@ import Head from 'next/head';
 import { appWithTranslation } from 'next-i18next';
 import { DefaultSeo } from 'next-seo';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { Provider } from 'react-redux';
+import { RecoilRoot } from 'recoil';
 import { ThemeProvider } from 'styled-components';
 
 import configSEO from '../next-seo.config';
 import { PlanningButton } from '../src/components/planning-button';
 import { theme } from '../src/components/UI/theme';
-import { AuthProvider } from '../src/core/hooks/useAuth';
-import { store } from '../src/redux/store';
+import { DebugObserver } from '../src/store/debugObserver';
 import GlobalStyles from '../src/styles/globals';
 import TypographyStyles from '../src/styles/typography';
 
@@ -29,17 +28,16 @@ const App = ({ Component, pageProps }: AppProps) => {
         />
       </Head>
       <QueryClientProvider client={queryClient}>
-        <Provider store={store}>
+        <RecoilRoot>
+          <DebugObserver />
           <ThemeProvider theme={theme}>
-            <AuthProvider>
-              <GlobalStyles />
-              <TypographyStyles />
-              <DefaultSeo {...configSEO} />
-              <Component {...pageProps} />
-              <PlanningButton />
-            </AuthProvider>
+            <GlobalStyles />
+            <TypographyStyles />
+            <DefaultSeo {...configSEO} />
+            <Component {...pageProps} />
+            <PlanningButton />
           </ThemeProvider>
-        </Provider>
+        </RecoilRoot>
       </QueryClientProvider>
     </>
   );
