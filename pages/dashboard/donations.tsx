@@ -1,6 +1,4 @@
 import { Controller, useForm } from 'react-hook-form';
-import { QueryClient } from 'react-query';
-import { dehydrate } from 'react-query/hydration';
 import styled from 'styled-components';
 
 import { Alert } from '../../src/components/alert';
@@ -15,7 +13,16 @@ import { getUser } from '../../src/queries/user';
 import { useTypedMutation, useTypedQuery } from '../../src/queries/utils';
 
 const Donations = () => {
-  const { register, control, handleSubmit } = useForm();
+  const { register, control, handleSubmit } = useForm({
+    defaultValues: {
+      referenceNumber: null,
+      donationNumber: '',
+      date: '',
+      transfusionCenterId: '',
+      recipientId: '',
+      referenceImg: '',
+    },
+  });
   const { data: bloodCenter } = useTypedQuery('bloodCenter', () => getOptions('bloodCenter'));
   const { data: transfusionCenter } = useTypedQuery('transfusionCenter', () =>
     getOptions('transfusionCenter'),
@@ -39,10 +46,10 @@ const Donations = () => {
       <DashboardButtonsLinks />
       <Form onSubmit={handleSubmit(onSubmit)}>
         <FormItem columns={2} label='Номер справки' required>
-          <Input name='referenceNumber' innerRef={register} />
+          <Input name='referenceNumber' ref={register} />
         </FormItem>
         <FormItem columns={2} label='Номер донации' required>
-          <Input name='donationNumber' innerRef={register} />
+          <Input name='donationNumber' ref={register} />
         </FormItem>
         <FormItem columns={2} label='Дата кровосдачи' required>
           <Input name='date' type='date' />
@@ -55,7 +62,9 @@ const Donations = () => {
               <Select size='large' placeholder='Выберите место сдачи'>
                 {transfusionCenter &&
                   transfusionCenter.map(({ _id, text }) => (
-                    <Select.Option value={_id}>{text}</Select.Option>
+                    <Select.Option key={_id} value={_id}>
+                      {text}
+                    </Select.Option>
                   ))}
               </Select>
             }
@@ -87,7 +96,7 @@ const Donations = () => {
           `}
           required
         >
-          <Input type='file' name='referenceImg' innerRef={register} />
+          <Input type='file' name='referenceImg' ref={register} />
         </FormItem>
         <ButtonsRow>
           <Button type='submit' variant='outline-danger' size='lg'>
@@ -98,9 +107,9 @@ const Donations = () => {
       </Form>
       {isSuccess && (
         <Alert dismissible>
-          Спасибо, Ваша донация отправлена на проверку. Если Выправильно заполнилнили форму и
-          прикрепили нужную справку,то после проверки ваша донация автоматически добавиться.Для
-          проверки необходимо до 5-ти рабочих дней.Не забывайте заходить в Ваш личный кабинет.
+          Спасибо, Ваша донация отправлена на проверку. Если Выправильно заполнилнили форму и прикрепили
+          нужную справку,то после проверки ваша донация автоматически добавиться.Для проверки необходимо до
+          5-ти рабочих дней.Не забывайте заходить в Ваш личный кабинет.
         </Alert>
       )}
       {isError && <Alert dismissible>Что-то пошло не так</Alert>}
@@ -111,13 +120,8 @@ const Donations = () => {
 export default Donations;
 
 export const getServerSideProps = async () => {
-  const queryClient = new QueryClient();
-
-  await queryClient.prefetchQuery('user', getUser);
   return {
-    props: {
-      dehydratedState: dehydrate(queryClient),
-    },
+    props: {},
   };
 };
 

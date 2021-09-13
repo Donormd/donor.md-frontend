@@ -10,7 +10,7 @@ export const Question = ({ title, paragraph, control }: IQuestionList) => {
         <Title as='h4' margin='10px'>
           {title}
         </Title>
-        <Paragraph color='textMuted' margin='10px'>
+        <Paragraph color='textMuted' margin='0 0 10px 0'>
           {paragraph}
         </Paragraph>
       </div>

@@ -104,8 +104,8 @@ export const StyledButton = styled.button<IButtonWrapperProps>`
   padding: ${({ size, theme }) => theme.sizes.controls[size].padding};
   font-size: ${({ size, theme }) => theme.sizes.controls[size].fontSize};
   border-radius: ${({ size, theme }) => theme.sizes.controls[size].radius};
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
-    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
 
   &:hover {
     ${({ variant }) => css`
@@ -126,15 +126,7 @@ export const StyledButton = styled.button<IButtonWrapperProps>`
 
 export const Button = forwardRef<HTMLButtonElement, IButtonProps>(
   (
-    {
-      children,
-      className,
-      disabled = false,
-      variant = 'primary',
-      size = 'md',
-      type = 'button',
-      ...rest
-    },
+    { children, className, disabled = false, variant = 'primary', size = 'md', type = 'button', ...rest },
     ref,
   ) => {
     return (

@@ -68,9 +68,7 @@ const buttons: IOptions[] = [
 const handleClick: (val: string) => void = (val) => console.log(val);
 
 const TopDonorsPage = () => {
-  const { data, isLoading, isSuccess } = useTypedQuery('stories', () =>
-    getTopDonors(buttons[0]._id),
-  );
+  const { data, isLoading, isSuccess } = useTypedQuery('stories', () => getTopDonors(buttons[0]._id));
   return (
     <HeaderContentFooter background='/images/pages/welcome.png'>
       <Container>

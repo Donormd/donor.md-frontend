@@ -1,11 +1,8 @@
 import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 
-import {
-  IQuestion,
-  IQuestionList,
-  IQuestionnaireStory,
-} from '../../../../core/interfaces/question';
+import { prepareError } from '../../../../core/helpers/prepare-data';
+import { IQuestion, IQuestionList, IQuestionnaireStory } from '../../../../core/interfaces/question';
 import { createQuestionnaireAction, getQuestionnaire } from '../../../../queries/questionnaire';
 import { useTypedMutation, useTypedQuery } from '../../../../queries/utils';
 import { Alert } from '../../../alert';
@@ -45,7 +42,7 @@ export const QuestionForm = () => {
             </Panel>
           ))}
       </Accordion>
-      {isError && <Alert dismissible>{error?.message}</Alert>}
+      {isError && <Alert dismissible>{prepareError(error)}</Alert>}
       <Button variant='outline-danger' size='lg'>
         Сохранить
       </Button>

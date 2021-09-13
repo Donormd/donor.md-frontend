@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
-const TypographyStyles = createGlobalStyle`
+export const TypographyStyles = createGlobalStyle`
 h6,
 h5,
 h4,
@@ -48,5 +48,3 @@ p {
   margin-bottom: 1rem;
 }
 `;
-
-export default TypographyStyles;

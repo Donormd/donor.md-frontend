@@ -1,40 +1,36 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle, css } from 'styled-components';
 
-import { theme } from '../components/UI/theme';
+export const GlobalStyles = createGlobalStyle(
+  ({ theme }) => css`
+    *,
+    *:after,
+    *:before {
+      box-sizing: border-box;
+    }
 
-const GlobalStyles = createGlobalStyle`
+    ::selection {
+      color: white;
+      background: ${theme.colors.red};
+    }
 
-*,
-*:after,
-*:before {
-  box-sizing: border-box;
-}
+    html,
+    body,
+    #__next {
+      height: 100%;
+      width: 100%;
+    }
 
-::selection {
-  color: white;
-  background: ${theme.red};
-}
+    body {
+      font-family: 'Roboto', sans-serif;
+      font-size: 100%;
+      color: ${theme.colors.textDark};
+      background: ${theme.colors.backgroundSm};
+    }
 
-html,
-body,
-#__next {
-  height: 100%;
-  width: 100%;
-}
-
-body {
-  font-family: 'Roboto', sans-serif;
-  font-size: 100%;
-  color: ${theme.textDark};
-  background: ${theme.backgroundSm};
-}
-
-@media (min-width: 992px) {
-  body {
-    background: ${theme.background};
-  }
-}
-
-`;
-
-export default GlobalStyles;
+    @media (min-width: 992px) {
+      body {
+        background: ${theme.colors.background};
+      }
+    }
+  `,
+);

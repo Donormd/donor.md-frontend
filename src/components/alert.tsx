@@ -1,29 +1,36 @@
-import { FC, memo, useState } from 'react';
+import { Children, FC, memo, useState } from 'react';
 import styled from 'styled-components';
 
 import { Paragraph } from './UI';
 
-interface IProps {
+interface AlertProps {
   dismissible?: boolean;
-  message?: string;
+  message?: string | string[];
   className?: string;
 }
 
-export const Alert: FC<IProps> = memo(({ message, children, className, dismissible }) => {
-  const [hide, setHide] = useState<boolean>(false);
+export const Alert: FC<AlertProps> = memo(({ message, children, className, dismissible }): JSX.Element => {
+  const [hide, setHide] = useState(false);
+
+  const nodes = Children.count(children) ? Children.toArray(children) : [];
+  const messages = Array.isArray(message) ? message : [];
 
   return (
-    <Message hide={hide}>
-      <Paragraph className={className}>{message || children}</Paragraph>
-      {dismissible && (
-        <ButtonWrapper>
-          <CloseIcon arial-role='button' onClick={() => setHide(true)}>
-            <Line />
-            <Line />
-          </CloseIcon>
-        </ButtonWrapper>
-      )}
-    </Message>
+    <>
+      {[...nodes, ...messages].map((msg) => (
+        <Message hide={hide}>
+          <Paragraph className={className}>{msg}</Paragraph>
+          {dismissible && (
+            <ButtonWrapper>
+              <CloseIcon arial-role='button' onClick={() => setHide(true)}>
+                <Line />
+                <Line />
+              </CloseIcon>
+            </ButtonWrapper>
+          )}
+        </Message>
+      ))}
+    </>
   );
 });
 
@@ -34,7 +41,7 @@ const ButtonWrapper = styled.div`
 const Line = styled.div`
   width: 100%;
   height: 2px;
-  background: ${({ theme }) => theme.textDark};
+  background: ${({ theme }) => theme.colors.textDark};
 `;
 
 const CloseIcon = styled.div`

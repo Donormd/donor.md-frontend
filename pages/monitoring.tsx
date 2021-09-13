@@ -14,9 +14,8 @@ const Monitoring = () => {
   const { register, handleSubmit, setValue } = useForm();
 
   const { data: monitoringData } = useTypedQuery('monitoring', getMonitoringData);
-  const { mutate, isError, isSuccess } = useTypedMutation(
-    'monitoring',
-    (payload: IMonitoringResponse) => updateMonitoringData(payload),
+  const { mutate, isError, isSuccess } = useTypedMutation('monitoring', (payload: IMonitoringResponse) =>
+    updateMonitoringData(payload),
   );
 
   useEffect(() => {
@@ -51,7 +50,7 @@ const Monitoring = () => {
         </Article>
         <form onSubmit={handleSubmit(onSubmit)}>
           <FormItem label='Ваша Фамилия и Имя' columns={2}>
-            <Input name='fullname' innerRef={register} />
+            <Input name='fullname' ref={register} />
           </FormItem>
           <FormItem help='Дата указывается автоматически' label='Дата ввода информации' columns={2}>
             <Input placeholder='Дата указывается автоматически' disabled />
@@ -80,19 +79,19 @@ const Monitoring = () => {
               <Paragraph bold align='left'>
                 Положительная (+)
               </Paragraph>
-              <Input type='number' name='O(I)+' innerRef={register} />
-              <Input type='number' name='A(II)+' innerRef={register} />
-              <Input type='number' name='B(III)+' innerRef={register} />
-              <Input type='number' name='AB(IV)+' innerRef={register} />
+              <Input type='number' name='O(I)+' ref={register} />
+              <Input type='number' name='A(II)+' ref={register} />
+              <Input type='number' name='B(III)+' ref={register} />
+              <Input type='number' name='AB(IV)+' ref={register} />
             </Row>
             <Row>
               <Paragraph bold align='left'>
                 Отрицательная (-)
               </Paragraph>
-              <Input type='number' name='O(I)-' innerRef={register} />
-              <Input type='number' name='A(II)-' innerRef={register} />
-              <Input type='number' name='B(III)-' innerRef={register} />
-              <Input type='number' name='AB(IV)-' innerRef={register} />
+              <Input type='number' name='O(I)-' ref={register} />
+              <Input type='number' name='A(II)-' ref={register} />
+              <Input type='number' name='B(III)-' ref={register} />
+              <Input type='number' name='AB(IV)-' ref={register} />
             </Row>
           </TableForm>
           <Button type='submit' variant='outline-danger' size='lg'>

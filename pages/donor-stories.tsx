@@ -3,7 +3,7 @@
 import styled from 'styled-components';
 
 import { DonorStory } from '../src/components/donor-story';
-import Pagination from '../src/components/pagination';
+import { Pagination } from '../src/components/pagination';
 import { Title } from '../src/components/UI';
 import { ButtonGroup } from '../src/components/UI/button-group';
 import { Loading } from '../src/components/UI/loading';
@@ -38,7 +38,7 @@ const DonorStoriesPage = () => {
           ))}
         </div>
       </Container>
-      <Pagination onChange={(...args) => console.log(args)} />
+      <Pagination onChange={(...args: any) => console.log(args)} />
     </HeaderContentFooter>
   );
 };

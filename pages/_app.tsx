@@ -12,9 +12,10 @@ import { ThemeProvider } from 'styled-components';
 import configSEO from '../next-seo.config';
 import { PlanningButton } from '../src/components/planning-button';
 import { theme } from '../src/components/UI/theme';
+import { ErrorBoundary } from '../src/core/decorators/ErrorBoundary';
 import { DebugObserver } from '../src/store/debugObserver';
-import GlobalStyles from '../src/styles/globals';
-import TypographyStyles from '../src/styles/typography';
+import { GlobalStyles } from '../src/styles/globals';
+import { TypographyStyles } from '../src/styles/typography';
 
 const queryClient = new QueryClient();
 
@@ -27,18 +28,20 @@ const App = ({ Component, pageProps }: AppProps) => {
           rel='stylesheet'
         />
       </Head>
-      <QueryClientProvider client={queryClient}>
-        <RecoilRoot>
-          <DebugObserver />
-          <ThemeProvider theme={theme}>
-            <GlobalStyles />
-            <TypographyStyles />
-            <DefaultSeo {...configSEO} />
-            <Component {...pageProps} />
-            <PlanningButton />
-          </ThemeProvider>
-        </RecoilRoot>
-      </QueryClientProvider>
+      <ThemeProvider theme={theme}>
+        <ErrorBoundary>
+          <QueryClientProvider client={queryClient}>
+            <RecoilRoot>
+              <DebugObserver />
+              <GlobalStyles />
+              <TypographyStyles />
+              <DefaultSeo {...configSEO} />
+              <Component {...pageProps} />
+              <PlanningButton />
+            </RecoilRoot>
+          </QueryClientProvider>
+        </ErrorBoundary>
+      </ThemeProvider>
     </>
   );
 };

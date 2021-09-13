@@ -1,39 +1,29 @@
-import { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
+import { useRecoilValue } from 'recoil';
 
 import { IUser } from '../../../core/interfaces/user';
 import { getOptions } from '../../../queries/common';
-import { getUser, updateUser } from '../../../queries/user';
+import { updateUser } from '../../../queries/user';
 import { useTypedMutation, useTypedQuery } from '../../../queries/utils';
+import { userAtom } from '../../../store/atoms/user-atom';
 import { Alert } from '../../alert';
 import { Button, Checkbox, Divider, Form, FormItem, Input, Select, Title } from '../../UI';
 
 export const DetailsForm = () => {
-  const { register, setValue, control, handleSubmit, watch } = useForm();
-
-  const { data: user } = useTypedQuery('user', getUser);
+  const user = useRecoilValue(userAtom);
+  const { register, control, handleSubmit, watch } = useForm({
+    defaultValues: { ...user, corporateDonations: !!user.corporateId },
+  });
   const { data: sex } = useTypedQuery('sex', () => getOptions('sex'));
   const { data: bloodGroups } = useTypedQuery('bloodGroups', () => getOptions('bloodGroups'));
   const { data: cities } = useTypedQuery('cities', () => getOptions('cities'));
   const { data: organizations } = useTypedQuery('organizations', () => getOptions('organizations'));
-  const { mutateAsync, isSuccess, isError } = useTypedMutation('user', updateUser);
+  const { mutate, isSuccess, isError } = useTypedMutation('user', updateUser);
 
   const isCorporateDonation = watch('corporateDonations');
 
-  useEffect(() => {
-    if (!user) return;
-
-    const recoveryData = Object.entries(user);
-    recoveryData.forEach(([key, val]) => key !== 'token' && setValue(key, val));
-    user.corporateId && setValue('corporateDonations', true);
-  }, [setValue, user]);
-
   const onSubmit = (data: IUser) => {
-    mutateAsync(data)
-      // eslint-disable-next-line no-console
-      .then((data) => console.log('DetailsForm, data', data))
-      // eslint-disable-next-line no-console
-      .catch((error) => console.log('DetailsForm, error', error));
+    mutate(data);
   };
 
   if (!sex || !bloodGroups || !cities || !organizations) return null;
@@ -41,10 +31,10 @@ export const DetailsForm = () => {
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <FormItem columns={2} label='ФИО' required>
-        <Input name='fullname' innerRef={register} />
+        <Input name='fullname' ref={register} />
       </FormItem>
       <FormItem columns={2} label='Дата рождения' required>
-        <Input name='dateBirth' type='date' innerRef={register} />
+        <Input name='dateBirth' ref={register} />
       </FormItem>
       <FormItem columns={2} label='Группа крови' required>
         <Controller
@@ -98,7 +88,7 @@ export const DetailsForm = () => {
         Корпоративное донорство
       </Title>
       <FormItem columns={2}>
-        <Checkbox name='corporateDonations' innerRef={register}>
+        <Checkbox name='corporateDonations' ref={register}>
           Я участник программы корпоративное донорство
         </Checkbox>
       </FormItem>
@@ -107,11 +97,7 @@ export const DetailsForm = () => {
           name='corporateId'
           control={control}
           as={
-            <Select
-              size='large'
-              placeholder='Выберите вашу организацию'
-              disabled={!isCorporateDonation}
-            >
+            <Select size='large' placeholder='Выберите вашу организацию' disabled={!isCorporateDonation}>
               {organizations.map(({ _id, text }) => (
                 <Select.Option key={_id} value={_id}>
                   {text}
@@ -126,13 +112,13 @@ export const DetailsForm = () => {
         Ваши контакты
       </Title>
       <FormItem columns={2} label='Ваш email-адрес' required>
-        <Input name='email' innerRef={register} />
+        <Input name='email' ref={register} />
       </FormItem>
       <FormItem columns={2} label='Номер мобильного телефона' required>
-        <Input name='phoneMobile' innerRef={register} />
+        <Input name='phoneMobile' ref={register} />
       </FormItem>
       <FormItem columns={2} label='Номер домашнего телефона' required>
-        <Input name='phone' innerRef={register} />
+        <Input name='phone' ref={register} />
       </FormItem>
       <Button type='submit' variant='outline-danger' size='lg'>
         Обновить информацию

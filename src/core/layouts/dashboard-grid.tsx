@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { LeftMenu } from '../../components/left-menu';
 import RightMenu from '../../components/right-menu';
-import { useAuth } from '../hooks/useAuth';
+// import { useAuth } from '../hooks/useAuth';
 
 type DashboardGridType = {
   leftImage?: string;
@@ -11,7 +11,7 @@ type DashboardGridType = {
 };
 
 export const DashboardGrid: FC<DashboardGridType> = memo(({ children, className, leftImage }) => {
-  useAuth();
+  // useAuth();
   return (
     <Main>
       <LeftMenu image={leftImage} />

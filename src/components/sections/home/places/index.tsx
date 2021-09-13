@@ -122,7 +122,7 @@ const MapWrapper = styled.div`
   margin-bottom: 15px;
   width: 100%;
   height: 200px;
-  border: ${({ theme }) => `1px solid ${theme.redDiluted}`};
+  border: ${({ theme }) => `1px solid ${theme.colors.redDiluted}`};
   border-radius: ${({ theme }) => theme.radius};
   overflow: hidden;
 `;

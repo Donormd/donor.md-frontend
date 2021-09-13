@@ -13,39 +13,37 @@ type PartnerOfferCardType = {
   date: string;
 };
 
-export const PartnerOfferCard = memo(
-  ({ src, name, discount, condition, date }: PartnerOfferCardType) => {
-    return (
-      <Card>
-        <Image src={src} width={100} height={100} layout='fixed' />
-        <One>
-          <Title as='h3'>{name}</Title>
-          <Paragraph>
-            <RedHighlight>{discount}</RedHighlight>
-          </Paragraph>
-        </One>
-        <Second>
-          <Title as='h6' color='textMuted' bold>
-            Условие:
-          </Title>
-          <Paragraph size='0.85rem' color='textMuted'>
-            {condition}
-          </Paragraph>
-        </Second>
-        <Three>
-          <ThreeParagraph bold>
-            Срок действия предложения до <RedHighlight>{formatDate(new Date(date))}</RedHighlight>
-          </ThreeParagraph>
-        </Three>
-        <Four>
-          <Button variant='outline-danger' size='lg'>
-            Подробнее
-          </Button>
-        </Four>
-      </Card>
-    );
-  },
-);
+export const PartnerOfferCard = memo(({ src, name, discount, condition, date }: PartnerOfferCardType) => {
+  return (
+    <Card>
+      <Image src={src} width={100} height={100} layout='fixed' />
+      <One>
+        <Title as='h3'>{name}</Title>
+        <Paragraph>
+          <RedHighlight>{discount}</RedHighlight>
+        </Paragraph>
+      </One>
+      <Second>
+        <Title as='h6' color='textMuted' bold>
+          Условие:
+        </Title>
+        <Paragraph size='0.85rem' color='textMuted'>
+          {condition}
+        </Paragraph>
+      </Second>
+      <Three>
+        <ThreeParagraph bold>
+          Срок действия предложения до <RedHighlight>{formatDate(new Date(date))}</RedHighlight>
+        </ThreeParagraph>
+      </Three>
+      <Four>
+        <Button variant='outline-danger' size='lg'>
+          Подробнее
+        </Button>
+      </Four>
+    </Card>
+  );
+});
 
 const Card = styled.article`
   display: grid;
@@ -55,7 +53,7 @@ const Card = styled.article`
   margin-bottom: 30px;
   background: white;
   border-radius: ${({ theme }) => theme.radius};
-  border: ${({ theme }) => `1px solid ${theme.red}`};
+  border: ${({ theme }) => `1px solid ${theme.colors.red}`};
 
   @media (min-width: 992px) {
     row-gap: 0;
@@ -67,7 +65,7 @@ const Image = styled(ImageNext)<{ layout: string }>`
 `;
 
 const RedHighlight = styled.span`
-  color: ${({ theme }) => theme.red};
+  color: ${({ theme }) => theme.colors.red};
   font-weight: normal;
 `;
 

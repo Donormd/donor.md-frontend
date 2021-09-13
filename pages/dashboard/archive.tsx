@@ -1,159 +1,91 @@
-/* eslint-disable no-console */
 import { Table as AntTable } from 'antd';
-import { QueryClient } from 'react-query';
-import { dehydrate } from 'react-query/hydration';
 import styled, { css } from 'styled-components';
 
+import { Alert } from '../../src/components/alert';
 import { DashboardButtonsLinks } from '../../src/components/dashboard-buttons-links';
-import Pagination from '../../src/components/pagination';
-import { StyledLink, Title, TitleWithArrow } from '../../src/components/UI';
+import { Pagination } from '../../src/components/pagination';
+import { Paragraph, TitleWithArrow } from '../../src/components/UI';
+import { ColorsType } from '../../src/components/UI/theme';
+import { formatDate } from '../../src/core/helpers/converters';
+import { prepareError } from '../../src/core/helpers/prepare-data';
 import { DashboardGrid } from '../../src/core/layouts/dashboard-grid';
 import { getDonation } from '../../src/queries/donations';
-import { getUser } from '../../src/queries/user';
 import { useTypedQuery } from '../../src/queries/utils';
 
-const mock = [
-  {
-    key: 1,
-    fullname: 'Борисов Донат',
-    city: 'Тирасполь',
-    numberOfDonations: 9,
-    registrationDate: new Date().toISOString().split('T')[0],
-    status: 'Почетный донор',
-  },
-  {
-    key: 2,
-    fullname: 'Кузьмин Аввакум',
-    city: 'Тирасполь',
-    numberOfDonations: 23,
-    registrationDate: new Date().toISOString().split('T')[0],
-    status: 'Почетный донор',
-  },
-  {
-    key: 3,
-    fullname: 'Гущин Макар',
-    city: 'Тирасполь',
-    numberOfDonations: 10,
-    registrationDate: new Date().toISOString().split('T')[0],
-    status: '-',
-  },
-  {
-    key: 4,
-    fullname: 'Мартынов Панкрат',
-    city: 'Тирасполь',
-    numberOfDonations: 15,
-    registrationDate: new Date().toISOString().split('T')[0],
-    status: 'Почетный донор',
-  },
-  {
-    key: 5,
-    fullname: 'Тетерин Гурий',
-    city: 'Тирасполь',
-    numberOfDonations: 12,
-    registrationDate: new Date().toISOString().split('T')[0],
-    status: 'Почетный донор',
-  },
-  {
-    key: 6,
-    fullname: 'Борисов Донат',
-    city: 'Тирасполь',
-    numberOfDonations: 9,
-    registrationDate: new Date().toISOString().split('T')[0],
-    status: 'Почетный донор',
-  },
-  {
-    key: 7,
-    fullname: 'Кузьмин Аввакум',
-    city: 'Тирасполь',
-    numberOfDonations: 23,
-    registrationDate: new Date().toISOString().split('T')[0],
-    status: 'Почетный донор',
-  },
-  {
-    key: 8,
-    fullname: 'Гущин Макар',
-    city: 'Тирасполь',
-    numberOfDonations: 10,
-    registrationDate: new Date().toISOString().split('T')[0],
-    status: '-',
-  },
-  {
-    key: 9,
-    fullname: 'Мартынов Панкрат',
-    city: 'Тирасполь',
-    numberOfDonations: 15,
-    registrationDate: new Date().toISOString().split('T')[0],
-    status: 'Почетный донор',
-  },
-  {
-    key: 10,
-    fullname: 'Тетерин Гурий',
-    city: 'Тирасполь',
-    numberOfDonations: 12,
-    registrationDate: new Date().toISOString().split('T')[0],
-    status: 'Почетный донор',
-  },
-];
+type StatusType = 'success' | 'pending' | 'reject';
+
+type valueType = { text: string; color: keyof ColorsType };
+
+const statusMapper: Record<StatusType, valueType> = {
+  success: { text: 'Проверено', color: 'green' },
+  pending: { text: 'На проверке.. ', color: 'textMuted' },
+  reject: { text: 'Отклонено', color: 'red' },
+};
 
 const columns = [
   {
-    title: '',
-    dataIndex: 'key',
-    key: 'key',
-    render: (item: number) => <Count>{item}</Count>,
-  },
-  {
-    title: 'Имя',
-    dataIndex: 'fullname',
-    key: 'fullname',
-    render(item: string) {
-      const [name, lastname] = item.split(' ');
-      return (
-        <Link>
-          {name}
-          <br />
-          {lastname}
-        </Link>
-      );
-    },
-  },
-  {
-    title: 'Город',
-    dataIndex: 'city',
-    key: 'city',
-  },
-  {
-    title: 'Кол-во донаций',
-    dataIndex: 'numberOfDonations',
-    key: 'numberOfDonations',
-    render: (item: string) => (
-      <Title as='h3' bold>
-        {item}
-      </Title>
+    title: 'Дата',
+    dataIndex: 'date',
+    key: 'date',
+    render: (date: Date) => (
+      <div>
+        <Paragraph as='span' margin='0 0 0 0'>
+          {formatDate(date)}
+        </Paragraph>
+      </div>
     ),
   },
   {
-    title: 'На портале с',
-    dataIndex: 'registrationDate',
-    key: 'registrationDate',
+    title: 'Центр Крови',
+    dataIndex: 'transfusionCenterId',
+    key: 'transfusionCenterId',
+    render: (address: string) => <Paragraph margin='0 0 0 0'>{address}</Paragraph>,
   },
+  { title: 'Номер донации', dataIndex: 'donationNumber', key: 'donationNumber' },
   {
     title: 'Статус',
     dataIndex: 'status',
     key: 'status',
+    render: (status: StatusType) => {
+      const currentStatus = statusMapper[status];
+
+      return (
+        <div>
+          <Paragraph as='span' margin='0 15px 0 0' color={currentStatus.color}>
+            {currentStatus?.text}
+          </Paragraph>
+        </div>
+      );
+    },
+  },
+  {
+    title: 'Справка',
+    dataIndex: 'referenceImg',
+    key: 'referenceImg',
+    render: (href: string) => (
+      <StyledLink href={href} download>
+        Скачать
+      </StyledLink>
+    ),
   },
 ];
 
 const DonationsArchive = () => {
-  const { data, isLoading } = useTypedQuery('donations', getDonation);
+  const { data, isLoading, isError, error } = useTypedQuery('donations', getDonation);
 
-  console.log(data, isLoading);
   return (
     <DashboardGrid>
       <TitleWithArrow>Мои донации</TitleWithArrow>
       <DashboardButtonsLinks />
-      <Table columns={columns} dataSource={mock} pagination={false} />
-      <Pagination onChange={(...args) => console.log(args)} />
+      {isError && <Alert message={prepareError(error)} />}
+      <Table columns={columns} dataSource={data} pagination={false} loading={isLoading} />
+      <Pagination
+        margin='50px 0 0 0'
+        onChange={(...args) => {
+          // eslint-disable-next-line no-console
+          console.log(args);
+        }}
+      />
     </DashboardGrid>
   );
 };
@@ -161,63 +93,57 @@ const DonationsArchive = () => {
 export default DonationsArchive;
 
 export const getServerSideProps = async () => {
-  const queryClient = new QueryClient();
-
-  await queryClient.prefetchQuery('user', getUser);
   return {
-    props: {
-      dehydratedState: dehydrate(queryClient),
-    },
+    props: {},
   };
 };
 
-const Table = styled(AntTable)`
-  & .ant-table {
-    overflow-x: scroll;
-  }
-
-  & .ant-table,
-  & .ant-table-thead > tr > th {
-    background: transparent;
-  }
-
-  & .ant-table-thead > tr > th {
-    color: var(--red);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  }
-
-  & .ant-table-tbody > tr > td {
-    border: none;
-  }
-
-  & .ant-table-tbody > tr.ant-table-row:hover > td {
-    background: #fafafa8a;
-  }
-
-  @media (min-width: 992px) {
-    & .ant-table {
-      overflow-x: hidden;
-    }
-  }
-`;
-
-const Count = styled.div(
+const StyledLink = styled.a(
   ({ theme }) => css`
-    margin: 0;
-    color: ${theme.colors.red};
-    background: ${theme.colors.redDiluted};
-    line-height: 50px;
-    border-radius: 5px;
-    font-weight: bold;
-    font-size: 1.4rem;
-    text-align: center;
-    width: 50px;
-    height: 50px;
-    vertical-align: middle;
+    text-decoration: underline;
+    color: ${theme.colors.textDark};
   `,
 );
 
-const Link = styled(StyledLink)`
-  color: black;
-  text-decoration: underline;
-`;
+const Table = styled(AntTable)<any>(
+  ({ theme }) => css`
+    && .ant-table,
+    && .ant-table-thead > tr > th {
+      background: transparent;
+      text-align: center;
+    }
+
+    && .ant-table-thead > tr > th {
+      background: ${theme.colors.white};
+      border-top: 1px solid ${theme.colors.redDiluted};
+      border-bottom: 1px solid ${theme.colors.redDiluted};
+    }
+
+    && .ant-table-thead > tr > th:first-child {
+      border-left: 1px solid ${theme.colors.redDiluted};
+      border-top-left-radius: 25px;
+      border-bottom-left-radius: 25px;
+    }
+
+    && .ant-table-thead > tr > th:last-child {
+      border-right: 1px solid ${theme.colors.redDiluted};
+      border-top-right-radius: 25px;
+      border-bottom-right-radius: 25px;
+    }
+
+    && .ant-table-tbody > tr > td {
+      text-align: center;
+      border-bottom: 1px solid ${theme.colors.redDiluted};
+    }
+
+    && .ant-table-tbody > tr.ant-table-row:hover > td {
+      background: #fafafa8a;
+    }
+
+    @media (min-width: 992px) {
+      & .ant-table {
+        overflow-x: hidden;
+      }
+    }
+  `,
+);

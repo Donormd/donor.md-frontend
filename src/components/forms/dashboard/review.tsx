@@ -26,10 +26,11 @@ export const ReviewForm = () => {
     getOptions('bloodCenter'),
   );
 
-  const { mutate, isSuccess: isSuccessReview, isError: isErrorReview } = useTypedMutation(
-    'review',
-    (review: IReview) => createReview(review),
-  );
+  const {
+    mutate,
+    isSuccess: isSuccessReview,
+    isError: isErrorReview,
+  } = useTypedMutation('review', (review: IReview) => createReview(review));
 
   const onSubmit = (data: IReview) => {
     const preparedData = Object.entries(data).reduce((acc, [key, value]) => {
@@ -51,9 +52,7 @@ export const ReviewForm = () => {
           render={(props) => (
             <Select size='large' placeholder='Выбор центра' loading={bloodCenterLoading} {...props}>
               {bloodCenter &&
-                bloodCenter.map((item) => (
-                  <Select.Option value={item._id}>{item.text}</Select.Option>
-                ))}
+                bloodCenter.map((item) => <Select.Option value={item._id}>{item.text}</Select.Option>)}
             </Select>
           )}
         />
@@ -64,13 +63,7 @@ export const ReviewForm = () => {
           name='staffAttitude'
           control={control}
           render={(props) => (
-            <Slider
-              {...props}
-              marks={marks}
-              step={10}
-              defaultValue={100}
-              tipFormatter={formatter}
-            />
+            <Slider {...props} marks={marks} step={10} defaultValue={100} tipFormatter={formatter} />
           )}
         />
       </FormItem>
@@ -80,13 +73,7 @@ export const ReviewForm = () => {
           name='comfortableDonation'
           control={control}
           render={(props) => (
-            <Slider
-              {...props}
-              marks={marks}
-              step={10}
-              defaultValue={100}
-              tipFormatter={formatter}
-            />
+            <Slider {...props} marks={marks} step={10} defaultValue={100} tipFormatter={formatter} />
           )}
         />
       </FormItem>
@@ -96,13 +83,7 @@ export const ReviewForm = () => {
           name='waitingTime'
           control={control}
           render={(props) => (
-            <Slider
-              {...props}
-              marks={marks}
-              step={10}
-              defaultValue={100}
-              tipFormatter={formatter}
-            />
+            <Slider {...props} marks={marks} step={10} defaultValue={100} tipFormatter={formatter} />
           )}
         />
       </FormItem>

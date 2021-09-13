@@ -54,14 +54,24 @@ module.exports = {
         before: true,
         after: true,
       },
-    ], // РџСЂРѕР±РµР»С‹ РґРѕ Рё РїРѕСЃР»Рµ '=>'
+    ], // Пробелы до и после '=>'
     'rest-spread-spacing': ['error', 'never'],
     'global-require': 'off',
     'object-curly-newline': 'off',
     'no-mixed-operators': 'off',
     'no-shadow': 'off',
     'space-before-function-paren': 0,
-    'max-len': ['error', 100, 2, { ignoreUrls: true }],
+    'max-len': [
+      'error',
+      110,
+      2,
+      {
+        ignorePattern: '^import\\s.+\\sfrom\\s.+;$',
+        ignoreUrls: true,
+        ignoreComments: true,
+        ignoreRegExpLiterals: true,
+      },
+    ],
     'consistent-return': 'off',
     'no-console': 'error',
     'no-alert': 'error',
@@ -96,8 +106,8 @@ module.exports = {
     ],
     'lines-between-class-members': ['error', 'always'],
     'one-var': ['error', 'never'],
-    'no-unneeded-ternary': 'error', // РЈРїСЂР°С‰РµРЅРёРµ С‚РµСЂРЅР°СЂРЅС‹С… РѕРїРµСЂР°С‚РѕСЂРѕРІ
-    'no-nested-ternary': 'error', // РћС‚РєР» РІР»РѕР¶РµРЅРЅС‹Рµ С‚РµСЂРЅР°СЂРЅС‹Рµ РѕРїРµСЂР°С‚РѕСЂС‹
+    'no-unneeded-ternary': 'error', // Упращение тернарных операторов
+    'no-nested-ternary': 'error', // Откл вложенные тернарные операторы
     'newline-per-chained-call': ['error'],
     'wrap-regex': 'error',
     'no-underscore-dangle': 0,
@@ -135,7 +145,12 @@ module.exports = {
     ],
     // For hooks
     'react-hooks/rules-of-hooks': 'error', // Checks rules of Hooks
-    'react-hooks/exhaustive-deps': 'warn', // Checks effect dependencies
+    'react-hooks/exhaustive-deps': [
+      'warn',
+      {
+        additionalHooks: 'useRecoilCallback',
+      },
+    ], // Checks effect dependencies
     // For prettier
     'prettier/prettier': ['error'],
     'prefer-arrow-callback': 'off',

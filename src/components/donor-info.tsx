@@ -39,6 +39,6 @@ const ImageWrapper = styled.div`
   width: 75px;
   height: 75px;
   border-radius: ${({ theme }) => theme.radius};
-  border: ${({ theme }) => `1px solid ${theme.red}`};
+  border: ${({ theme }) => `1px solid ${theme.colors.red}`};
   overflow: hidden;
 `;

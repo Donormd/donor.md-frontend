@@ -34,9 +34,7 @@ const Main = styled.main`
   min-height: 100%;
   padding: 20px 0;
   @media (min-width: 992px) {
-    background: url('/images/auth.png');
-    background-position: bottom right;
-    background-repeat: no-repeat;
+    background: url('/images/auth.png') no-repeat bottom right;
     background-size: 53vh 31vw;
   }
 `;
@@ -46,8 +44,8 @@ const FormWrapper = styled.div`
   max-width: 480px;
   margin: 0 auto;
   padding: 15px 25px;
-  background: ${({ theme }) => theme.primary};
-  border: ${({ theme }) => `1px solid ${theme.redDiluted}`};
+  background: ${({ theme }) => theme.colors.primary};
+  border: ${({ theme }) => `1px solid ${theme.colors.redDiluted}`};
   border-radius: ${({ theme }) => theme.radius};
 
   @media (min-width: 768px) {

@@ -1,15 +1,18 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { DonorStory } from '../../../donor-story';
 import { Button as DefaultBtn } from '../../../UI';
 import { Section } from '../utils';
 
-export const WrapperDonorStory = styled(DonorStory)`
-  @media (max-width: 768px) {
-    background: white;
-    border: ${({ theme }) => `1px solid ${theme.redDiluted}`};
-  }
-`;
+export const WrapperDonorStory = styled(DonorStory)(
+  ({ theme }) => css`
+    @media (max-width: ${theme.media.md}) {
+      background: white;
+      border: ${`1px solid ${theme.colors.redDiluted}`};
+    }
+  `,
+);
+
 export const WrapperSection = styled(Section)`
   position: relative;
 `;
@@ -32,7 +35,7 @@ export const Button = styled(DefaultBtn)`
   padding: 0;
   background: transparent;
 
-  border-color: ${({ theme }) => theme.redDiluted};
+  border-color: ${({ theme }) => theme.colors.redDiluted};
 
   & svg {
     width: 100%;
@@ -41,36 +44,36 @@ export const Button = styled(DefaultBtn)`
   }
 
   & path {
-    fill: ${({ theme }) => theme.redDiluted};
+    fill: ${({ theme }) => theme.colors.redDiluted};
   }
 
   &:hover path,
   &:focus path {
-    fill: ${({ theme }) => theme.red};
+    fill: ${({ theme }) => theme.colors.red};
   }
 
   &:hover,
   &:focus {
     background: transparent;
-    border-color: ${({ theme }) => theme.red};
+    border-color: ${({ theme }) => theme.colors.red};
   }
 
   @media (min-width: ${({ theme }) => theme.media.md}) {
-    border-color: ${({ theme }) => theme.textDark};
+    border-color: ${({ theme }) => theme.colors.textDark};
     background: transparent;
 
     & path {
-      fill: ${({ theme }) => theme.textDark};
+      fill: ${({ theme }) => theme.colors.textDark};
     }
 
     &:hover path,
     &:focus path {
-      fill: ${({ theme }) => theme.textMuted};
+      fill: ${({ theme }) => theme.colors.textMuted};
     }
 
     &:hover,
     &:focus {
-      border-color: ${({ theme }) => theme.textMuted};
+      border-color: ${({ theme }) => theme.colors.textMuted};
       background: transparent;
     }
   }

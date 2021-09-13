@@ -1,19 +1,48 @@
+import { useRouter } from 'next/dist/client/router';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import { useResetRecoilState, useSetRecoilState } from 'recoil';
 
 import { emailRegex } from '../../../core/constants/regex';
+import { prepareError } from '../../../core/helpers/prepare-data';
 import { signIn, signInType } from '../../../queries/user';
 import { useTypedMutation } from '../../../queries/utils';
+import { userAtom } from '../../../store/atoms/user-atom';
 import { Alert } from '../../alert';
 import { FormItem, Input, Title } from '../../UI';
 import { onChangeState } from './types';
 import { ActionLayout, WrappedLink } from './utils';
 
 export const SignInForm = ({ onChangeState }: { onChangeState: onChangeState }) => {
-  const { mutate, isError } = useTypedMutation('user', (payload: signInType) => signIn(payload));
-  const { handleSubmit, register, errors } = useForm();
+  const setUser = useSetRecoilState(userAtom);
+  const resetUser = useResetRecoilState(userAtom);
+  const { handleSubmit, register, errors } = useForm({
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+  });
 
-  const onSubmit = (data: signInType) => {
-    mutate(data);
+  const { push } = useRouter();
+
+  const {
+    mutate,
+    isError,
+    error,
+    data: user,
+  } = useTypedMutation('user', (payload: signInType) => signIn(payload));
+
+  useEffect(() => {
+    if (!user) {
+      return resetUser();
+    }
+
+    push('dashboard/details');
+    setUser(user);
+  }, [push, resetUser, setUser, user]);
+
+  const onSubmit = (payload: signInType) => {
+    mutate(payload);
   };
 
   return (
@@ -25,7 +54,7 @@ export const SignInForm = ({ onChangeState }: { onChangeState: onChangeState }) 
         <Input
           placeholder='Введите email'
           name='email'
-          innerRef={register({
+          ref={register({
             required: 'Обязательное поле',
             pattern: {
               value: emailRegex,
@@ -39,7 +68,7 @@ export const SignInForm = ({ onChangeState }: { onChangeState: onChangeState }) 
           placeholder='Введите пароль'
           name='password'
           type='password'
-          innerRef={register({
+          ref={register({
             required: 'Обязательное поле',
             minLength: {
               value: 8,
@@ -49,16 +78,12 @@ export const SignInForm = ({ onChangeState }: { onChangeState: onChangeState }) 
         />
       </FormItem>
       <div>
-        <ActionLayout
-          btnText='Войти'
-          linkText='Регистрация'
-          linkOnClick={() => onChangeState('signUp')}
-        />
+        <ActionLayout btnText='Войти' linkText='Регистрация' linkOnClick={() => onChangeState('signUp')} />
         <WrappedLink onClick={() => onChangeState('recovery')} color='red' underline>
           Забыли пароль?
         </WrappedLink>
       </div>
-      {isError && <Alert dismissible />}
+      {isError && <Alert dismissible>{prepareError(error)}</Alert>}
     </form>
   );
 };

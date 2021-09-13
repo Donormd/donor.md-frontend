@@ -5,14 +5,7 @@ import styled from 'styled-components';
 import { Container } from '../../../core/layouts/container';
 import { Paragraph, StyledLink, Title } from '../../UI';
 import { column1, column2, column3 } from './mock';
-import {
-  ColumnList,
-  ColumnListItem,
-  Grid,
-  ParagraphSlogan,
-  StyledFooter,
-  TitleBrand,
-} from './styles';
+import { ColumnList, ColumnListItem, Grid, ParagraphSlogan, StyledFooter, TitleBrand } from './styles';
 
 const Thanks = styled.div`
   display: grid;
@@ -31,8 +24,8 @@ export const Footer = () => (
             donor.md
           </TitleBrand>
           <ParagraphSlogan size='.9rem' margin='15px'>
-            Сервис, созданный с концепцией «Люди помогают людям» для формирования стабильной базы
-            крови, восполняемой регулярными донорами.
+            Сервис, созданный с концепцией «Люди помогают людям» для формирования стабильной базы крови,
+            восполняемой регулярными донорами.
           </ParagraphSlogan>
         </div>
         <div>
@@ -81,9 +74,8 @@ export const Footer = () => (
       <Thanks>
         <Image src='/images/eu-flag.png' width={47} height={38} layout='fixed' />
         <Paragraph color='textMuted'>
-          Данный web-сервис запущен при финансовой поддержке Европейского Союза. Содержание сервиса
-          является предметом ответственности команды donor.md и не отражает точку зрения
-          Европейского Союза.
+          Данный web-сервис запущен при финансовой поддержке Европейского Союза. Содержание сервиса является
+          предметом ответственности команды donor.md и не отражает точку зрения Европейского Союза.
         </Paragraph>
       </Thanks>
     </Container>

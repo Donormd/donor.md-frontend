@@ -10,7 +10,6 @@ import { Button, Checkbox, Form, Paragraph, Title, TitleWithArrow } from '../../
 import { ISettings } from '../../src/core/interfaces/settings';
 import { DashboardGrid } from '../../src/core/layouts/dashboard-grid';
 import { getSettings, updateSettings } from '../../src/queries/settings';
-import { getUser } from '../../src/queries/user';
 import { useTypedMutation, useTypedQuery } from '../../src/queries/utils';
 
 const Settings = () => {
@@ -38,19 +37,18 @@ const Settings = () => {
           Настройка донорского кабинета
         </Title>
         <Paragraph>
-          В этом разделе вы сможете настроить работу донорского кабинета и настройки системы
-          уведомлений
+          В этом разделе вы сможете настроить работу донорского кабинета и настройки системы уведомлений
         </Paragraph>
       </Article>
       <Form onSubmit={handleSubmit(onSubmitSettings)}>
         <CheckboxGroup>
-          <Checkbox name='isPublic' innerRef={register}>
+          <Checkbox name='isPublic' ref={register}>
             Сделать мой профиль публичным
           </Checkbox>
-          <Checkbox name='notDonor' innerRef={register}>
+          <Checkbox name='notDonor' ref={register}>
             Я не могу быть донором
           </Checkbox>
-          <Checkbox name='temporaryRestrictions' innerRef={register}>
+          <Checkbox name='temporaryRestrictions' ref={register}>
             Временные ограничения на сдачу крови
           </Checkbox>
         </CheckboxGroup>
@@ -58,13 +56,13 @@ const Settings = () => {
           Настройка уведомлений
         </Title>
         <CheckboxGroup>
-          <Checkbox name='notifications.email' innerRef={register}>
+          <Checkbox name='notifications.email' ref={register}>
             Получать уведомления на email-адрес
           </Checkbox>
-          <Checkbox name='notifications.sms' innerRef={register}>
+          <Checkbox name='notifications.sms' ref={register}>
             Получать SMS-сообщения
           </Checkbox>
-          <Checkbox name='notifications.telegram' innerRef={register}>
+          <Checkbox name='notifications.telegram' ref={register}>
             Получать сообщения в Telegram
           </Checkbox>
         </CheckboxGroup>
@@ -84,7 +82,6 @@ export default Settings;
 export const getServerSideProps = async () => {
   const queryClient = new QueryClient();
 
-  await queryClient.prefetchQuery('user', getUser);
   await queryClient.prefetchQuery('settings', getSettings);
   return {
     props: {

@@ -7,7 +7,6 @@ import { Paragraph, TitleWithArrow } from '../../src/components/UI';
 import { Loading } from '../../src/components/UI/loading';
 import { DashboardGrid } from '../../src/core/layouts/dashboard-grid';
 import { getBonuses } from '../../src/queries/bonuses';
-import { getUser } from '../../src/queries/user';
 import { useTypedQuery } from '../../src/queries/utils';
 
 const Bonuses = () => {
@@ -17,7 +16,7 @@ const Bonuses = () => {
     <DashboardGrid>
       <TitleWithArrow>Бонусы</TitleWithArrow>
       <TextWrapper>
-        <Paragraph bold margin={false}>
+        <Paragraph bold margin='0 0 0 0'>
           Партнерские предложения для доноров
         </Paragraph>
         <Paragraph>Выбирайте актуальные для себя предложение от наших партнеров.</Paragraph>
@@ -33,7 +32,8 @@ export default Bonuses;
 export const getServerSideProps = async () => {
   const queryClient = new QueryClient();
 
-  await queryClient.prefetchQuery('user', getUser);
+  await queryClient.prefetchQuery('bonuses', getBonuses);
+
   return {
     props: {
       dehydratedState: dehydrate(queryClient),

@@ -27,9 +27,7 @@ const DonorSearchPage = () => {
   const { data: transfusionCenter } = useTypedQuery('transfusionCenter', () =>
     getOptions('transfusionCenter'),
   );
-  const { mutate } = useTypedMutation('recipient', (payload: IRecipient) =>
-    createRecipients(payload),
-  );
+  const { mutate } = useTypedMutation('recipient', (payload: IRecipient) => createRecipients(payload));
   const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = (data: IRecipient) => {
@@ -45,19 +43,18 @@ const DonorSearchPage = () => {
             Поиск доноров
           </Title>
           <Paragraph>
-            Наш сервис постарается, чтобы Вы не искали доноров среди родственников и в социальных
-            сетях. Наш сервис автоматически поможет Вам найти доноров с требуемой группой крови,
-            попросит их прийти в Центры переливания крови. Система сама пригласит нужных доноров,
-            Ваша задача заполнить форму ниже.
+            Наш сервис постарается, чтобы Вы не искали доноров среди родственников и в социальных сетях. Наш
+            сервис автоматически поможет Вам найти доноров с требуемой группой крови, попросит их прийти в
+            Центры переливания крови. Система сама пригласит нужных доноров, Ваша задача заполнить форму ниже.
           </Paragraph>
         </article>
         <Divider />
         <form onSubmit={handleSubmit(onSubmit)}>
           <FormItem label='ФИО реципиента' required>
-            <Input name='fullname' innerRef={register} />
+            <Input name='fullname' ref={register} />
           </FormItem>
           <FormItem label='Дата рождения' required>
-            <Input type='date' name='dateBirth' innerRef={register} />
+            <Input type='date' name='dateBirth' ref={register} />
           </FormItem>
           <FormItem label='Выберите необходимую группу крови' required>
             <Select size='large'>
@@ -80,7 +77,7 @@ const DonorSearchPage = () => {
             </Select>
           </FormItem>
           <FormItem label='Заболевание/травма' required>
-            <Input name='' innerRef={register} />
+            <Input name='' ref={register} />
           </FormItem>
           <FormItem label='Укажите центр переливания крови' required>
             <Select size='large'>
@@ -93,10 +90,10 @@ const DonorSearchPage = () => {
             </Select>
           </FormItem>
           <FormItem label='Необходимое количество доноров' required>
-            <Input name='' innerRef={register} type='number' min={1} max={20} />
+            <Input name='' ref={register} type='number' min={1} max={20} />
           </FormItem>
           <FormItem label='Срок сдачи до' required>
-            <Input type='date' name='dateBirth' innerRef={register} />
+            <Input type='date' name='dateBirth' ref={register} />
           </FormItem>
           <FormItem label='Дополнительная информация' required>
             <TextArea
@@ -120,16 +117,16 @@ const DonorSearchPage = () => {
             Контактное лицо
           </Title>
           <FormItem label='ФИО' required>
-            <Input name='' innerRef={register} />
+            <Input name='' ref={register} />
           </FormItem>
           <FormItem label='Ваш email-адрес' required>
-            <Input name='' innerRef={register} />
+            <Input name='' ref={register} />
           </FormItem>
           <FormItem label='Номер мобильного телефона' required>
-            <Input name='' innerRef={register} />
+            <Input name='' ref={register} />
           </FormItem>
           <FormItem label='Кто вы для реципиента' required>
-            <Input name='' innerRef={register} />
+            <Input name='' ref={register} />
           </FormItem>
           <FormItem columns={1}>
             <Checkbox checked>

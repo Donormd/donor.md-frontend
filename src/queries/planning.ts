@@ -1,19 +1,24 @@
-import { PlanningForm } from '../core/interfaces/planning';
+import { IPlanning } from '../core/interfaces/planning';
 import { baseFetch } from '../core/services/fetch';
 
 export const getPlanning = async () => {
-  await baseFetch({
-    url: `/planning`,
+  const { data } = await baseFetch<IPlanning[]>({
+    url: `/donation/planing`,
     headers: {
       authorization: true,
     },
   });
+
+  return data;
 };
 
-export const sendPlanningForm = async (obj: PlanningForm) => {
+export const createPlanning = async (payload: IPlanning) => {
   await baseFetch({
-    url: `/planning`,
-    method: 'post',
-    data: obj,
+    url: `/donation/planing`,
+    method: 'POST',
+    headers: {
+      authorization: true,
+    },
+    data: payload,
   });
 };

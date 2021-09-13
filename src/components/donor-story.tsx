@@ -22,8 +22,8 @@ const Wrapper = styled.article`
   grid-row-gap: 10px;
   padding: 20px 30px;
   margin-bottom: 20px;
-  background: ${(props) => props.theme.redDiluted};
-  border-radius: ${(props) => props.theme.radius};
+  background: ${({ theme }) => theme.colors.redDiluted};
+  border-radius: ${({ theme }) => theme.radius};
 `;
 
 const StoryHead = styled.div`

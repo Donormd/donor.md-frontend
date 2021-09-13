@@ -1,29 +1,35 @@
 import { Controller, useForm } from 'react-hook-form';
-import { QueryClient } from 'react-query';
-import { dehydrate } from 'react-query/hydration';
 import styled from 'styled-components';
 
 import { Alert } from '../../src/components/alert';
 import { DashboardButtonsLinks } from '../../src/components/dashboard-buttons-links';
 import { SocialMediaLinks } from '../../src/components/social-media-links';
-import { Button, Form, FormItem, Input, Select, TitleWithArrow } from '../../src/components/UI';
-import { PlanningForm } from '../../src/core/interfaces/planning';
+import { Button, Form, FormItem, Input, Paragraph, Select, TitleWithArrow } from '../../src/components/UI';
+import { prepareError } from '../../src/core/helpers/prepare-data';
+import { IPlanning } from '../../src/core/interfaces/planning';
 import { DashboardGrid } from '../../src/core/layouts/dashboard-grid';
 import { getOptions } from '../../src/queries/common';
-import { sendPlanningForm } from '../../src/queries/planning';
-import { getUser } from '../../src/queries/user';
+import { createPlanning } from '../../src/queries/planning';
 import { useTypedMutation, useTypedQuery } from '../../src/queries/utils';
 
-const times = ['8:00', '8:30', '9:00', '9:30', '10:00', '10:30', '11:00', '11:30', '12:00'];
+const times = ['8:00', '8:30', '9:00', '9:30', '10:00', '10:30', '11:00', '11:30', '12:00'] as const;
 
 const DonationsPlanning = () => {
-  const { handleSubmit, register, control } = useForm();
-  const { data: bloodCenter } = useTypedQuery('bloodCenter', () => getOptions('bloodCenter'));
-  const { isSuccess, mutate } = useTypedMutation(['planning', 'form'], (data: PlanningForm) =>
-    sendPlanningForm(data),
+  const { handleSubmit, register, control } = useForm({
+    defaultValues: {
+      bloodCenterId: null,
+      date: new Date().toISOString(),
+      time: '8:00',
+    },
+  });
+  const { data: transfusionCenter } = useTypedQuery('transfusionCenter', () =>
+    getOptions('transfusionCenter'),
+  );
+  const { mutate, isSuccess, isError, error } = useTypedMutation('planning', (data: IPlanning) =>
+    createPlanning(data),
   );
 
-  const onSubmit = (data: PlanningForm) => {
+  const onSubmit = (data: IPlanning) => {
     mutate(data);
   };
 
@@ -38,36 +44,18 @@ const DonationsPlanning = () => {
             control={control}
             as={
               <Select size='large' placeholder='Выберите место сдачи'>
-                {bloodCenter &&
-                  bloodCenter.map((item) => (
+                {transfusionCenter &&
+                  transfusionCenter.map((item) => (
                     <Select.Option value={item._id}>{item.text}</Select.Option>
                   ))}
               </Select>
             }
           />
         </FormItem>
-        <FormItem
-          columns={2}
-          label='Дата кровосдачи'
-          help={`
-        Планирование донации реализовано для
-        самодисциплины! Центры переливания крови работают в
-        обычном режиме, но мы их проинформируем, что вы должны
-        прийти в запланированный день.
-        `}
-        >
-          <Input name='date' type='date' innerRef={register} />
+        <FormItem columns={2} label='Дата кровосдачи'>
+          <Input name='date' type='date' ref={register} />
         </FormItem>
-        <FormItem
-          columns={2}
-          label='Время кровосдачи'
-          help={`
-        Планирование донации реализовано для
-        самодисциплины! Центры переливания крови работают в
-        обычном режиме, но мы их проинформируем, что вы должны
-        прийти в запланированный день.
-        `}
-        >
+        <FormItem columns={2} label='Время кровосдачи'>
           <Controller
             name='time'
             control={control}
@@ -80,8 +68,13 @@ const DonationsPlanning = () => {
             }
           />
         </FormItem>
+        <Paragraph color='textMuted'>
+          Планирование донации реализовано для самодисциплины! Центры переливания крови работают в обычном
+          режиме, но мы их проинформируем, что вы должны прийти в запланированный день.
+        </Paragraph>
+        {isSuccess && <Alert>Вы успешно запланировали донацию</Alert>}
+        {isError && <Alert>{prepareError(error)}</Alert>}
         <ButtonsRow>
-          {isSuccess && <Alert>Вы успешно запланировали донацию</Alert>}
           <Button type='submit' variant='outline-danger' size='lg'>
             Запланировать
           </Button>
@@ -95,13 +88,8 @@ const DonationsPlanning = () => {
 export default DonationsPlanning;
 
 export const getServerSideProps = async () => {
-  const queryClient = new QueryClient();
-
-  await queryClient.prefetchQuery('user', getUser);
   return {
-    props: {
-      dehydratedState: dehydrate(queryClient),
-    },
+    props: {},
   };
 };
 

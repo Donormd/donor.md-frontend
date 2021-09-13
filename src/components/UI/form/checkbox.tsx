@@ -1,26 +1,28 @@
-import React, { FC, InputHTMLAttributes, LegacyRef } from 'react';
+import { forwardRef, InputHTMLAttributes, ReactNode } from 'react';
 import styled from 'styled-components';
 
 interface ICheckBox extends InputHTMLAttributes<HTMLInputElement> {
   className?: string;
-  innerRef?: LegacyRef<any>;
   required?: boolean;
+  children?: ReactNode;
 }
 
-export const Checkbox: FC<ICheckBox> = ({ children, className, innerRef, required, ...rest }) => {
-  return (
-    <Label className={className}>
-      <Input type='checkbox' {...rest} ref={innerRef} />
-      <CheckBoxImage />
-      {children && (
-        <Text>
-          {children}
-          <Mark required={required}>*</Mark>
-        </Text>
-      )}
-    </Label>
-  );
-};
+export const Checkbox = forwardRef<HTMLInputElement, ICheckBox>(
+  ({ children, className, required, ...rest }, ref) => {
+    return (
+      <Label className={className}>
+        <Input type='checkbox' {...rest} ref={ref} />
+        <CheckBoxImage />
+        {children && (
+          <Text>
+            {children}
+            <Mark required={required}>*</Mark>
+          </Text>
+        )}
+      </Label>
+    );
+  },
+);
 
 const Label = styled.label`
   display: flex;
