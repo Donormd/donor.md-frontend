@@ -1,7 +1,29 @@
 {
+  "presets": ["next/babel"],
   "plugins": [
-    ["styled-components", { "ssr": true, "displayName": true, "preprocess": false } ],
-    "inline-react-svg"
-  ],
-  "presets": ["next/babel"]
+    [
+      "module-resolver",
+      {
+        "root": ["."],
+        "alias": {
+          "@Public": "./public",
+          "@Constants": "./src/core/constants",
+          "@Decorators": "./src/core/decorators",
+          "@Helpers": "./src/core/helpers",
+          "@Hooks": "./src/core/hooks",
+          "@Interfaces": "./src/core/interfaces",
+          "@Layout": "./src/core/layout",
+          "@Services": "./src/core/services"
+        }
+      }
+    ],
+    [
+      "styled-components",
+      {
+        "ssr": true,
+        "displayName": true,
+        "preprocess": false
+      }
+    ]
+  ]
 }

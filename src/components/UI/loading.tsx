@@ -1,14 +1,9 @@
-import { ReactSVG } from 'react-svg';
+import HeartIcon from '@Public/images/logo/heart.svg';
 import styled from 'styled-components';
 
 export const Loading = () => (
   <Wrapper>
-    <Image
-      afterInjection={(_err: Error, svg: SVGAElement) => {
-        svg.classList.add('animate-heart');
-      }}
-      src='/images/logo/heart.svg'
-    />
+    <Image />
   </Wrapper>
 );
 
@@ -18,7 +13,7 @@ const Wrapper = styled.div`
   justify-content: center;
 `;
 
-const Image = styled(ReactSVG)`
+const Image = styled(HeartIcon)`
   @keyframes pulse {
     0% {
       transform: scale(1);

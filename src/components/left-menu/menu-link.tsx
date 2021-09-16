@@ -1,6 +1,6 @@
 import { Tooltip } from 'antd';
+import Image from 'next/image';
 import Link from 'next/link';
-import { ReactSVG } from 'react-svg';
 
 import { IMenuLinkProps } from './mock';
 import { IconWrapper, LinkButton, MenuItem, Paragraph } from './styles';
@@ -17,7 +17,7 @@ export const MenuLink = ({ active, imageSrc, href, text }: MenuLinkType) => (
       <MenuItem>
         <LinkButton size='lg' active={active} variant='outline-primary'>
           <IconWrapper>
-            <ReactSVG src={imageSrc} />
+            <Image src={imageSrc} width={30} height={30} />
           </IconWrapper>
           <Paragraph>{text}</Paragraph>
         </LinkButton>
