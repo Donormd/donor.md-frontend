@@ -8,8 +8,9 @@ import { IRecipient } from '../core/interfaces/recipient';
 import { getOptions } from '../queries/common';
 import { useTypedQuery } from '../queries/utils';
 import { Rate } from './rate';
-import { Button, Paragraph, Title } from './UI';
+import { Button } from './UI/button';
 import { Loading } from './UI/loading';
+import { Paragraph, Title } from './UI/typography';
 
 type RecipientCardType = Pick<IRecipient, 'recipient'>;
 

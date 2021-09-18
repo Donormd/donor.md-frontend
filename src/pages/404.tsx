@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import styled from 'styled-components';
 
-import { Title } from '../components/UI';
+import { Title } from '../components/UI/typography';
 import { Container } from '../core/layouts/container';
 
 const NotFound = () => {

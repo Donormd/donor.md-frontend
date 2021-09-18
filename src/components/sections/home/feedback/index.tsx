@@ -7,8 +7,12 @@ import { createFeedback, IFeedback } from '../../../../queries/feedback';
 import { useTypedMutation } from '../../../../queries/utils';
 import { Alert } from '../../../alert';
 import { SocialMediaLinks } from '../../../social-media-links';
-import { Button, FormItem, Input, TextArea, Title } from '../../../UI';
+import { Button } from '../../../UI/button';
+import { FormItem } from '../../../UI/form/form-item';
+import { Input } from '../../../UI/form/input';
+import { TextArea } from '../../../UI/form/textarea';
 import { Loading } from '../../../UI/loading';
+import { Title } from '../../../UI/typography';
 import { Section } from '../utils';
 import { Grid, ImageWrapper, SectionParagraph, Social } from './styles';
 

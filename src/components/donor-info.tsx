@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { memo } from 'react';
 import styled from 'styled-components';
 
-import { Paragraph, Title } from './UI';
+import { Paragraph, Title } from './UI/typography';
 
 type DonorInfoType = {
   honorary: boolean;

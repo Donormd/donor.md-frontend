@@ -9,7 +9,9 @@ import { signIn, signInType } from '../../../queries/user';
 import { useTypedMutation } from '../../../queries/utils';
 import { userAtom } from '../../../store/atoms/user-atom';
 import { Alert } from '../../alert';
-import { FormItem, Input, Title } from '../../UI';
+import { FormItem } from '../../UI/form/form-item';
+import { Input } from '../../UI/form/input';
+import { Title } from '../../UI/typography';
 import { onChangeState } from './types';
 import { ActionLayout, WrappedLink } from './utils';
 

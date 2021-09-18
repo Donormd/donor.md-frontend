@@ -2,9 +2,10 @@
 import { Table as AntTable } from 'antd';
 import styled from 'styled-components';
 
-import { StyledLink, Title } from '../components/UI';
 import { ButtonGroup } from '../components/UI/button-group';
+import { StyledLink } from '../components/UI/links';
 import { Loading } from '../components/UI/loading';
+import { Title } from '../components/UI/typography';
 import { IOptions } from '../core/interfaces/IIterableStruct';
 import { Container } from '../core/layouts/container';
 import { HeaderContentFooter } from '../core/layouts/header-content-footer';
@@ -86,6 +87,12 @@ const TopDonorsPage = () => {
 };
 
 export default TopDonorsPage;
+
+export const getStaticProps = async () => {
+  return {
+    props: {},
+  };
+};
 
 const Table = styled(AntTable)`
   & .ant-table {

@@ -1,5 +1,6 @@
 import { ReviewForm } from '../../components/forms/dashboard/review';
-import { Divider, Paragraph, Title, TitleWithArrow } from '../../components/UI';
+import { Divider } from '../../components/UI/other';
+import { Paragraph, Title, TitleWithArrow } from '../../components/UI/typography';
 import { DashboardGrid } from '../../core/layouts/dashboard-grid';
 
 const ReviewsAdd = () => {

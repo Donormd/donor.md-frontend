@@ -3,7 +3,7 @@ import Link from 'next/link';
 import styled from 'styled-components';
 
 import { IMockItem } from '../../../../mocks/articles';
-import { Paragraph, Title } from '../../../UI';
+import { Paragraph, Title } from '../../../UI/typography';
 import { Section } from '../utils';
 
 type AboutDonationType = {

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { Paragraph as PH, Title as TL } from '../../components/UI';
+import { Paragraph as PH, Title as TL } from '../../components/UI/typography';
 import { Container } from '../../core/layouts/container';
 import { HeaderContentFooter } from '../../core/layouts/header-content-footer';
 
@@ -448,3 +448,9 @@ const UserAgreement = () => {
 };
 
 export default UserAgreement;
+
+export const getStaticProps = async () => {
+  return {
+    props: {},
+  };
+};

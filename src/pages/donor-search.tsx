@@ -2,18 +2,15 @@ import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 
 import { Alert } from '../components/alert';
-import {
-  Button,
-  Checkbox,
-  Divider,
-  FormItem,
-  Input,
-  Paragraph,
-  Select,
-  StyledLink,
-  TextArea,
-  Title,
-} from '../components/UI';
+import { Button } from '../components/UI/button';
+import { Checkbox } from '../components/UI/form/checkbox';
+import { FormItem } from '../components/UI/form/form-item';
+import { Input } from '../components/UI/form/input';
+import { Select } from '../components/UI/form/select';
+import { TextArea } from '../components/UI/form/textarea';
+import { StyledLink } from '../components/UI/links';
+import { Divider } from '../components/UI/other';
+import { Paragraph, Title } from '../components/UI/typography';
 import { IRecipient } from '../core/interfaces/recipient';
 import { Container } from '../core/layouts/container';
 import { HeaderContentFooter } from '../core/layouts/header-content-footer';
@@ -156,3 +153,9 @@ const DonorSearchPage = () => {
 };
 
 export default DonorSearchPage;
+
+export const getStaticProps = async () => {
+  return {
+    props: {},
+  };
+};

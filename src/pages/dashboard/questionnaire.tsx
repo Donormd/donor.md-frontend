@@ -1,6 +1,6 @@
 import { DashboardButtonsLinks } from '../../components/dashboard-buttons-links';
 import { QuestionForm } from '../../components/forms/dashboard/question/QuestionForm';
-import { Paragraph, TitleWithArrow } from '../../components/UI';
+import { Paragraph, TitleWithArrow } from '../../components/UI/typography';
 import { DashboardGrid } from '../../core/layouts/dashboard-grid';
 
 const MyQuestionnaire = () => {

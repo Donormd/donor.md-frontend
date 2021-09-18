@@ -5,7 +5,10 @@ import { IChangePassword } from '../../../../core/interfaces/settings';
 import { updatePassword } from '../../../../queries/settings';
 import { useTypedMutation } from '../../../../queries/utils';
 import { Alert } from '../../../alert';
-import { Button, Divider, Form, FormItem, Input } from '../../../UI';
+import { Button } from '../../../UI/button';
+import { Form, FormItem } from '../../../UI/form/form-item';
+import { Input } from '../../../UI/form/input';
+import { Divider } from '../../../UI/other';
 
 export const ChangePassword = () => {
   const { register, handleSubmit } = useForm({

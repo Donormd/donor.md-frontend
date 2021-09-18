@@ -3,7 +3,8 @@ import Link from 'next/link';
 import styled from 'styled-components';
 
 import { Container } from '../../../core/layouts/container';
-import { Paragraph, StyledLink, Title } from '../../UI';
+import { StyledLink } from '../../UI/links';
+import { Paragraph, Title } from '../../UI/typography';
 import { column1, column2, column3 } from './mock';
 import { ColumnList, ColumnListItem, Grid, ParagraphSlogan, StyledFooter, TitleBrand } from './styles';
 

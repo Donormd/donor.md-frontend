@@ -18,6 +18,7 @@
       "@Public": ["public/*"],
       "@Constants": ["src/core/constants/*"],
       "@Decorators": ["src/core/decorators/*"],
+      "@UI": ["src/core/components/UI/*"],
       "@Helpers": ["src/core/helpers/*"],
       "@Hooks": ["src/core/hooks/*"],
       "@Interfaces": ["src/core/interfaces/*"],

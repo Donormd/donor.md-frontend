@@ -30,14 +30,12 @@ class MyDocument extends Document {
       <Html>
         <Head>
           <meta name='theme-color' content='#ff4d4b' />
-          <link rel='canonical' href='https://donor.md' />
           <meta name='keywords' content='' />
           <meta name='description' content='' />
           <link rel='icon' href='/app-icons/icon.ico' />
           <link rel='icon' href='/app-icons/icon.svg' type='image/svg+xml' />
           <link rel='apple-touch-icon' href='/app-icons/apple-touch-icon.png' />
           <link rel='manifest' href='/manifest.json' />
-          <title>DONOR.MD - место, где люди помогают людям</title>
         </Head>
         <body>
           <Main />

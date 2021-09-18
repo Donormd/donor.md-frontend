@@ -6,7 +6,13 @@ import { getOptions } from '../../../queries/common';
 import { createReview } from '../../../queries/review';
 import { useTypedMutation, useTypedQuery } from '../../../queries/utils';
 import { Alert } from '../../alert';
-import { Button, Divider, Form, FormItem, Select, Slider, TextArea, Title } from '../../UI';
+import { Button } from '../../UI/button';
+import { Form, FormItem } from '../../UI/form/form-item';
+import { Select } from '../../UI/form/select';
+import { TextArea } from '../../UI/form/textarea';
+import { Divider } from '../../UI/other';
+import { Slider } from '../../UI/slider';
+import { Title } from '../../UI/typography';
 
 const marks = {
   0: '0',

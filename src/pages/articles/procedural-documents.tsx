@@ -2,7 +2,8 @@
 
 import styled from 'styled-components';
 
-import { Accordion, Paragraph as PH, Title as TL } from '../../components/UI';
+import { Accordion } from '../../components/UI/accordion';
+import { Paragraph as PH, Title as TL } from '../../components/UI/typography';
 import { Container } from '../../core/layouts/container';
 import { HeaderContentFooter } from '../../core/layouts/header-content-footer';
 
@@ -113,3 +114,9 @@ const ProceduralDocuments = () => {
 };
 
 export default ProceduralDocuments;
+
+export const getStaticProps = async () => {
+  return {
+    props: {},
+  };
+};

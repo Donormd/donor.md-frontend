@@ -1,7 +1,6 @@
 import { Tooltip } from 'antd';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { FC } from 'react';
 
 import {
   LogoWrapper,
@@ -11,7 +10,7 @@ import {
   WrappedParagraph,
 } from './styles';
 
-export const Logo: FC = () => (
+export const Logo = () => (
   <Link href='/'>
     <LogoWrapper>
       <Image
@@ -31,7 +30,7 @@ export const Logo: FC = () => (
   </Link>
 );
 
-export const ResponsiveLogo: FC = () => (
+export const ResponsiveLogo = () => (
   <Link href='/'>
     <Tooltip placement='left' title='На главную'>
       <ResponsiveLogoWrapper>

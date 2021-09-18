@@ -3,7 +3,9 @@ import Link from 'next/link';
 import styled from 'styled-components';
 
 import { Alert } from '../../components/alert';
-import { Divider, StyledLink, Title } from '../../components/UI';
+import { StyledLink } from '../../components/UI/links';
+import { Divider } from '../../components/UI/other';
+import { Title } from '../../components/UI/typography';
 import { Container } from '../../core/layouts/container';
 import { HeaderContentFooter } from '../../core/layouts/header-content-footer';
 
@@ -139,3 +141,9 @@ const BonusProgramPage = () => (
 );
 
 export default BonusProgramPage;
+
+export const getStaticProps = async () => {
+  return {
+    props: {},
+  };
+};

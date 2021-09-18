@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { Paragraph, Title } from '../../UI';
+import { Paragraph, Title } from '../../UI/typography';
 
 export const StyledFooter = styled.footer`
   padding: 50px 0;

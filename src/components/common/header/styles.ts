@@ -59,10 +59,10 @@ export const MenuList = styled.ul<MenuListProps>`
   display: ${({ displayM }) => displayM || 'none'};
   flex-direction: column;
   list-style-type: none;
-  padding: 15px;
-  margin: 0;
   align-items: flex-start;
+  margin: 0;
   padding: 0;
+
   @media (min-width: 992px) {
     display: flex;
     flex-direction: row;

@@ -1,9 +1,8 @@
-/* eslint-disable no-console */
-
 import styled from 'styled-components';
 
-import { Accordion, Paragraph as PH, Title as TL } from '../../components/UI';
+import { Accordion } from '../../components/UI/accordion';
 import { ButtonGroup } from '../../components/UI/button-group';
+import { Paragraph as PH, Title as TL } from '../../components/UI/typography';
 import { Container } from '../../core/layouts/container';
 import { HeaderContentFooter } from '../../core/layouts/header-content-footer';
 
@@ -48,7 +47,7 @@ const MinimumRequirementsForDonor = () => {
           наличии у себя соответствующего заболевания или состояния здоровья.
         </Paragraph>
         <div>
-          <ButtonGroup buttons={buttons} handleClick={(args) => console.log('---> ', args)} />
+          <ButtonGroup buttons={buttons} handleClick={() => null} />
           <Accordion ghost defaultActiveKey={1}>
             <Accordion.Panel key={1} header={<Title as='h3'>Распространенные абсолютные ограничения</Title>}>
               <ol>
@@ -80,6 +79,12 @@ const MinimumRequirementsForDonor = () => {
 };
 
 export default MinimumRequirementsForDonor;
+
+export const getStaticProps = async () => {
+  return {
+    props: {},
+  };
+};
 
 const Paragraph = styled(PH)`
   margin-bottom: 15px;

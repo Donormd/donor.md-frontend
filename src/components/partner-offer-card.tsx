@@ -3,7 +3,8 @@ import { memo } from 'react';
 import styled from 'styled-components';
 
 import { formatDate } from '../core/helpers/converters';
-import { Button, Paragraph, Title } from './UI';
+import { Button } from './UI/button';
+import { Paragraph, Title } from './UI/typography';
 
 type PartnerOfferCardType = {
   src: string;

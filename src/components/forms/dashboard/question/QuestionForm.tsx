@@ -6,8 +6,12 @@ import { IQuestion, IQuestionList, IQuestionnaireStory } from '../../../../core/
 import { createQuestionnaireAction, getQuestionnaire } from '../../../../queries/questionnaire';
 import { useTypedMutation, useTypedQuery } from '../../../../queries/utils';
 import { Alert } from '../../../alert';
-import { Accordion, Button, Divider, Form, Title } from '../../../UI';
+import { Accordion } from '../../../UI/accordion';
+import { Button } from '../../../UI/button';
+import { Form } from '../../../UI/form/form-item';
 import { Loading } from '../../../UI/loading';
+import { Divider } from '../../../UI/other';
+import { Title } from '../../../UI/typography';
 import { Question } from './question';
 
 const { Panel } = Accordion;

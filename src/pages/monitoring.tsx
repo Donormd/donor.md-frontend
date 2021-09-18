@@ -3,7 +3,11 @@ import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 
 import { Alert } from '../components/alert';
-import { Button, Divider, FormItem, Input, Paragraph, Title } from '../components/UI';
+import { Button } from '../components/UI/button';
+import { FormItem } from '../components/UI/form/form-item';
+import { Input } from '../components/UI/form/input';
+import { Divider } from '../components/UI/other';
+import { Paragraph, Title } from '../components/UI/typography';
 import { IMonitoringResponse } from '../core/interfaces/monitoring';
 import { Container } from '../core/layouts/container';
 import { HeaderContentFooter } from '../core/layouts/header-content-footer';
@@ -106,6 +110,12 @@ const Monitoring = () => {
 };
 
 export default Monitoring;
+
+export const getStaticProps = async () => {
+  return {
+    props: {},
+  };
+};
 
 const TableForm = styled.div`
   margin: 50px 0;

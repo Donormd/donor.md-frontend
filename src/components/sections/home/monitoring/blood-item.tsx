@@ -1,4 +1,4 @@
-import { Title } from '../../../UI';
+import { Title } from '../../../UI/typography';
 import { BloodTitle, Image } from './styles';
 
 interface IRule {

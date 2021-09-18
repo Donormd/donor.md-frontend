@@ -4,8 +4,8 @@ import styled from 'styled-components';
 
 import { Alert } from '../../components/alert';
 import { RecipientCard } from '../../components/recipient-card';
-import { Paragraph, TitleWithArrow } from '../../components/UI';
 import { Loading } from '../../components/UI/loading';
+import { Paragraph, TitleWithArrow } from '../../components/UI/typography';
 import { prepareError } from '../../core/helpers/prepare-data';
 import { DashboardGrid } from '../../core/layouts/dashboard-grid';
 import { getRecipients } from '../../queries/recipients';

@@ -27,6 +27,7 @@ const App = ({ Component, pageProps }: AppProps) => {
           href='https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap'
           rel='stylesheet'
         />
+        <title>DONOR.MD - место, где люди помогают людям</title>
       </Head>
       <ThemeProvider theme={theme}>
         <ErrorBoundary>

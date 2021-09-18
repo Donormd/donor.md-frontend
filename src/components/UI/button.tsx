@@ -1,7 +1,7 @@
 import { ButtonHTMLAttributes, forwardRef } from 'react';
 import styled, { css } from 'styled-components';
 
-import { theme } from '../theme';
+import { theme } from './theme';
 
 type ButtonVariant = 'primary' | 'danger' | 'outline-primary' | 'outline-danger';
 

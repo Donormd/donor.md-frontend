@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import styled from 'styled-components';
 
-import { Paragraph, Title } from './UI';
+import { Paragraph, Title } from './UI/typography';
 
 export const DonorCard = () => {
   return (

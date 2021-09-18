@@ -5,7 +5,7 @@ import { RecoveryForm } from '../components/forms/auth/recovery';
 import { SignInForm } from '../components/forms/auth/sign-in';
 import { SignUpForm } from '../components/forms/auth/sign-up';
 import { Logo } from '../components/logo';
-import { TitleWithArrow } from '../components/UI';
+import { TitleWithArrow } from '../components/UI/typography';
 import { Container } from '../core/layouts/container';
 
 const AuthPage = () => {
@@ -29,6 +29,12 @@ const AuthPage = () => {
 };
 
 export default AuthPage;
+
+export const getStaticProps = async () => {
+  return {
+    props: {},
+  };
+};
 
 const Main = styled.main`
   min-height: 100%;

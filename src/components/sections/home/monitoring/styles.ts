@@ -1,7 +1,7 @@
 import NextImage from 'next/image';
 import styled from 'styled-components';
 
-import { Title } from '../../../UI';
+import { Title } from '../../../UI/typography';
 
 export const BloodList = styled.div`
   width: 100%;

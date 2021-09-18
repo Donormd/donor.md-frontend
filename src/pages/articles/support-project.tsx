@@ -1,6 +1,7 @@
 import Link from 'next/link';
 
-import { StyledLink, Title } from '../../components/UI';
+import { StyledLink } from '../../components/UI/links';
+import { Title } from '../../components/UI/typography';
 import { Container } from '../../core/layouts/container';
 import { HeaderContentFooter } from '../../core/layouts/header-content-footer';
 
@@ -58,3 +59,9 @@ const SupportProject = () => (
 );
 
 export default SupportProject;
+
+export const getStaticProps = async () => {
+  return {
+    props: {},
+  };
+};

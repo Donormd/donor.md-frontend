@@ -1,7 +1,10 @@
 import styled from 'styled-components';
 
 import { IQuestionList } from '../../../../core/interfaces/question';
-import { Input, Paragraph, Select, Switch, Title } from '../../../UI';
+import { Input } from '../../../UI/form/input';
+import { Select } from '../../../UI/form/select';
+import { Switch } from '../../../UI/switch';
+import { Paragraph, Title } from '../../../UI/typography';
 
 export const Question = ({ title, paragraph, control }: IQuestionList) => {
   return (

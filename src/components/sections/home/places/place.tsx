@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { Title } from '../../../UI';
+import { Title } from '../../../UI/typography';
 
 interface IProps {
   placeName: string;

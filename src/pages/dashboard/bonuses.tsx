@@ -3,8 +3,8 @@ import { dehydrate } from 'react-query/hydration';
 import styled from 'styled-components';
 
 import { PartnerOfferCard } from '../../components/partner-offer-card';
-import { Paragraph, TitleWithArrow } from '../../components/UI';
 import { Loading } from '../../components/UI/loading';
+import { Paragraph, TitleWithArrow } from '../../components/UI/typography';
 import { DashboardGrid } from '../../core/layouts/dashboard-grid';
 import { getBonuses } from '../../queries/bonuses';
 import { useTypedQuery } from '../../queries/utils';

@@ -7,7 +7,13 @@ import { updateUser } from '../../../queries/user';
 import { useTypedMutation, useTypedQuery } from '../../../queries/utils';
 import { userAtom } from '../../../store/atoms/user-atom';
 import { Alert } from '../../alert';
-import { Button, Checkbox, Divider, Form, FormItem, Input, Select, Title } from '../../UI';
+import { Button } from '../../UI/button';
+import { Checkbox } from '../../UI/form/checkbox';
+import { Form, FormItem } from '../../UI/form/form-item';
+import { Input } from '../../UI/form/input';
+import { Select } from '../../UI/form/select';
+import { Divider } from '../../UI/other';
+import { Title } from '../../UI/typography';
 
 export const DetailsForm = () => {
   const user = useRecoilValue(userAtom);

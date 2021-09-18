@@ -6,7 +6,10 @@ import styled from 'styled-components';
 
 import { Alert } from '../../components/alert';
 import { ChangePassword } from '../../components/forms/dashboard/settings/change-password';
-import { Button, Checkbox, Form, Paragraph, Title, TitleWithArrow } from '../../components/UI';
+import { Button } from '../../components/UI/button';
+import { Checkbox } from '../../components/UI/form/checkbox';
+import { Form } from '../../components/UI/form/form-item';
+import { Paragraph, Title, TitleWithArrow } from '../../components/UI/typography';
 import { ISettings } from '../../core/interfaces/settings';
 import { DashboardGrid } from '../../core/layouts/dashboard-grid';
 import { getSettings, updateSettings } from '../../queries/settings';

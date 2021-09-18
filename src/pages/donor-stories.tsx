@@ -1,12 +1,11 @@
 /* eslint no-console:0 */
-
 import styled from 'styled-components';
 
 import { DonorStory } from '../components/donor-story';
 import { Pagination } from '../components/pagination';
-import { Title } from '../components/UI';
 import { ButtonGroup } from '../components/UI/button-group';
 import { Loading } from '../components/UI/loading';
+import { Title } from '../components/UI/typography';
 import { IOptions } from '../core/interfaces/IIterableStruct';
 import { Container } from '../core/layouts/container';
 import { HeaderContentFooter } from '../core/layouts/header-content-footer';
@@ -44,6 +43,12 @@ const DonorStoriesPage = () => {
 };
 
 export default DonorStoriesPage;
+
+export const getStaticProps = async () => {
+  return {
+    props: {},
+  };
+};
 
 const StoriesHead = styled.div`
   display: flex;

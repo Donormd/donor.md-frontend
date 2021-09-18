@@ -11,8 +11,13 @@ import { createUser } from '../../../queries/user';
 import { useTypedMutation, useTypedQuery } from '../../../queries/utils';
 import { userAtom } from '../../../store/atoms/user-atom';
 import { Alert } from '../../alert';
-import { Checkbox, FormItem, Input, Select, StyledLink, Title } from '../../UI';
+import { Checkbox } from '../../UI/form/checkbox';
+import { FormItem } from '../../UI/form/form-item';
+import { Input } from '../../UI/form/input';
+import { Select } from '../../UI/form/select';
+import { StyledLink } from '../../UI/links';
 import { Loading } from '../../UI/loading';
+import { Title } from '../../UI/typography';
 import { onChangeState } from './types';
 import { ActionLayout } from './utils';
 

@@ -2,7 +2,8 @@ import Link from 'next/link';
 import styled from 'styled-components';
 
 import { AboutDonation } from '../../components/sections/home/about-donations';
-import { Accordion, Paragraph as PH, Title as TL } from '../../components/UI';
+import { Accordion } from '../../components/UI/accordion';
+import { Paragraph as PH, Title as TL } from '../../components/UI/typography';
 import { Container } from '../../core/layouts/container';
 import { HeaderContentFooter } from '../../core/layouts/header-content-footer';
 import { articlesMock } from '../../mocks/articles';
@@ -228,3 +229,9 @@ const Facts = styled.div`
 `;
 
 export default AboutDonationPage;
+
+export const getStaticProps = async () => {
+  return {
+    props: {},
+  };
+};
