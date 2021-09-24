@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { prepareError } from '../../../core/helpers/prepare-data';
 import { recoveryUser } from '../../../queries/user';
 import { useTypedMutation } from '../../../queries/utils';
-import { Alert } from '../../alert';
+import { Alert } from '../../UI/alert';
 import { FormItem } from '../../UI/form/form-item';
 import { Input } from '../../UI/form/input';
 import { Title } from '../../UI/typography';

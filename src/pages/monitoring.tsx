@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 
-import { Alert } from '../components/alert';
+import { Alert } from '../components/UI/alert';
 import { Button } from '../components/UI/button';
 import { FormItem } from '../components/UI/form/form-item';
 import { Input } from '../components/UI/form/input';
@@ -44,7 +44,7 @@ const Monitoring = () => {
     <HeaderContentFooter background='/images/pages/love-pic.png'>
       <Container>
         <Article>
-          <Title margin='15px' bold>
+          <Title margin='0 0 15px 0' bold>
             Для сотрудников центра крови
           </Title>
           <Paragraph>

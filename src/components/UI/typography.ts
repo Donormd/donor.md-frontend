@@ -12,7 +12,7 @@ export declare type TitleProps = {
 
 export const Title = styled.h1<TitleProps>(
   ({ margin, bold, size, align, color, theme }) => css`
-    margin-bottom: ${!margin ? 0 : `${margin || '0.5rem'}`};
+    margin: ${margin || '0 0 0.5rem 0'};
     font-weight: ${bold ? 'bold' : 'normal'};
     font-size: ${size};
     text-align: ${align};

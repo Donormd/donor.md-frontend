@@ -10,7 +10,7 @@ import { getOptions } from '../../../queries/common';
 import { createUser } from '../../../queries/user';
 import { useTypedMutation, useTypedQuery } from '../../../queries/utils';
 import { userAtom } from '../../../store/atoms/user-atom';
-import { Alert } from '../../alert';
+import { Alert } from '../../UI/alert';
 import { Checkbox } from '../../UI/form/checkbox';
 import { FormItem } from '../../UI/form/form-item';
 import { Input } from '../../UI/form/input';
