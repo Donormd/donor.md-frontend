@@ -2,7 +2,7 @@ import { getUserUrl } from '../constants/url';
 import { IUser } from '../interfaces/user';
 import { baseFetch } from './fetch';
 
-export const serverSession = async (ctx) => {
+export const serverSession = async (ctx: any) => {
   const token = ctx.req?.token;
 
   if (!token) {
