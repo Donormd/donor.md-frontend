@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form';
 
 import { createOrUpdateUserStory, getUserStory } from '../../../queries/stories';
 import { useTypedMutation, useTypedQuery } from '../../../queries/utils';
-import { Alert } from '../../alert';
+import { Alert } from '../../UI/alert';
 import { Button } from '../../UI/button';
 import { Form, FormItem } from '../../UI/form/form-item';
 import { TextArea } from '../../UI/form/textarea';

@@ -1,7 +1,7 @@
 import { Children, FC, memo, useState } from 'react';
 import styled from 'styled-components';
 
-import { Paragraph } from './UI/typography';
+import { Paragraph } from './typography';
 
 interface AlertProps {
   dismissible?: boolean;

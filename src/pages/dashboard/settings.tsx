@@ -4,8 +4,8 @@ import { QueryClient } from 'react-query';
 import { dehydrate } from 'react-query/hydration';
 import styled from 'styled-components';
 
-import { Alert } from '../../components/alert';
 import { ChangePassword } from '../../components/forms/dashboard/settings/change-password';
+import { Alert } from '../../components/UI/alert';
 import { Button } from '../../components/UI/button';
 import { Checkbox } from '../../components/UI/form/checkbox';
 import { Form } from '../../components/UI/form/form-item';

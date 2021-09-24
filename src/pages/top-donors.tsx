@@ -74,7 +74,7 @@ const TopDonorsPage = () => {
     <HeaderContentFooter background='/images/pages/welcome.png'>
       <Container>
         <StoriesHead>
-          <Title margin='15px' bold>
+          <Title margin='0 0 15px 0' bold>
             Лучшие доноры нашего сервиса
           </Title>
           <ButtonGroup buttons={buttons} handleClick={handleClick} />

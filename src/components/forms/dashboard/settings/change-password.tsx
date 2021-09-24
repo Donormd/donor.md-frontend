@@ -4,7 +4,7 @@ import { prepareError } from '../../../../core/helpers/prepare-data';
 import { IChangePassword } from '../../../../core/interfaces/settings';
 import { updatePassword } from '../../../../queries/settings';
 import { useTypedMutation } from '../../../../queries/utils';
-import { Alert } from '../../../alert';
+import { Alert } from '../../../UI/alert';
 import { Button } from '../../../UI/button';
 import { Form, FormItem } from '../../../UI/form/form-item';
 import { Input } from '../../../UI/form/input';

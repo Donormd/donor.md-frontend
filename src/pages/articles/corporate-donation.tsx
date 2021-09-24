@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 
-import { Alert } from '../../components/alert';
+import { Alert } from '../../components/UI/alert';
 import { Button } from '../../components/UI/button';
 import { Checkbox } from '../../components/UI/form/checkbox';
 import { FormItem } from '../../components/UI/form/form-item';
@@ -29,7 +29,7 @@ const CorporateDonationPage = () => {
     <HeaderContentFooter background='/images/pages/welcome.png'>
       <Container>
         <article>
-          <Title margin='15px' bold>
+          <Title margin='0 0 15px 0' bold>
             Корпоративное донорство
           </Title>
           <p>

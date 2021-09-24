@@ -23,7 +23,7 @@ const BecomeVolunteerPage = () => {
     <HeaderContentFooter background='/images/pages/welcome.png'>
       <Container>
         <article>
-          <Title margin='15px' bold>
+          <Title margin='0 0 15px 0' bold>
             Как стать волонтером?
           </Title>
           <p>

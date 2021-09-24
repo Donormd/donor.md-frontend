@@ -1,9 +1,9 @@
 import { Table as AntTable } from 'antd';
 import styled, { css } from 'styled-components';
 
-import { Alert } from '../../components/alert';
 import { DashboardButtonsLinks } from '../../components/dashboard-buttons-links';
 import { Pagination } from '../../components/pagination';
+import { Alert } from '../../components/UI/alert';
 import { ColorsType } from '../../components/UI/theme';
 import { Paragraph, TitleWithArrow } from '../../components/UI/typography';
 import { formatDate } from '../../core/helpers/converters';

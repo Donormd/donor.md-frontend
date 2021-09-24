@@ -1,52 +1,46 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import styled from 'styled-components';
 
-import { Alert } from '../../components/alert';
+import { ArticleCards } from '../../components/article-cards';
+import { Alert } from '../../components/UI/alert';
 import { StyledLink } from '../../components/UI/links';
+import { ListWithCheck } from '../../components/UI/list-with-check';
 import { Divider } from '../../components/UI/other';
 import { Title } from '../../components/UI/typography';
 import { Container } from '../../core/layouts/container';
 import { HeaderContentFooter } from '../../core/layouts/header-content-footer';
 
-const BonusesList = styled.ul`
-  list-style-type: none;
-  padding: 0;
-`;
+const list = [
+  'Продвижение Вашей компании на всех ресурсах проекта;',
+  'Размещение информации о Вас на Web-сервисе donor.md;',
+  'Размещение фирменной наклейки у Вас “Здесь любят доноров крови”.',
+];
 
-const ListItem = styled.li`
-  &::before {
-    content: '✔';
-    margin-right: 5px;
-  }
-`;
-
-const OrganizationsList = styled.div`
-  display: grid;
-  padding-bottom: 50px;
-
-  @media (min-width: 992px) {
-    & {
-      grid-template-columns: repeat(3, 1fr);
-      column-gap: 20px;
-    }
-  }
-`;
-
-const ImageWrapper = styled.div`
-  margin-bottom: 25px;
-  border-radius: ${({ theme }) => theme.radius};
-  border: ${({ theme }) => `1px solid ${theme.colors.redDiluted}`};
-`;
-
-const TitleOrganizations = styled(Title)`
-  margin: 40px 0 25px;
-`;
+const articles = [
+  {
+    title: 'ООО “Автолялечка”',
+    subTitle: 'Сеть маркетов автоаксессуаровв Приднестровье.',
+    image: {
+      src: '/images/pages/articles/logo__active.png',
+      width: 356,
+      height: 186,
+    },
+  },
+  {
+    title: 'Открытые приоритеты',
+    subTitle: 'Организация, посвящённая продвижению открытого программного обеспечения.',
+    image: {
+      src: '/images/pages/articles/op.png',
+      width: 356,
+      height: 186,
+    },
+  },
+];
 
 const BonusProgramPage = () => (
   <HeaderContentFooter background='/images/pages/welcome.png'>
     <Container>
-      <Title margin='15px' bold>
+      <Title margin='0 0 15px 0' bold>
         Бонусная программа для коммерческих агентов
       </Title>
       <p>
@@ -63,11 +57,7 @@ const BonusProgramPage = () => (
       <p>
         <b>Со своей стороны мы предлагаем:</b>
       </p>
-      <BonusesList>
-        <ListItem>Продвижение Вашей компании на всех ресурсах проекта;</ListItem>
-        <ListItem>Размещение информации о Вас на Web-сервисе donor.md;</ListItem>
-        <ListItem>Размещение фирменной наклейки у Вас “Здесь любят доноров крови”.</ListItem>
-      </BonusesList>
+      <ListWithCheck list={list} />
       <p>
         Предложения, размещающиеся в нашей программе, должны быть уникальные, специальные для доноров,
         максимально возможные.
@@ -105,40 +95,25 @@ const BonusProgramPage = () => (
       <TitleOrganizations bold as='h3'>
         Бонусы от наших партнеров
       </TitleOrganizations>
-      <OrganizationsList>
-        <article>
-          <ImageWrapper>
-            <Image src='/images/pages/articles/logo__active.png' width={356} height={186} />
-          </ImageWrapper>
-          <Title align='center' as='h3' size='1.125rem'>
-            <b>ООО “Автолялечка”</b>
-            <br />
-            Сеть маркетов автоаксессуаровв Приднестровье.
-          </Title>
-        </article>
-        <article>
-          <ImageWrapper>
-            <Image src='/images/pages/articles/op.png' width={356} height={186} />
-          </ImageWrapper>
-          <Title align='center' as='h3' size='1.125rem'>
-            <b>“Открытые приоритеты”</b>
-            <br />
-            Организация, посвящённая продвижению открытого программного обеспечения.
-          </Title>
-        </article>
-      </OrganizationsList>
-      <Alert dismissible>
-        Если Вы хотите стать участником бонусной программы{' '}
-        <Link href='/'>
-          <StyledLink color='black' underline bold>
-            <b>напишите нам</b>
-          </StyledLink>
-        </Link>{' '}
-        и мы с вами свяжемся
+      <ArticleCards articles={articles} />
+      <Alert>
+        <>
+          Если Вы хотите стать участником бонусной программы{' '}
+          <Link href='/'>
+            <StyledLink color='black' underline bold>
+              <b>напишите нам</b>
+            </StyledLink>
+          </Link>{' '}
+          и мы с вами свяжемся
+        </>
       </Alert>
     </Container>
   </HeaderContentFooter>
 );
+
+const TitleOrganizations = styled(Title)`
+  margin: 40px 0 25px;
+`;
 
 export default BonusProgramPage;
 

@@ -2,8 +2,8 @@ import { QueryClient } from 'react-query';
 import { dehydrate } from 'react-query/hydration';
 import styled from 'styled-components';
 
-import { Alert } from '../../components/alert';
 import { RecipientCard } from '../../components/recipient-card';
+import { Alert } from '../../components/UI/alert';
 import { Loading } from '../../components/UI/loading';
 import { Paragraph, TitleWithArrow } from '../../components/UI/typography';
 import { prepareError } from '../../core/helpers/prepare-data';

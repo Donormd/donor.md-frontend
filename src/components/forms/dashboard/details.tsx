@@ -6,7 +6,7 @@ import { getOptions } from '../../../queries/common';
 import { updateUser } from '../../../queries/user';
 import { useTypedMutation, useTypedQuery } from '../../../queries/utils';
 import { userAtom } from '../../../store/atoms/user-atom';
-import { Alert } from '../../alert';
+import { Alert } from '../../UI/alert';
 import { Button } from '../../UI/button';
 import { Checkbox } from '../../UI/form/checkbox';
 import { Form, FormItem } from '../../UI/form/form-item';

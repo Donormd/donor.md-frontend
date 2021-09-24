@@ -1,9 +1,9 @@
 import { Controller, useForm } from 'react-hook-form';
 import styled from 'styled-components';
 
-import { Alert } from '../../components/alert';
 import { DashboardButtonsLinks } from '../../components/dashboard-buttons-links';
 import { SocialMediaLinks } from '../../components/social-media-links';
+import { Alert } from '../../components/UI/alert';
 import { Button } from '../../components/UI/button';
 import { Form, FormItem } from '../../components/UI/form/form-item';
 import { Input } from '../../components/UI/form/input';
