@@ -1,55 +1,43 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useLayoutEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import { Button } from '../button';
-import { IProps } from './types';
+import { IOptions } from '../../core/interfaces/IIterableStruct';
+import { Button } from './button';
 
-export const ButtonGroup = ({ buttons, handleClick }: IProps) => {
-  const [buttonId, setButtonId] = useState<string>('0');
+type ButtonGroupType = {
+  buttons: IOptions[];
+  onClick?: (_id: string) => void;
+};
+
+export const ButtonGroup = ({ buttons, onClick }: ButtonGroupType) => {
+  const [buttonId, setButtonId] = useState('');
   const [{ _id }] = buttons;
 
-  const onClick = useCallback(
-    (_id: string) => {
-      if (_id === buttonId) return;
-      handleClick(_id);
-      setButtonId(_id);
-    },
-    [buttonId, handleClick],
-  );
+  useLayoutEffect(() => {
+    setButtonId(_id);
+  }, [_id]);
 
-  useEffect(() => onClick(_id), [_id, onClick]);
+  const handleClick = (id: string) => () => {
+    setButtonId(id);
+    onClick?.(id);
+  };
 
   return (
-    <ButtonsWrapper>
+    <ButtonGroupWrapper>
       {buttons.map(({ _id, text }) => (
         <StyledButton
           key={_id}
           size='lg'
           variant='outline-primary'
           active={buttonId === _id}
-          onClick={() => onClick(_id)}
+          onClick={handleClick(_id)}
         >
           {text}
         </StyledButton>
       ))}
-    </ButtonsWrapper>
+    </ButtonGroupWrapper>
   );
 };
-
-const ButtonsWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-  @media (min-width: 576px) {
-    flex-direction: row;
-    max-height: 62px;
-  }
-
-  & button {
-    margin-bottom: 15px;
-  }
-`;
 
 const StyledButton = styled(Button)<{ active: boolean }>`
   width: 100%;
@@ -72,5 +60,20 @@ const StyledButton = styled(Button)<{ active: boolean }>`
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
     }
+  }
+`;
+
+const ButtonGroupWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  & ${StyledButton} {
+    margin-bottom: 15px;
+  }
+
+  @media (min-width: 576px) {
+    flex-direction: row;
+    max-height: 62px;
   }
 `;

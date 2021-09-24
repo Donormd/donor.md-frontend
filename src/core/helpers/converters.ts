@@ -1,5 +1,3 @@
-import dayjs from 'dayjs';
-
 export const bytesToMegabytes = (value: number, round = 2) => {
   return +(value / 1024 / 1024).toFixed(round);
 };
@@ -13,8 +11,6 @@ export const yearOrYears = (age: number) => {
 
   return 'лет';
 };
-
-export const formatDatePicker = (date: string) => dayjs(date).format('YYYY/MM/DD');
 
 export type RGBA = {
   r: number;

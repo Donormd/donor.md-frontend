@@ -84,13 +84,15 @@ export const Places = () => {
 
   const { placeName, location, timeWork, numbers, geometry } = places[+id];
 
+  const handleClick = (id: string) => setId(id);
+
   return (
     <Section id='places'>
       <SectionHeader>
         <Title as='h2' margin='15px' bold>
           Где сдать кровь ?
         </Title>
-        <ButtonGroup buttons={buttons} handleClick={setId} />
+        <ButtonGroup buttons={buttons} onClick={handleClick} />
       </SectionHeader>
       <SectionBody>
         <MapWrapper>

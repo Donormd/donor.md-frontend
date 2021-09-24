@@ -21,7 +21,7 @@ export const DetailsForm = () => {
     defaultValues: { ...user, corporateDonations: !!user.corporateId },
   });
   const { data: sex } = useTypedQuery('sex', () => getOptions('sex'));
-  const { data: bloodGroups } = useTypedQuery('bloodGroups', () => getOptions('bloodGroups'));
+  const { data: bloodGroups } = useTypedQuery('blood-groups', () => getOptions('blood-groups'));
   const { data: cities } = useTypedQuery('cities', () => getOptions('cities'));
   const { data: organizations } = useTypedQuery('organizations', () => getOptions('organizations'));
   const { mutate, isSuccess, isError } = useTypedMutation('user', updateUser);

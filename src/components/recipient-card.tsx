@@ -27,15 +27,15 @@ export const RecipientCard = memo(({ recipient }: RecipientCardType) => {
     // src,
   } = recipient;
 
-  const { data: bloodCenter, isLoading: bloodCenterLoading } = useTypedQuery('bloodCenter', () =>
-    getOptions('bloodCenter'),
+  const { data: bloodCenter, isLoading: bloodCenterLoading } = useTypedQuery('blood-center', () =>
+    getOptions('blood-center'),
   );
-  const { data: bloodGroups, isLoading: bloodGroupsLoading } = useTypedQuery('bloodGroups', () =>
-    getOptions('bloodGroups'),
+  const { data: bloodGroups, isLoading: bloodGroupsLoading } = useTypedQuery('blood-groups', () =>
+    getOptions('blood-groups'),
   );
   const { data: transfusionCenter, isLoading: transfusionCenterLoading } = useTypedQuery(
-    'transfusionCenter',
-    () => getOptions('transfusionCenter'),
+    'transfusion-center',
+    () => getOptions('transfusion-center'),
   );
 
   const years = new Date().getFullYear() - new Date(dateBirth).getFullYear();

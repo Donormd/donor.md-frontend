@@ -26,8 +26,8 @@ const DonationsPlanning = () => {
       time: '8:00',
     },
   });
-  const { data: transfusionCenter } = useTypedQuery('transfusionCenter', () =>
-    getOptions('transfusionCenter'),
+  const { data: transfusionCenter } = useTypedQuery('transfusion-center', () =>
+    getOptions('transfusion-center'),
   );
   const { mutate, isSuccess, isError, error } = useTypedMutation('planning', (data: IPlanning) =>
     createPlanning(data),

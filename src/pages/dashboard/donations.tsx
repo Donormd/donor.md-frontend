@@ -27,9 +27,9 @@ const Donations = () => {
       referenceImg: '',
     },
   });
-  const { data: bloodCenter } = useTypedQuery('bloodCenter', () => getOptions('bloodCenter'));
-  const { data: transfusionCenter } = useTypedQuery('transfusionCenter', () =>
-    getOptions('transfusionCenter'),
+  const { data: bloodCenter } = useTypedQuery('blood-center', () => getOptions('blood-center'));
+  const { data: transfusionCenter } = useTypedQuery('transfusion-center', () =>
+    getOptions('transfusion-center'),
   );
   const { data: user } = useTypedQuery('user', getUser);
   const { mutate, isSuccess, isError } = useTypedMutation('donations', (data: IDonation) =>

@@ -32,8 +32,8 @@ export const SignUpForm = ({ onChangeState }: Props) => {
     defaultValues: { ...user, password: '', bloodGroupId: null, sexId: null },
   });
 
-  const { data: bloodGroups, isLoading: bloodGroupsLoading } = useTypedQuery('bloodGroups', () =>
-    getOptions('bloodGroups'),
+  const { data: bloodGroups, isLoading: bloodGroupsLoading } = useTypedQuery('blood-groups', () =>
+    getOptions('blood-groups'),
   );
   const { data: sex, isLoading: sexLoading } = useTypedQuery('sex', () => getOptions('sex'));
   const {

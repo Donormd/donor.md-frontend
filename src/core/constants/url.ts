@@ -7,7 +7,7 @@ export const backendUrl =
 
 export const apiV1 = `${backendUrl}/api/v1`;
 
-export const topDonorsUrl = (sexId?: string) => (sexId ? `/top-donor?sexId=${sexId}` : '/top-donor');
+export const topDonorsUrl = (sexId: string) => `/top-donor?sexId=${sexId}`;
 
 export const monitoringUrl = `/monitoring`;
 

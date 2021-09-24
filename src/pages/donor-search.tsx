@@ -19,10 +19,10 @@ import { createRecipients } from '../queries/recipients';
 import { useTypedMutation, useTypedQuery } from '../queries/utils';
 
 const DonorSearchPage = () => {
-  const { data: bloodGroups } = useTypedQuery('bloodGroups', () => getOptions('bloodGroups'));
-  const { data: bloodCenter } = useTypedQuery('bloodCenter', () => getOptions('bloodCenter'));
-  const { data: transfusionCenter } = useTypedQuery('transfusionCenter', () =>
-    getOptions('transfusionCenter'),
+  const { data: bloodGroups } = useTypedQuery('blood-groups', () => getOptions('blood-groups'));
+  const { data: bloodCenter } = useTypedQuery('blood-center', () => getOptions('blood-center'));
+  const { data: transfusionCenter } = useTypedQuery('transfusion-center', () =>
+    getOptions('transfusion-center'),
   );
   const { mutate } = useTypedMutation('recipient', (payload: IRecipient) => createRecipients(payload));
   const { register, handleSubmit, reset } = useForm();

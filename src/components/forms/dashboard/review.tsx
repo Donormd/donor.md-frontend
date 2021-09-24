@@ -28,8 +28,8 @@ const formatter = (value?: number) => value && `${((5 / 100) * value).toFixed(1)
 export const ReviewForm = () => {
   const { control, handleSubmit, register } = useForm();
 
-  const { data: bloodCenter, isLoading: bloodCenterLoading } = useTypedQuery('bloodCenter', () =>
-    getOptions('bloodCenter'),
+  const { data: bloodCenter, isLoading: bloodCenterLoading } = useTypedQuery('blood-center', () =>
+    getOptions('blood-center'),
   );
 
   const {
