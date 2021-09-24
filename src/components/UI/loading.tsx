@@ -26,7 +26,5 @@ const Image = styled(HeartIcon)`
     }
   }
 
-  .animate-heart {
-    animation: pulse 1.5s infinite;
-  }
+  animation: pulse 1.5s infinite;
 `;
