@@ -5,8 +5,8 @@ import NextSVG from '../../../../../public/images/carousel/next.svg';
 import PrevSVG from '../../../../../public/images/carousel/prev.svg';
 import { getStories } from '../../../../queries/stories';
 import { useTypedQuery } from '../../../../queries/utils';
-import { Title } from '../../../UI';
 import { Loading } from '../../../UI/loading';
+import { Title } from '../../../UI/typography';
 import { Button, ButtonGroup, WrapperDonorStory, WrapperSection } from './styles';
 
 export const Stories = () => {

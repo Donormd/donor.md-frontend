@@ -3,6 +3,7 @@ export declare type MockType = Array<{
   href: string;
   text: string;
 }>;
+
 export const column1: MockType = [
   {
     id: 1,

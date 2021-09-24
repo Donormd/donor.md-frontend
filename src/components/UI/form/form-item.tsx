@@ -69,7 +69,7 @@ const Label = styled(Title)<{ required?: boolean }>`
   &::after {
     display: ${({ required }) => (required ? 'inline-block' : 'none')};
     margin-left: 4px;
-    color: ${({ theme }) => theme.redDiluted};
+    color: ${({ theme }) => theme.colors.redDiluted};
     font-size: 0.875em;
     line-height: 1;
     content: '*';
@@ -79,5 +79,5 @@ const Label = styled(Title)<{ required?: boolean }>`
 
 const Help = styled.span`
   font-size: 0.875em;
-  color: ${({ theme }) => theme.textMuted};
+  color: ${({ theme }) => theme.colors.textMuted};
 `;

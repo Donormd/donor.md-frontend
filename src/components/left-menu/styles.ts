@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
-import { Button } from '../UI';
+import { Button } from '../UI/button';
 
 export const Aside = styled.aside<{ image?: string }>`
   display: none;
   padding: 25px;
   background: white;
-  border-right: 1px solid ${({ theme }) => theme.redDiluted};
+  border-right: 1px solid ${({ theme }) => theme.colors.redDiluted};
 
   @media (min-width: 576px) {
     display: block;
@@ -45,7 +45,7 @@ export const LinkButton = styled(Button)<{ active: boolean }>`
   & svg path {
     fill: ${({ active }) => (active ? 'white' : 'black')};
   }
-  background: ${({ theme, active }) => (active ? theme.red : 'white')};
+  background: ${({ theme, active }) => (active ? theme.colors.red : 'white')};
 
   &:hover svg path,
   &:focus svg path {

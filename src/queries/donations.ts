@@ -1,9 +1,9 @@
-import { IDonation } from '../core/interfaces/donation';
+import { IDonation, IDonationResponse } from '../core/interfaces/donation';
 import { baseFetch } from '../core/services/fetch';
 
 export const getDonation = async () => {
-  const { data } = await baseFetch<IDonation[]>({
-    url: `/donations`,
+  const { data } = await baseFetch<IDonationResponse[]>({
+    url: `/donation`,
     headers: {
       authorization: true,
     },
@@ -13,7 +13,7 @@ export const getDonation = async () => {
 
 export const addDonation = async (payload: IDonation) => {
   const { data } = await baseFetch<IDonation>({
-    url: `/donations`,
+    url: `/donation`,
     headers: {
       authorization: true,
     },

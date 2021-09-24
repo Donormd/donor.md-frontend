@@ -3,8 +3,8 @@ import { Map, Placemark, YMaps } from 'react-yandex-maps';
 import styled from 'styled-components';
 
 import { IOptions } from '../../../../core/interfaces/IIterableStruct';
-import { Title } from '../../../UI';
 import { ButtonGroup } from '../../../UI/button-group';
+import { Title } from '../../../UI/typography';
 import { Section } from '../utils';
 import { Place } from './place';
 
@@ -80,7 +80,7 @@ const places: IPlace[] = [
 ];
 
 export const Places = () => {
-  const [id, setId] = useState<string>('0');
+  const [id, setId] = useState('0');
 
   const { placeName, location, timeWork, numbers, geometry } = places[+id];
 
@@ -122,7 +122,7 @@ const MapWrapper = styled.div`
   margin-bottom: 15px;
   width: 100%;
   height: 200px;
-  border: ${({ theme }) => `1px solid ${theme.redDiluted}`};
+  border: ${({ theme }) => `1px solid ${theme.colors.redDiluted}`};
   border-radius: ${({ theme }) => theme.radius};
   overflow: hidden;
 `;

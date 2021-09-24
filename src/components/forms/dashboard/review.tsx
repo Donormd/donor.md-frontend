@@ -5,8 +5,14 @@ import { IReview } from '../../../core/interfaces/review';
 import { getOptions } from '../../../queries/common';
 import { createReview } from '../../../queries/review';
 import { useTypedMutation, useTypedQuery } from '../../../queries/utils';
-import { Alert } from '../../alert';
-import { Button, Divider, Form, FormItem, Select, Slider, TextArea, Title } from '../../UI';
+import { Alert } from '../../UI/alert';
+import { Button } from '../../UI/button';
+import { Form, FormItem } from '../../UI/form/form-item';
+import { Select } from '../../UI/form/select';
+import { TextArea } from '../../UI/form/textarea';
+import { Divider } from '../../UI/other';
+import { Slider } from '../../UI/slider';
+import { Title } from '../../UI/typography';
 
 const marks = {
   0: '0',
@@ -26,10 +32,11 @@ export const ReviewForm = () => {
     getOptions('bloodCenter'),
   );
 
-  const { mutate, isSuccess: isSuccessReview, isError: isErrorReview } = useTypedMutation(
-    'review',
-    (review: IReview) => createReview(review),
-  );
+  const {
+    mutate,
+    isSuccess: isSuccessReview,
+    isError: isErrorReview,
+  } = useTypedMutation('review', (review: IReview) => createReview(review));
 
   const onSubmit = (data: IReview) => {
     const preparedData = Object.entries(data).reduce((acc, [key, value]) => {
@@ -51,9 +58,7 @@ export const ReviewForm = () => {
           render={(props) => (
             <Select size='large' placeholder='Выбор центра' loading={bloodCenterLoading} {...props}>
               {bloodCenter &&
-                bloodCenter.map((item) => (
-                  <Select.Option value={item._id}>{item.text}</Select.Option>
-                ))}
+                bloodCenter.map((item) => <Select.Option value={item._id}>{item.text}</Select.Option>)}
             </Select>
           )}
         />
@@ -64,13 +69,7 @@ export const ReviewForm = () => {
           name='staffAttitude'
           control={control}
           render={(props) => (
-            <Slider
-              {...props}
-              marks={marks}
-              step={10}
-              defaultValue={100}
-              tipFormatter={formatter}
-            />
+            <Slider {...props} marks={marks} step={10} defaultValue={100} tipFormatter={formatter} />
           )}
         />
       </FormItem>
@@ -80,13 +79,7 @@ export const ReviewForm = () => {
           name='comfortableDonation'
           control={control}
           render={(props) => (
-            <Slider
-              {...props}
-              marks={marks}
-              step={10}
-              defaultValue={100}
-              tipFormatter={formatter}
-            />
+            <Slider {...props} marks={marks} step={10} defaultValue={100} tipFormatter={formatter} />
           )}
         />
       </FormItem>
@@ -96,13 +89,7 @@ export const ReviewForm = () => {
           name='waitingTime'
           control={control}
           render={(props) => (
-            <Slider
-              {...props}
-              marks={marks}
-              step={10}
-              defaultValue={100}
-              tipFormatter={formatter}
-            />
+            <Slider {...props} marks={marks} step={10} defaultValue={100} tipFormatter={formatter} />
           )}
         />
       </FormItem>

@@ -1,7 +1,10 @@
 import styled from 'styled-components';
 
 import { IQuestionList } from '../../../../core/interfaces/question';
-import { Input, Paragraph, Select, Switch, Title } from '../../../UI';
+import { Input } from '../../../UI/form/input';
+import { Select } from '../../../UI/form/select';
+import { Switch } from '../../../UI/switch';
+import { Paragraph, Title } from '../../../UI/typography';
 
 export const Question = ({ title, paragraph, control }: IQuestionList) => {
   return (
@@ -10,7 +13,7 @@ export const Question = ({ title, paragraph, control }: IQuestionList) => {
         <Title as='h4' margin='10px'>
           {title}
         </Title>
-        <Paragraph color='textMuted' margin='10px'>
+        <Paragraph color='textMuted' margin='0 0 10px 0'>
           {paragraph}
         </Paragraph>
       </div>

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { Paragraph, Title } from '../../UI';
+import { Paragraph, Title } from '../../UI/typography';
 
 export const StyledFooter = styled.footer`
   padding: 50px 0;
@@ -22,13 +22,13 @@ export const Grid = styled.div`
 `;
 
 export const TitleBrand = styled(Title)`
-  color: ${({ theme }) => theme.red};
+  color: ${({ theme }) => theme.colors.red};
   text-transform: uppercase;
   text-decoration: underline;
 `;
 
 export const ParagraphSlogan = styled(Paragraph)`
-  color: ${({ theme }) => theme.textMuted};
+  color: ${({ theme }) => theme.colors.textMuted};
 `;
 
 export const ColumnList = styled.ul`

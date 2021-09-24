@@ -1,11 +1,18 @@
+type StatusType = 'success' | 'pending' | 'reject';
+
 export interface IDonation {
   userId: string;
   referenceNumber: string;
-  donationNumber: string;
-  date: string;
+  donationNumber: number;
+  date: Date;
   transfusionCenterId: string;
-  recipientId: string;
+  recipientId: string | null;
   referenceImg: string;
+}
+
+export interface IDonationResponse extends IDonation {
+  _id: string;
+  status: StatusType;
 }
 
 export interface ICorporateDonation {

@@ -1,0 +1,57 @@
+{
+  "home": {
+    "title": "Darqube | Financial Technology Solutions, Data and Expertise",
+    "description": "FREE institutional-grade tools to analyse the financial markets, automate trading strategies and communicate with finance enthusiasts securely.",
+    "imageName": "og-image-Home.jpg"
+  },
+  "terminal": {
+    "title": "Darqube Terminal",
+    "description": "Bring your trading skills to the next level with deep insights and advanced trading analytics.",
+    "imageName": "og-image-Terminal.jpg"
+  },
+  "messenger": {
+    "title": "Darqube Messenger",
+    "description": "Smartest commication tool tailored for the global financial community.",
+    "imageName": "og-image-Messenger.jpg"
+  },
+  "tradelab": {
+    "title": "Darqube Tradelab",
+    "description": "Automate your trading strategies and let them make profit for you 24/7.",
+    "imageName": "og-image-Tradelab.jpg"
+  },
+  "contactUs": {
+    "title": "Darqube - Contact us",
+    "description": "Got a question? Or maybe you just want to learn more about Darqube? Don't hesitate to contact us.",
+    "imageName": "og-image-ContactUs.jpg"
+  },
+  "aboutUs": {
+    "title": "Darqube - About us",
+    "description": "Discover Darqube's story and the  professionals holding your back on a mission to revolutionize the financial world.",
+    "imageName": "og-image-AboutUs.jpg"
+  },
+  "research": {
+    "title": "Darqube - Research",
+    "description": "Stay ahead of the curve with iInstitutional-grade market research and unbiased insights at your fingertips.",
+    "imageName": "og-image-Research.jpg"
+  },
+  "solutionsAssetManagers": {
+    "title": "Darqube for Asset Managers",
+    "description": "Get access to innovative financial technology in a highly customised way so you can turn imaginative ideas into valuable investment opportunities.",
+    "imageName": "og-image-SolutionsAssetManagers.jpg"
+  },
+  "solutionsWidgets": {
+    "title": "Darqube Widgets for websites",
+    "description": "Embed in your website our HTML5 widgets in few clicks, just like a YouTube video.",
+    "imageName": "og-image-SolutionsWidgets.jpg"
+  },
+  "solutionsAcademia": {
+    "title": "Darqube for Universities and Students",
+    "description": "Enhance your curriculum and position your university as a leader in the academic space.",
+    "imageName": "og-image-SolutionsAcademia.jpg"
+  },
+  "solutionsBrokers": {
+    "title": "Darqube for Brokers",
+    "description": "Promote your brand, empower your customers and grow your user base using cutting-edge financial technologies.",
+    "imageName": "og-image-SolutionsBrokers.jpg"
+  }
+}

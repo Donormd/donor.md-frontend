@@ -1,5 +1,6 @@
 import { IUser, IUserWithToken } from '../core/interfaces/user';
 import { baseFetch } from '../core/services/fetch';
+import { storage } from '../core/services/storage';
 
 export type signInType = { email: string; password: string };
 
@@ -9,6 +10,8 @@ export const signIn = async (payload: { email: string; password: string }) => {
     url: `/auth/sign-in`,
     data: payload,
   });
+
+  storage.set<string>('token', data.token);
 
   return data;
 };
@@ -24,11 +27,14 @@ export const getUser = async () => {
 };
 
 export const createUser = async (payload: IUser) => {
-  const { data } = await baseFetch<IUser>({
+  const { data } = await baseFetch<IUserWithToken>({
     method: 'POST',
     url: `/auth/sign-up`,
     data: payload,
   });
+
+  storage.set<string>('token', data.token);
+
   return data;
 };
 

@@ -1,5 +1,5 @@
 import { useRouter } from 'next/dist/client/router';
-import { memo, useEffect } from 'react';
+import { memo } from 'react';
 import { useRecoilState } from 'recoil';
 
 import { leftMenuAtom } from '../../store/atoms/left-menu-atom';
@@ -12,10 +12,13 @@ export const LeftMenu = memo(({ image }: { image?: string }) => {
   const [activeId, setActiveId] = useRecoilState(leftMenuAtom);
   const { pathname } = useRouter();
 
-  useEffect(() => {
-    const activeMenu = mock.filter((item) => item.href === pathname)[0];
-    activeMenu.key && setActiveId(activeMenu.key);
-  }, [pathname, setActiveId]);
+  // eslint-disable-next-line no-console
+  console.log(pathname);
+
+  // useEffect(() => {
+  //   const activeMenu = mock.filter((item) => item.href === pathname)[0];
+  //   activeMenu.key && setActiveId(activeMenu.key);
+  // }, [pathname, setActiveId]);
 
   return (
     <Aside image={image}>

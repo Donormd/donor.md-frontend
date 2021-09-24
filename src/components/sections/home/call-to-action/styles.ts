@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
-import { StyledLink, Title } from '../../../UI';
+import { StyledLink } from '../../../UI/links';
+import { Title } from '../../../UI/typography';
 
 export const SectionTitle = styled(Title)`
   @media (min-width: 768px) {
@@ -9,7 +10,7 @@ export const SectionTitle = styled(Title)`
 `;
 export const Underline = styled(StyledLink)`
   margin-right: 20px;
-  color: ${({ theme }) => theme.red};
+  color: ${({ theme }) => theme.colors.red};
   text-decoration: underline;
 `;
 export const ImageWrapper = styled.div`
@@ -32,7 +33,7 @@ export const Article = styled.article`
   align-items: center;
   padding: 25px;
   margin-bottom: 30px;
-  border: ${({ theme }) => `1px solid ${theme.redDiluted}`};
+  border: ${({ theme }) => `1px solid ${theme.colors.redDiluted}`};
   border-radius: ${({ theme }) => theme.radius};
   background: white;
 

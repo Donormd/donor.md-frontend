@@ -2,12 +2,17 @@ import Image from 'next/image';
 import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 
+import { prepareError } from '../../../../core/helpers/prepare-data';
 import { createFeedback, IFeedback } from '../../../../queries/feedback';
 import { useTypedMutation } from '../../../../queries/utils';
-import { Alert } from '../../../alert';
 import { SocialMediaLinks } from '../../../social-media-links';
-import { Button, FormItem, Input, TextArea, Title } from '../../../UI';
+import { Alert } from '../../../UI/alert';
+import { Button } from '../../../UI/button';
+import { FormItem } from '../../../UI/form/form-item';
+import { Input } from '../../../UI/form/input';
+import { TextArea } from '../../../UI/form/textarea';
 import { Loading } from '../../../UI/loading';
+import { Title } from '../../../UI/typography';
 import { Section } from '../utils';
 import { Grid, ImageWrapper, SectionParagraph, Social } from './styles';
 
@@ -31,21 +36,16 @@ export const Feedback = () => {
             Напишите нам
           </Title>
           <SectionParagraph>
-            Если у Вас есть вопросы по работе сервиса и предложения по его улучшению и/или видение
-            нашего общего сотрудничества
+            Если у Вас есть вопросы по работе сервиса и предложения по его улучшению и/или видение нашего
+            общего сотрудничества
           </SectionParagraph>
           <form onSubmit={handleSubmit(onSubmit)}>
             {isSuccess && <Alert dismissible message='Спасибо что написали нам' />}
-            {isError && <Alert dismissible message={error?.message} />}
+            {isError && <Alert dismissible message={prepareError(error)} />}
             {isLoading && <Loading />}
             <FormItem columns={1}>
               <HalfWidth>
-                <Input
-                  name='contact'
-                  innerRef={register}
-                  scale='lg'
-                  placeholder='Ваш email или номер телефона'
-                />
+                <Input name='contact' ref={register} scale='lg' placeholder='Ваш email или номер телефона' />
               </HalfWidth>
             </FormItem>
             <FormItem columns={1}>
@@ -56,12 +56,7 @@ export const Feedback = () => {
             </Button>
           </form>
           <Social>
-            <Image
-              src='/images/pages/home/we-are-in-social.png'
-              width={364}
-              height={33}
-              layout='fixed'
-            />
+            <Image src='/images/pages/home/we-are-in-social.png' width={364} height={33} layout='fixed' />
             <SocialMediaLinks />
           </Social>
         </div>

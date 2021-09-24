@@ -7,9 +7,7 @@ type RateType = {
   total: number;
 };
 
-const outlined = () => (
-  <Image src='/images/rate/outlined.svg' width={20} height={20} layout='fixed' />
-);
+const outlined = () => <Image src='/images/rate/outlined.svg' width={20} height={20} layout='fixed' />;
 
 const filled = () => <Image src='/images/rate/filled.svg' width={20} height={20} layout='fixed' />;
 

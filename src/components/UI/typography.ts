@@ -1,20 +1,24 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+import { ColorsType } from './theme';
 
 export declare type TitleProps = {
-  margin?: boolean | string;
+  margin?: string;
   bold?: boolean;
   size?: string;
   align?: string;
-  color?: string;
+  color?: keyof ColorsType;
 };
 
-export const Title = styled.h1<TitleProps>`
-  margin-bottom: ${({ margin }) => (!margin ? 0 : `${margin || '0.5rem'}`)};
-  font-weight: ${({ bold }) => (bold ? 'bold' : 'normal')};
-  font-size: ${({ size }) => size || ''};
-  text-align: ${({ align }) => align || ''};
-  color: ${({ color, theme }) => (!color ? theme.textDark : `${theme[color] || color}`)};
-`;
+export const Title = styled.h1<TitleProps>(
+  ({ margin, bold, size, align, color, theme }) => css`
+    margin: ${margin || '0 0 0.5rem 0'};
+    font-weight: ${bold ? 'bold' : 'normal'};
+    font-size: ${size};
+    text-align: ${align};
+    color: ${!color ? theme.colors.textDark : `${theme.colors[color] || color}`};
+  `,
+);
 
 export const TitleWithArrow = styled(Title)`
   &::after {
@@ -24,11 +28,13 @@ export const TitleWithArrow = styled(Title)`
     position: absolute;
   }
 `;
-export const Paragraph = styled.p<TitleProps>`
-  margin-bottom: ${({ margin }) => (!margin ? 0 : '1rem')};
-  font-weight: ${({ bold }) => (bold ? 'bold' : 'normal')};
-  font-size: ${({ size }) => size || ''};
-  text-align: ${({ align }) => align || ''};
-  color: ${({ color, theme }) => (color ? `${theme[color] || color}` : theme.textDark)};
-  /* color: ${({ color, theme }) => (!color ? theme.textDark : `${theme[color] || color}`)}; */
-`;
+
+export const Paragraph = styled.p<TitleProps>(
+  ({ margin, bold, size, align, color, theme }) => css`
+    margin: ${margin || '0 0 1rem 0'};
+    font-weight: ${bold ? 'bold' : 'normal'};
+    font-size: ${size};
+    text-align: ${align};
+    color: ${color ? theme.colors[color] : theme.colors.textDark};
+  `,
+);

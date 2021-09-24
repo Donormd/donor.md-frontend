@@ -2,7 +2,7 @@ import { useRouter } from 'next/dist/client/router';
 import Link from 'next/link';
 import styled from 'styled-components';
 
-import { Button } from '../UI';
+import { Button } from '../UI/button';
 import { IRoutsItem, routs, RoutsKey } from './mock';
 
 export const DashboardButtonsLinks = () => {

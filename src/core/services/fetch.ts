@@ -9,7 +9,7 @@ const api = axios.create({
 
 export const baseFetch = <T>({
   url = '/',
-  method = 'get',
+  method = 'GET',
   headers = {},
   params = {},
   data = {},
@@ -19,6 +19,8 @@ export const baseFetch = <T>({
     const token = storage.get<string>('token');
     if (token) {
       headers.authorization = `Bearer ${token}`;
+    } else {
+      headers.authorization = undefined;
     }
   }
   return api({

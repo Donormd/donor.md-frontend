@@ -3,7 +3,7 @@ import Link from 'next/link';
 import styled from 'styled-components';
 
 import { IMockItem } from '../../../../mocks/articles';
-import { Paragraph, Title } from '../../../UI';
+import { Paragraph, Title } from '../../../UI/typography';
 import { Section } from '../utils';
 
 type AboutDonationType = {
@@ -21,12 +21,7 @@ export const AboutDonation = ({ title, data }: AboutDonationType) => {
         {data.map(({ image, text, link }) => (
           <article key={image.src}>
             <ImageWrapper>
-              <Image
-                src={image.src}
-                width={image.width}
-                height={image.height}
-                layout='responsive'
-              />
+              <Image src={image.src} width={image.width} height={image.height} layout='responsive' />
             </ImageWrapper>
             <Link href={link}>
               <ArticleBody>
@@ -57,7 +52,7 @@ const ImageWrapper = styled.div`
   max-width: 320px;
   margin: 0 auto;
   background: white;
-  border: ${({ theme }) => `1px solid ${theme.redDiluted}`};
+  border: ${({ theme }) => `1px solid ${theme.colors.redDiluted}`};
   border-radius: ${({ theme }) => theme.radius};
 `;
 

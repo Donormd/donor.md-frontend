@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import styled from 'styled-components';
 
-import { Paragraph, Title } from './UI';
+import { Paragraph, Title } from './UI/typography';
 
 export const DonorCard = () => {
   return (
@@ -26,7 +26,7 @@ const Layer = styled.div`
   margin-bottom: 15px;
   padding: 15px;
   color: white;
-  background: ${({ theme }) => theme.red};
+  background: ${({ theme }) => theme.colors.red};
   border-radius: ${({ theme }) => theme.radius};
 `;
 
@@ -35,7 +35,7 @@ const Counter = styled.div`
   width: 75px;
   height: 75px;
   border-radius: ${({ theme }) => theme.radius};
-  border: ${({ theme }) => `1px solid ${theme.red}`};
+  border: ${({ theme }) => `1px solid ${theme.colors.red}`};
   overflow: hidden;
 `;
 

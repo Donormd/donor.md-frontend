@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
-import { Paragraph } from '../UI';
+import { Paragraph } from '../UI/typography';
 
 export const Aside = styled.aside`
   display: none;
   padding: 25px;
-  background: ${({ theme }) => theme.primary};
+  background: ${({ theme }) => theme.colors.primary};
   @media (min-width: 992px) {
     display: block;
   }
@@ -30,10 +30,10 @@ export const MenuItem = styled.li`
   color: black;
   overflow: hidden;
   border-radius: ${({ theme }) => theme.radius};
-  border: ${({ theme }) => `1px solid ${theme.red}`};
+  border: ${({ theme }) => `1px solid ${theme.colors.red}`};
 
   &:hover {
-    background: ${({ theme }) => theme.redDiluted};
+    background: ${({ theme }) => theme.colors.redDiluted};
   }
 
   &:hover path {

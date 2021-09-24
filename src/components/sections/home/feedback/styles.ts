@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { Paragraph } from '../../../UI';
+import { Paragraph } from '../../../UI/typography';
 
 export const Grid = styled.div`
   display: grid;

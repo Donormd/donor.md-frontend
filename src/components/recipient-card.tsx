@@ -8,8 +8,9 @@ import { IRecipient } from '../core/interfaces/recipient';
 import { getOptions } from '../queries/common';
 import { useTypedQuery } from '../queries/utils';
 import { Rate } from './rate';
-import { Button, Paragraph, Title } from './UI';
+import { Button } from './UI/button';
 import { Loading } from './UI/loading';
+import { Paragraph, Title } from './UI/typography';
 
 type RecipientCardType = Pick<IRecipient, 'recipient'>;
 
@@ -32,10 +33,10 @@ export const RecipientCard = memo(({ recipient }: RecipientCardType) => {
   const { data: bloodGroups, isLoading: bloodGroupsLoading } = useTypedQuery('bloodGroups', () =>
     getOptions('bloodGroups'),
   );
-  const {
-    data: transfusionCenter,
-    isLoading: transfusionCenterLoading,
-  } = useTypedQuery('transfusionCenter', () => getOptions('transfusionCenter'));
+  const { data: transfusionCenter, isLoading: transfusionCenterLoading } = useTypedQuery(
+    'transfusionCenter',
+    () => getOptions('transfusionCenter'),
+  );
 
   const years = new Date().getFullYear() - new Date(dateBirth).getFullYear();
 
@@ -93,7 +94,7 @@ const Card = styled.article`
   margin-bottom: 30px;
   background: white;
   border-radius: ${({ theme }) => theme.radius};
-  border: ${({ theme }) => `1px solid ${theme.red}`};
+  border: ${({ theme }) => `1px solid ${theme.colors.red}`};
 
   @media (min-width: 992px) {
     row-gap: 0;
@@ -105,7 +106,7 @@ const Image = styled(ImageNext)<{ layout: string }>`
 `;
 
 const RedHighlight = styled.span`
-  color: ${({ theme }) => theme.red};
+  color: ${({ theme }) => theme.colors.red};
   font-weight: normal;
 `;
 

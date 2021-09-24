@@ -2,7 +2,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styled from 'styled-components';
 
-import { Button, Paragraph, Title } from '../../UI';
+import { Button } from '../../UI/button';
+import { Paragraph, Title } from '../../UI/typography';
 
 export const Intro = () => (
   <Section id='intro'>
@@ -13,9 +14,7 @@ export const Intro = () => (
       <StyledTitle bold>
         <RedText>DONOR.MD</RedText> - место, где люди помогают людям
       </StyledTitle>
-      <ColumnParagraph>
-        Web-сервис для тех, кто сдает и ищет донорскую кровь в Приднестровье
-      </ColumnParagraph>
+      <ColumnParagraph>Web-сервис для тех, кто сдает и ищет донорскую кровь в Приднестровье</ColumnParagraph>
       <ButtonGroup>
         <Link href='/articles/minimum-requirements-for-donor' passHref>
           <Button variant='outline-primary' size='lg'>
@@ -58,7 +57,7 @@ const StyledTitle = styled(Title)`
 `;
 
 const RedText = styled.b`
-  color: ${({ theme }) => theme.red};
+  color: ${({ theme }) => theme.colors.red};
 `;
 
 const Column = styled.div`

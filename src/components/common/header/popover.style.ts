@@ -12,7 +12,7 @@ export const PopoverStyle = createGlobalStyle`
   }
   .ant-popover-inner-content {
     padding: 20px 30px;
-    border: ${`1px solid ${theme.redDiluted}`};
+    border: ${`1px solid ${theme.colors.redDiluted}`};
   }
 
   .ant-popover-placement-bottomRight > .ant-popover-content > .ant-popover-arrow {

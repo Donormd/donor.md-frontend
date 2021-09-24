@@ -3,17 +3,10 @@ import Link from 'next/link';
 import { useState } from 'react';
 
 import { Logo } from '../../logo';
-import { Button, StyledLink } from '../../UI';
+import { Button } from '../../UI/button';
+import { StyledLink } from '../../UI/links';
 import { PopoverStyle } from './popover.style';
-import {
-  Burder,
-  Dot,
-  HeaderGrid,
-  HeaderWrapper,
-  MenuItem,
-  MenuList,
-  MenuListProps,
-} from './styles';
+import { Burder, Dot, HeaderGrid, HeaderWrapper, MenuItem, MenuList, MenuListProps } from './styles';
 
 export const Header = () => {
   const [hide, setToggleOpen] = useState<boolean>(false);
