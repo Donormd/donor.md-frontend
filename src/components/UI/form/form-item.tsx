@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 import styled from 'styled-components';
 
 import { Title } from '../typography';
@@ -9,7 +9,7 @@ interface IProps {
   columns: number;
   columnsSm: number;
   help: string;
-  label: string;
+  label: string | ReactNode;
   marginBottom: string;
   required: boolean;
   error: string;
