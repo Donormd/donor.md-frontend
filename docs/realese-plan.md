@@ -16,10 +16,10 @@
 - [x] The best donors of our service (top-donors)
 - [x] NEED UPDATE react-hook-from
 - [x] How to become a volunteer
-- [ ] Corporate donation
+- [x] Corporate donation
+- [x] Bonus program for commercial agents
 - [ ] Support the project
 - [ ] Donor search
-- [ ] Bonus program for commercial agents
 - [ ] Not found page
 - [ ] About service
 - [ ] Donor stories
