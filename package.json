@@ -1,6 +1,6 @@
 {
   "name": "donor-frontend",
-  "version": "1.4.0",
+  "version": "1.4.2",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -26,10 +26,10 @@
     "react-query": "^3.21.0",
     "react-yandex-maps": "4.6.0",
     "recoil": "^0.4.1",
+    "@next/bundle-analyzer": "^11.1.2",
     "styled-components": "^5.3.1"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "^11.1.2",
     "@svgr/webpack": "^5.5.0",
     "@types/node": "^14.14.14",
     "@types/react": "^17.0.0",
