@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start:dev": "next start",
-    "start": "next start -p $PORT",
+    "start": "next start",
     "check-types": "tsc --noEmit",
     "analyze": "cross-env ANALYZE=true yarn build",
     "version": "auto-changelog -p --release-summary && git add CHANGELOG.md"

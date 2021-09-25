@@ -1,9 +1,9 @@
-import { ArticleCards } from '../../components/article-cards';
-import { ListWithCheck } from '../../components/UI/list-with-check';
-import { Divider } from '../../components/UI/other';
-import { Paragraph, Title } from '../../components/UI/typography';
-import { Container } from '../../core/layouts/container';
-import { HeaderContentFooter } from '../../core/layouts/header-content-footer';
+import { ArticleCards } from '../components/article-cards';
+import { ListWithCheck } from '../components/UI/list-with-check';
+import { Divider } from '../components/UI/other';
+import { Paragraph, Title } from '../components/UI/typography';
+import { Container } from '../core/layouts/container';
+import { HeaderContentFooter } from '../core/layouts/header-content-footer';
 
 const listMock = [
   `мы упрощаем поиск доноров крови для тех, кто ищет доноров по социальным сетям и среди родственников. 
@@ -83,7 +83,7 @@ const AboutPage = () => (
       </Title>
       <Paragraph>
         Будем рады вашим отзывам, пожеланиям, предложениям по электронной почте{' '}
-        <a href='mail:to'>pmrdonor@gmail.com</a>.
+        <a href='mailto:pmrdonor@gmail.com'>pmrdonor@gmail.com</a>.
       </Paragraph>
     </Container>
   </HeaderContentFooter>
