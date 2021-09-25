@@ -2,8 +2,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styled from 'styled-components';
 
-import { IMockItem } from '../../../../mocks/articles';
-import { Paragraph, Title } from '../../../UI/typography';
+import { Paragraph, Title } from '../../../components/UI/typography';
+import { IMockItem } from '../../../mocks/articles';
 import { Section } from '../utils';
 
 type AboutDonationType = {

@@ -21,7 +21,7 @@ const times = ['8:00', '8:30', '9:00', '9:30', '10:00', '10:30', '11:00', '11:30
 const DonationsPlanning = () => {
   const { handleSubmit, register, control } = useForm({
     defaultValues: {
-      bloodCenterId: null,
+      transfusionCenterId: '',
       date: new Date().toISOString(),
       time: '8:00',
     },
@@ -44,32 +44,35 @@ const DonationsPlanning = () => {
       <Form onSubmit={handleSubmit(onSubmit)}>
         <FormItem columns={2} label='Место сдачи'>
           <Controller
-            name='bloodCenterId'
+            name='transfusionCenterId'
             control={control}
-            as={
-              <Select size='large' placeholder='Выберите место сдачи'>
-                {transfusionCenter &&
-                  transfusionCenter.map((item) => (
-                    <Select.Option value={item._id}>{item.text}</Select.Option>
-                  ))}
+            render={({ field }) => (
+              <Select {...field} size='large' placeholder='Выберите место сдачи'>
+                {transfusionCenter?.map((item) => (
+                  <Select.Option key={item._id} value={item._id}>
+                    {item.text}
+                  </Select.Option>
+                ))}
               </Select>
-            }
+            )}
           />
         </FormItem>
         <FormItem columns={2} label='Дата кровосдачи'>
-          <Input name='date' type='date' ref={register} />
+          <Input {...register('date')} type='date' />
         </FormItem>
         <FormItem columns={2} label='Время кровосдачи'>
           <Controller
             name='time'
             control={control}
-            as={
-              <Select size='large'>
+            render={({ field }) => (
+              <Select {...field} size='large'>
                 {times.map((time) => (
-                  <Select.Option value={time}>{time}</Select.Option>
+                  <Select.Option key={time} value={time}>
+                    {time}
+                  </Select.Option>
                 ))}
               </Select>
-            }
+            )}
           />
         </FormItem>
         <Paragraph color='textMuted'>

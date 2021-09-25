@@ -8,6 +8,7 @@ import { FormItem } from '../components/UI/form/form-item';
 import { Input } from '../components/UI/form/input';
 import { Divider } from '../components/UI/other';
 import { Paragraph, Title } from '../components/UI/typography';
+import { prepareError } from '../core/helpers/prepare-data';
 import { IMonitoringResponse } from '../core/interfaces/monitoring';
 import { Container } from '../core/layouts/container';
 import { HeaderContentFooter } from '../core/layouts/header-content-footer';
@@ -18,8 +19,9 @@ const Monitoring = () => {
   const { register, handleSubmit, setValue } = useForm();
 
   const { data: monitoringData } = useTypedQuery('monitoring', getMonitoringData);
-  const { mutate, isError, isSuccess } = useTypedMutation('monitoring', (payload: IMonitoringResponse) =>
-    updateMonitoringData(payload),
+  const { mutate, isError, isSuccess, error } = useTypedMutation(
+    'monitoring',
+    (payload: IMonitoringResponse) => updateMonitoringData(payload),
   );
 
   useEffect(() => {
@@ -54,7 +56,7 @@ const Monitoring = () => {
         </Article>
         <form onSubmit={handleSubmit(onSubmit)}>
           <FormItem label='Ваша Фамилия и Имя' columns={2}>
-            <Input name='fullname' ref={register} />
+            <Input {...register('fullname')} />
           </FormItem>
           <FormItem help='Дата указывается автоматически' label='Дата ввода информации' columns={2}>
             <Input placeholder='Дата указывается автоматически' disabled />
@@ -83,26 +85,26 @@ const Monitoring = () => {
               <Paragraph bold align='left'>
                 Положительная (+)
               </Paragraph>
-              <Input type='number' name='O(I)+' ref={register} />
-              <Input type='number' name='A(II)+' ref={register} />
-              <Input type='number' name='B(III)+' ref={register} />
-              <Input type='number' name='AB(IV)+' ref={register} />
+              <Input type='number' {...register('O(I)+')} />
+              <Input type='number' {...register('A(II)+')} />
+              <Input type='number' {...register('B(III)+')} />
+              <Input type='number' {...register('AB(IV)+')} />
             </Row>
             <Row>
               <Paragraph bold align='left'>
                 Отрицательная (-)
               </Paragraph>
-              <Input type='number' name='O(I)-' ref={register} />
-              <Input type='number' name='A(II)-' ref={register} />
-              <Input type='number' name='B(III)-' ref={register} />
-              <Input type='number' name='AB(IV)-' ref={register} />
+              <Input type='number' {...register('O(I)-')} />
+              <Input type='number' {...register('A(II)-')} />
+              <Input type='number' {...register('B(III)-')} />
+              <Input type='number' {...register('AB(IV)-')} />
             </Row>
           </TableForm>
           <Button type='submit' variant='outline-danger' size='lg'>
             Сохранить данные
           </Button>
           {isSuccess && <Alert dismissible>Данные добавлены</Alert>}
-          {isError && <Alert dismissible>Упс, что-то пошло не так</Alert>}
+          {isError && <Alert dismissible>{prepareError(error)}</Alert>}
         </form>
       </Container>
     </HeaderContentFooter>

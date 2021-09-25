@@ -33,7 +33,7 @@ export const RecoveryForm = ({ onChangeState }: Props) => {
         Восстановление доступа
       </Title>
       <FormItem columns={1}>
-        <Input placeholder='Введите email' name='email' ref={register} />
+        <Input placeholder='Введите email' {...register('email')} />
       </FormItem>
       <div>
         <ActionLayout btnText='Восстановить' linkText='Войти' linkOnClick={() => onChangeState('signIn')} />

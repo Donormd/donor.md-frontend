@@ -29,10 +29,10 @@ export const ChangePassword = () => {
     <Form onSubmit={handleSubmit(onSubmit)}>
       <Divider />
       <FormItem columns={2} label='Введите старый пароль'>
-        <Input type='text' name='newPassword' ref={register} />
+        <Input type='text' {...register('newPassword')} />
       </FormItem>
       <FormItem columns={2} label='Введите новый пароль'>
-        <Input type='text' name='oldPassword' ref={register} />
+        <Input type='text' {...register('oldPassword')} />
       </FormItem>
       <Button type='submit' variant='outline-danger' size='lg'>
         Сменить пароль

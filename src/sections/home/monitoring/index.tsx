@@ -1,7 +1,7 @@
-import { getMonitoringData } from '../../../../queries/monitoring';
-import { useTypedQuery } from '../../../../queries/utils';
-import { Loading } from '../../../UI/loading';
-import { Paragraph, Title } from '../../../UI/typography';
+import { Loading } from '../../../components/UI/loading';
+import { Paragraph, Title } from '../../../components/UI/typography';
+import { getMonitoringData } from '../../../queries/monitoring';
+import { useTypedQuery } from '../../../queries/utils';
 import { Section } from '../utils';
 import { BloodItem } from './blood-item';
 import { BloodList } from './styles';

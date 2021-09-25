@@ -55,10 +55,13 @@ export const ReviewForm = () => {
         <Controller
           name='bloodCenterId'
           control={control}
-          render={(props) => (
-            <Select size='large' placeholder='Выбор центра' loading={bloodCenterLoading} {...props}>
-              {bloodCenter &&
-                bloodCenter.map((item) => <Select.Option value={item._id}>{item.text}</Select.Option>)}
+          render={({ field }) => (
+            <Select {...field} size='large' placeholder='Выбор центра' loading={bloodCenterLoading}>
+              {bloodCenter?.map((item) => (
+                <Select.Option key={item._id} value={item._id}>
+                  {item.text}
+                </Select.Option>
+              ))}
             </Select>
           )}
         />
@@ -102,8 +105,7 @@ export const ReviewForm = () => {
         <TextArea
           placeholder='Нам очень важно знать мнение каждого донора'
           rows={7}
-          name='message'
-          ref={register({ required: true })}
+          {...register('message', { required: true })}
         />
       </FormItem>
       <Button variant='outline-danger' size='lg' type='submit'>

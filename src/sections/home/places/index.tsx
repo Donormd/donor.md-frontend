@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { Map, Placemark, YMaps } from 'react-yandex-maps';
 import styled from 'styled-components';
 
-import { IOptions } from '../../../../core/interfaces/IIterableStruct';
-import { ButtonGroup } from '../../../UI/button-group';
-import { Title } from '../../../UI/typography';
+import { ButtonGroup } from '../../../components/UI/button-group';
+import { Title } from '../../../components/UI/typography';
+import { IOptions } from '../../../core/interfaces/IIterableStruct';
 import { Section } from '../utils';
 import { Place } from './place';
 

@@ -48,49 +48,46 @@ const DonorSearchPage = () => {
         <Divider />
         <form onSubmit={handleSubmit(onSubmit)}>
           <FormItem label='ФИО реципиента' required>
-            <Input name='fullname' ref={register} />
+            <Input {...register('fullname')} />
           </FormItem>
           <FormItem label='Дата рождения' required>
-            <Input type='date' name='dateBirth' ref={register} />
+            <Input type='date' {...register('dateBirth')} />
           </FormItem>
           <FormItem label='Выберите необходимую группу крови' required>
             <Select size='large'>
-              {bloodGroups &&
-                bloodGroups.map(({ _id, text }) => (
-                  <Select.Option key={_id} value={_id}>
-                    {text}
-                  </Select.Option>
-                ))}
+              {bloodGroups?.map(({ _id, text }) => (
+                <Select.Option key={_id} value={_id}>
+                  {text}
+                </Select.Option>
+              ))}
             </Select>
           </FormItem>
           <FormItem label='Медицинское учреждение' help='В котором находится реципиент' required>
             <Select size='large'>
-              {bloodCenter &&
-                bloodCenter.map(({ _id, text }) => (
-                  <Select.Option key={_id} value={_id}>
-                    {text}
-                  </Select.Option>
-                ))}
+              {bloodCenter?.map(({ _id, text }) => (
+                <Select.Option key={_id} value={_id}>
+                  {text}
+                </Select.Option>
+              ))}
             </Select>
           </FormItem>
           <FormItem label='Заболевание/травма' required>
-            <Input name='' ref={register} />
+            <Input {...register('disease')} />
           </FormItem>
           <FormItem label='Укажите центр переливания крови' required>
             <Select size='large'>
-              {transfusionCenter &&
-                transfusionCenter.map(({ _id, text }) => (
-                  <Select.Option key={_id} value={_id}>
-                    {text}
-                  </Select.Option>
-                ))}
+              {transfusionCenter?.map(({ _id, text }) => (
+                <Select.Option key={_id} value={_id}>
+                  {text}
+                </Select.Option>
+              ))}
             </Select>
           </FormItem>
           <FormItem label='Необходимое количество доноров' required>
-            <Input name='' ref={register} type='number' min={1} max={20} />
+            <Input {...register('donorCount')} type='number' min={1} max={20} />
           </FormItem>
           <FormItem label='Срок сдачи до' required>
-            <Input type='date' name='dateBirth' ref={register} />
+            <Input type='date' {...register('dateBirth')} />
           </FormItem>
           <FormItem label='Дополнительная информация' required>
             <TextArea
@@ -114,16 +111,16 @@ const DonorSearchPage = () => {
             Контактное лицо
           </Title>
           <FormItem label='ФИО' required>
-            <Input name='' ref={register} />
+            <Input {...register('fullname')} />
           </FormItem>
           <FormItem label='Ваш email-адрес' required>
-            <Input name='' ref={register} />
+            <Input {...register('email')} />
           </FormItem>
           <FormItem label='Номер мобильного телефона' required>
-            <Input name='' ref={register} />
+            <Input {...register('phone')} />
           </FormItem>
           <FormItem label='Кто вы для реципиента' required>
-            <Input name='' ref={register} />
+            <Input {...register('whyAreYou')} />
           </FormItem>
           <FormItem columns={1}>
             <Checkbox checked>

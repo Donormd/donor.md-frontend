@@ -2,11 +2,11 @@ import { Table as AntTable } from 'antd';
 import { useRecoilValue } from 'recoil';
 import styled, { css } from 'styled-components';
 
-import { getTopDonors } from '../../../queries/getTopDonors';
-import { useTypedQuery } from '../../../queries/utils';
-import { activeIdAtom } from '../../../store/atoms/active-id-atom';
-import { StyledLink } from '../../UI/links';
-import { Title } from '../../UI/typography';
+import { StyledLink } from '../../components/UI/links';
+import { Title } from '../../components/UI/typography';
+import { getTopDonors } from '../../queries/getTopDonors';
+import { useTypedQuery } from '../../queries/utils';
+import { activeIdAtom } from '../../store/atoms/active-id-atom';
 
 const columns = [
   {

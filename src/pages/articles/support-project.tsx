@@ -24,7 +24,7 @@ const SupportProject = () => (
       <p>
         Мы приглашаем Pro bono волонтеров и специалистов сделать вклад в развитие сервиса. Волонтерство ваших
         сотрудников или услуги вашей компании могут {` `}
-        <Link href='/articles/become-volunteer' passHref>
+        <Link href='/become-volunteer' passHref>
           <StyledLink color='black' underline bold>
             помочь усилить наши возможности
           </StyledLink>

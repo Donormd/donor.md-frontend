@@ -1,7 +1,7 @@
-import { StoriesHead } from '../components/sections/top-donors/stories-head';
-import { TableDonors } from '../components/sections/top-donors/table-donors';
 import { Container } from '../core/layouts/container';
 import { HeaderContentFooter } from '../core/layouts/header-content-footer';
+import { StoriesHead } from '../sections/top-donors/stories-head';
+import { TableDonors } from '../sections/top-donors/table-donors';
 
 const TopDonorsPage = () => {
   return (

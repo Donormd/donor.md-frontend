@@ -1,12 +1,12 @@
 import { Carousel } from 'antd';
 import { useRef } from 'react';
 
-import NextSVG from '../../../../../public/images/carousel/next.svg';
-import PrevSVG from '../../../../../public/images/carousel/prev.svg';
-import { getStories } from '../../../../queries/stories';
-import { useTypedQuery } from '../../../../queries/utils';
-import { Loading } from '../../../UI/loading';
-import { Title } from '../../../UI/typography';
+import NextSVG from '../../../../public/images/carousel/next.svg';
+import PrevSVG from '../../../../public/images/carousel/prev.svg';
+import { Loading } from '../../../components/UI/loading';
+import { Title } from '../../../components/UI/typography';
+import { getStories } from '../../../queries/stories';
+import { useTypedQuery } from '../../../queries/utils';
 import { Button, ButtonGroup, WrapperDonorStory, WrapperSection } from './styles';
 
 export const Stories = () => {

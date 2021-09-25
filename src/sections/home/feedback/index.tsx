@@ -2,17 +2,17 @@ import Image from 'next/image';
 import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 
-import { prepareError } from '../../../../core/helpers/prepare-data';
-import { createFeedback, IFeedback } from '../../../../queries/feedback';
-import { useTypedMutation } from '../../../../queries/utils';
-import { SocialMediaLinks } from '../../../social-media-links';
-import { Alert } from '../../../UI/alert';
-import { Button } from '../../../UI/button';
-import { FormItem } from '../../../UI/form/form-item';
-import { Input } from '../../../UI/form/input';
-import { TextArea } from '../../../UI/form/textarea';
-import { Loading } from '../../../UI/loading';
-import { Title } from '../../../UI/typography';
+import { SocialMediaLinks } from '../../../components/social-media-links';
+import { Alert } from '../../../components/UI/alert';
+import { Button } from '../../../components/UI/button';
+import { FormItem } from '../../../components/UI/form/form-item';
+import { Input } from '../../../components/UI/form/input';
+import { TextArea } from '../../../components/UI/form/textarea';
+import { Loading } from '../../../components/UI/loading';
+import { Title } from '../../../components/UI/typography';
+import { prepareError } from '../../../core/helpers/prepare-data';
+import { createFeedback, IFeedback } from '../../../queries/feedback';
+import { useTypedMutation } from '../../../queries/utils';
 import { Section } from '../utils';
 import { Grid, ImageWrapper, SectionParagraph, Social } from './styles';
 
@@ -45,11 +45,11 @@ export const Feedback = () => {
             {isLoading && <Loading />}
             <FormItem columns={1}>
               <HalfWidth>
-                <Input name='contact' ref={register} scale='lg' placeholder='Ваш email или номер телефона' />
+                <Input {...register('contact')} scale='lg' placeholder='Ваш email или номер телефона' />
               </HalfWidth>
             </FormItem>
             <FormItem columns={1}>
-              <TextArea name='message' ref={register} placeholder='Текст сообщения' rows={7} />
+              <TextArea {...register('message')} placeholder='Текст сообщения' rows={7} />
             </FormItem>
             <Button type='submit' variant='outline-danger' size='lg'>
               Отправить

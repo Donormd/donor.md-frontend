@@ -54,28 +54,28 @@ const CorporateDonationPage = () => {
         <Divider />
         <form onSubmit={handleSubmit(onSubmit)}>
           <FormItem label='Название организации'>
-            <Input name='organization' ref={register} placeholder='Название организации' />
+            <Input {...register('organization')} placeholder='Название организации' />
           </FormItem>
           <FormItem label='Руководитель организации'>
-            <Input name='leader' ref={register} placeholder='Руководитель организации' />
+            <Input {...register('leader')} placeholder='Руководитель организации' />
           </FormItem>
           <FormItem label='Контактное лицо организации'>
-            <Input name='contact' ref={register} placeholder='Контактное лицо организации' />
+            <Input {...register('contact')} placeholder='Контактное лицо организации' />
           </FormItem>
           <FormItem label='Должность'>
-            <Input name='position' ref={register} placeholder='Должность' />
+            <Input {...register('position')} placeholder='Должность' />
           </FormItem>
           <FormItem label='Ваш email-адрес'>
-            <Input name='email' ref={register} placeholder='Ваш email-адрес' />
+            <Input {...register('email')} placeholder='Ваш email-адрес' />
           </FormItem>
           <FormItem label='Номер мобильного телефона'>
-            <Input name='telephoneNumber' ref={register} placeholder='Номер мобильного телефона' />
+            <Input {...register('telephoneNumber')} placeholder='Номер мобильного телефона' />
           </FormItem>
           <FormItem label='Городской номер телефона'>
-            <Input name='cityPhoneNumber' ref={register} placeholder='Городской номер телефона' />
+            <Input {...register('cityPhoneNumber')} placeholder='Городской номер телефона' />
           </FormItem>
           <FormItem label='Количество работников в возрасте 18-55 лет'>
-            <Input name='amountWorkers' ref={register} type='number' min={0} defaultValue={0} />
+            <Input {...register('amountWorkers')} type='number' min={0} defaultValue={0} />
           </FormItem>
           <FormItem>
             <Checkbox checked>

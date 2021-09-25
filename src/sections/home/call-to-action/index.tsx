@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { Button } from '../../../UI/button';
-import { Title } from '../../../UI/typography';
+import { Button } from '../../../components/UI/button';
+import { Title } from '../../../components/UI/typography';
 import { Section } from '../utils';
 import { Article, ArticleGrid, ImageWrapper, SectionTitle, Underline } from './styles';
 

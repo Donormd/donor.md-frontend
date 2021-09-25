@@ -28,8 +28,13 @@ const validate = { required: 'Обязательное поле' };
 export const SignUpForm = ({ onChangeState }: Props) => {
   const [user, setUser] = useRecoilState(userAtom);
 
-  const { register, control, handleSubmit, errors } = useForm({
-    defaultValues: { ...user, password: '', bloodGroupId: null, sexId: null },
+  const {
+    register,
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: { ...user, password: '', bloodGroupId: '', sexId: '' },
   });
 
   const { data: bloodGroups, isLoading: bloodGroupsLoading } = useTypedQuery('blood-groups', () =>
@@ -64,32 +69,29 @@ export const SignUpForm = ({ onChangeState }: Props) => {
         Регистрация
       </Title>
       <FormItem error={errors.fullname?.message}>
-        <Input placeholder='Укажите ФИО' name='fullname' ref={register(validate)} />
+        <Input placeholder='Укажите ФИО' {...register('fullname', validate)} />
       </FormItem>
       <FormItem error={errors.sexId?.message}>
         <Controller
           name='sexId'
           control={control}
-          rules={validate}
-          as={
-            <Select size='large' placeholder='Укажите пол'>
-              {sex &&
-                sex.map(({ text, _id }) => (
-                  <Select.Option key={_id} value={_id}>
-                    {text}
-                  </Select.Option>
-                ))}
+          render={({ field }) => (
+            <Select {...field} size='large' placeholder='Укажите пол'>
+              {sex?.map(({ text, _id }) => (
+                <Select.Option key={_id} value={_id}>
+                  {text}
+                </Select.Option>
+              ))}
             </Select>
-          }
+          )}
         />
       </FormItem>
       <FormItem error={errors.bloodGroupId?.message}>
         <Controller
           name='bloodGroupId'
           control={control}
-          rules={validate}
-          as={
-            <Select size='large' placeholder='Укажите группу крови'>
+          render={({ field }) => (
+            <Select {...field} size='large' placeholder='Укажите группу крови'>
               {blood &&
                 blood.map(({ text, _id }) => (
                   <Select.Option key={_id} value={_id}>
@@ -97,17 +99,17 @@ export const SignUpForm = ({ onChangeState }: Props) => {
                   </Select.Option>
                 ))}
             </Select>
-          }
+          )}
         />
       </FormItem>
       <FormItem error={errors.phoneMobile?.message}>
-        <Input placeholder='Укажите номер телефона' name='phoneMobile' ref={register(validate)} />
+        <Input placeholder='Укажите номер телефона' {...register('phoneMobile', validate)} />
       </FormItem>
       <FormItem error={errors.email?.message}>
-        <Input placeholder='Укажите email' type='email' name='email' ref={register(validate)} />
+        <Input placeholder='Укажите email' type='email' {...register('email', validate)} />
       </FormItem>
       <FormItem error={errors.password?.message}>
-        <Input type='password' placeholder='Укажите пароль' name='password' ref={register(validate)} />
+        <Input type='password' placeholder='Укажите пароль' {...register('password', validate)} />
       </FormItem>
       <FormItem>
         <FormItemCheckbox>

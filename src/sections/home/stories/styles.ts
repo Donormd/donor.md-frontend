@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
-import { DonorStory } from '../../../donor-story';
-import { Button as DefaultBtn } from '../../../UI/button';
+import { DonorStory } from '../../../components/donor-story';
+import { Button as DefaultBtn } from '../../../components/UI/button';
 import { Section } from '../utils';
 
 export const WrapperDonorStory = styled(DonorStory)(

@@ -18,7 +18,11 @@ import { ActionLayout, WrappedLink } from './utils';
 export const SignInForm = ({ onChangeState }: { onChangeState: onChangeState }) => {
   const setUser = useSetRecoilState(userAtom);
   const resetUser = useResetRecoilState(userAtom);
-  const { handleSubmit, register, errors } = useForm({
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm({
     defaultValues: {
       email: '',
       password: '',
@@ -55,8 +59,7 @@ export const SignInForm = ({ onChangeState }: { onChangeState: onChangeState }) 
       <FormItem columns={1} error={errors.email?.message}>
         <Input
           placeholder='Введите email'
-          name='email'
-          ref={register({
+          {...register('email', {
             required: 'Обязательное поле',
             pattern: {
               value: emailRegex,
@@ -68,9 +71,8 @@ export const SignInForm = ({ onChangeState }: { onChangeState: onChangeState }) 
       <FormItem columns={1} error={errors.password?.message}>
         <Input
           placeholder='Введите пароль'
-          name='password'
           type='password'
-          ref={register({
+          {...register('password', {
             required: 'Обязательное поле',
             minLength: {
               value: 8,
