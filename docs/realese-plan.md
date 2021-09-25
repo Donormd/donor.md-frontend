@@ -21,7 +21,7 @@
 - [x] Donor search
 - [x] Support the project
 - [x] Not found page
-- [ ] About service
+- [x] About service
 - [ ] Donor stories
 - [ ] Monitoring page
 - [ ] About donation
