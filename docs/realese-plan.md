@@ -19,7 +19,7 @@
 - [x] Corporate donation
 - [x] Bonus program for commercial agents
 - [x] Donor search
-- [ ] Support the project
+- [x] Support the project
 - [ ] Not found page
 - [ ] About service
 - [ ] Donor stories
