@@ -20,7 +20,7 @@
 - [x] Bonus program for commercial agents
 - [x] Donor search
 - [x] Support the project
-- [ ] Not found page
+- [x] Not found page
 - [ ] About service
 - [ ] Donor stories
 - [ ] Monitoring page
