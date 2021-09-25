@@ -4,13 +4,13 @@ export interface IRecipient {
     fullname: string;
     dateBirth: Date;
     bloodGroupId: string;
-    medicalCenterId: string;
+    transfusionCenterId: string;
     bloodCenterId: string;
     numberDonors: number;
     deadline: Date;
     disease: string;
     info: string;
-    src: string;
+    file: File;
   };
   contactPerson: {
     fullname: string;

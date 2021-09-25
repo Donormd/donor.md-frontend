@@ -18,8 +18,8 @@
 - [x] How to become a volunteer
 - [x] Corporate donation
 - [x] Bonus program for commercial agents
+- [x] Donor search
 - [ ] Support the project
-- [ ] Donor search
 - [ ] Not found page
 - [ ] About service
 - [ ] Donor stories
