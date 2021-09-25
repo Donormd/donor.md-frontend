@@ -1,20 +1,11 @@
 import { Title } from '../../../components/UI/typography';
+import { BloodGroup } from '../../../core/interfaces/donation';
 import { BloodTitle, Image } from './styles';
 
 interface IRule {
   few: number;
   enough: number;
 }
-
-export type BloodGroup =
-  | 'O(I)-'
-  | 'O(I)+'
-  | 'A(II)-'
-  | 'A(II)+'
-  | 'B(III)-'
-  | 'B(III)+'
-  | 'AB(IV)-'
-  | 'AB(IV)+';
 
 const rules: Record<BloodGroup, IRule> = {
   'O(I)-': {
