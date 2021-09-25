@@ -16,7 +16,7 @@ export const Title = styled.h1<TitleProps>(
     font-weight: ${bold ? 'bold' : 'normal'};
     font-size: ${size};
     text-align: ${align};
-    color: ${!color ? theme.colors.textDark : `${theme.colors[color] || color}`};
+    color: ${color ? theme.colors[color] : theme.colors.textDark};
   `,
 );
 

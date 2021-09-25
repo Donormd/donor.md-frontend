@@ -14,9 +14,6 @@ export const getRecipients = async () => {
 export const createRecipients = async (payload: IRecipient) => {
   await baseFetch({
     url: `/recipient`,
-    headers: {
-      authorization: true,
-    },
     method: 'POST',
     data: payload,
   });

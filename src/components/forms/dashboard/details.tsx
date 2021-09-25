@@ -21,7 +21,7 @@ export const DetailsForm = () => {
     defaultValues: { ...user, corporateDonations: !!user.corporateId },
   });
   const { data: sex } = useTypedQuery('sex', () => getOptions('sex'));
-  const { data: bloodGroups } = useTypedQuery('bloodGroups', () => getOptions('bloodGroups'));
+  const { data: bloodGroups } = useTypedQuery('blood-groups', () => getOptions('blood-groups'));
   const { data: cities } = useTypedQuery('cities', () => getOptions('cities'));
   const { data: organizations } = useTypedQuery('organizations', () => getOptions('organizations'));
   const { mutate, isSuccess, isError } = useTypedMutation('user', updateUser);
@@ -37,16 +37,16 @@ export const DetailsForm = () => {
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <FormItem columns={2} label='ФИО' required>
-        <Input name='fullname' ref={register} />
+        <Input {...register('fullname')} />
       </FormItem>
       <FormItem columns={2} label='Дата рождения' required>
-        <Input name='dateBirth' ref={register} />
+        <Input {...register('dateBirth')} />
       </FormItem>
       <FormItem columns={2} label='Группа крови' required>
         <Controller
           name='bloodGroupId'
           control={control}
-          as={
+          render={() => (
             <Select size='large' placeholder='Ваша группа крови'>
               {bloodGroups.map(({ _id, text }) => (
                 <Select.Option key={_id} value={_id}>
@@ -54,39 +54,37 @@ export const DetailsForm = () => {
                 </Select.Option>
               ))}
             </Select>
-          }
+          )}
         />
       </FormItem>
       <FormItem columns={2} label='Пол' required>
         <Controller
           name='sexId'
           control={control}
-          checked={false}
-          as={
-            <Select size='large' placeholder='Город проживания'>
+          render={({ field }) => (
+            <Select {...field} size='large' placeholder='Город проживания'>
               {sex.map(({ _id, text }) => (
                 <Select.Option key={_id} value={_id}>
                   {text}
                 </Select.Option>
               ))}
             </Select>
-          }
+          )}
         />
       </FormItem>
       <FormItem columns={2} label='Город проживания' required>
         <Controller
           name='cityId'
           control={control}
-          checked={false}
-          as={
-            <Select size='large' placeholder='Город проживания'>
+          render={({ field }) => (
+            <Select {...field} size='large' placeholder='Город проживания'>
               {cities.map(({ _id, text }) => (
                 <Select.Option key={_id} value={_id}>
                   {text}
                 </Select.Option>
               ))}
             </Select>
-          }
+          )}
         />
       </FormItem>
       <Divider />
@@ -94,23 +92,26 @@ export const DetailsForm = () => {
         Корпоративное донорство
       </Title>
       <FormItem columns={2}>
-        <Checkbox name='corporateDonations' ref={register}>
-          Я участник программы корпоративное донорство
-        </Checkbox>
+        <Checkbox {...register('corporateDonations')}>Я участник программы корпоративное донорство</Checkbox>
       </FormItem>
       <FormItem columns={2} label='Выберите вашу организацию'>
         <Controller
           name='corporateId'
           control={control}
-          as={
-            <Select size='large' placeholder='Выберите вашу организацию' disabled={!isCorporateDonation}>
+          render={({ field }) => (
+            <Select
+              {...field}
+              size='large'
+              placeholder='Выберите вашу организацию'
+              disabled={!isCorporateDonation}
+            >
               {organizations.map(({ _id, text }) => (
                 <Select.Option key={_id} value={_id}>
                   {text}
                 </Select.Option>
               ))}
             </Select>
-          }
+          )}
         />
       </FormItem>
       <Divider />
@@ -118,13 +119,13 @@ export const DetailsForm = () => {
         Ваши контакты
       </Title>
       <FormItem columns={2} label='Ваш email-адрес' required>
-        <Input name='email' ref={register} />
+        <Input {...register('email')} />
       </FormItem>
       <FormItem columns={2} label='Номер мобильного телефона' required>
-        <Input name='phoneMobile' ref={register} />
+        <Input {...register('phoneMobile')} />
       </FormItem>
       <FormItem columns={2} label='Номер домашнего телефона' required>
-        <Input name='phone' ref={register} />
+        <Input {...register('phone')} />
       </FormItem>
       <Button type='submit' variant='outline-danger' size='lg'>
         Обновить информацию

@@ -1,16 +1,18 @@
 import Link from 'next/link';
-import { useForm } from 'react-hook-form';
+import { useRef } from 'react';
+import { Controller, useForm } from 'react-hook-form';
 
 import { Alert } from '../components/UI/alert';
 import { Button } from '../components/UI/button';
 import { Checkbox } from '../components/UI/form/checkbox';
-import { FormItem } from '../components/UI/form/form-item';
+import { Form, FormItem } from '../components/UI/form/form-item';
 import { Input } from '../components/UI/form/input';
 import { Select } from '../components/UI/form/select';
 import { TextArea } from '../components/UI/form/textarea';
 import { StyledLink } from '../components/UI/links';
 import { Divider } from '../components/UI/other';
 import { Paragraph, Title } from '../components/UI/typography';
+import { emailField, requiredField } from '../core/helpers/form-validate';
 import { IRecipient } from '../core/interfaces/recipient';
 import { Container } from '../core/layouts/container';
 import { HeaderContentFooter } from '../core/layouts/header-content-footer';
@@ -19,16 +21,26 @@ import { createRecipients } from '../queries/recipients';
 import { useTypedMutation, useTypedQuery } from '../queries/utils';
 
 const DonorSearchPage = () => {
-  const { data: bloodGroups } = useTypedQuery('bloodGroups', () => getOptions('bloodGroups'));
-  const { data: bloodCenter } = useTypedQuery('bloodCenter', () => getOptions('bloodCenter'));
-  const { data: transfusionCenter } = useTypedQuery('transfusionCenter', () =>
-    getOptions('transfusionCenter'),
+  const { data: bloodGroups } = useTypedQuery('blood-groups', () => getOptions('blood-groups'));
+  const { data: bloodCenter } = useTypedQuery('blood-center', () => getOptions('blood-center'));
+  const { data: transfusionCenter } = useTypedQuery('transfusion-center', () =>
+    getOptions('transfusion-center'),
   );
   const { mutate } = useTypedMutation('recipient', (payload: IRecipient) => createRecipients(payload));
-  const { register, handleSubmit, reset } = useForm();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    control,
+    formState: { errors },
+  } = useForm<IRecipient>();
 
-  const onSubmit = (data: IRecipient) => {
-    mutate(data);
+  const ref = useRef<HTMLFormElement>(null);
+
+  const onSubmit = () => {
+    if (!ref.current) return;
+    const payload = new FormData(ref.current) as unknown as IRecipient;
+    mutate(payload);
     reset();
   };
 
@@ -46,54 +58,105 @@ const DonorSearchPage = () => {
           </Paragraph>
         </article>
         <Divider />
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <FormItem label='ФИО реципиента' required>
-            <Input name='fullname' ref={register} />
+        <Form ref={ref} onSubmit={handleSubmit(onSubmit)}>
+          <FormItem label='ФИО реципиента' columns={2} required error={errors?.recipient?.fullname?.message}>
+            <Input {...register('recipient.fullname', requiredField)} />
           </FormItem>
-          <FormItem label='Дата рождения' required>
-            <Input type='date' name='dateBirth' ref={register} />
+          <FormItem label='Дата рождения' columns={2} required error={errors?.recipient?.dateBirth?.message}>
+            <Input type='date' {...register('recipient.dateBirth', requiredField)} />
           </FormItem>
-          <FormItem label='Выберите необходимую группу крови' required>
-            <Select size='large'>
-              {bloodGroups &&
-                bloodGroups.map(({ _id, text }) => (
-                  <Select.Option key={_id} value={_id}>
-                    {text}
-                  </Select.Option>
-                ))}
-            </Select>
+          <FormItem
+            label='Выберите необходимую группу крови'
+            columns={2}
+            required
+            error={errors?.recipient?.bloodGroupId?.message}
+          >
+            <Controller
+              name='recipient.bloodGroupId'
+              control={control}
+              rules={requiredField}
+              render={({ field }) => (
+                <Select size='large' {...field}>
+                  {bloodGroups?.map(({ _id, text }) => (
+                    <Select.Option key={_id} value={_id}>
+                      {text}
+                    </Select.Option>
+                  ))}
+                </Select>
+              )}
+            />
           </FormItem>
-          <FormItem label='Медицинское учреждение' help='В котором находится реципиент' required>
-            <Select size='large'>
-              {bloodCenter &&
-                bloodCenter.map(({ _id, text }) => (
-                  <Select.Option key={_id} value={_id}>
-                    {text}
-                  </Select.Option>
-                ))}
-            </Select>
+          <FormItem
+            label='Медицинское учреждение'
+            help='В котором находится реципиент'
+            columns={2}
+            required
+            error={errors?.recipient?.bloodCenterId?.message}
+          >
+            <Controller
+              name='recipient.bloodCenterId'
+              control={control}
+              rules={requiredField}
+              render={({ field }) => (
+                <Select size='large' {...field}>
+                  {bloodCenter?.map(({ _id, text }) => (
+                    <Select.Option key={_id} value={_id}>
+                      {text}
+                    </Select.Option>
+                  ))}
+                </Select>
+              )}
+            />
           </FormItem>
-          <FormItem label='Заболевание/травма' required>
-            <Input name='' ref={register} />
+          <FormItem
+            label='Заболевание/травма'
+            help='Причина поиска крови'
+            columns={2}
+            required
+            error={errors?.recipient?.disease?.message}
+          >
+            <Input {...register('recipient.disease', requiredField)} />
           </FormItem>
-          <FormItem label='Укажите центр переливания крови' required>
-            <Select size='large'>
-              {transfusionCenter &&
-                transfusionCenter.map(({ _id, text }) => (
-                  <Select.Option key={_id} value={_id}>
-                    {text}
-                  </Select.Option>
-                ))}
-            </Select>
+          <FormItem
+            label='Укажите центр переливания крови'
+            columns={2}
+            required
+            error={errors?.recipient?.transfusionCenterId?.message}
+          >
+            <Controller
+              name='recipient.transfusionCenterId'
+              control={control}
+              rules={requiredField}
+              render={({ field }) => (
+                <Select size='large' {...field}>
+                  {transfusionCenter?.map(({ _id, text }) => (
+                    <Select.Option key={_id} value={_id}>
+                      {text}
+                    </Select.Option>
+                  ))}
+                </Select>
+              )}
+            />
           </FormItem>
-          <FormItem label='Необходимое количество доноров' required>
-            <Input name='' ref={register} type='number' min={1} max={20} />
+          <FormItem
+            label='Необходимое количество доноров'
+            columns={2}
+            required
+            error={errors?.recipient?.numberDonors?.message}
+          >
+            <Input {...register('recipient.numberDonors', requiredField)} type='number' min={1} max={20} />
           </FormItem>
-          <FormItem label='Срок сдачи до' required>
-            <Input type='date' name='dateBirth' ref={register} />
+          <FormItem label='Срок сдачи до' columns={2} required error={errors?.recipient?.deadline?.message}>
+            <Input type='date' {...register('recipient.deadline', requiredField)} />
           </FormItem>
-          <FormItem label='Дополнительная информация' required>
+          <FormItem
+            label='Дополнительная информация'
+            columns={2}
+            required
+            error={errors?.recipient?.info?.message}
+          >
             <TextArea
+              {...register('recipient.info', requiredField)}
               rows={4}
               placeholder='Представьте полную информацию,
               чтобы мы могли Вам максимально эффективно помочь'
@@ -105,27 +168,43 @@ const DonorSearchPage = () => {
             Фотография донора не обязательна, 
             но повышает внимание доноров
           `}
-            required
+            columns={2}
+            error={errors?.recipient?.file?.message}
           >
-            <Input type='file' />
+            <Input type='file' {...register('recipient.file')} />
           </FormItem>
           <Divider />
-          <Title as='h3' bold>
+          <Title as='h3' margin='30px 0' bold>
             Контактное лицо
           </Title>
-          <FormItem label='ФИО' required>
-            <Input name='' ref={register} />
+          <FormItem label='ФИО' columns={2} required error={errors?.contactPerson?.fullname?.message}>
+            <Input {...register('contactPerson.fullname', requiredField)} />
           </FormItem>
-          <FormItem label='Ваш email-адрес' required>
-            <Input name='' ref={register} />
+          <FormItem
+            label='Ваш email-адрес'
+            columns={2}
+            required
+            error={errors?.contactPerson?.email?.message}
+          >
+            <Input {...register('contactPerson.email', { ...requiredField, ...emailField })} />
           </FormItem>
-          <FormItem label='Номер мобильного телефона' required>
-            <Input name='' ref={register} />
+          <FormItem
+            label='Номер мобильного телефона'
+            columns={2}
+            required
+            error={errors?.contactPerson?.phone?.message}
+          >
+            <Input {...register('contactPerson.phone', requiredField)} />
           </FormItem>
-          <FormItem label='Кто вы для реципиента' required>
-            <Input name='' ref={register} />
+          <FormItem
+            label='Кто Вы для реципиента '
+            columns={2}
+            required
+            error={errors?.contactPerson?.whoAreYou?.message}
+          >
+            <Input {...register('contactPerson.whoAreYou', requiredField)} />
           </FormItem>
-          <FormItem columns={1}>
+          <FormItem>
             <Checkbox checked>
               Согласен с{` `}
               <Link href='/'>
@@ -139,14 +218,11 @@ const DonorSearchPage = () => {
           <Button type='submit' variant='outline-danger' size='lg'>
             Отправить
           </Button>
-        </form>
-        <Alert
-          dismissible
-          message={`
-        После обработки Вашего запроса и согласования с Центром переливания крови. 
-        Система автоматически отправить уведомления донорам подходящим по параметрам.
-        `}
-        />
+        </Form>
+        <Alert>
+          После обработки Вашего запроса и согласования с Центром переливания крови система автоматически
+          отправит уведомления донорам, подходящим по параметрам.
+        </Alert>
       </Container>
     </HeaderContentFooter>
   );

@@ -45,29 +45,17 @@ const Settings = () => {
       </Article>
       <Form onSubmit={handleSubmit(onSubmitSettings)}>
         <CheckboxGroup>
-          <Checkbox name='isPublic' ref={register}>
-            Сделать мой профиль публичным
-          </Checkbox>
-          <Checkbox name='notDonor' ref={register}>
-            Я не могу быть донором
-          </Checkbox>
-          <Checkbox name='temporaryRestrictions' ref={register}>
-            Временные ограничения на сдачу крови
-          </Checkbox>
+          <Checkbox {...register('isPublic')}>Сделать мой профиль публичным</Checkbox>
+          <Checkbox {...register('notDonor')}>Я не могу быть донором</Checkbox>
+          <Checkbox {...register('temporaryRestrictions')}>Временные ограничения на сдачу крови</Checkbox>
         </CheckboxGroup>
         <Title as='h5' margin='10px' bold>
           Настройка уведомлений
         </Title>
         <CheckboxGroup>
-          <Checkbox name='notifications.email' ref={register}>
-            Получать уведомления на email-адрес
-          </Checkbox>
-          <Checkbox name='notifications.sms' ref={register}>
-            Получать SMS-сообщения
-          </Checkbox>
-          <Checkbox name='notifications.telegram' ref={register}>
-            Получать сообщения в Telegram
-          </Checkbox>
+          <Checkbox {...register('notifications.email')}>Получать уведомления на email-адрес</Checkbox>
+          <Checkbox {...register('notifications.sms')}>Получать SMS-сообщения</Checkbox>
+          <Checkbox {...register('notifications.telegram')}>Получать сообщения в Telegram</Checkbox>
         </CheckboxGroup>
         <Button type='submit' variant='outline-danger' size='lg'>
           Сохранить

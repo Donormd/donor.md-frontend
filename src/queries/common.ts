@@ -1,21 +1,21 @@
 import { IOptions } from '../core/interfaces/IIterableStruct';
 import { baseFetch } from '../core/services/fetch';
 
-const urlMap = {
-  cities: 'cities',
-  bloodGroups: 'blood-groups',
-  bloodCenter: 'blood-center',
-  organizations: 'organizations',
-  transfusionCenter: 'transfusion-center',
-  typesAssistance: 'types-assistance',
-  userGroup: 'user-group',
-  userStatus: 'user-status',
-  sex: 'sex',
-};
+const groupType = [
+  'cities',
+  'blood-groups',
+  'blood-center',
+  'organizations',
+  'transfusion-center',
+  'types-assistance',
+  'user-group',
+  'user-status',
+  'sex',
+] as const;
 
-export const getOptions = async (group: keyof typeof urlMap) => {
+export const getOptions = async (group: typeof groupType[number]) => {
   const { data } = await baseFetch<IOptions[]>({
-    url: `/${urlMap[group]}`,
+    url: `/${group}`,
   });
   return data;
 };

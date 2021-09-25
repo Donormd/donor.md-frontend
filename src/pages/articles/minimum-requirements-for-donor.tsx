@@ -47,7 +47,7 @@ const MinimumRequirementsForDonor = () => {
           наличии у себя соответствующего заболевания или состояния здоровья.
         </Paragraph>
         <div>
-          <ButtonGroup buttons={buttons} handleClick={() => null} />
+          <ButtonGroup buttons={buttons} onClick={() => null} />
           <Accordion ghost defaultActiveKey={1}>
             <Accordion.Panel key={1} header={<Title as='h3'>Распространенные абсолютные ограничения</Title>}>
               <ol>

@@ -27,9 +27,9 @@ const Donations = () => {
       referenceImg: '',
     },
   });
-  const { data: bloodCenter } = useTypedQuery('bloodCenter', () => getOptions('bloodCenter'));
-  const { data: transfusionCenter } = useTypedQuery('transfusionCenter', () =>
-    getOptions('transfusionCenter'),
+  const { data: bloodCenter } = useTypedQuery('blood-center', () => getOptions('blood-center'));
+  const { data: transfusionCenter } = useTypedQuery('transfusion-center', () =>
+    getOptions('transfusion-center'),
   );
   const { data: user } = useTypedQuery('user', getUser);
   const { mutate, isSuccess, isError } = useTypedMutation('donations', (data: IDonation) =>
@@ -50,44 +50,42 @@ const Donations = () => {
       <DashboardButtonsLinks />
       <Form onSubmit={handleSubmit(onSubmit)}>
         <FormItem columns={2} label='Номер справки' required>
-          <Input name='referenceNumber' ref={register} />
+          <Input {...register('referenceNumber')} />
         </FormItem>
         <FormItem columns={2} label='Номер донации' required>
-          <Input name='donationNumber' ref={register} />
+          <Input {...register('donationNumber')} />
         </FormItem>
         <FormItem columns={2} label='Дата кровосдачи' required>
-          <Input name='date' type='date' />
+          <Input type='date' {...register('date')} />
         </FormItem>
         <FormItem columns={2} label='Место сдачи' required>
           <Controller
             name='transfusionCenterId'
             control={control}
-            as={
-              <Select size='large' placeholder='Выберите место сдачи'>
-                {transfusionCenter &&
-                  transfusionCenter.map(({ _id, text }) => (
-                    <Select.Option key={_id} value={_id}>
-                      {text}
-                    </Select.Option>
-                  ))}
+            render={({ field }) => (
+              <Select {...field} size='large' placeholder='Выберите место сдачи'>
+                {transfusionCenter?.map(({ _id, text }) => (
+                  <Select.Option key={_id} value={_id}>
+                    {text}
+                  </Select.Option>
+                ))}
               </Select>
-            }
+            )}
           />
         </FormItem>
         <FormItem columns={2} label='Ваш реципиент' help='Поле не обязательное' required>
           <Controller
             name='recipientId'
             control={control}
-            as={
-              <Select size='large' placeholder='Выберите реципиента'>
-                {bloodCenter &&
-                  bloodCenter.map(({ _id, text }) => (
-                    <Select.Option key={_id} value={_id}>
-                      {text}
-                    </Select.Option>
-                  ))}
+            render={({ field }) => (
+              <Select {...field} size='large' placeholder='Выберите реципиента'>
+                {bloodCenter?.map(({ _id, text }) => (
+                  <Select.Option key={_id} value={_id}>
+                    {text}
+                  </Select.Option>
+                ))}
               </Select>
-            }
+            )}
           />
         </FormItem>
         <FormItem
@@ -100,7 +98,7 @@ const Donations = () => {
           `}
           required
         >
-          <Input type='file' name='referenceImg' ref={register} />
+          <Input type='file' {...register('referenceImg')} />
         </FormItem>
         <ButtonsRow>
           <Button type='submit' variant='outline-danger' size='lg'>

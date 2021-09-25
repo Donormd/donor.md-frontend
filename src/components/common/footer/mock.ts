@@ -63,7 +63,7 @@ export const column3: MockType = [
   },
   {
     id: 3,
-    href: '/articles/become-volunteer',
+    href: '/become-volunteer',
     text: 'Волонтерам',
   },
   {

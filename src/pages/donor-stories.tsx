@@ -28,7 +28,7 @@ const DonorStoriesPage = () => {
           <Title margin='0 0 15px 0' bold>
             Истории доноров
           </Title>
-          <ButtonGroup buttons={buttons} handleClick={handleClick} />
+          <ButtonGroup buttons={buttons} onClick={handleClick} />
         </StoriesHead>
         <div>
           {isLoading && <Loading />}

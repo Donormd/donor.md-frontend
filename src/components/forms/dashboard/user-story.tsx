@@ -36,7 +36,7 @@ export const UserStoryForm = () => {
         раз сдаете кровь напишите, почему вырешились сдать кровь, потом напишите еще!)
       </Paragraph>
       <FormItem>
-        <TextArea rows={7} name='story' ref={register} />
+        <TextArea rows={7} {...register('story')} />
       </FormItem>
       <Button type='submit' variant='outline-danger' size='lg'>
         Сохранить историю
