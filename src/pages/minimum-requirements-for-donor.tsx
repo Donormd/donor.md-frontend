@@ -15,7 +15,9 @@ const MinimumRequirementsForDonor = () => {
   return (
     <HeaderContentFooter background='/images/pages/welcome.png'>
       <Container>
-        <Title bold>Минимальные требования к донору</Title>
+        <Title margin='0 0 40px 0' bold>
+          Минимальные требования к донору
+        </Title>
         <ol>
           <li>
             Возраст <b>от 18 до 60 лет</b>

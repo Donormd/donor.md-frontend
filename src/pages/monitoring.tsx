@@ -46,7 +46,7 @@ const Monitoring = () => {
     <HeaderContentFooter background='/images/pages/love-pic.png'>
       <Container>
         <Article>
-          <Title margin='0 0 15px 0' bold>
+          <Title margin='0 0 40px 0' bold>
             Для сотрудников центра крови
           </Title>
           <Paragraph>

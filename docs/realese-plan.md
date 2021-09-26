@@ -25,17 +25,18 @@
 - [x] Donor stories
 - [x] Monitoring page
 - [x] About donation
-- [ ] Terms of use
-- [ ] Privacy Policy
-- [ ] Minimum donor requirements
 - [x] Blood donation day
+- [x] Terms of use
+- [x] Privacy Policy
+- [x] donor and work
 - [ ] Plasma donors COVID19
 - [ ] How to prepare for donation
 - [ ] Who needs donated blood?
 - [ ] Benefits and privileges
-- [ ] donor and work
 - [ ] Recovery after donation
 - [ ] regulatory documents
+- [ ] Minimum donor requirements
+
 
 # v1.5.0
 - [ ] avatar
@@ -46,7 +47,6 @@
 
 # 1.6.0
 
-- [ ] design miss match
 - [ ] sitemap 
 - [ ] seo (title desc images for social networks)
 

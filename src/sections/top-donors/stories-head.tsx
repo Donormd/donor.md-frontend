@@ -23,7 +23,7 @@ export const StoriesHead = () => {
 
   return (
     <StoriesHeadWrapper>
-      <Title margin='0 0 15px 0' bold>
+      <Title margin='0 0 40px 0' bold>
         Лучшие доноры нашего сервиса
       </Title>
       <ButtonGroup buttons={data} onClick={handleClick} />

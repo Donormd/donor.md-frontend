@@ -4,31 +4,13 @@ import { Paragraph as PH, Title as TL } from '../components/UI/typography';
 import { Container } from '../core/layouts/container';
 import { HeaderContentFooter } from '../core/layouts/header-content-footer';
 
-const Paragraph = styled(PH)`
-  margin-bottom: 15px;
-`;
-
-const Title = styled(TL)`
-  margin-bottom: 15px;
-  &:first-child {
-    margin-bottom: 40px;
-  }
-`;
-
-const List = styled.ul`
-  padding-left: 10px;
-`;
-
-const ListItem = styled.li`
-  list-style-type: '✔';
-  padding-bottom: 10px;
-`;
-
 const RecoveryFromDonation = () => {
   return (
     <HeaderContentFooter background='/images/pages/welcome.png'>
       <Container>
-        <Title bold>Восстановление после донации</Title>
+        <Title margin='0 0 40px 0' bold>
+          Восстановление после донации
+        </Title>
         <Title as='h3' bold>
           Что делать после того, как вы сдали кровь?
         </Title>
@@ -86,6 +68,26 @@ const RecoveryFromDonation = () => {
     </HeaderContentFooter>
   );
 };
+
+const Paragraph = styled(PH)`
+  margin-bottom: 15px;
+`;
+
+const Title = styled(TL)`
+  margin-bottom: 15px;
+  &:first-child {
+    margin-bottom: 40px;
+  }
+`;
+
+const List = styled.ul`
+  padding-left: 10px;
+`;
+
+const ListItem = styled.li`
+  list-style-type: '✔';
+  padding-bottom: 10px;
+`;
 
 export default RecoveryFromDonation;
 

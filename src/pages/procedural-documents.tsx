@@ -22,7 +22,9 @@ const ProceduralDocuments = () => {
   return (
     <HeaderContentFooter background='/images/pages/welcome.png'>
       <Container>
-        <Title bold>Регламентирующие документы о донорстве в Приднестровье</Title>
+        <Title margin='0 0 40px 0' bold>
+          Регламентирующие документы о донорстве в Приднестровье
+        </Title>
         <Paragraph>
           <a href='http://www.vspmr.org/file.xp?file=87905'>
             Закон Приднестровской Молдавской Республики «О донорстве» (редакция на 01.01.2020 года)

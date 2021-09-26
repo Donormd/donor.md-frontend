@@ -28,7 +28,9 @@ const How2PrepareForDonation = () => {
   return (
     <HeaderContentFooter background='/images/pages/welcome.png'>
       <Container>
-        <Title bold>Восстановление после донации</Title>
+        <Title margin='0 0 40px 0' bold>
+          Восстановление после донации
+        </Title>
         <Title as='h3' bold>
           Что делать после того, как вы сдали кровь?
         </Title>

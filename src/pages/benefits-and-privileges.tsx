@@ -27,7 +27,9 @@ const BenefitsAndPrivileges = () => {
   return (
     <HeaderContentFooter background='/images/pages/welcome.png'>
       <Container>
-        <Title bold>Льготы и привилегии для доноров</Title>
+        <Title margin='0 0 40px 0' bold>
+          Льготы и привилегии для доноров
+        </Title>
         <Paragraph>
           Каждый донор задумывался, что дает государство ему? Сразу отвечаем, задача государства - это
           сформировать безопасную систему забора, хранения и выдачи крови. Остальное по мере возможности, так

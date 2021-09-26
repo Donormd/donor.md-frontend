@@ -1,26 +1,15 @@
-import styled from 'styled-components';
-
-import { Paragraph as PH, Title as TL } from '../components/UI/typography';
+import { Paragraph, Title } from '../components/UI/typography';
 import { Container } from '../core/layouts/container';
 import { HeaderContentFooter } from '../core/layouts/header-content-footer';
-
-const Paragraph = styled(PH)`
-  margin-bottom: 15px;
-`;
-
-const Title = styled(TL)`
-  margin-bottom: 15px;
-  &:first-child {
-    margin-bottom: 40px;
-  }
-`;
 
 const DonorAndWork = () => {
   return (
     <HeaderContentFooter background='/images/pages/welcome.png'>
       <Container>
-        <Title bold>Донор и работа | Донор и учеба</Title>
-        <Title as='h4' bold>
+        <Title margin='0 0 40px 0' bold>
+          Донор и работа | Донор и учеба
+        </Title>
+        <Title as='h4' margin='30px 0 30px 0' bold>
           До сдачи крови и в день сдачи крови
         </Title>
         <Paragraph>
@@ -40,7 +29,7 @@ const DonorAndWork = () => {
           рабочий/учебный день. Согласно трудовому законодательству ПМР, в день сдачи крови и в день
           связанного с этим медицинского обследования работник освобождается от работы.
         </Paragraph>
-        <Title as='h4' bold>
+        <Title as='h4' margin='60px 0 30px 0' bold>
           Наши рекомендации, как написать такое заявление:
         </Title>
         <Paragraph>
@@ -69,7 +58,7 @@ const DonorAndWork = () => {
           Факт нахождения гражданина в учреждении здравоохранения для соответствующего обследования и взятия
           крови подтверждается справкой, выдаваемой учреждением здравоохранения.
         </Paragraph>
-        <Title as='h4' bold>
+        <Title as='h4' margin='60px 0 30px 0' bold>
           Выплата пособия по временной нетрудоспособности
         </Title>
         <Paragraph>
@@ -97,7 +86,7 @@ const DonorAndWork = () => {
           систематических донаций. За эти 12 месяцев Вы сделайте еще донации и снова напишите о предоставлении
           данной льготы.
         </Paragraph>
-        <Title as='h4' bold>
+        <Title as='h4' margin='60px 0 30px 0' bold>
           Информация для руководителей организаций и отделов кадров
         </Title>
         <Paragraph>
@@ -127,7 +116,7 @@ const DonorAndWork = () => {
           - в день сдачи крови или ее компонентов освобождать военнослужащих, являющихся донорами, от несения
           нарядов, вахт и других форм службы.
         </Paragraph>
-        <Title as='h4' bold>
+        <Title as='h4' margin='60px 0 30px 0' bold>
           Из статьи 7 Закона ПМР “О Донорстве”.
         </Title>
         <Paragraph>
@@ -154,7 +143,7 @@ const DonorAndWork = () => {
           5. При сдаче крови и ее компонентов работодатель сохраняет за работником его средний заработок за
           дни сдачи и предоставленные в связи с этим дни отдыха.
         </Paragraph>
-        <Title as='h4' bold>
+        <Title as='h4' margin='60px 0 30px 0' bold>
           Статья 182 Трудового Кодекса ПМР
         </Title>
         <Paragraph>
