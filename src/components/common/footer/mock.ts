@@ -22,7 +22,7 @@ export const column1: MockType = [
   },
   {
     id: 4,
-    href: '/articles/useful',
+    href: '/useful',
     text: 'Полезное',
   },
 ];
@@ -30,7 +30,7 @@ export const column1: MockType = [
 export const column2: MockType = [
   {
     id: 1,
-    href: '/articles/about',
+    href: '/about',
     text: 'О нас',
   },
   {
@@ -45,7 +45,7 @@ export const column2: MockType = [
   },
   {
     id: 4,
-    href: '/articles/privacy-policy',
+    href: '/privacy-policy',
     text: 'Политика конфиденциальности',
   },
 ];
@@ -53,12 +53,12 @@ export const column2: MockType = [
 export const column3: MockType = [
   {
     id: 1,
-    href: '/articles/corporate-donation',
+    href: '/corporate-donation',
     text: 'Корпоративное донорство',
   },
   {
     id: 2,
-    href: '/articles/bonus-program',
+    href: '/bonus-program',
     text: 'Бонусная программа',
   },
   {
@@ -68,7 +68,7 @@ export const column3: MockType = [
   },
   {
     id: 4,
-    href: '/articles/support-project',
+    href: '/support-project',
     text: 'Поддержать',
   },
 ];

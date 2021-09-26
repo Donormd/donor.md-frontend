@@ -1,5 +1,15 @@
 type StatusType = 'success' | 'pending' | 'reject';
 
+export type BloodGroup =
+  | 'O(I)-'
+  | 'O(I)+'
+  | 'A(II)-'
+  | 'A(II)+'
+  | 'B(III)-'
+  | 'B(III)+'
+  | 'AB(IV)-'
+  | 'AB(IV)+';
+
 export interface IDonation {
   userId: string;
   referenceNumber: string;

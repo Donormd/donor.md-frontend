@@ -1,10 +1,10 @@
 import Link from 'next/link';
 import styled from 'styled-components';
 
-import { StyledLink } from '../../components/UI/links';
-import { Paragraph, Title } from '../../components/UI/typography';
-import { Container } from '../../core/layouts/container';
-import { HeaderContentFooter } from '../../core/layouts/header-content-footer';
+import { StyledLink } from '../components/UI/links';
+import { Paragraph, Title } from '../components/UI/typography';
+import { Container } from '../core/layouts/container';
+import { HeaderContentFooter } from '../core/layouts/header-content-footer';
 
 const List = styled.div`
   ol {

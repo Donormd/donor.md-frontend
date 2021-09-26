@@ -2,10 +2,10 @@
 
 import styled from 'styled-components';
 
-import { Accordion } from '../../components/UI/accordion';
-import { Paragraph as PH, Title as TL } from '../../components/UI/typography';
-import { Container } from '../../core/layouts/container';
-import { HeaderContentFooter } from '../../core/layouts/header-content-footer';
+import { Accordion } from '../components/UI/accordion';
+import { Paragraph as PH, Title as TL } from '../components/UI/typography';
+import { Container } from '../core/layouts/container';
+import { HeaderContentFooter } from '../core/layouts/header-content-footer';
 
 const Paragraph = styled(PH)`
   margin-bottom: 15px;

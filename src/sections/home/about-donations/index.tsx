@@ -1,87 +1,37 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import styled from 'styled-components';
-
-import { Paragraph, Title } from '../../../components/UI/typography';
-import { IMockItem } from '../../../mocks/articles';
+import { ArticleCardsPreview } from '../../../components/article-cards-preview';
+import { Title } from '../../../components/UI/typography';
 import { Section } from '../utils';
 
-type AboutDonationType = {
-  title: string;
-  data: IMockItem[];
-};
+export const articles = [
+  {
+    image: '/images/pages/home/about-donations/donor-requirements.svg',
+    title: 'Какие требования к донору?',
+    paragraph: `Перед первой донацией Вам необходимо ознакомиться с перечнем противопоказаний`,
+    link: '/minimum-requirements-for-donor',
+  },
+  {
+    image: '/images/pages/home/about-donations/preparation-donation.svg',
+    title: 'Как подготовиться к донации?',
+    paragraph: `Накануне и в день сдачи крови есть определённые запреты и рекомендации,
+     которых необходимо придерживаться`,
+    link: '/how-to-prepare-for-donation',
+  },
+  {
+    image: '/images/pages/home/about-donations/donation-going.svg',
+    title: 'Как проходит донация?',
+    paragraph: `Куда обращаться? Нужно ли иметь при себе какие-либо документы? 
+    Как происходит процедура сдачи крови?`,
+    link: '/blood-donation-day',
+  },
+];
 
-export const AboutDonation = ({ title, data }: AboutDonationType) => {
+export const AboutDonation = () => {
   return (
     <Section id='about-donation'>
-      <Title as='h2' bold>
-        {title}
+      <Title as='h2' margin='0 0 40px 0' bold>
+        Подготовка к первой сдаче крови
       </Title>
-      <ArticleList>
-        {data.map(({ image, text, link }) => (
-          <article key={image.src}>
-            <ImageWrapper>
-              <Image src={image.src} width={image.width} height={image.height} layout='responsive' />
-            </ImageWrapper>
-            <Link href={link}>
-              <ArticleBody>
-                <Title as='h3' margin='15px' color='red' bold>
-                  {text.head}
-                </Title>
-                <Paragraph>{text.paragraph}</Paragraph>
-              </ArticleBody>
-            </Link>
-          </article>
-        ))}
-      </ArticleList>
+      <ArticleCardsPreview articles={articles} />
     </Section>
   );
 };
-
-const ArticleList = styled.div`
-  padding-top: 30px;
-
-  @media (min-width: 992px) {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    column-gap: 50px;
-  }
-`;
-
-const ImageWrapper = styled.div`
-  max-width: 320px;
-  margin: 0 auto;
-  background: white;
-  border: ${({ theme }) => `1px solid ${theme.colors.redDiluted}`};
-  border-radius: ${({ theme }) => theme.radius};
-`;
-
-const ArticleBody = styled.div`
-  text-align: center;
-  padding: 20px 0;
-  transition: all 0.8s ease;
-
-  &:hover {
-    cursor: pointer;
-    width: 100%;
-    height: auto;
-    background: url('/images/pages/home/about-donations/hover-md.svg');
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    background-position: top center;
-  }
-
-  @media (min-width: 992px) {
-    &:hover {
-      background: url('/images/pages/home/about-donations/hover.svg');
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: top center;
-    }
-  }
-
-  @media (min-width: 992px) {
-    padding: 20px 30px;
-    text-align: left;
-  }
-`;
