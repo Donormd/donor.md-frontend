@@ -22,13 +22,13 @@
 - [x] Support the project
 - [x] Not found page
 - [x] About service
-- [ ] Donor stories
-- [ ] Monitoring page
-- [ ] About donation
+- [x] Donor stories
+- [x] Monitoring page
+- [x] About donation
 - [ ] Terms of use
 - [ ] Privacy Policy
 - [ ] Minimum donor requirements
-- [ ] Blood donation day
+- [x] Blood donation day
 - [ ] Plasma donors COVID19
 - [ ] How to prepare for donation
 - [ ] Who needs donated blood?

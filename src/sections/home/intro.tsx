@@ -16,7 +16,7 @@ export const Intro = () => (
       </StyledTitle>
       <ColumnParagraph>Web-сервис для тех, кто сдает и ищет донорскую кровь в Приднестровье</ColumnParagraph>
       <ButtonGroup>
-        <Link href='/articles/minimum-requirements-for-donor' passHref>
+        <Link href='/minimum-requirements-for-donor' passHref>
           <Button variant='outline-primary' size='lg'>
             Стать донором
           </Button>

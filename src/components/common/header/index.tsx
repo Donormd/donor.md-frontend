@@ -31,17 +31,17 @@ export const Header = () => {
 const Menu = (props: MenuListProps) => (
   <MenuList {...props}>
     <MenuItem>
-      <Link href='/articles/about-service' passHref>
+      <Link href='/about-service' passHref>
         <StyledLink>О сервисе</StyledLink>
       </Link>
     </MenuItem>
     <MenuItem>
-      <Link href='/articles/about-donation' passHref>
+      <Link href='/about-donation' passHref>
         <StyledLink>О донорстве</StyledLink>
       </Link>
     </MenuItem>
     <MenuItem>
-      <Link href='/articles/support-project' passHref>
+      <Link href='/support-project' passHref>
         <StyledLink>Поддержать</StyledLink>
       </Link>
     </MenuItem>

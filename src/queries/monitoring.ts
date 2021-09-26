@@ -1,8 +1,8 @@
 import { monitoringUrl } from '../core/constants/url';
 import { formatDate } from '../core/helpers/converters';
+import { BloodGroup } from '../core/interfaces/donation';
 import { IMonitoring, IMonitoringResponse } from '../core/interfaces/monitoring';
 import { baseFetch } from '../core/services/fetch';
-import { BloodGroup } from '../sections/home/monitoring/blood-item';
 
 interface ValuesType {
   group: BloodGroup;

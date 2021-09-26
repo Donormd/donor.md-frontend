@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-import { Paragraph as PH, Title as TL } from '../../components/UI/typography';
-import { Container } from '../../core/layouts/container';
-import { HeaderContentFooter } from '../../core/layouts/header-content-footer';
+import { Paragraph as PH, Title as TL } from '../components/UI/typography';
+import { Container } from '../core/layouts/container';
+import { HeaderContentFooter } from '../core/layouts/header-content-footer';
 
 const Paragraph = styled(PH)`
   margin-bottom: 15px;
@@ -24,7 +24,7 @@ const ListItem = styled.li`
   padding-bottom: 10px;
 `;
 
-const How2PrepareForDonation = () => {
+const RecoveryFromDonation = () => {
   return (
     <HeaderContentFooter background='/images/pages/welcome.png'>
       <Container>
@@ -32,11 +32,13 @@ const How2PrepareForDonation = () => {
         <Title as='h3' bold>
           Что делать после того, как вы сдали кровь?
         </Title>
-        <Paragraph bold>Важно после донации:</Paragraph>
+        <Paragraph>
+          <b>Важно</b> после донации:
+        </Paragraph>
         <List>
-          <ListItem>Воздержаться от курения в течение часа после кроводачи</ListItem>
+          <ListItem>Воздержаться от курения в течение часа после кроводач</ListItem>
           <ListItem>Старайтесь не подвергаться значительным физическим нагрузкам в течение суток.</ListItem>
-          <ListItem> Воздержитесь от употребления алкоголя в течение суток.</ListItem>
+          <ListItem>Воздержитесь от употребления алкоголя в течение суток.</ListItem>
           <ListItem>Старайтесь обильно и регулярно питаться и пить воду в течение двух суток.</ListItem>
           <ListItem>Прививки после сдачи крови разрешаются не ранее чем через 10 суток.</ListItem>
           <ListItem>
@@ -48,7 +50,7 @@ const How2PrepareForDonation = () => {
           Что есть после донации?
         </Title>
         <Paragraph>
-          <b>Пища, богатая железом</b>, - одно из важных условий восстановления после кроводачи.
+          <b>Пища, богатая железом,</b> - одно из важных условий восстановления после кроводачи.
         </Paragraph>
         <List>
           <ListItem>
@@ -85,7 +87,7 @@ const How2PrepareForDonation = () => {
   );
 };
 
-export default How2PrepareForDonation;
+export default RecoveryFromDonation;
 
 export const getStaticProps = async () => {
   return {

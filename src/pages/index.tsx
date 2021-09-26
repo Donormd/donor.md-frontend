@@ -1,7 +1,6 @@
 import { Footer } from '../components/common/footer';
 import { Header } from '../components/common/header';
 import { Container } from '../core/layouts/container';
-import { articlesMock } from '../mocks/articles';
 import { AboutDonation } from '../sections/home/about-donations';
 import { CallToAction } from '../sections/home/call-to-action';
 import { Feedback } from '../sections/home/feedback';
@@ -11,7 +10,6 @@ import { Places } from '../sections/home/places';
 import { Stories } from '../sections/home/stories';
 
 const HomePage = () => {
-  const { home: data } = articlesMock;
   return (
     <>
       <Header />
@@ -19,7 +17,7 @@ const HomePage = () => {
         <Intro />
         <Monitoring />
         <Places />
-        <AboutDonation title='Подготовка к первой сдаче крови' data={data} />
+        <AboutDonation />
         <CallToAction />
         <Stories />
         <Feedback />
