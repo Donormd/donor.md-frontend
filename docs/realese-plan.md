@@ -30,13 +30,12 @@
 - [x] Privacy Policy
 - [x] donor and work
 - [x] Benefits and privileges
-- [ ] Who needs donated blood?
-- [ ] Plasma donors COVID19
+- [x] Who needs donated blood?
 - [ ] How to prepare for donation
-- [ ] Recovery after donation
 - [ ] regulatory documents
+- [ ] Plasma donors COVID19
+- [ ] Recovery after donation
 - [ ] Minimum donor requirements
-
 
 # v1.5.0
 - [ ] avatar
