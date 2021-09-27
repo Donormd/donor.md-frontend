@@ -1,19 +1,8 @@
 import styled from 'styled-components';
 
-import { Paragraph as PH, Title as TL } from '../components/UI/typography';
+import { Paragraph, Title } from '../components/UI/typography';
 import { Container } from '../core/layouts/container';
 import { HeaderContentFooter } from '../core/layouts/header-content-footer';
-
-const Paragraph = styled(PH)`
-  margin-bottom: 15px;
-`;
-
-const Title = styled(TL)`
-  margin-bottom: 15px;
-  &:first-child {
-    margin-bottom: 40px;
-  }
-`;
 
 const List = styled.ul`
   padding-left: 10px;
