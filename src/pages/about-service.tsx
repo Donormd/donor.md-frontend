@@ -42,7 +42,7 @@ const articles = [
 const AboutPage = () => (
   <HeaderContentFooter background='/images/pages/welcome.png'>
     <Container>
-      <Title margin='0 0 30px 0' bold>
+      <Title margin='0 0 40px 0' bold>
         Web-сервис DONOR.MD
       </Title>
       <Paragraph>

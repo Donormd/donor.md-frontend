@@ -8,7 +8,7 @@ import { HeaderContentFooter } from '../core/layouts/header-content-footer';
 const SupportProject = () => (
   <HeaderContentFooter background='/articles/images/pages/love-pic.png'>
     <Container>
-      <Title margin='0 0 15px 0' bold>
+      <Title margin='0 0 40px 0' bold>
         Поддержать проект donor.md
       </Title>
       <Paragraph>

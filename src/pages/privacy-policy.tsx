@@ -27,7 +27,7 @@ const PrivacyPolicy = () => {
   return (
     <HeaderContentFooter background='/images/pages/welcome.png'>
       <Container>
-        <Title margin='0 0 30px 0' bold>
+        <Title margin='0 0 40px 0' bold>
           Политика конфиденциальности DONOR.MD
         </Title>
         <Paragraph margin='0 0 15px 0'>

@@ -1,25 +1,14 @@
-import styled from 'styled-components';
-
-import { Paragraph as PH, Title as TL } from '../components/UI/typography';
+import { Paragraph, Title } from '../components/UI/typography';
 import { Container } from '../core/layouts/container';
 import { HeaderContentFooter } from '../core/layouts/header-content-footer';
-
-const Paragraph = styled(PH)`
-  margin-bottom: 15px;
-`;
-
-const Title = styled(TL)`
-  margin-bottom: 15px;
-  &:first-child {
-    margin-bottom: 40px;
-  }
-`;
 
 const WhoNeedsBlood = () => {
   return (
     <HeaderContentFooter background='/images/pages/welcome.png'>
       <Container>
-        <Title bold>Кому нужна донорская кровь?</Title>
+        <Title margin='0 0 40px 0' bold>
+          Кому нужна донорская кровь?
+        </Title>
         <Paragraph>
           Каждый третий житель Земли хоть раз в жизни нуждается в донорах крови. Некоторым реципиентам бывает
           нужно лишь однократное переливание, чтобы компенсировать кровопотерю, а некоторые пациенты с

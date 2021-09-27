@@ -48,7 +48,7 @@ const DonorSearchPage = () => {
     <HeaderContentFooter background='/images/pages/welcome.png'>
       <Container>
         <article>
-          <Title margin='0 0 15px 0' bold>
+          <Title margin='0 0 40px 0' bold>
             Поиск доноров
           </Title>
           <Paragraph>

@@ -4,45 +4,16 @@ import { Paragraph as PH, Title as TL } from '../components/UI/typography';
 import { Container } from '../core/layouts/container';
 import { HeaderContentFooter } from '../core/layouts/header-content-footer';
 
-const Paragraph = styled(PH)`
-  margin-bottom: 15px;
-`;
-
-const Title = styled(TL)`
-  margin-bottom: 15px;
-  &:first-child {
-    margin-bottom: 40px;
-  }
-`;
-
-const List = styled.div`
-  ol {
-    list-style: none;
-    counter-reset: li;
-    padding-left: 0;
-  }
-  li:before {
-    font-weight: bold;
-    counter-increment: li;
-    content: counters(li, '.') '. ';
-  }
-  dl {
-    margin: 0;
-  }
-`;
-
-const ListItem = styled.li`
-  margin-bottom: 15px;
-`;
-
 const UserAgreement = () => {
   return (
     <HeaderContentFooter background='/images/pages/welcome.png'>
       <Container>
-        <Title bold>Пользовательское соглашение с DONOR.MD</Title>
+        <Title margin='0 0 40px 0' bold>
+          Пользовательское соглашение с DONOR.MD
+        </Title>
         <Paragraph>
           <b>Примечание</b>: Использование web-сервиса Donor.md, включая страницы, сервисы и функции (далее
-          Web-cервис) или прохождение процедуры регистрации (создание учетной записи) или иной процедуры входа
+          Web-сервис) или прохождение процедуры регистрации (создание учетной записи) или иной процедуры входа
           на сайт, означает ваше полное и безусловное принятие согласие с пользовательским соглашением, без
           каких-либо оговорок и исключений.
         </Paragraph>
@@ -448,6 +419,37 @@ const UserAgreement = () => {
 };
 
 export default UserAgreement;
+
+const Paragraph = styled(PH)`
+  margin-bottom: 15px;
+`;
+
+const Title = styled(TL)`
+  margin-bottom: 15px;
+  &:first-child {
+    margin-bottom: 40px;
+  }
+`;
+
+const List = styled.div`
+  ol {
+    list-style: none;
+    counter-reset: li;
+    padding-left: 0;
+  }
+  li:before {
+    font-weight: bold;
+    counter-increment: li;
+    content: counters(li, '.') '. ';
+  }
+  dl {
+    margin: 0;
+  }
+`;
+
+const ListItem = styled.li`
+  margin-bottom: 15px;
+`;
 
 export const getStaticProps = async () => {
   return {

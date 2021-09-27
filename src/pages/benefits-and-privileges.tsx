@@ -1,19 +1,8 @@
 import styled from 'styled-components';
 
-import { Paragraph as PH, Title as TL } from '../components/UI/typography';
+import { Paragraph, Title } from '../components/UI/typography';
 import { Container } from '../core/layouts/container';
 import { HeaderContentFooter } from '../core/layouts/header-content-footer';
-
-const Paragraph = styled(PH)`
-  margin-bottom: 15px;
-`;
-
-const Title = styled(TL)`
-  margin-bottom: 15px;
-  &:first-child {
-    margin-bottom: 40px;
-  }
-`;
 
 const List = styled.ul`
   padding-left: 10px;
@@ -27,7 +16,9 @@ const BenefitsAndPrivileges = () => {
   return (
     <HeaderContentFooter background='/images/pages/welcome.png'>
       <Container>
-        <Title bold>Льготы и привилегии для доноров</Title>
+        <Title margin='0 0 40px 0' bold>
+          Льготы и привилегии для доноров
+        </Title>
         <Paragraph>
           Каждый донор задумывался, что дает государство ему? Сразу отвечаем, задача государства - это
           сформировать безопасную систему забора, хранения и выдачи крови. Остальное по мере возможности, так

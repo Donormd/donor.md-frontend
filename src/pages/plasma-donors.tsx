@@ -27,7 +27,9 @@ const PlasmaDonors = () => {
   return (
     <HeaderContentFooter background='/images/pages/welcome.png'>
       <Container>
-        <Title bold>Доноры плазмы COVID19</Title>
+        <Title margin='0 0 40px 0' bold>
+          Доноры плазмы COVID19
+        </Title>
         <Title as='h3' bold>
           Что надо знать донорам плазмы для лечения пациентов с COVID19?
         </Title>

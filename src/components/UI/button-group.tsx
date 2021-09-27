@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import { IOptions } from '../../core/interfaces/IIterableStruct';
@@ -13,7 +13,7 @@ export const ButtonGroup = ({ buttons, onClick }: ButtonGroupType) => {
   const [buttonId, setButtonId] = useState('');
   const [{ _id }] = buttons;
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     setButtonId(_id);
   }, [_id]);
 
