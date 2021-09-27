@@ -29,7 +29,7 @@
 - [x] Terms of use
 - [x] Privacy Policy
 - [x] donor and work
-- [ ] Benefits and privileges
+- [x] Benefits and privileges
 - [ ] Who needs donated blood?
 - [ ] Plasma donors COVID19
 - [ ] How to prepare for donation
