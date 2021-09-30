@@ -32,9 +32,9 @@
 - [x] Benefits and privileges
 - [x] Who needs donated blood?
 - [x] Recovery after donation
-- [ ] How to prepare for donation
-- [ ] Plasma donors COVID19
+- [x] Plasma donors COVID19
 - [ ] regulatory documents
+- [ ] How to prepare for donation
 - [ ] Minimum donor requirements
 
 # v1.5.0

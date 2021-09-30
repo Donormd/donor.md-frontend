@@ -1,27 +1,20 @@
-import styled from 'styled-components';
-
-import { Paragraph as PH, Title as TL } from '../components/UI/typography';
+import { ListWithCheck } from '../components/UI/list-with-check';
+import { Paragraph, Title } from '../components/UI/typography';
 import { Container } from '../core/layouts/container';
 import { HeaderContentFooter } from '../core/layouts/header-content-footer';
 
-const Paragraph = styled(PH)`
-  margin-bottom: 15px;
-`;
+const list = [
+  'находиться в возрастной категории от 18 до 55 лет',
+  'переболеть COVID19 и иметь хороший иммунный статус антител к COVID19',
+  'иметь клинические и биохимические анализы в норме',
+  'не иметь традиционных противопоказаний к донорству',
+];
 
-const Title = styled(TL)`
-  margin-bottom: 15px;
-  &:first-child {
-    margin-bottom: 40px;
-  }
-`;
-
-const List = styled.ul`
-  padding-left: 10px;
-`;
-const ListItem = styled.li`
-  list-style-type: '✔';
-  padding-bottom: 10px;
-`;
+const list2 = [
+  `исследование уровень иммуноглобулинов G к COVID19, чтобы видеть, насколько активна плазма для 
+   лечения коронавирусной инфекции, есть ли там антитела`,
+  'общий анализ крови, мочи, общей белок, уровень сахара в крови, креатин, коагулограмма',
+];
 
 const PlasmaDonors = () => {
   return (
@@ -30,7 +23,7 @@ const PlasmaDonors = () => {
         <Title margin='0 0 40px 0' bold>
           Доноры плазмы COVID19
         </Title>
-        <Title as='h3' bold>
+        <Title as='h4' bold>
           Что надо знать донорам плазмы для лечения пациентов с COVID19?
         </Title>
         <Paragraph>
@@ -38,7 +31,7 @@ const PlasmaDonors = () => {
           антитела искусственным путем невозможно, только переболевший и выздоровевший человек может стать
           донором плазмы, имеющей антитела к COVID-19 и помочь больным
         </Paragraph>
-        <Title as='h3' bold>
+        <Title as='h4' margin='35px 0 25px 0' bold>
           Что потом делают?
         </Title>
         <Paragraph>
@@ -46,16 +39,11 @@ const PlasmaDonors = () => {
           для лечения пациентов с новой коронавирусной инфекции, находящимся в медицинских организациях в
           тяжелом состоянии.
         </Paragraph>
-        <Title as='h3' bold>
+        <Title as='h4' margin='35px 0 25px 0' bold>
           Как стать донором антиCOVID-ой плазмы?
         </Title>
-        <List>
-          <ListItem>находиться в возрастной категории от 18 до 55 лет</ListItem>
-          <ListItem>переболеть COVID19 и иметь хороший иммунный статус антител к COVID19</ListItem>
-          <ListItem>иметь клинические и биохимические анализы в норме</ListItem>
-          <ListItem>не иметь традиционных противопоказаний к донорству</ListItem>
-        </List>
-        <Title as='h3' bold>
+        <ListWithCheck list={list} />
+        <Title as='h4' margin='35px 0 25px 0' bold>
           Что потом делают?
         </Title>
         <Paragraph>
@@ -66,19 +54,11 @@ const PlasmaDonors = () => {
         <Paragraph color='red'>
           Сдать плазму можно не ранее, чем через 14 дней после выписки из стационара
         </Paragraph>
-        <Title as='h3' bold>
+        <Title as='h4' margin='35px 0 25px 0' bold>
           Какие анализы сдают доноры плазмы COVID19?
         </Title>
-        <List>
-          <ListItem>
-            исследование уровень иммуноглобулинов G к COVID19, чтобы видеть, насколько активна плазма для
-            лечения коронавирусной инфекции, есть ли там антитела
-          </ListItem>
-          <ListItem>
-            общий анализ крови, мочи, общей белок, уровень сахара в крови, креатин, коагулограмма
-          </ListItem>
-        </List>
-        <Title as='h3' bold>
+        <ListWithCheck list={list2} />
+        <Title as='h4' margin='35px 0 25px 0' bold>
           Как проходит сдача плазмы?
         </Title>
         <Paragraph>
@@ -90,7 +70,7 @@ const PlasmaDonors = () => {
           Нахождение в стационаре после сдачи плазмы не требуется. В течение суток не рекомендуется заниматься
           физическими упражнениями, курить, необходимо хорошо и правильно питаться.
         </Paragraph>
-        <Title as='h3' bold>
+        <Title as='h4' margin='35px 0 25px 0' bold>
           Куда обратиться для сдачи плазмы?
         </Title>
         <Paragraph>
