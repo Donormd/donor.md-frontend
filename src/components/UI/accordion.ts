@@ -2,8 +2,13 @@ import { Collapse } from 'antd';
 import styled from 'styled-components';
 
 export const Accordion = styled(Collapse)`
+  .ant-collapse-header {
+    display: flex;
+    align-items: flex-start;
+  }
+
   .ant-collapse-content > .ant-collapse-content-box {
-    padding: 0;
+    padding-left: 50px;
   }
 
   &.ant-collapse > .ant-collapse-item > .ant-collapse-header .ant-collapse-arrow {
