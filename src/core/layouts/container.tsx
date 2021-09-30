@@ -1,6 +1,14 @@
 import { FC } from 'react';
 import styled from 'styled-components';
 
+export const Container: FC = ({ children, ...rest }) => (
+  <StyledContainer {...rest}>{children}</StyledContainer>
+);
+
+export const ContainerFluid: FC = ({ children, ...rest }) => (
+  <StyledContainerFluid {...rest}>{children}</StyledContainerFluid>
+);
+
 const StyledContainer = styled.section`
   width: 100%;
   padding: 0 15px;
@@ -36,21 +44,3 @@ const StyledContainerFluid = styled.section`
     padding: 0 80px;
   }
 `;
-
-export declare type Props = {
-  children: React.ReactNode;
-  as?: any;
-  className?: string;
-};
-
-export const Container: FC<Props> = ({ children, as = 'section', className }) => (
-  <StyledContainer className={className} as={as}>
-    {children}
-  </StyledContainer>
-);
-
-export const ContainerFluid: FC<Props> = ({ children, as = 'section', className }) => (
-  <StyledContainerFluid className={className} as={as}>
-    {children}
-  </StyledContainerFluid>
-);
