@@ -33,8 +33,8 @@
 - [x] Who needs donated blood?
 - [x] Recovery after donation
 - [x] Plasma donors COVID19
-- [ ] regulatory documents
 - [ ] How to prepare for donation
+- [ ] regulatory documents
 - [ ] Minimum donor requirements
 
 # v1.5.0

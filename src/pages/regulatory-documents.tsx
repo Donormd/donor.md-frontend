@@ -1,24 +1,9 @@
-/* eslint-disable react/jsx-wrap-multilines */
-
-import styled from 'styled-components';
-
 import { Accordion } from '../components/UI/accordion';
-import { Paragraph as PH, Title as TL } from '../components/UI/typography';
+import { Paragraph, Title } from '../components/UI/typography';
 import { Container } from '../core/layouts/container';
 import { HeaderContentFooter } from '../core/layouts/header-content-footer';
 
-const Paragraph = styled(PH)`
-  margin-bottom: 15px;
-`;
-
-const Title = styled(TL)`
-  margin-bottom: 15px;
-  &:first-child {
-    margin-bottom: 40px;
-  }
-`;
-
-const ProceduralDocuments = () => {
+const RegulatoryDocuments = () => {
   return (
     <HeaderContentFooter background='/images/pages/welcome.png'>
       <Container>
@@ -26,12 +11,12 @@ const ProceduralDocuments = () => {
           Регламентирующие документы о донорстве в Приднестровье
         </Title>
         <Paragraph>
-          <a href='http://www.vspmr.org/file.xp?file=87905'>
+          <a href='https://www.vspmr.org/file.xp?file=87905'>
             Закон Приднестровской Молдавской Республики «О донорстве» (редакция на 01.01.2020 года)
           </a>
         </Paragraph>
         <Paragraph>
-          <a href='http://gov-pmr.org/content/documents/2017/240.pdf'>
+          <a href='https://gov-pmr.org/content/documents/2017/240.pdf'>
             Порядок обеспечения доноров в день сдачи крови и (или) ее компонентов бесплатным питанием, а также
             условия и размер денежной компенсации на питание (Постановление Правительства № 240 от 15 сентября
             2017 года)
@@ -42,7 +27,7 @@ const ProceduralDocuments = () => {
           Министерства Здравоохранения №691 от 30.12.2010)
         </Paragraph>
         <Paragraph>
-          <a href='http://minzdrav.gospmr.org/file.xp?file=10097'>
+          <a href='https://minzdrav.gospmr.org/file.xp?file=10097'>
             Порядок заготовки и клинического использования плазмы от доноров - реконвалесцентов новой
             коронавирусной инфекции (COVID-19) в государственных лечебно-профилактических учреждениях (Приказ
             Министерства Здравоохранения №710 от 13.08.2020)
@@ -115,7 +100,7 @@ const ProceduralDocuments = () => {
   );
 };
 
-export default ProceduralDocuments;
+export default RegulatoryDocuments;
 
 export const getStaticProps = async () => {
   return {
