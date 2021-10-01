@@ -26,10 +26,10 @@ const articles = [
     },
   },
   {
-    title: 'Открытые приоритеты',
-    subTitle: 'Организация, посвящённая продвижению открытого программного обеспечения.',
+    title: 'Центр Языков и Переводов «SMART»',
+    subTitle: 'Самый большой языковой центр в Приднестровье',
     image: {
-      src: '/images/pages/articles/op.png',
+      src: '/images/pages/articles/logo_ya_visilal.png',
       width: 356,
       height: 186,
     },
