@@ -10,7 +10,7 @@ import { HeaderContentFooter } from '../core/layouts/header-content-footer';
 type ErrorPageType = { statusCode: number };
 
 const ErrorPage = ({ statusCode }: ErrorPageType) => {
-  const errorMessage = http.STATUS_CODES[statusCode] || 'Упс! Что-то пошло не так';
+  const errorMessage = http.STATUS_CODES[statusCode] || 'Упс! Что-то пошло не так. Но мы Вас всегда ждём в Центрах Крови';
   const message = statusCode === 404 ? 'Увы, такой страницы не существует ;)' : errorMessage;
 
   return (
