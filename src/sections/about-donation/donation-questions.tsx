@@ -76,14 +76,6 @@ const Article = styled.div<{ background: string }>`
 `;
 
 const StyledAccordion = styled(Accordion)`
-  .ant-collapse-header {
-    display: flex;
-  }
-  && {
-    .ant-collapse-content-box {
-      padding-left: 50px;
-    }
-  }
   @media (min-width: ${({ theme }) => theme.media.lg}) {
     max-width: 60%;
   }
