@@ -7,8 +7,10 @@ export const Accordion = styled(Collapse)`
     align-items: flex-start;
   }
 
-  .ant-collapse-content > .ant-collapse-content-box {
-    padding-left: 50px;
+  && {
+    .ant-collapse-content > .ant-collapse-content-box {
+      padding-left: 50px;
+    }
   }
 
   &.ant-collapse > .ant-collapse-item > .ant-collapse-header .ant-collapse-arrow {
