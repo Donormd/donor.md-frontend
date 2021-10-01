@@ -63,7 +63,7 @@ module.exports = {
     'space-before-function-paren': 0,
     'max-len': [
       'error',
-      110,
+      150,
       2,
       {
         ignorePattern: '^import\\s.+\\sfrom\\s.+;$',

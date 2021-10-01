@@ -1,5 +1,5 @@
-import { IBonus } from '../core/interfaces/bonus';
-import { baseFetch } from '../core/services/fetch';
+import { IBonus } from '@Interfaces/bonus';
+import { baseFetch } from '@Services/fetch';
 
 export const getBonuses = async () => {
   const { data } = await baseFetch<IBonus[]>({

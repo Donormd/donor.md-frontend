@@ -1,10 +1,8 @@
-import styled from 'styled-components';
-
-import { Accordion } from '../components/UI/accordion';
-import { ButtonGroup } from '../components/UI/button-group';
-import { Paragraph as PH, Title as TL } from '../components/UI/typography';
-import { Container } from '../core/layouts/container';
-import { HeaderContentFooter } from '../core/layouts/header-content-footer';
+import { Container } from '@Layouts/container';
+import { HeaderContentFooter } from '@Layouts/header-content-footer';
+import { Accordion } from '@UI/accordion';
+import { ButtonGroup } from '@UI/button-group';
+import { Paragraph, Title } from '@UI/typography';
 
 const buttons = [
   { _id: '1', text: 'Временные противопоказания' },
@@ -33,7 +31,7 @@ const MinimumRequirementsForDonor = () => {
           <li>Не иметь абсолютных противопоказаний</li>
           <li>Не иметь временных ограничений на момент сдачи крови</li>
         </ol>
-        <Title as='h3' bold>
+        <Title as='h3' margin='35px 0 20px 0' bold>
           Противопоказания
         </Title>
         <Paragraph>
@@ -44,14 +42,21 @@ const MinimumRequirementsForDonor = () => {
           Мы подготовили для вас противопоказания к донорству: абсолютных, то есть независящих от давности
           заболевания и результатов лечения, и временных — действующих лишь определенный срок.
         </Paragraph>
-        <Paragraph>
+        <Paragraph margin='15px 0 30px 0'>
           Руководствуйтесь, пожалуйста, этими ограничениями лишь в том случае, когда Вы совершенно уверены в
           наличии у себя соответствующего заболевания или состояния здоровья.
         </Paragraph>
         <div>
           <ButtonGroup buttons={buttons} onClick={() => null} />
           <Accordion ghost defaultActiveKey={1}>
-            <Accordion.Panel key={1} header={<Title as='h3'>Распространенные абсолютные ограничения</Title>}>
+            <Accordion.Panel
+              key={1}
+              header={
+                <Title as='h3' margin='30px 0 0 0 '>
+                  Распространенные абсолютные ограничения
+                </Title>
+              }
+            >
               <ol>
                 <li>ВИЧ- инфекция</li>
                 <li>Гепатит В, С</li>
@@ -87,14 +92,3 @@ export const getStaticProps = async () => {
     props: {},
   };
 };
-
-const Paragraph = styled(PH)`
-  margin-bottom: 15px;
-`;
-
-const Title = styled(TL)`
-  margin-bottom: 15px;
-  &:first-child {
-    margin-bottom: 40px;
-  }
-`;
