@@ -20,10 +20,10 @@ const listMock = [
 
 const articles = [
   {
-    title: 'ООО “Автолялечка”',
-    subTitle: 'Сеть маркетов автоаксессуаровв Приднестровье.',
+    title: 'donorsersh.org',
+    subTitle: 'Всероссийская Донорская сеть donorsersh.org',
     image: {
-      src: '/images/pages/articles/logo__active.png',
+      src: '/images/pages/articles/logo__in_Figma.png',
       width: 356,
       height: 186,
     },
@@ -33,6 +33,15 @@ const articles = [
     subTitle: 'Организация, посвящённая продвижению открытого программного обеспечения.',
     image: {
       src: '/images/pages/articles/op.png',
+      width: 356,
+      height: 186,
+    },
+  },
+{
+    title: 'СЗАО "Интерднестрком"',
+    subTitle: 'Крупнейший телекоммуникационный оператор на территории Приднестровья',
+    image: {
+      src: '/images/pages/articles/logo__in_Figma.png',
       width: 356,
       height: 186,
     },
@@ -79,7 +88,7 @@ const AboutPage = () => (
         Digitisation Award для разработки, тестирования и запуска портала.
       </Paragraph>
       <Title as='h4' bold>
-        Финансовая поддержка:
+      Как с нами связаться?
       </Title>
       <Paragraph>
         Будем рады вашим отзывам, пожеланиям, предложениям по электронной почте{' '}
