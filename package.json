@@ -10,10 +10,10 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.5.0",
-    "antd": "^4.9.4",
-    "axios": "^0.21.1",
-    "next": "10.0.3",
-    "next-pwa": "^5.0.6",
+    "antd": "^5.0.1",
+    "axios": "^1.6.8",
+    "next": "12.2.3",
+    "next-pwa": "^5.4.1",
     "normalize.css": "^8.0.1",
     "react": "17.0.1",
     "react-dom": "17.0.1",
@@ -22,8 +22,8 @@
     "react-svg": "^11.2.5",
     "react-yandex-maps": "^4.6.0",
     "redux": "^4.0.5",
-    "sharp": "^0.27.0",
-    "styled-components": "^5.2.1"
+    "sharp": "^0.33.0",
+    "styled-components": "^6.1.0"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.11",
